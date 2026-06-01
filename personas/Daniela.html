@@ -1,390 +1,623 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<meta charset="UTF-8">
-<title>Para ti, Daniela</title>
-
-<!-- FUENTES ESTILO HARRY POTTER -->
-<link href="https://fonts.googleapis.com/css2?family=MedievalSharp&family=Uncial+Antiqua&family=Playfair+Display:wght@400;600&display=swap" rel="stylesheet">
-
-<style>
-
-/* ================= FONDO MAGICO HOGWARTS ================= */
-
-body
-{
-    margin: 0;
-
-    background:
-    radial-gradient(circle at 20% 30%, rgba(255,215,0,0.25), transparent 50%),
-    radial-gradient(circle at 80% 70%, rgba(138,43,226,0.25), transparent 50%),
-    linear-gradient(180deg, #070713, #0f0f2a, #070713);
-
-    font-family: 'Playfair Display', serif;
-
-    color: #f5e6c8;
-
-    text-align: center;
-
-    overflow-x: hidden;
-}
-
-/* ================= ESTRELLAS MAGICAS ================= */
-
-.estrella
-{
-    position: fixed;
-
-    width: 3px;
-    height: 3px;
-
-    background: gold;
-
-    border-radius: 50%;
-
-    box-shadow: 0 0 8px gold;
-
-    animation: flotar linear infinite;
-}
-
-@keyframes flotar
-{
-    from
-    {
-        transform: translateY(100vh);
-        opacity: 0;
-    }
-
-    10%
-    {
-        opacity: 1;
-    }
-
-    to
-    {
-        transform: translateY(-10vh);
-        opacity: 0;
-    }
-}
-
-/* ================= SOBRE PERGAMINO ================= */
-
-#sobre
-{
-    margin-top: 200px;
-
-    width: 260px;
-    height: 150px;
-
-    background:
-    linear-gradient(45deg, #d4af37, #f5e6c8);
-
-    border-radius: 12px;
-
-    cursor: pointer;
-
-    margin-left: auto;
-    margin-right: auto;
-
-    animation: latido 2s infinite;
-
-    box-shadow:
-    0 0 20px gold,
-    0 0 40px goldenrod,
-    inset 0 0 20px rgba(0,0,0,0.3);
-}
-
-@keyframes latido
-{
-    0% { transform: scale(1); }
-    50% { transform: scale(1.05); }
-    100% { transform: scale(1); }
-}
-
-/* ================= CARTA ================= */
-
-.carta
-{
-    display: none;
-
-    margin: auto;
-
-    margin-top: 40px;
-
-    max-width: 720px;
-
-    padding: 40px;
-
-    background:
-    linear-gradient(180deg, rgba(20,20,40,0.95), rgba(10,10,25,0.95));
-
-    border-radius: 20px;
-
-    box-shadow:
-    0 0 30px gold,
-    0 0 60px rgba(138,43,226,0.5);
-}
-
-/* ================= TITULO ESTILO HARRY POTTER ================= */
-
-.titulo
-{
-    font-family: 'Uncial Antiqua', cursive;
-
-    font-size: 48px;
-
-    color: gold;
-
-    text-shadow:
-    0 0 10px gold,
-    0 0 20px goldenrod,
-    0 0 40px gold;
-
-    letter-spacing: 2px;
-}
-
-/* ================= TEXTO ================= */
-
-#textoCarta
-{
-    font-family: 'MedievalSharp', cursive;
-
-    font-size: 22px;
-
-    border-right: 2px solid gold;
-
-    white-space: pre-line;
-}
-
-/* ================= FOTOS ================= */
-
-.foto
-{
-    position: absolute;
-
-    width: 170px;
-
-    border-radius: 12px;
-
-    box-shadow:
-    0 0 20px gold,
-    0 0 40px rgba(138,43,226,0.5);
-
-    opacity: 0;
-
-    transition: opacity 2s, transform 6s ease-in-out;
-}
-
-.foto.visible
-{
-    opacity: 1;
-}
-
-.foto.izq
-{
-    left: 5%;
-    transform: rotate(-5deg);
-}
-
-.foto.der
-{
-    right: 5%;
-    transform: rotate(5deg);
-}
-
-/* ================= VIDEO ================= */
-
-.video
-{
-    margin-top: 30px;
-
-    width: 340px;
-
-    border-radius: 12px;
-
-    box-shadow:
-    0 0 20px gold,
-    0 0 40px purple;
-
-    opacity: 0;
-
-    transition: opacity 2s;
-}
-
-.video.visible
-{
-    opacity: 1;
-}
-
-/* ================= BOTONES ================= */
-
-.audios button
-{
-    display: block;
-
-    margin: 12px auto;
-
-    padding: 12px 20px;
-
-    border: none;
-
-    border-radius: 12px;
-
-    background:
-    linear-gradient(45deg, goldenrod, gold);
-
-    color: black;
-
-    cursor: pointer;
-
-    width: 320px;
-
-    font-family: 'MedievalSharp';
-
-    font-size: 16px;
-
-    box-shadow:
-    0 0 20px gold;
-}
-
-.audios button:hover
-{
-    transform: scale(1.05);
-}
-
-/* ================= CURSOR MAGICO ================= */
-/* Cursor restaurado al normal para evitar iconos incorrectos */
-body
-{
-    cursor: auto;
-}
-
-</style>
-
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Para ti, Daniela</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Lora:wght@400;500;600&display=swap" rel="stylesheet">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #0f1419 0%, #1a1f2e 50%, #0f1419 100%);
+            font-family: 'Lora', serif;
+            color: #e8e8e8;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+        
+        /* Partículas doradas animadas - FLOTANTES */
+        .particle {
+            position: fixed;
+            width: 3px;
+            height: 3px;
+            background: #d4af37;
+            border-radius: 50%;
+            opacity: 0.7;
+            pointer-events: none;
+            animation: float-particle 15s linear infinite;
+            box-shadow: 0 0 8px #d4af37;
+        }
+        
+        @keyframes float-particle {
+            from {
+                transform: translateY(100vh) translateX(0);
+                opacity: 0;
+            }
+            10% {
+                opacity: 0.8;
+            }
+            90% {
+                opacity: 0.8;
+            }
+            to {
+                transform: translateY(-100vh) translateX(100px);
+                opacity: 0;
+            }
+        }
+        
+        /* ===== SOBRE INICIAL ===== */
+        #sobre-inicial {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 100;
+            background: linear-gradient(135deg, #0f1419 0%, #1a1f2e 100%);
+            animation: fade-out 0.8s ease forwards 8s;
+        }
+        
+        @keyframes fade-out {
+            to {
+                opacity: 0;
+                pointer-events: none;
+            }
+        }
+        
+        .sobre-wrapper {
+            position: relative;
+            width: 320px;
+            height: 200px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        /* Partículas orbitando al sobre */
+        .particle-orbit {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: #d4af37;
+            border-radius: 50%;
+            box-shadow: 0 0 10px #d4af37;
+            animation: orbit-particle 8s linear infinite;
+        }
+        
+        @keyframes orbit-particle {
+            0% {
+                transform: rotate(0deg) translateX(180px) rotate(0deg);
+                opacity: 0.8;
+            }
+            100% {
+                transform: rotate(360deg) translateX(180px) rotate(-360deg);
+                opacity: 0.8;
+            }
+        }
+        
+        /* Variar delays de órbita */
+        .particle-orbit:nth-child(1) { animation-delay: 0s; }
+        .particle-orbit:nth-child(2) { animation-delay: 1.5s; }
+        .particle-orbit:nth-child(3) { animation-delay: 3s; }
+        .particle-orbit:nth-child(4) { animation-delay: 4.5s; }
+        .particle-orbit:nth-child(5) { animation-delay: 6s; }
+        
+        .sobre {
+            width: 320px;
+            height: 200px;
+            background: linear-gradient(135deg, #d4af37 0%, #ffed4e 100%);
+            border-radius: 12px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 20px 60px rgba(212, 175, 55, 0.3);
+            cursor: pointer;
+            animation: pulse-sobre 2s ease-in-out infinite;
+            position: relative;
+            z-index: 10;
+        }
+        
+        @keyframes pulse-sobre {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+        
+        .sobre-titulo {
+            font-family: 'Playfair Display', serif;
+            font-size: 32px;
+            color: #0f1419;
+            font-weight: 700;
+            margin-bottom: 10px;
+            text-align: center;
+        }
+        
+        .sobre-subtitulo {
+            font-size: 13px;
+            color: #0f1419;
+            font-weight: 500;
+            opacity: 0.8;
+        }
+        
+        /* ===== CONTENIDO PRINCIPAL ===== */
+        .contenedor {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 80px 40px;
+            display: none;
+            animation: fade-in 1s ease;
+        }
+        
+        .contenedor.visible {
+            display: block;
+        }
+        
+        @keyframes fade-in {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        /* Título principal */
+        h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 58px;
+            text-align: center;
+            color: #d4af37;
+            margin-bottom: 30px;
+            text-shadow: 0 2px 10px rgba(212, 175, 55, 0.2);
+            font-weight: 700;
+        }
+        
+        /* ===== SECCIÓN DE MENSAJE PERSONALIZADO ===== */
+        .seccion-mensaje {
+            background: rgba(212, 175, 55, 0.08);
+            border: 2px solid #d4af37;
+            border-radius: 12px;
+            padding: 40px;
+            margin-bottom: 60px;
+            text-align: center;
+        }
+        
+        .seccion-mensaje p {
+            font-size: 16px;
+            color: #d4af37;
+            margin-bottom: 20px;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+        
+        .mensaje-box {
+            background: rgba(20, 25, 35, 0.8);
+            border: 1px solid #d4af37;
+            border-radius: 8px;
+            padding: 20px;
+            min-height: 120px;
+            color: #e8e8e8;
+            font-size: 16px;
+            line-height: 1.8;
+            margin: 20px 0;
+            font-style: italic;
+        }
+        
+        /* ===== SECCIÓN DE MENSAJES ===== */
+        .seccion-mensajes {
+            margin: 80px 0;
+            text-align: center;
+        }
+        
+        .seccion-mensajes h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 36px;
+            color: #d4af37;
+            margin-bottom: 40px;
+            font-weight: 400;
+            font-style: italic;
+            letter-spacing: 2px;
+        }
+        
+        .botones-container {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            max-width: 500px;
+            margin: 0 auto;
+        }
+        
+        .boton-mensaje {
+            padding: 16px 30px;
+            background: linear-gradient(135deg, #d4af37, #ffed4e);
+            border: none;
+            border-radius: 8px;
+            color: #0f1419;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: 'Lora', serif;
+            position: relative;
+            overflow: hidden;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+        }
+        
+        .boton-mensaje::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: rgba(255,255,255,0.3);
+            transition: left 0.4s ease;
+            z-index: 1;
+        }
+        
+        .boton-mensaje:hover::before {
+            left: 100%;
+        }
+        
+        .boton-mensaje:hover {
+            transform: translateY(-4px) scale(1.05);
+            box-shadow: 0 12px 25px rgba(212, 175, 55, 0.4);
+            background: linear-gradient(135deg, #ffed4e, #d4af37);
+        }
+        
+        .boton-mensaje:active {
+            transform: scale(0.98);
+        }
+        
+        .boton-mensaje span {
+            position: relative;
+            z-index: 2;
+        }
+        
+        /* ===== BOTÓN ALBUM ===== */
+        .boton-album {
+            margin-top: 50px;
+            padding: 18px 50px;
+            background: linear-gradient(135deg, #d4af37, #ffed4e);
+            border: none;
+            border-radius: 8px;
+            color: #0f1419;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: 'Lora', serif;
+            position: relative;
+            overflow: hidden;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            box-shadow: 0 8px 20px rgba(212, 175, 55, 0.3);
+        }
+        
+        .boton-album::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: rgba(255,255,255,0.3);
+            transition: left 0.4s ease;
+        }
+        
+        .boton-album:hover::before {
+            left: 100%;
+        }
+        
+        .boton-album:hover {
+            transform: translateY(-5px) scale(1.08);
+            box-shadow: 0 18px 40px rgba(212, 175, 55, 0.6);
+            background: linear-gradient(135deg, #ffed4e, #d4af37);
+        }
+        
+        /* ===== GALERÍA DE FOTOS ===== */
+        .galeria {
+            display: none;
+            margin-top: 80px;
+        }
+        
+        .galeria.activa {
+            display: block;
+            animation: fade-in 0.8s ease;
+        }
+        
+        .galeria h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 36px;
+            color: #d4af37;
+            text-align: center;
+            margin-bottom: 50px;
+            font-weight: 400;
+            font-style: italic;
+        }
+        
+        .grid-fotos {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+            gap: 25px;
+            margin-bottom: 60px;
+        }
+        
+        .foto-item {
+            position: relative;
+            aspect-ratio: 1;
+            border-radius: 8px;
+            overflow: hidden;
+            cursor: pointer;
+            opacity: 0;
+            animation: fade-in 0.8s ease forwards;
+            transition: all 0.3s ease;
+            border: 2px solid rgba(212, 175, 55, 0.3);
+        }
+        
+        .foto-item:nth-child(1) { animation-delay: 0.1s; }
+        .foto-item:nth-child(2) { animation-delay: 0.2s; }
+        .foto-item:nth-child(3) { animation-delay: 0.3s; }
+        .foto-item:nth-child(4) { animation-delay: 0.4s; }
+        .foto-item:nth-child(5) { animation-delay: 0.5s; }
+        .foto-item:nth-child(6) { animation-delay: 0.6s; }
+        
+        .foto-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        
+        .foto-item:hover {
+            border-color: #d4af37;
+            box-shadow: 0 8px 20px rgba(212, 175, 55, 0.3);
+            transform: translateY(-5px);
+        }
+        
+        .foto-item:hover img {
+            transform: scale(1.08);
+        }
+        
+        .foto-placeholder {
+            width: 100%;
+            height: 100%;
+            background: rgba(212, 175, 55, 0.05);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 2px dashed #d4af37;
+            font-size: 50px;
+            color: #d4af37;
+        }
+        
+        /* ===== LÍNEA DIVISORA ===== */
+        .divider {
+            width: 80px;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, #d4af37, transparent);
+            margin: 60px auto;
+        }
+        
+        /* ===== BOTÓN VOLVER ===== */
+        .volver {
+            display: inline-block;
+            margin-top: 60px;
+            padding: 12px 35px;
+            background: transparent;
+            border: 2px solid #d4af37;
+            border-radius: 6px;
+            color: #d4af37;
+            font-family: 'Lora', serif;
+            font-size: 14px;
+            text-decoration: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            font-weight: 500;
+        }
+        
+        .volver:hover {
+            background: #d4af37;
+            color: #0f1419;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(212, 175, 55, 0.3);
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            h1 { font-size: 42px; }
+            
+            .seccion-mensajes h2 {
+                font-size: 28px;
+            }
+            
+            .grid-fotos {
+                grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+                gap: 15px;
+            }
+            
+            .boton-mensaje {
+                padding: 14px 20px;
+                font-size: 12px;
+            }
+            
+            .contenedor {
+                padding: 60px 20px;
+            }
+        }
+    </style>
 </head>
-
 <body>
 
-<audio id="musica" loop>
-<source src="../media/daniela/musica.mp3">
-</audio>
+    <!-- SOBRE INICIAL CON PARTÍCULAS ORBITANDO -->
+    <div id="sobre-inicial">
+        <div class="sobre-wrapper" onclick="abrirSobre()">
+            <!-- Partículas orbitando -->
+            <div class="particle-orbit"></div>
+            <div class="particle-orbit"></div>
+            <div class="particle-orbit"></div>
+            <div class="particle-orbit"></div>
+            <div class="particle-orbit"></div>
+            
+            <!-- Sobre -->
+            <div class="sobre">
+                <div class="sobre-titulo">Para ti,<br>Daniela</div>
+                <div class="sobre-subtitulo">Toca para abrir</div>
+            </div>
+        </div>
+    </div>
 
-<div id="sobre" onclick="abrirCarta()"></div>
+    <!-- PARTÍCULAS FLOTANTES -->
+    <div id="particulas"></div>
 
-<div class="carta" id="carta">
+    <!-- MÚSICA DE FONDO -->
+    <audio id="musica" loop volume="0.15">
+        <source src="../media/Daniela/musica.mp3" type="audio/mpeg">
+    </audio>
 
-<h1 class="titulo">Para ti, Daniela</h1>
+    <!-- CONTENIDO PRINCIPAL -->
+    <div class="contenedor" id="contenedor">
+        
+        <h1>Para ti, Daniela</h1>
 
-<p id="textoCarta"></p>
+        <!-- SECCIÓN DE MENSAJE PERSONALIZADO -->
+        <div class="seccion-mensaje">
+            <p>Un Mensaje Para Ti</p>
+            <div class="mensaje-box" id="mensaje-personalizado">
+                Algunas personas no llegan por casualidad,
+                llegan por magia.
+                <br><br>
+                Bienvenida a tu espacio especial.
+            </div>
+        </div>
 
-<img src="../media/daniela/foto1.jpg" class="foto izq" id="foto1">
-<img src="../media/daniela/foto2.jpg" class="foto der" id="foto2">
+        <div class="divider"></div>
 
-<video class="video" id="video1" autoplay muted loop>
-<source src="../media/daniela/video1.mp4">
-</video>
+        <!-- SECCIÓN DE MENSAJES MÁGICOS -->
+        <div class="seccion-mensajes">
+            <h2>Escucha esto</h2>
+            <div class="botones-container">
+                <button class="boton-mensaje" onclick="reproducirAudio('audio1')">
+                    <span>▶ Mensaje mágico 1</span>
+                </button>
+                <button class="boton-mensaje" onclick="reproducirAudio('audio2')">
+                    <span>▶ Mensaje mágico 2</span>
+                </button>
+                <button class="boton-mensaje" onclick="reproducirAudio('audio3')">
+                    <span>▶ Mensaje mágico 3</span>
+                </button>
+            </div>
 
-<h2 style="font-family:'Uncial Antiqua'; color:gold;">Escucha esto</h2>
+            <button class="boton-album" onclick="abrirAlbum()">
+                📸 Ver Album de Fotos 📸
+            </button>
+        </div>
 
-<div class="audios">
-<button onclick="reproducirAudio('audio1')">▶ Mensaje mágico 1</button>
-<button onclick="reproducirAudio('audio2')">▶ Mensaje mágico 2</button>
-<button onclick="reproducirAudio('audio3')">▶ Mensaje mágico 3</button>
-</div>
+        <!-- GALERÍA DE FOTOS -->
+        <div class="galeria" id="galeria">
+            <h2>Nuestro Album</h2>
+            <div class="grid-fotos">
+                <div class="foto-item">
+                    <div class="foto-placeholder">📸</div>
+                </div>
 
-<audio id="audio1"><source src="../media/daniela/audio1.mp3"></audio>
-<audio id="audio2"><source src="../media/daniela/audio2.mp3"></audio>
-<audio id="audio3"><source src="../media/daniela/audio3.mp3"></audio>
+                <div class="foto-item">
+                    <div class="foto-placeholder">📸</div>
+                </div>
 
-</div>
+                <div class="foto-item">
+                    <div class="foto-placeholder">📸</div>
+                </div>
 
-<script>
+                <div class="foto-item">
+                    <div class="foto-placeholder">📸</div>
+                </div>
 
-/* ESTRELLAS MAGICAS */
+                <div class="foto-item">
+                    <div class="foto-placeholder">📸</div>
+                </div>
 
-for(let i=0;i<100;i++)
-{
-    let e=document.createElement("div");
+                <div class="foto-item">
+                    <div class="foto-placeholder">📸</div>
+                </div>
+            </div>
+        </div>
 
-    e.className="estrella";
+        <div style="text-align: center;">
+            <a href="../index.html" class="volver">← Volver</a>
+        </div>
 
-    e.style.left=Math.random()*100+"vw";
+    </div>
 
-    e.style.animationDuration=(5+Math.random()*10)+"s";
+    <!-- AUDIOS -->
+    <audio id="audio1"><source src="../media/Daniela/audio1.mp3" type="audio/mpeg"></audio>
+    <audio id="audio2"><source src="../media/Daniela/audio2.mp3" type="audio/mpeg"></audio>
+    <audio id="audio3"><source src="../media/Daniela/audio3.mp3" type="audio/mpeg"></audio>
 
-    document.body.appendChild(e);
-}
+    <script>
+        // Generar partículas flotantes
+        function generarParticulas() {
+            const contenedor = document.getElementById('particulas');
+            for (let i = 0; i < 40; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                particle.style.left = Math.random() * 100 + 'vw';
+                particle.style.animationDuration = (12 + Math.random() * 12) + 's';
+                particle.style.animationDelay = Math.random() * 5 + 's';
+                contenedor.appendChild(particle);
+            }
+        }
+        generarParticulas();
 
-let audioActual=null;
+        // Control de audio
+        let audioActual = null;
 
-function reproducirAudio(id)
-{
-    if(audioActual)
-    {
-        audioActual.pause();
-        audioActual.currentTime=0;
-    }
+        function reproducirAudio(id) {
+            if (audioActual && !audioActual.paused) {
+                audioActual.pause();
+                audioActual.currentTime = 0;
+            }
 
-    audioActual=document.getElementById(id);
+            audioActual = document.getElementById(id);
+            audioActual.play();
+        }
 
-    audioActual.play();
-}
+        // Abrir sobre
+        function abrirSobre() {
+            document.getElementById('sobre-inicial').style.display = 'none';
+            document.getElementById('contenedor').classList.add('visible');
 
-function abrirCarta()
-{
-    document.getElementById("sobre").style.display="none";
+            // Iniciar música
+            const musica = document.getElementById('musica');
+            musica.play();
+        }
 
-    document.getElementById("carta").style.display="block";
-
-    let musica=document.getElementById("musica");
-
-    musica.volume=0;
-
-    musica.play();
-
-    let fade=setInterval(()=>{
-
-        if(musica.volume<0.25)
-            musica.volume+=0.01;
-
-        else
-            clearInterval(fade);
-
-    },120);
-
-    escribirTexto();
-}
-
-const texto=`Algunas personas...
-
-no llegan por casualidad.
-
-Llegan por magia.`;
-
-let i=0;
-
-function escribirTexto()
-{
-    if(i<texto.length)
-    {
-        textoCarta.innerHTML+=texto.charAt(i);
-
-        i++;
-
-        if(i==40)
-            foto1.classList.add("visible");
-
-        if(i==80)
-            foto2.classList.add("visible");
-
-        if(i==120)
-            video1.classList.add("visible");
-
-        setTimeout(escribirTexto,40);
-    }
-}
-
-</script>
+        // Álbum de fotos
+        function abrirAlbum() {
+            const galeria = document.getElementById('galeria');
+            galeria.classList.toggle('activa');
+            
+            setTimeout(() => {
+                galeria.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }, 100);
+        }
+    </script>
 
 </body>
 </html>
