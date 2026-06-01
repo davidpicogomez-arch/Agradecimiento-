@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Para ti, Ana Lucía</title>
+
+<!-- FUENTE MÁS STRANGER THINGS -->
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+
+<style>
+
+/* ================= FONDO STRANGER THINGS ROJO Y NEGRO ================= */
+
+body
+{
+    margin: 0;
+
+    background:
+    radial-gradient(circle at 50% 20%, rgba(255,0,0,0.35), transparent 60%),
+    radial-gradient(circle at 20% 80%, rgba(180,0,0,0.3), transparent 60%),
+    linear-gradient(180deg, #000000, #050505, #000000);
+
+    font-family: 'Poppins', sans-serif;
+
+    color: white;
+
+    text-align: center;
+
+    overflow-x: hidden;
+}
+
+/* ================= NIEBLA ROJA ================= */
+
+.niebla
+{
+    position: fixed;
+
+    width: 200%;
+    height: 200%;
+
+    background: radial-gradient(circle, rgba(255,0,0,0.08), transparent 70%);
+
+    animation: moverNiebla 30s infinite linear;
+
+    pointer-events: none;
+}
+
+@keyframes moverNiebla
+{
+    from { transform: translate(-20%, -20%); }
+    to { transform: translate(20%, 20%); }
+}
+
+/* ================= LETRAS NAVIDEÑAS FIJAS ================= */
+
+.letras
+{
+    position: fixed;
+
+    top: 20px;
+
+    width: 100%;
+
+    font-family: 'Cinzel', serif;
+
+    font-size: 24px;
+
+    letter-spacing: 10px;
+
+    z-index: 10;
+}
+
+.letra
+{
+    display: inline-block;
+
+    margin: 5px;
+
+    animation: parpadear 2s infinite;
+}
+
+@keyframes parpadear
+{
+    0% { color: #ff0000; text-shadow: 0 0 15px #ff0000; }
+    50% { color: #aa0000; text-shadow: 0 0 25px #ff0000; }
+    100% { color: #ff0000; text-shadow: 0 0 15px #ff0000; }
+}
+
+/* ================= TITULO STRANGER THINGS ================= */
+
+.glitch
+{
+    font-family: 'Cinzel', serif;
+
+    font-size: 48px;
+
+    color: #ff0000;
+
+    text-shadow:
+    0 0 10px #ff0000,
+    0 0 20px #ff0000,
+    0 0 40px #aa0000;
+}
+
+/* ================= SOBRE ================= */
+
+#sobre
+{
+    margin-top: 200px;
+
+    width: 240px;
+    height: 140px;
+
+    background: linear-gradient(45deg, #550000, #ff0000);
+
+    border-radius: 16px;
+
+    cursor: pointer;
+
+    margin-left: auto;
+    margin-right: auto;
+
+    animation: latido 1.5s infinite;
+
+    box-shadow:
+    0 0 20px #ff0000,
+    0 0 40px #ff0000,
+    0 0 80px #550000;
+}
+
+@keyframes latido
+{
+    0% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+    100% { transform: scale(1); }
+}
+
+/* ================= CARTA ================= */
+
+.carta
+{
+    display: none;
+
+    margin: auto;
+
+    margin-top: 40px;
+
+    max-width: 720px;
+
+    padding: 40px;
+
+    background: rgba(0,0,0,0.85);
+
+    border-radius: 20px;
+
+    box-shadow:
+    0 0 30px #ff0000,
+    0 0 60px #550000;
+}
+
+/* ================= TEXTO ================= */
+
+#textoCarta
+{
+    font-size: 20px;
+
+    border-right: 2px solid #ff0000;
+
+    white-space: pre-line;
+}
+
+/* ================= PARTICULAS ROJAS ================= */
+
+.particula
+{
+    position: fixed;
+
+    width: 4px;
+    height: 4px;
+
+    border-radius: 50%;
+
+    background: #ff0000;
+
+    box-shadow: 0 0 10px #ff0000;
+
+    animation: flotar linear infinite;
+}
+
+@keyframes flotar
+{
+    from
+    {
+        transform: translateY(100vh);
+        opacity: 0;
+    }
+
+    10%
+    {
+        opacity: 1;
+    }
+
+    to
+    {
+        transform: translateY(-10vh);
+        opacity: 0;
+    }
+}
+
+/* ================= FOTOS ================= */
+
+.foto
+{
+    position: absolute;
+
+    width: 170px;
+
+    border-radius: 12px;
+
+    box-shadow: 0 0 20px #ff0000;
+
+    opacity: 0;
+
+    transition: opacity 2s;
+}
+
+.foto.visible
+{
+    opacity: 1;
+}
+
+.foto.izq
+{
+    left: 5%;
+    transform: rotate(-6deg);
+}
+
+.foto.der
+{
+    right: 5%;
+    transform: rotate(6deg);
+}
+
+/* ================= VIDEO ================= */
+
+.video
+{
+    margin-top: 30px;
+
+    width: 340px;
+
+    border-radius: 12px;
+
+    box-shadow: 0 0 25px #ff0000;
+
+    opacity: 0;
+
+    transition: opacity 2s;
+}
+
+.video.visible
+{
+    opacity: 1;
+}
+
+/* ================= BOTONES ================= */
+
+.audios button
+{
+    display: block;
+
+    margin: 12px auto;
+
+    padding: 12px 20px;
+
+    border: none;
+
+    border-radius: 12px;
+
+    background: linear-gradient(45deg, #550000, #ff0000);
+
+    color: white;
+
+    cursor: pointer;
+
+    width: 320px;
+
+    box-shadow:
+    0 0 20px #ff0000;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="niebla"></div>
+
+<div class="letras">
+<span class="letra">A</span>
+<span class="letra">N</span>
+<span class="letra">A</span>
+<span class="letra">L</span>
+<span class="letra">U</span>
+<span class="letra">C</span>
+<span class="letra">I</span>
+<span class="letra">A</span>
+</div>
+
+<audio id="musica" loop>
+<source src="../media/ana/musica.mp3">
+</audio>
+
+<div id="sobre" onclick="abrirCarta()"></div>
+
+<div class="carta" id="carta">
+
+<h1 class="glitch">Para ti, Ana Lucía</h1>
+
+<p id="textoCarta"></p>
+
+<img src="../media/ana/foto1.jpg" class="foto izq" id="foto1">
+<img src="../media/ana/foto2.jpg" class="foto der" id="foto2">
+
+<video class="video" id="video1" autoplay muted loop>
+<source src="../media/ana/video1.mp4">
+</video>
+
+<h2>Escucha esto</h2>
+
+<div class="audios">
+<button onclick="reproducirAudio('audio1')">▶ Mensaje 1</button>
+<button onclick="reproducirAudio('audio2')">▶ Mensaje 2</button>
+<button onclick="reproducirAudio('audio3')">▶ Mensaje 3</button>
+</div>
+
+<audio id="audio1"><source src="../media/ana/audio1.mp3"></audio>
+<audio id="audio2"><source src="../media/ana/audio2.mp3"></audio>
+<audio id="audio3"><source src="../media/ana/audio3.mp3"></audio>
+
+</div>
+
+<script>
+
+/* PARTICULAS */
+
+for(let i=0;i<100;i++)
+{
+    let p=document.createElement("div");
+
+    p.className="particula";
+
+    p.style.left=Math.random()*100+"vw";
+
+    p.style.animationDuration=(4+Math.random()*8)+"s";
+
+    document.body.appendChild(p);
+}
+
+let audioActual=null;
+
+function reproducirAudio(id)
+{
+    if(audioActual)
+    {
+        audioActual.pause();
+        audioActual.currentTime=0;
+    }
+
+    audioActual=document.getElementById(id);
+
+    audioActual.play();
+}
+
+function abrirCarta()
+{
+    document.getElementById("sobre").style.display="none";
+
+    document.getElementById("carta").style.display="block";
+
+    let musica=document.getElementById("musica");
+
+    musica.volume=0;
+
+    musica.play();
+
+    let fade=setInterval(()=>{
+
+        if(musica.volume<0.3)
+            musica.volume+=0.01;
+
+        else
+            clearInterval(fade);
+
+    },120);
+
+    escribirTexto();
+}
+
+const texto=`Algunas conexiones...
+
+trascienden dimensiones.
+
+Y tú eres una de ellas.`;
+
+let i=0;
+
+function escribirTexto()
+{
+    if(i<texto.length)
+    {
+        textoCarta.innerHTML+=texto.charAt(i);
+
+        i++;
+
+        if(i==40)
+            foto1.classList.add("visible");
+
+        if(i==80)
+            foto2.classList.add("visible");
+
+        if(i==120)
+            video1.classList.add("visible");
+
+        setTimeout(escribirTexto,35);
+    }
+}
+
+</script>
+
+</body>
+</html>

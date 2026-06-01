@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Ruta Activa: Davzay</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;600;700&family=Roboto+Mono:wght@300;500&display=swap" rel="stylesheet">
+
+<style>
+
+/* ================= ATMOSFERA GENERAL ================= */
+
+body
+{
+    margin: 0;
+
+    background:
+    radial-gradient(circle at 50% 60%, rgba(255,120,40,0.18), transparent 70%),
+    radial-gradient(circle at 20% 20%, rgba(255,60,0,0.12), transparent 60%),
+    linear-gradient(180deg, #050505, #0a0a0a, #050505);
+
+    font-family: 'Rajdhani', sans-serif;
+
+    color: #ffd0a0;
+
+    overflow-x: hidden;
+
+    text-align: center;
+}
+
+/* ================= CARRETERA ================= */
+
+.carretera
+{
+    position: fixed;
+
+    bottom: 0;
+
+    width: 100%;
+
+    height: 320px;
+
+    background:
+    linear-gradient(180deg, transparent, rgba(20,20,20,0.95));
+}
+
+.linea-centro
+{
+    position: fixed;
+
+    bottom: 0;
+
+    left: 50%;
+
+    width: 6px;
+
+    height: 100%;
+
+    background:
+    repeating-linear-gradient(
+        0deg,
+        #ffd0a0,
+        #ffd0a0 40px,
+        transparent 40px,
+        transparent 80px
+    );
+
+    opacity: 0.7;
+
+    animation: moverLinea 0.8s linear infinite;
+}
+
+@keyframes moverLinea
+{
+    from { transform: translateY(0); }
+    to { transform: translateY(80px); }
+}
+
+/* ================= FARO MOTO ================= */
+
+.faro
+{
+    position: fixed;
+
+    bottom: 0;
+
+    left: 50%;
+
+    transform: translateX(-50%);
+
+    width: 800px;
+
+    height: 500px;
+
+    background:
+    radial-gradient(circle at center, rgba(255,180,100,0.35), transparent 70%);
+
+    pointer-events: none;
+}
+
+/* ================= TABLERO MECANICO ================= */
+
+.tablero
+{
+    position: fixed;
+
+    top: 20px;
+
+    left: 50%;
+
+    transform: translateX(-50%);
+
+    width: 400px;
+
+    height: 120px;
+
+    border: 1px solid rgba(255,150,80,0.4);
+
+    background:
+    linear-gradient(180deg, rgba(40,20,10,0.9), rgba(10,5,2,0.95));
+
+    box-shadow:
+    0 0 30px rgba(255,120,60,0.2),
+    inset 0 0 20px rgba(255,80,20,0.1);
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-around;
+
+    font-family: Roboto Mono;
+
+    font-size: 14px;
+}
+
+.indicador
+{
+    color: #ffb070;
+
+    text-shadow: 0 0 10px rgba(255,120,60,0.7);
+}
+
+/* ================= BOTON ACCESO ================= */
+
+#acceso
+{
+    margin-top: 260px;
+
+    padding: 20px 40px;
+
+    border: 1px solid rgba(255,150,80,0.5);
+
+    background:
+    linear-gradient(180deg, rgba(255,120,60,0.2), rgba(255,80,20,0.1));
+
+    color: #ffb070;
+
+    cursor: pointer;
+
+    letter-spacing: 4px;
+
+    font-weight: 600;
+
+    box-shadow:
+    0 0 20px rgba(255,120,60,0.3);
+
+    transition: 0.3s;
+}
+
+#acceso:hover
+{
+    background: rgba(255,150,80,0.3);
+}
+
+/* ================= PANEL PRINCIPAL ================= */
+
+.panel
+{
+    display: none;
+
+    margin: auto;
+
+    margin-top: 80px;
+
+    max-width: 800px;
+
+    padding: 60px;
+
+    border: 1px solid rgba(255,150,80,0.3);
+
+    background:
+    linear-gradient(180deg, rgba(20,10,5,0.95), rgba(5,2,1,0.98));
+
+    box-shadow:
+    0 0 60px rgba(255,120,60,0.2);
+}
+
+/* ================= TITULO ================= */
+
+.titulo
+{
+    font-size: 52px;
+
+    letter-spacing: 8px;
+
+    color: #ffb070;
+
+    margin-bottom: 40px;
+
+    text-shadow: 0 0 20px rgba(255,120,60,0.7);
+}
+
+/* ================= TEXTO ================= */
+
+#textoCarta
+{
+    font-family: Roboto Mono;
+
+    font-size: 18px;
+
+    border-right: 2px solid #ffb070;
+
+    white-space: pre-line;
+
+    line-height: 1.8;
+}
+
+/* ================= FOTOS ================= */
+
+.foto
+{
+    position: fixed;
+
+    width: 200px;
+
+    border: 1px solid rgba(255,150,80,0.4);
+
+    box-shadow:
+    0 0 20px rgba(255,120,60,0.4);
+
+    opacity: 0;
+
+    transition: opacity 2s, transform 0.3s;
+}
+
+.foto.visible
+{
+    opacity: 1;
+}
+
+.foto.izq
+{
+    left: 60px;
+
+    bottom: 140px;
+
+    transform: rotate(-3deg);
+}
+
+.foto.der
+{
+    right: 60px;
+
+    bottom: 140px;
+
+    transform: rotate(3deg);
+}
+
+/* ================= BOTONES ================= */
+
+.audios button
+{
+    margin: 14px;
+
+    padding: 14px 26px;
+
+    border: 1px solid rgba(255,150,80,0.5);
+
+    background: transparent;
+
+    color: #ffb070;
+
+    cursor: pointer;
+
+    font-weight: 600;
+
+    letter-spacing: 2px;
+
+    transition: 0.3s;
+}
+
+.audios button:hover
+{
+    background: rgba(255,120,60,0.2);
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="tablero">
+
+<div class="indicador">MOTOR: ACTIVO</div>
+
+<div class="indicador">VELOCIDAD: ESTABLE</div>
+
+<div class="indicador">DESTINO: PROPIO</div>
+
+</div>
+
+<div class="carretera"></div>
+
+<div class="linea-centro"></div>
+
+<div class="faro"></div>
+
+<audio id="musica" loop>
+<source src="../media/davzay/musica.mp3">
+</audio>
+
+<div id="acceso" onclick="iniciarRuta()">
+ENCENDER MOTOR
+</div>
+
+<div class="panel" id="panel">
+
+<h1 class="titulo">DAVZAY</h1>
+
+<p id="textoCarta"></p>
+
+<img src="../media/davzay/foto1.jpg" class="foto izq" id="foto1">
+<img src="../media/davzay/foto2.jpg" class="foto der" id="foto2">
+
+<div class="audios">
+<button onclick="reproducirAudio('audio1')">MENSAJE DE RUTA</button>
+<button onclick="reproducirAudio('audio2')">MENSAJE PERSONAL</button>
+<button onclick="reproducirAudio('audio3')">MENSAJE FINAL</button>
+</div>
+
+<audio id="audio1"><source src="../media/davzay/audio1.mp3"></audio>
+<audio id="audio2"><source src="../media/davzay/audio2.mp3"></audio>
+<audio id="audio3"><source src="../media/davzay/audio3.mp3"></audio>
+
+</div>
+
+<script>
+
+let audioActual=null;
+
+function reproducirAudio(id)
+{
+    if(audioActual)
+    {
+        audioActual.pause();
+        audioActual.currentTime=0;
+    }
+
+    audioActual=document.getElementById(id);
+
+    audioActual.play();
+}
+
+function iniciarRuta()
+{
+    acceso.style.display="none";
+
+    panel.style.display="block";
+
+    musica.volume=0;
+
+    musica.play();
+
+    let fade=setInterval(()=>{
+
+        if(musica.volume<0.35)
+            musica.volume+=0.01;
+
+        else
+            clearInterval(fade);
+
+    },120);
+
+    escribirTexto();
+}
+
+const texto=`MOTOR ENCENDIDO.
+
+RUTA DEFINIDA.
+
+EL CAMINO ES TUYO.
+
+SIGUE ADELANTE.`;
+
+let i=0;
+
+function escribirTexto()
+{
+    if(i<texto.length)
+    {
+        textoCarta.innerHTML+=texto.charAt(i);
+
+        i++;
+
+        if(i==40)
+            foto1.classList.add("visible");
+
+        if(i==80)
+            foto2.classList.add("visible");
+
+        setTimeout(escribirTexto,35);
+    }
+}
+
+</script>
+
+</body>
+</html>

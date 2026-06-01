@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Para ti, Daniela</title>
+
+<!-- FUENTES ESTILO HARRY POTTER -->
+<link href="https://fonts.googleapis.com/css2?family=MedievalSharp&family=Uncial+Antiqua&family=Playfair+Display:wght@400;600&display=swap" rel="stylesheet">
+
+<style>
+
+/* ================= FONDO MAGICO HOGWARTS ================= */
+
+body
+{
+    margin: 0;
+
+    background:
+    radial-gradient(circle at 20% 30%, rgba(255,215,0,0.25), transparent 50%),
+    radial-gradient(circle at 80% 70%, rgba(138,43,226,0.25), transparent 50%),
+    linear-gradient(180deg, #070713, #0f0f2a, #070713);
+
+    font-family: 'Playfair Display', serif;
+
+    color: #f5e6c8;
+
+    text-align: center;
+
+    overflow-x: hidden;
+}
+
+/* ================= ESTRELLAS MAGICAS ================= */
+
+.estrella
+{
+    position: fixed;
+
+    width: 3px;
+    height: 3px;
+
+    background: gold;
+
+    border-radius: 50%;
+
+    box-shadow: 0 0 8px gold;
+
+    animation: flotar linear infinite;
+}
+
+@keyframes flotar
+{
+    from
+    {
+        transform: translateY(100vh);
+        opacity: 0;
+    }
+
+    10%
+    {
+        opacity: 1;
+    }
+
+    to
+    {
+        transform: translateY(-10vh);
+        opacity: 0;
+    }
+}
+
+/* ================= SOBRE PERGAMINO ================= */
+
+#sobre
+{
+    margin-top: 200px;
+
+    width: 260px;
+    height: 150px;
+
+    background:
+    linear-gradient(45deg, #d4af37, #f5e6c8);
+
+    border-radius: 12px;
+
+    cursor: pointer;
+
+    margin-left: auto;
+    margin-right: auto;
+
+    animation: latido 2s infinite;
+
+    box-shadow:
+    0 0 20px gold,
+    0 0 40px goldenrod,
+    inset 0 0 20px rgba(0,0,0,0.3);
+}
+
+@keyframes latido
+{
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
+}
+
+/* ================= CARTA ================= */
+
+.carta
+{
+    display: none;
+
+    margin: auto;
+
+    margin-top: 40px;
+
+    max-width: 720px;
+
+    padding: 40px;
+
+    background:
+    linear-gradient(180deg, rgba(20,20,40,0.95), rgba(10,10,25,0.95));
+
+    border-radius: 20px;
+
+    box-shadow:
+    0 0 30px gold,
+    0 0 60px rgba(138,43,226,0.5);
+}
+
+/* ================= TITULO ESTILO HARRY POTTER ================= */
+
+.titulo
+{
+    font-family: 'Uncial Antiqua', cursive;
+
+    font-size: 48px;
+
+    color: gold;
+
+    text-shadow:
+    0 0 10px gold,
+    0 0 20px goldenrod,
+    0 0 40px gold;
+
+    letter-spacing: 2px;
+}
+
+/* ================= TEXTO ================= */
+
+#textoCarta
+{
+    font-family: 'MedievalSharp', cursive;
+
+    font-size: 22px;
+
+    border-right: 2px solid gold;
+
+    white-space: pre-line;
+}
+
+/* ================= FOTOS ================= */
+
+.foto
+{
+    position: absolute;
+
+    width: 170px;
+
+    border-radius: 12px;
+
+    box-shadow:
+    0 0 20px gold,
+    0 0 40px rgba(138,43,226,0.5);
+
+    opacity: 0;
+
+    transition: opacity 2s, transform 6s ease-in-out;
+}
+
+.foto.visible
+{
+    opacity: 1;
+}
+
+.foto.izq
+{
+    left: 5%;
+    transform: rotate(-5deg);
+}
+
+.foto.der
+{
+    right: 5%;
+    transform: rotate(5deg);
+}
+
+/* ================= VIDEO ================= */
+
+.video
+{
+    margin-top: 30px;
+
+    width: 340px;
+
+    border-radius: 12px;
+
+    box-shadow:
+    0 0 20px gold,
+    0 0 40px purple;
+
+    opacity: 0;
+
+    transition: opacity 2s;
+}
+
+.video.visible
+{
+    opacity: 1;
+}
+
+/* ================= BOTONES ================= */
+
+.audios button
+{
+    display: block;
+
+    margin: 12px auto;
+
+    padding: 12px 20px;
+
+    border: none;
+
+    border-radius: 12px;
+
+    background:
+    linear-gradient(45deg, goldenrod, gold);
+
+    color: black;
+
+    cursor: pointer;
+
+    width: 320px;
+
+    font-family: 'MedievalSharp';
+
+    font-size: 16px;
+
+    box-shadow:
+    0 0 20px gold;
+}
+
+.audios button:hover
+{
+    transform: scale(1.05);
+}
+
+/* ================= CURSOR MAGICO ================= */
+/* Cursor restaurado al normal para evitar iconos incorrectos */
+body
+{
+    cursor: auto;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<audio id="musica" loop>
+<source src="../media/daniela/musica.mp3">
+</audio>
+
+<div id="sobre" onclick="abrirCarta()"></div>
+
+<div class="carta" id="carta">
+
+<h1 class="titulo">Para ti, Daniela</h1>
+
+<p id="textoCarta"></p>
+
+<img src="../media/daniela/foto1.jpg" class="foto izq" id="foto1">
+<img src="../media/daniela/foto2.jpg" class="foto der" id="foto2">
+
+<video class="video" id="video1" autoplay muted loop>
+<source src="../media/daniela/video1.mp4">
+</video>
+
+<h2 style="font-family:'Uncial Antiqua'; color:gold;">Escucha esto</h2>
+
+<div class="audios">
+<button onclick="reproducirAudio('audio1')">▶ Mensaje mágico 1</button>
+<button onclick="reproducirAudio('audio2')">▶ Mensaje mágico 2</button>
+<button onclick="reproducirAudio('audio3')">▶ Mensaje mágico 3</button>
+</div>
+
+<audio id="audio1"><source src="../media/daniela/audio1.mp3"></audio>
+<audio id="audio2"><source src="../media/daniela/audio2.mp3"></audio>
+<audio id="audio3"><source src="../media/daniela/audio3.mp3"></audio>
+
+</div>
+
+<script>
+
+/* ESTRELLAS MAGICAS */
+
+for(let i=0;i<100;i++)
+{
+    let e=document.createElement("div");
+
+    e.className="estrella";
+
+    e.style.left=Math.random()*100+"vw";
+
+    e.style.animationDuration=(5+Math.random()*10)+"s";
+
+    document.body.appendChild(e);
+}
+
+let audioActual=null;
+
+function reproducirAudio(id)
+{
+    if(audioActual)
+    {
+        audioActual.pause();
+        audioActual.currentTime=0;
+    }
+
+    audioActual=document.getElementById(id);
+
+    audioActual.play();
+}
+
+function abrirCarta()
+{
+    document.getElementById("sobre").style.display="none";
+
+    document.getElementById("carta").style.display="block";
+
+    let musica=document.getElementById("musica");
+
+    musica.volume=0;
+
+    musica.play();
+
+    let fade=setInterval(()=>{
+
+        if(musica.volume<0.25)
+            musica.volume+=0.01;
+
+        else
+            clearInterval(fade);
+
+    },120);
+
+    escribirTexto();
+}
+
+const texto=`Algunas personas...
+
+no llegan por casualidad.
+
+Llegan por magia.`;
+
+let i=0;
+
+function escribirTexto()
+{
+    if(i<texto.length)
+    {
+        textoCarta.innerHTML+=texto.charAt(i);
+
+        i++;
+
+        if(i==40)
+            foto1.classList.add("visible");
+
+        if(i==80)
+            foto2.classList.add("visible");
+
+        if(i==120)
+            video1.classList.add("visible");
+
+        setTimeout(escribirTexto,40);
+    }
+}
+
+</script>
+
+</body>
+</html>

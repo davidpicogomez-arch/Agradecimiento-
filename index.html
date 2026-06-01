@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Tengo algo para ti</title>
+
+<style>
+
+body
+{
+    margin: 0;
+    height: 100vh;
+    background: linear-gradient(135deg, #020617, #0f172a);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: Arial;
+    color: white;
+}
+
+.container
+{
+    background: rgba(255,255,255,0.05);
+    padding: 40px;
+    border-radius: 15px;
+    backdrop-filter: blur(10px);
+    text-align: center;
+}
+
+h1
+{
+    margin-bottom: 10px;
+}
+
+p
+{
+    color: #94a3b8;
+}
+
+input
+{
+    padding: 12px;
+    width: 200px;
+    border: none;
+    border-radius: 8px;
+    margin-top: 10px;
+}
+
+button
+{
+    margin-top: 15px;
+    padding: 12px 25px;
+    border: none;
+    border-radius: 8px;
+    background: #ec4899;
+    color: white;
+    cursor: pointer;
+}
+
+button:hover
+{
+    background: #db2777;
+}
+
+#error
+{
+    margin-top: 10px;
+    color: #f87171;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>Este espacio es solo para ti</h1>
+
+<p>Ingresa tu clave</p>
+
+<input type="password" id="clave">
+
+<br>
+
+<button onclick="verificar()">Entrar</button>
+
+<p id="error"></p>
+
+</div>
+
+<script src="acceso.js"></script>
+
+</body>
+</html>

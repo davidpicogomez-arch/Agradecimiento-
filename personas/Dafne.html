@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Historia: Dafne</title>
+
+<!-- FUENTES ESTILO MANGA ELEGANTE -->
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&family=Noto+Sans+JP:wght@300;500&display=swap" rel="stylesheet">
+
+<style>
+
+/* ================= FONDO MANGA OSCURO ELEGANTE ================= */
+
+body
+{
+    margin: 0;
+
+    background:
+    radial-gradient(circle at 50% 20%, rgba(120,120,255,0.15), transparent 60%),
+    radial-gradient(circle at 80% 80%, rgba(180,120,255,0.12), transparent 60%),
+    linear-gradient(180deg, #05060a, #0a0b14, #05060a);
+
+    font-family: 'Playfair Display', serif;
+
+    color: #e8e8f5;
+
+    overflow-x: hidden;
+
+    text-align: center;
+}
+
+/* ================= PARTICULAS SUAVES ================= */
+
+.particula
+{
+    position: fixed;
+
+    width: 2px;
+    height: 2px;
+
+    background: rgba(255,255,255,0.6);
+
+    border-radius: 50%;
+
+    animation: flotar linear infinite;
+}
+
+@keyframes flotar
+{
+    from
+    {
+        transform: translateY(100vh);
+        opacity: 0;
+    }
+
+    10%
+    {
+        opacity: 1;
+    }
+
+    to
+    {
+        transform: translateY(-10vh);
+        opacity: 0;
+    }
+}
+
+/* ================= SILUETA GATO ================= */
+
+.gato
+{
+    position: fixed;
+
+    bottom: 0;
+
+    right: 40px;
+
+    width: 120px;
+
+    height: 180px;
+
+    background: linear-gradient(180deg, #0a0a12, #020204);
+
+    border-radius: 60px 60px 20px 20px;
+
+    box-shadow:
+    0 0 40px rgba(180,120,255,0.15);
+}
+
+.gato::before,
+.gato::after
+{
+    content: "";
+
+    position: absolute;
+
+    width: 30px;
+    height: 30px;
+
+    background: #020204;
+
+    top: -15px;
+
+    border-radius: 50%;
+}
+
+.gato::before
+{
+    left: 10px;
+}
+
+.gato::after
+{
+    right: 10px;
+}
+
+/* ================= PANEL HISTORIA ================= */
+
+.panel
+{
+    display: none;
+
+    margin: auto;
+
+    margin-top: 80px;
+
+    max-width: 800px;
+
+    padding: 60px;
+
+    border: 1px solid rgba(180,120,255,0.3);
+
+    background: rgba(10,10,20,0.85);
+
+    box-shadow:
+    0 0 60px rgba(180,120,255,0.15);
+}
+
+/* ================= TITULO ================= */
+
+.titulo
+{
+    font-size: 46px;
+
+    letter-spacing: 6px;
+
+    color: #d0c0ff;
+
+    margin-bottom: 40px;
+
+    text-shadow: 0 0 20px rgba(180,120,255,0.4);
+}
+
+/* ================= TEXTO ================= */
+
+#textoCarta
+{
+    font-family: 'Noto Sans JP', sans-serif;
+
+    font-size: 18px;
+
+    border-right: 2px solid rgba(180,120,255,0.5);
+
+    white-space: pre-line;
+
+    line-height: 1.8;
+}
+
+/* ================= BOTON ================= */
+
+#acceso
+{
+    margin-top: 260px;
+
+    padding: 20px 40px;
+
+    border: 1px solid rgba(180,120,255,0.4);
+
+    background: rgba(180,120,255,0.08);
+
+    color: #d0c0ff;
+
+    cursor: pointer;
+
+    letter-spacing: 4px;
+
+    transition: 0.3s;
+}
+
+#acceso:hover
+{
+    background: rgba(180,120,255,0.18);
+}
+
+/* ================= FOTOS ================= */
+
+.foto
+{
+    position: fixed;
+
+    width: 180px;
+
+    border: 1px solid rgba(180,120,255,0.3);
+
+    box-shadow:
+    0 0 20px rgba(180,120,255,0.2);
+
+    opacity: 0;
+
+    transition: opacity 2s;
+}
+
+.foto.visible
+{
+    opacity: 1;
+}
+
+.foto.izq
+{
+    left: 60px;
+
+    bottom: 140px;
+}
+
+.foto.der
+{
+    right: 60px;
+
+    bottom: 140px;
+}
+
+/* ================= BOTONES CAPITULO ================= */
+
+.audios button
+{
+    margin: 12px;
+
+    padding: 12px 22px;
+
+    border: 1px solid rgba(180,120,255,0.5);
+
+    background: transparent;
+
+    color: #d0c0ff;
+
+    cursor: pointer;
+
+    font-family: Playfair Display;
+}
+
+.audios button:hover
+{
+    background: rgba(180,120,255,0.2);
+}
+
+/* ================= INDICADOR ================= */
+
+.estado
+{
+    position: fixed;
+
+    top: 20px;
+
+    right: 30px;
+
+    font-size: 14px;
+
+    opacity: 0.7;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="estado">HISTORIA ACTIVA</div>
+
+<div class="gato"></div>
+
+<audio id="musica" loop>
+<source src="../media/dafne/musica.mp3">
+</audio>
+
+<div id="acceso" onclick="abrirHistoria()">
+ABRIR HISTORIA
+</div>
+
+<div class="panel" id="panel">
+
+<h1 class="titulo">DAFNE</h1>
+
+<p id="textoCarta"></p>
+
+<img src="../media/dafne/foto1.jpg" class="foto izq" id="foto1">
+<img src="../media/dafne/foto2.jpg" class="foto der" id="foto2">
+
+<div class="audios">
+<button onclick="reproducirAudio('audio1')">CAPÍTULO 01</button>
+<button onclick="reproducirAudio('audio2')">CAPÍTULO 02</button>
+<button onclick="reproducirAudio('audio3')">CAPÍTULO FINAL</button>
+</div>
+
+<audio id="audio1"><source src="../media/dafne/audio1.mp3"></audio>
+<audio id="audio2"><source src="../media/dafne/audio2.mp3"></audio>
+<audio id="audio3"><source src="../media/dafne/audio3.mp3"></audio>
+
+</div>
+
+<script>
+
+/* PARTICULAS */
+
+for(let i=0;i<120;i++)
+{
+    let p=document.createElement("div");
+
+    p.className="particula";
+
+    p.style.left=Math.random()*100+"vw";
+
+    p.style.animationDuration=(6+Math.random()*10)+"s";
+
+    document.body.appendChild(p);
+}
+
+let audioActual=null;
+
+function reproducirAudio(id)
+{
+    if(audioActual)
+    {
+        audioActual.pause();
+        audioActual.currentTime=0;
+    }
+
+    audioActual=document.getElementById(id);
+
+    audioActual.play();
+}
+
+function abrirHistoria()
+{
+    acceso.style.display="none";
+
+    panel.style.display="block";
+
+    musica.volume=0;
+
+    musica.play();
+
+    let fade=setInterval(()=>{
+
+        if(musica.volume<0.25)
+            musica.volume+=0.01;
+
+        else
+            clearInterval(fade);
+
+    },120);
+
+    escribirTexto();
+}
+
+const texto=`HISTORIA DETECTADA.
+
+PROTAGONISTA: DAFNE.
+
+ESTADO: ÚNICA.
+
+CONTINÚA...`;
+
+let i=0;
+
+function escribirTexto()
+{
+    if(i<texto.length)
+    {
+        textoCarta.innerHTML+=texto.charAt(i);
+
+        i++;
+
+        if(i==40)
+            foto1.classList.add("visible");
+
+        if(i==80)
+            foto2.classList.add("visible");
+
+        setTimeout(escribirTexto,35);
+    }
+}
+
+</script>
+
+</body>
+</html>

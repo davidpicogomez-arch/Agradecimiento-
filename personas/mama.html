@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Para ti, mamá</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;600&family=Great+Vibes&display=swap" rel="stylesheet">
+
+<style>
+
+/* ================= FONDO EMOCIONAL MEJORADO ================= */
+
+body
+{
+    margin: 0;
+
+    background:
+    radial-gradient(circle at 20% 30%, rgba(255,182,193,0.4), transparent 50%),
+    radial-gradient(circle at 80% 20%, rgba(216,180,254,0.4), transparent 50%),
+    radial-gradient(circle at 50% 80%, rgba(255,218,185,0.3), transparent 50%),
+    radial-gradient(circle at 30% 70%, rgba(255,255,255,0.4), transparent 60%),
+    linear-gradient(180deg, #fff1f7, #f8f4ff, #fdfdfd);
+
+    font-family: 'Quicksand', sans-serif;
+
+    text-align: center;
+
+    overflow-x: hidden;
+}
+
+/* ================= AURA DE LUZ ================= */
+
+.aura
+{
+    position: fixed;
+    width: 400px;
+    height: 400px;
+    border-radius: 50%;
+    filter: blur(60px);
+    opacity: 0.5;
+    animation: flotarAura 12s infinite alternate ease-in-out;
+}
+
+.aura.rosa
+{
+    background: radial-gradient(circle, rgba(255,182,193,0.6), transparent);
+    top: 10%;
+    left: 10%;
+}
+
+.aura.morado
+{
+    background: radial-gradient(circle, rgba(216,180,254,0.6), transparent);
+    bottom: 10%;
+    right: 10%;
+    animation-delay: 6s;
+}
+
+@keyframes flotarAura
+{
+    from { transform: translateY(-20px); }
+    to { transform: translateY(20px); }
+}
+
+/* ================= PARTICULAS ================= */
+
+.particula
+{
+    position: fixed;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: linear-gradient(45deg, #ffb6c1, #d8b4fe);
+    animation: flotar linear infinite;
+}
+
+@keyframes flotar
+{
+    from
+    {
+        transform: translateY(100vh);
+        opacity: 0;
+    }
+
+    10%
+    {
+        opacity: 1;
+    }
+
+    to
+    {
+        transform: translateY(-10vh);
+        opacity: 0;
+    }
+}
+
+/* ================= SOBRE ================= */
+
+#sobre
+{
+    margin-top: 200px;
+    width: 240px;
+    height: 150px;
+
+    background: linear-gradient(45deg, #ffb6c1, #d8b4fe, #ffd7ba);
+
+    border-radius: 16px;
+
+    cursor: pointer;
+
+    margin-left: auto;
+    margin-right: auto;
+
+    animation: latido 2s infinite;
+
+    box-shadow:
+    0 0 20px #ffb6c1,
+    0 0 40px #d8b4fe,
+    0 0 60px #ffffff;
+}
+
+@keyframes latido
+{
+    0% { transform: scale(1); }
+    50% { transform: scale(1.08); }
+    100% { transform: scale(1); }
+}
+
+/* ================= DESTELLO ================= */
+
+#destello
+{
+    position: fixed;
+    width: 100%;
+    height: 100%;
+
+    background: radial-gradient(circle, #ffffff, #ffd7f0, #d8b4fe);
+
+    opacity: 0;
+
+    pointer-events: none;
+
+    transition: opacity 1s;
+}
+
+/* ================= CARTA ================= */
+
+.carta
+{
+    display: none;
+
+    margin: auto;
+    margin-top: 40px;
+
+    max-width: 720px;
+
+    padding: 40px;
+
+    background: rgba(255,255,255,0.65);
+
+    backdrop-filter: blur(20px);
+
+    border-radius: 24px;
+
+    box-shadow:
+    0 0 30px rgba(255,182,193,0.5),
+    0 0 60px rgba(216,180,254,0.4);
+}
+
+h1
+{
+    font-family: 'Great Vibes', cursive;
+    font-size: 48px;
+
+    color: #c084fc;
+
+    text-shadow:
+    0 0 10px #ffb6c1,
+    0 0 20px #d8b4fe;
+}
+
+/* ================= TEXTO ================= */
+
+#textoCarta
+{
+    font-size: 20px;
+
+    color: #5b4b66;
+
+    border-right: 2px solid #c084fc;
+
+    white-space: pre-line;
+}
+
+/* ================= FOTOS ================= */
+
+.foto
+{
+    position: absolute;
+
+    width: 180px;
+
+    border-radius: 16px;
+
+    box-shadow:
+    0 0 20px rgba(255,182,193,0.6);
+
+    opacity: 0;
+
+    transition: opacity 2s, transform 6s ease-in-out;
+}
+
+.foto.visible
+{
+    opacity: 1;
+}
+
+.foto.izq
+{
+    left: 5%;
+    transform: rotate(-6deg);
+}
+
+.foto.der
+{
+    right: 5%;
+    transform: rotate(6deg);
+}
+
+/* ================= VIDEO ================= */
+
+.video
+{
+    margin-top: 30px;
+
+    width: 340px;
+
+    border-radius: 16px;
+
+    box-shadow:
+    0 0 30px rgba(216,180,254,0.6);
+
+    opacity: 0;
+
+    transition: opacity 2s;
+}
+
+.video.visible
+{
+    opacity: 1;
+}
+
+/* ================= BOTONES AUDIO ================= */
+
+.audios button
+{
+    display: block;
+
+    margin: 14px auto;
+
+    padding: 14px 22px;
+
+    border: none;
+
+    border-radius: 16px;
+
+    background: linear-gradient(45deg, #ffb6c1, #d8b4fe);
+
+    color: white;
+
+    cursor: pointer;
+
+    width: 320px;
+
+    font-size: 16px;
+
+    box-shadow:
+    0 0 20px rgba(216,180,254,0.6);
+}
+
+.audios button:hover
+{
+    transform: scale(1.05);
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="aura rosa"></div>
+<div class="aura morado"></div>
+
+<div id="destello"></div>
+
+<audio id="musica" loop>
+<source src="../media/mama/musica.mp3">
+</audio>
+
+<div id="sobre" onclick="abrirCarta()"></div>
+
+<div class="carta" id="carta">
+
+<h1>Para ti, mamá</h1>
+
+<p id="textoCarta"></p>
+
+<img src="../media/mama/foto1.jpg" class="foto izq" id="foto1">
+<img src="../media/mama/foto2.jpg" class="foto der" id="foto2">
+
+<br>
+
+<video class="video" id="video1" autoplay muted loop>
+<source src="../media/mama/video1.mp4">
+</video>
+
+<h2>Escucha esto</h2>
+
+<div class="audios">
+
+<button onclick="reproducirAudio('audio1')">▶ Algo que quiero que sepas</button>
+
+<button onclick="reproducirAudio('audio2')">▶ Gracias por todo</button>
+
+<button onclick="reproducirAudio('audio3')">▶ Siempre has estado ahí</button>
+
+</div>
+
+<audio id="audio1"><source src="../media/mama/audio1.mp3"></audio>
+<audio id="audio2"><source src="../media/mama/audio2.mp3"></audio>
+<audio id="audio3"><source src="../media/mama/audio3.mp3"></audio>
+
+</div>
+
+<script>
+
+/* PARTICULAS */
+
+for(let i=0;i<60;i++)
+{
+    let p=document.createElement("div");
+
+    p.className="particula";
+
+    p.style.left=Math.random()*100+"vw";
+
+    p.style.animationDuration=(6+Math.random()*10)+"s";
+
+    document.body.appendChild(p);
+}
+
+/* AUDIO */
+
+let audioActual=null;
+
+function reproducirAudio(id)
+{
+    if(audioActual)
+    {
+        audioActual.pause();
+        audioActual.currentTime=0;
+    }
+
+    audioActual=document.getElementById(id);
+
+    audioActual.volume=1;
+
+    audioActual.play();
+}
+
+/* ABRIR CARTA */
+
+function abrirCarta()
+{
+    let destello=document.getElementById("destello");
+
+    destello.style.opacity=1;
+
+    setTimeout(()=>destello.style.opacity=0,800);
+
+    document.getElementById("sobre").style.display="none";
+
+    document.getElementById("carta").style.display="block";
+
+    let musica=document.getElementById("musica");
+
+    musica.volume=0;
+
+    musica.play();
+
+    let fade=setInterval(()=>{
+
+        if(musica.volume<0.25)
+            musica.volume+=0.01;
+
+        else
+            clearInterval(fade);
+
+    },120);
+
+    escribirTexto();
+}
+
+/* TEXTO */
+
+const texto=`Gracias por tu amor.
+Gracias por tu fuerza.
+Gracias por tu guía.
+
+Eres luz.
+
+Te amo.`;
+
+let i=0;
+
+function escribirTexto()
+{
+    if(i<texto.length)
+    {
+        textoCarta.innerHTML+=texto.charAt(i);
+
+        i++;
+
+        if(i==40)
+            foto1.classList.add("visible");
+
+        if(i==80)
+            foto2.classList.add("visible");
+
+        if(i==120)
+            video1.classList.add("visible");
+
+        setTimeout(escribirTexto,35);
+    }
+}
+
+</script>
+
+</body>
+</html>

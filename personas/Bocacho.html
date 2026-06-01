@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Archivo Clasificado: Bocacho</title>
+
+<!-- FUENTES ESTILO JURÁSICO REALISTA -->
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Roboto+Mono:wght@300;500&display=swap" rel="stylesheet">
+
+<style>
+
+/* ================= FONDO SELVA JURÁSICA REALISTA ================= */
+
+body
+{
+    margin: 0;
+
+    background:
+    radial-gradient(circle at 50% 20%, rgba(0,0,0,0.6), transparent 70%),
+    radial-gradient(circle at 20% 80%, rgba(0,40,0,0.7), transparent 60%),
+    radial-gradient(circle at 80% 80%, rgba(20,50,0,0.6), transparent 60%),
+    linear-gradient(180deg, #020402, #050a05, #020402);
+
+    font-family: 'Roboto Mono', monospace;
+
+    color: #d6d2b6;
+
+    text-align: center;
+
+    overflow-x: hidden;
+}
+
+/* ================= NIEBLA ================= */
+
+.niebla
+{
+    position: fixed;
+    inset: 0;
+
+    background:
+    radial-gradient(circle at 30% 60%, rgba(0,80,20,0.15), transparent 50%),
+    radial-gradient(circle at 70% 40%, rgba(50,80,20,0.12), transparent 50%);
+
+    animation: moverNiebla 20s infinite alternate ease-in-out;
+
+    pointer-events: none;
+}
+
+@keyframes moverNiebla
+{
+    from { opacity: 0.3; }
+    to { opacity: 0.6; }
+}
+
+/* ================= POLVO ================= */
+
+.polvo
+{
+    position: fixed;
+
+    width: 2px;
+    height: 2px;
+
+    background: rgba(200,180,120,0.4);
+
+    border-radius: 50%;
+
+    animation: flotar linear infinite;
+}
+
+@keyframes flotar
+{
+    from
+    {
+        transform: translateY(100vh);
+        opacity: 0;
+    }
+
+    10%
+    {
+        opacity: 1;
+    }
+
+    to
+    {
+        transform: translateY(-10vh);
+        opacity: 0;
+    }
+}
+
+/* ================= CONTENEDOR ================= */
+
+.carta
+{
+    display: none;
+
+    margin: auto;
+
+    margin-top: 80px;
+
+    max-width: 800px;
+
+    padding: 50px;
+
+    background: rgba(10,10,5,0.85);
+
+    border: 1px solid rgba(200,180,120,0.3);
+
+    box-shadow:
+    0 0 60px rgba(0,0,0,0.8);
+}
+
+/* ================= TITULO ================= */
+
+.titulo
+{
+    font-family: 'Cinzel', serif;
+
+    font-size: 46px;
+
+    color: #c2b280;
+
+    letter-spacing: 3px;
+
+    margin-bottom: 40px;
+}
+
+/* ================= TEXTO ================= */
+
+#textoCarta
+{
+    font-size: 20px;
+
+    line-height: 1.8;
+
+    border-right: 2px solid #c2b280;
+
+    white-space: pre-line;
+}
+
+/* ================= BOTON ================= */
+
+#sobre
+{
+    margin-top: 260px;
+
+    width: 300px;
+
+    padding: 20px;
+
+    border: 1px solid #c2b280;
+
+    background: rgba(0,0,0,0.7);
+
+    color: #c2b280;
+
+    cursor: pointer;
+
+    margin-left: auto;
+
+    margin-right: auto;
+
+    font-family: Cinzel;
+
+    letter-spacing: 2px;
+
+    transition: 0.4s;
+}
+
+#sobre:hover
+{
+    background: rgba(194,178,128,0.1);
+}
+
+/* ================= FOTOS ================= */
+
+.foto
+{
+    position: fixed;
+
+    width: 180px;
+
+    border: 1px solid rgba(200,180,120,0.4);
+
+    box-shadow: 0 0 20px rgba(0,0,0,0.7);
+
+    opacity: 0;
+
+    transition: opacity 2s;
+}
+
+.foto.visible
+{
+    opacity: 1;
+}
+
+.foto.izq
+{
+    left: 60px;
+
+    bottom: 120px;
+}
+
+.foto.der
+{
+    right: 60px;
+
+    bottom: 120px;
+}
+
+/* ================= BOTONES AUDIO ================= */
+
+.audios button
+{
+    margin: 12px;
+
+    padding: 10px 18px;
+
+    border: 1px solid #c2b280;
+
+    background: transparent;
+
+    color: #c2b280;
+
+    cursor: pointer;
+
+    font-family: Roboto Mono;
+}
+
+.audios button:hover
+{
+    background: rgba(194,178,128,0.1);
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="niebla"></div>
+
+<audio id="musica" loop>
+<source src="../media/bocacho/musica.mp3">
+</audio>
+
+<div id="sobre" onclick="abrirCarta()">
+ABRIR ARCHIVO CLASIFICADO
+</div>
+
+<div class="carta" id="carta">
+
+<h1 class="titulo">BOCACHO REX</h1>
+
+<p id="textoCarta"></p>
+
+<img src="../media/bocacho/foto1.jpg" class="foto izq" id="foto1">
+<img src="../media/bocacho/foto2.jpg" class="foto der" id="foto2">
+
+<div class="audios">
+<button onclick="reproducirAudio('audio1')">REGISTRO 01</button>
+<button onclick="reproducirAudio('audio2')">REGISTRO 02</button>
+<button onclick="reproducirAudio('audio3')">REGISTRO 03</button>
+</div>
+
+<audio id="audio1"><source src="../media/bocacho/audio1.mp3"></audio>
+<audio id="audio2"><source src="../media/bocacho/audio2.mp3"></audio>
+<audio id="audio3"><source src="../media/bocacho/audio3.mp3"></audio>
+
+</div>
+
+<script>
+
+for(let i=0;i<60;i++)
+{
+    let p=document.createElement("div");
+
+    p.className="polvo";
+
+    p.style.left=Math.random()*100+"vw";
+
+    p.style.animationDuration=(8+Math.random()*12)+"s";
+
+    document.body.appendChild(p);
+}
+
+let audioActual=null;
+
+function reproducirAudio(id)
+{
+    if(audioActual)
+    {
+        audioActual.pause();
+        audioActual.currentTime=0;
+    }
+
+    audioActual=document.getElementById(id);
+
+    audioActual.play();
+}
+
+function abrirCarta()
+{
+    sobre.style.display="none";
+
+    carta.style.display="block";
+
+    musica.volume=0;
+
+    musica.play();
+
+    let fade=setInterval(()=>{
+
+        if(musica.volume<0.2)
+            musica.volume+=0.01;
+
+        else
+            clearInterval(fade);
+
+    },200);
+
+    escribirTexto();
+}
+
+const texto=`ARCHIVO CONFIRMADO.
+
+ESPECIE: ÚNICA.
+
+PRESENCIA: IMPONENTE.
+
+ESTADO: IRREPETIBLE.`;
+
+let i=0;
+
+function escribirTexto()
+{
+    if(i<texto.length)
+    {
+        textoCarta.innerHTML+=texto.charAt(i);
+
+        i++;
+
+        if(i==40)
+            foto1.classList.add("visible");
+
+        if(i==80)
+            foto2.classList.add("visible");
+
+        setTimeout(escribirTexto,35);
+    }
+}
+
+</script>
+
+</body>
+</html>

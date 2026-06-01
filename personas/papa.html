@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Para ti, papá</title>
+
+<!-- FUENTE ROCK OCHENTERA -->
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
+
+<style>
+
+/* ================= FONDO ROCK OCHENTERO ================= */
+
+body
+{
+    margin: 0;
+
+    background:
+    radial-gradient(circle at 50% 20%, rgba(255,0,0,0.25), transparent 50%),
+    radial-gradient(circle at 20% 80%, rgba(255,215,0,0.2), transparent 50%),
+    radial-gradient(circle at 80% 60%, rgba(168,85,247,0.2), transparent 50%),
+    linear-gradient(180deg, #000000, #0a0a0a);
+
+    font-family: 'Orbitron', sans-serif;
+
+    color: white;
+
+    text-align: center;
+
+    overflow-x: hidden;
+}
+
+/* ================= LUCES ESCENARIO ================= */
+
+.luz
+{
+    position: fixed;
+
+    width: 300px;
+    height: 300px;
+
+    background: radial-gradient(circle, rgba(255,0,0,0.4), transparent 70%);
+
+    filter: blur(40px);
+
+    animation: moverLuz 6s infinite alternate ease-in-out;
+}
+
+.luz:nth-child(1)
+{
+    left: 10%;
+    top: 20%;
+}
+
+.luz:nth-child(2)
+{
+    right: 10%;
+    bottom: 20%;
+
+    background: radial-gradient(circle, rgba(255,215,0,0.4), transparent 70%);
+
+    animation-delay: 3s;
+}
+
+@keyframes moverLuz
+{
+    from { transform: translateY(-20px); }
+    to { transform: translateY(20px); }
+}
+
+/* ================= PARTICULAS ================= */
+
+.particula
+{
+    position: fixed;
+
+    width: 6px;
+    height: 6px;
+
+    border-radius: 50%;
+
+    animation: flotar linear infinite;
+}
+
+@keyframes flotar
+{
+    from
+    {
+        transform: translateY(100vh);
+        opacity: 0;
+    }
+
+    10%
+    {
+        opacity: 1;
+    }
+
+    to
+    {
+        transform: translateY(-10vh);
+        opacity: 0;
+    }
+}
+
+/* ================= SOBRE ================= */
+
+#sobre
+{
+    margin-top: 200px;
+
+    width: 260px;
+    height: 150px;
+
+    background: linear-gradient(45deg, #ff0000, #ffd700);
+
+    border-radius: 12px;
+
+    cursor: pointer;
+
+    margin-left: auto;
+    margin-right: auto;
+
+    animation: latido 1.2s infinite;
+
+    box-shadow:
+    0 0 20px #ff0000,
+    0 0 40px #ffd700,
+    0 0 80px #ff0000;
+}
+
+@keyframes latido
+{
+    0% { transform: scale(1); }
+    50% { transform: scale(1.15); }
+    100% { transform: scale(1); }
+}
+
+/* ================= DESTELLO ================= */
+
+#destello
+{
+    position: fixed;
+    width: 100%;
+    height: 100%;
+
+    background: radial-gradient(circle, red, gold);
+
+    opacity: 0;
+
+    pointer-events: none;
+
+    transition: opacity 0.5s;
+}
+
+/* ================= CARTA ================= */
+
+.carta
+{
+    display: none;
+
+    margin: auto;
+
+    margin-top: 40px;
+
+    max-width: 750px;
+
+    padding: 40px;
+
+    background: rgba(0,0,0,0.7);
+
+    border-radius: 20px;
+
+    box-shadow:
+    0 0 30px red,
+    0 0 60px gold;
+}
+
+h1
+{
+    font-family: 'Bebas Neue', sans-serif;
+
+    font-size: 48px;
+
+    color: #ffd700;
+
+    text-shadow:
+    0 0 10px red,
+    0 0 20px gold,
+    0 0 40px red;
+}
+
+/* ================= TEXTO ================= */
+
+#textoCarta
+{
+    font-size: 20px;
+
+    color: white;
+
+    border-right: 2px solid gold;
+
+    white-space: pre-line;
+
+    text-shadow: 0 0 5px red;
+}
+
+/* ================= FOTOS ================= */
+
+.foto
+{
+    position: absolute;
+
+    width: 180px;
+
+    border: 6px solid white;
+
+    box-shadow: 0 0 25px gold;
+
+    opacity: 0;
+
+    transition: opacity 1s;
+}
+
+.foto.visible
+{
+    opacity: 1;
+}
+
+.foto.izq
+{
+    left: 5%;
+    transform: rotate(-8deg);
+}
+
+.foto.der
+{
+    right: 5%;
+    transform: rotate(10deg);
+}
+
+/* ================= VIDEO ================= */
+
+.video
+{
+    margin-top: 30px;
+
+    width: 360px;
+
+    border-radius: 12px;
+
+    box-shadow: 0 0 30px red;
+
+    opacity: 0;
+
+    transition: opacity 2s;
+}
+
+.video.visible
+{
+    opacity: 1;
+}
+
+/* ================= BOTONES AUDIO ================= */
+
+.audios button
+{
+    display: block;
+
+    margin: 15px auto;
+
+    padding: 14px 22px;
+
+    border: none;
+
+    border-radius: 12px;
+
+    background: linear-gradient(45deg, red, gold);
+
+    color: black;
+
+    cursor: pointer;
+
+    width: 320px;
+
+    font-family: 'Orbitron';
+
+    font-size: 16px;
+
+    box-shadow:
+    0 0 20px red,
+    0 0 40px gold;
+}
+
+.audios button:hover
+{
+    transform: scale(1.1);
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="luz"></div>
+<div class="luz"></div>
+
+<div id="destello"></div>
+
+<audio id="musica" loop>
+<source src="../media/papa/musica.mp3">
+</audio>
+
+<div id="sobre" onclick="abrirCarta()"></div>
+
+<div class="carta" id="carta">
+
+<h1>Para ti, papá</h1>
+
+<p id="textoCarta"></p>
+
+<img src="../media/papa/foto1.jpg" class="foto izq" id="foto1">
+<img src="../media/papa/foto2.jpg" class="foto der" id="foto2">
+
+<br>
+
+<video class="video" id="video1" autoplay muted loop>
+<source src="../media/papa/video1.mp4">
+</video>
+
+<h2>Escucha esto</h2>
+
+<div class="audios">
+
+<button onclick="reproducirAudio('audio1')">▶ Gracias por enseñarme tanto</button>
+
+<button onclick="reproducirAudio('audio2')">▶ Momentos que nunca olvidaré</button>
+
+<button onclick="reproducirAudio('audio3')">▶ Lo importante que eres para mí</button>
+
+</div>
+
+<audio id="audio1"><source src="../media/papa/audio1.mp3"></audio>
+<audio id="audio2"><source src="../media/papa/audio2.mp3"></audio>
+<audio id="audio3"><source src="../media/papa/audio3.mp3"></audio>
+
+</div>
+
+<script>
+
+/* PARTICULAS ROCK */
+
+let colores=["red","gold","purple"];
+
+for(let i=0;i<70;i++)
+{
+    let p=document.createElement("div");
+
+    p.className="particula";
+
+    p.style.left=Math.random()*100+"vw";
+
+    p.style.background=colores[Math.floor(Math.random()*colores.length)];
+
+    p.style.animationDuration=(3+Math.random()*5)+"s";
+
+    document.body.appendChild(p);
+}
+
+/* AUDIO */
+
+let audioActual=null;
+
+function reproducirAudio(id)
+{
+    if(audioActual)
+    {
+        audioActual.pause();
+        audioActual.currentTime=0;
+    }
+
+    audioActual=document.getElementById(id);
+
+    audioActual.volume=1;
+
+    audioActual.play();
+}
+
+/* ABRIR CARTA */
+
+function abrirCarta()
+{
+    let destello=document.getElementById("destello");
+
+    destello.style.opacity=1;
+
+    setTimeout(()=>destello.style.opacity=0,500);
+
+    document.getElementById("sobre").style.display="none";
+
+    document.getElementById("carta").style.display="block";
+
+    let musica=document.getElementById("musica");
+
+    musica.volume=0;
+
+    musica.play();
+
+    let fade=setInterval(()=>{
+
+        if(musica.volume<0.35)
+            musica.volume+=0.01;
+
+        else
+            clearInterval(fade);
+
+    },100);
+
+    escribirTexto();
+}
+
+/* TEXTO */
+
+const texto=`Gracias por tantas risas.
+Gracias por tu energía.
+Gracias por cada momento.
+
+Eres rock puro.
+
+Te quiero mucho.`;
+
+let i=0;
+
+function escribirTexto()
+{
+    if(i<texto.length)
+    {
+        textoCarta.innerHTML+=texto.charAt(i);
+
+        i++;
+
+        if(i==40)
+            foto1.classList.add("visible");
+
+        if(i==80)
+            foto2.classList.add("visible");
+
+        if(i==120)
+            video1.classList.add("visible");
+
+        setTimeout(escribirTexto,25);
+    }
+}
+
+</script>
+
+</body>
+</html>

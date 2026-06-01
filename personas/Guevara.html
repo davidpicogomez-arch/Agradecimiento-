@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Para ti, Guevara</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&family=Rajdhani:wght@400;600&display=swap" rel="stylesheet">
+
+<style>
+
+/* ================= CÉSPED REAL CON FRANJAS VERTICALES ================= */
+
+body
+{
+    margin: 0;
+
+    background:
+    repeating-linear-gradient(
+        90deg,
+        #0b3d2a 0px,
+        #0b3d2a 120px,
+        #0f4d35 120px,
+        #0f4d35 240px
+    );
+
+    font-family: 'Rajdhani', sans-serif;
+
+    color: white;
+
+    text-align: center;
+
+    overflow-x: hidden;
+}
+
+/* ================= LINEAS DEL CAMPO ================= */
+
+.campo-lineas
+{
+    position: fixed;
+    inset: 0;
+
+    background:
+    linear-gradient(white, white) center / 3px 100% no-repeat,
+    radial-gradient(circle at center, transparent 140px, white 142px, white 145px, transparent 148px);
+
+    opacity: 0.35;
+
+    pointer-events: none;
+}
+
+/* ================= PORTERIA ================= */
+
+.porteria
+{
+    position: fixed;
+
+    bottom: 0;
+    left: 50%;
+
+    transform: translateX(-50%);
+
+    width: 400px;
+    height: 200px;
+
+    border: 5px solid white;
+
+    border-bottom: none;
+
+    box-shadow: 0 0 20px rgba(255,255,255,0.5);
+}
+
+.porteria::before
+{
+    content: "";
+
+    position: absolute;
+
+    inset: 0;
+
+    background:
+    repeating-linear-gradient(
+        90deg,
+        rgba(255,255,255,0.25) 0px,
+        rgba(255,255,255,0.25) 2px,
+        transparent 2px,
+        transparent 30px
+    ),
+
+    repeating-linear-gradient(
+        0deg,
+        rgba(255,255,255,0.25) 0px,
+        rgba(255,255,255,0.25) 2px,
+        transparent 2px,
+        transparent 30px
+    );
+}
+
+/* ================= MARCADOR ================= */
+
+.marcador
+{
+    position: fixed;
+
+    top: 20px;
+    left: 50%;
+
+    transform: translateX(-50%);
+
+    background: rgba(0,0,0,0.7);
+
+    padding: 10px 30px;
+
+    border-radius: 10px;
+
+    font-family: Orbitron;
+
+    font-size: 22px;
+
+    border: 2px solid #00ff88;
+
+    box-shadow: 0 0 20px #00ff88;
+}
+
+/* ================= LUCES ================= */
+
+.luz
+{
+    position: fixed;
+
+    width: 600px;
+    height: 300px;
+
+    background: radial-gradient(circle, rgba(255,255,255,0.35), transparent);
+
+    filter: blur(100px);
+
+    animation: pulso 6s infinite alternate;
+}
+
+.luz:nth-child(1)
+{
+    left: -200px;
+    top: -100px;
+}
+
+.luz:nth-child(2)
+{
+    right: -200px;
+    top: -100px;
+}
+
+@keyframes pulso
+{
+    from { opacity: 0.3; }
+    to { opacity: 0.6; }
+}
+
+/* ================= SOBRE ================= */
+
+#sobre
+{
+    margin-top: 260px;
+
+    width: 260px;
+    height: 140px;
+
+    background: linear-gradient(45deg, #00ff88, white);
+
+    border-radius: 12px;
+
+    cursor: pointer;
+
+    margin-left: auto;
+    margin-right: auto;
+
+    animation: latido 1.2s infinite;
+
+    box-shadow:
+    0 0 20px #00ff88,
+    0 0 60px white;
+}
+
+@keyframes latido
+{
+    0% { transform: scale(1); }
+    50% { transform: scale(1.15); }
+    100% { transform: scale(1); }
+}
+
+/* ================= CARTA ================= */
+
+.carta
+{
+    display: none;
+
+    margin: auto;
+
+    margin-top: 40px;
+
+    max-width: 720px;
+
+    padding: 40px;
+
+    background: rgba(0,0,0,0.85);
+
+    border-radius: 20px;
+
+    border: 2px solid #00ff88;
+
+    box-shadow: 0 0 30px #00ff88;
+}
+
+/* ================= TITULO ================= */
+
+.titulo
+{
+    font-family: Orbitron;
+
+    font-size: 50px;
+
+    color: #00ff88;
+
+    text-shadow: 0 0 25px #00ff88;
+}
+
+/* ================= TEXTO ================= */
+
+#textoCarta
+{
+    font-size: 22px;
+
+    border-right: 2px solid #00ff88;
+
+    white-space: pre-line;
+}
+
+/* ================= FOTOS ================= */
+
+.foto
+{
+    position: fixed;
+
+    width: 180px;
+
+    border-radius: 12px;
+
+    border: 3px solid white;
+
+    box-shadow:
+    0 0 15px white,
+    0 0 30px #00ff88;
+
+    opacity: 0;
+
+    transition: opacity 2s, transform 0.5s;
+}
+
+.foto.visible
+{
+    opacity: 1;
+}
+
+.foto.izq
+{
+    left: 40px;
+    bottom: 220px;
+
+    transform: rotate(-5deg);
+}
+
+.foto.der
+{
+    right: 40px;
+    bottom: 220px;
+
+    transform: rotate(5deg);
+}
+
+/* ================= BOTONES ================= */
+
+.audios button
+{
+    margin: 10px;
+
+    padding: 12px 20px;
+
+    border: none;
+
+    border-radius: 10px;
+
+    background: #00ff88;
+
+    color: black;
+
+    font-weight: bold;
+
+    cursor: pointer;
+
+    box-shadow: 0 0 20px #00ff88;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="campo-lineas"></div>
+<div class="porteria"></div>
+
+<div class="luz"></div>
+<div class="luz"></div>
+
+<div class="marcador">
+GUEVARA — LA MAQUINA
+</div>
+
+<audio id="musica" loop>
+<source src="../media/guevara/musica.mp3">
+</audio>
+
+<div id="sobre" onclick="abrirCarta()"></div>
+
+<div class="carta" id="carta">
+
+<h1 class="titulo">Para ti, Guevara</h1>
+
+<p id="textoCarta"></p>
+
+<img src="../media/guevara/foto1.jpg" class="foto izq" id="foto1">
+<img src="../media/guevara/foto2.jpg" class="foto der" id="foto2">
+
+<div class="audios">
+<button onclick="reproducirAudio('audio1')">▶ Escuchar</button>
+<button onclick="reproducirAudio('audio2')">▶ Mensaje</button>
+<button onclick="reproducirAudio('audio3')">▶ Importante</button>
+</div>
+
+<audio id="audio1"><source src="../media/guevara/audio1.mp3"></audio>
+<audio id="audio2"><source src="../media/guevara/audio2.mp3"></audio>
+<audio id="audio3"><source src="../media/guevara/audio3.mp3"></audio>
+
+</div>
+
+<script>
+
+let audioActual=null;
+
+function reproducirAudio(id)
+{
+    if(audioActual)
+    {
+        audioActual.pause();
+        audioActual.currentTime=0;
+    }
+
+    audioActual=document.getElementById(id);
+
+    audioActual.play();
+}
+
+function abrirCarta()
+{
+    sobre.style.display="none";
+
+    carta.style.display="block";
+
+    musica.volume=0;
+
+    musica.play();
+
+    let fade=setInterval(()=>{
+
+        if(musica.volume<0.3)
+            musica.volume+=0.01;
+
+        else
+            clearInterval(fade);
+
+    },120);
+
+    escribirTexto();
+}
+
+const texto=`El campo está listo.
+
+Este es tu momento.
+
+Gracias por jugar este partido.`;
+
+let i=0;
+
+function escribirTexto()
+{
+    if(i<texto.length)
+    {
+        textoCarta.innerHTML+=texto.charAt(i);
+
+        i++;
+
+        if(i==40)
+            foto1.classList.add("visible");
+
+        if(i==80)
+            foto2.classList.add("visible");
+
+        setTimeout(escribirTexto,30);
+    }
+}
+
+</script>
+
+</body>
+</html>
