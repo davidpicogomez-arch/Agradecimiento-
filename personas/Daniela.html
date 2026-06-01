@@ -22,17 +22,30 @@
             overflow-x: hidden;
         }
         
-        /* Partículas doradas animadas - FLOTANTES */
+        /* Partículas mágicas doradas y plateadas */
         .particle {
             position: fixed;
             width: 3px;
             height: 3px;
-            background: #d4af37;
             border-radius: 50%;
             opacity: 0.7;
             pointer-events: none;
             animation: float-particle 15s linear infinite;
+        }
+        
+        .particle {
+            background: #d4af37;
             box-shadow: 0 0 8px #d4af37;
+        }
+        
+        .particle:nth-child(odd) {
+            background: #e8d44f;
+            box-shadow: 0 0 8px #e8d44f;
+        }
+        
+        .particle:nth-child(3n) {
+            background: #c0c0c0;
+            box-shadow: 0 0 8px #c0c0c0;
         }
         
         @keyframes float-particle {
@@ -88,10 +101,33 @@
             position: absolute;
             width: 4px;
             height: 4px;
-            background: #d4af37;
             border-radius: 50%;
-            box-shadow: 0 0 10px #d4af37;
             animation: orbit-particle 8s linear infinite;
+        }
+        
+        .particle-orbit {
+            background: #d4af37;
+            box-shadow: 0 0 10px #d4af37;
+        }
+        
+        .particle-orbit:nth-child(2) {
+            background: #c0c0c0;
+            box-shadow: 0 0 10px #c0c0c0;
+        }
+        
+        .particle-orbit:nth-child(3) {
+            background: #e8d44f;
+            box-shadow: 0 0 10px #e8d44f;
+        }
+        
+        .particle-orbit:nth-child(4) {
+            background: #d4af37;
+            box-shadow: 0 0 10px #d4af37;
+        }
+        
+        .particle-orbit:nth-child(5) {
+            background: #c0c0c0;
+            box-shadow: 0 0 10px #c0c0c0;
         }
         
         @keyframes orbit-particle {
@@ -121,9 +157,10 @@
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            box-shadow: 0 20px 60px rgba(212, 175, 55, 0.3);
+            box-shadow: 0 20px 60px rgba(212, 175, 55, 0.3),
+                        0 0 30px rgba(192, 192, 192, 0.2);
             cursor: pointer;
-            animation: pulse-sobre 2s ease-in-out infinite;
+            animation: pulse-sobre 2s ease-in-out infinite, magic-glow 3s ease-in-out infinite;
             position: relative;
             z-index: 10;
         }
@@ -131,6 +168,11 @@
         @keyframes pulse-sobre {
             0%, 100% { transform: scale(1); }
             50% { transform: scale(1.05); }
+        }
+        
+        @keyframes magic-glow {
+            0%, 100% { box-shadow: 0 20px 60px rgba(212, 175, 55, 0.3), 0 0 30px rgba(192, 192, 192, 0.2); }
+            50% { box-shadow: 0 20px 60px rgba(212, 175, 55, 0.5), 0 0 50px rgba(192, 192, 192, 0.4); }
         }
         
         .sobre-titulo {
@@ -147,6 +189,7 @@
             color: #0f1419;
             font-weight: 500;
             opacity: 0.8;
+            letter-spacing: 1px;
         }
         
         /* ===== CONTENIDO PRINCIPAL ===== */
@@ -173,7 +216,7 @@
             }
         }
         
-        /* Título principal */
+        /* Título principal con efecto mágico */
         h1 {
             font-family: 'Playfair Display', serif;
             font-size: 58px;
@@ -182,6 +225,12 @@
             margin-bottom: 30px;
             text-shadow: 0 2px 10px rgba(212, 175, 55, 0.2);
             font-weight: 700;
+            animation: levitate 3s ease-in-out infinite;
+        }
+        
+        @keyframes levitate {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
         }
         
         /* ===== SECCIÓN DE MENSAJE PERSONALIZADO ===== */
@@ -192,6 +241,22 @@
             padding: 40px;
             margin-bottom: 60px;
             text-align: center;
+            position: relative;
+        }
+        
+        .seccion-mensaje::before {
+            content: '✨';
+            position: absolute;
+            top: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 24px;
+            animation: sparkle 2s ease-in-out infinite;
+        }
+        
+        @keyframes sparkle {
+            0%, 100% { opacity: 0.5; transform: translateX(-50%) scale(1); }
+            50% { opacity: 1; transform: translateX(-50%) scale(1.2); }
         }
         
         .seccion-mensaje p {
@@ -214,6 +279,7 @@
             line-height: 1.8;
             margin: 20px 0;
             font-style: italic;
+            box-shadow: inset 0 0 20px rgba(212, 175, 55, 0.05);
         }
         
         /* ===== SECCIÓN DE MENSAJES ===== */
@@ -264,7 +330,7 @@
             left: -100%;
             width: 100%;
             height: 100%;
-            background: rgba(255,255,255,0.3);
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
             transition: left 0.4s ease;
             z-index: 1;
         }
@@ -275,7 +341,8 @@
         
         .boton-mensaje:hover {
             transform: translateY(-4px) scale(1.05);
-            box-shadow: 0 12px 25px rgba(212, 175, 55, 0.4);
+            box-shadow: 0 12px 25px rgba(212, 175, 55, 0.4),
+                        0 0 15px rgba(192, 192, 192, 0.2);
             background: linear-gradient(135deg, #ffed4e, #d4af37);
         }
         
@@ -325,7 +392,8 @@
         
         .boton-album:hover {
             transform: translateY(-5px) scale(1.08);
-            box-shadow: 0 18px 40px rgba(212, 175, 55, 0.6);
+            box-shadow: 0 18px 40px rgba(212, 175, 55, 0.6),
+                        0 0 20px rgba(192, 192, 192, 0.3);
             background: linear-gradient(135deg, #ffed4e, #d4af37);
         }
         
@@ -385,7 +453,8 @@
         
         .foto-item:hover {
             border-color: #d4af37;
-            box-shadow: 0 8px 20px rgba(212, 175, 55, 0.3);
+            box-shadow: 0 8px 20px rgba(212, 175, 55, 0.3),
+                        0 0 15px rgba(192, 192, 192, 0.2);
             transform: translateY(-5px);
         }
         
@@ -408,8 +477,8 @@
         /* ===== LÍNEA DIVISORA ===== */
         .divider {
             width: 80px;
-            height: 1px;
-            background: linear-gradient(90deg, transparent, #d4af37, transparent);
+            height: 2px;
+            background: linear-gradient(90deg, transparent, #d4af37, #c0c0c0, #d4af37, transparent);
             margin: 60px auto;
         }
         
@@ -464,11 +533,11 @@
     </style>
 </head>
 <body>
-
+ 
     <!-- SOBRE INICIAL CON PARTÍCULAS ORBITANDO -->
     <div id="sobre-inicial">
         <div class="sobre-wrapper" onclick="abrirSobre()">
-            <!-- Partículas orbitando -->
+            <!-- Partículas orbitando mágicas -->
             <div class="particle-orbit"></div>
             <div class="particle-orbit"></div>
             <div class="particle-orbit"></div>
@@ -478,24 +547,24 @@
             <!-- Sobre -->
             <div class="sobre">
                 <div class="sobre-titulo">Para ti,<br>Daniela</div>
-                <div class="sobre-subtitulo">Toca para abrir</div>
+                <div class="sobre-subtitulo">✨ Toca para abrir ✨</div>
             </div>
         </div>
     </div>
-
-    <!-- PARTÍCULAS FLOTANTES -->
+ 
+    <!-- PARTÍCULAS FLOTANTES MÁGICAS -->
     <div id="particulas"></div>
-
+ 
     <!-- MÚSICA DE FONDO -->
     <audio id="musica" loop volume="0.15">
         <source src="../media/Daniela/musica.mp3" type="audio/mpeg">
     </audio>
-
+ 
     <!-- CONTENIDO PRINCIPAL -->
     <div class="contenedor" id="contenedor">
         
         <h1>Para ti, Daniela</h1>
-
+ 
         <!-- SECCIÓN DE MENSAJE PERSONALIZADO -->
         <div class="seccion-mensaje">
             <p>Un Mensaje Para Ti</p>
@@ -506,29 +575,29 @@
                 Bienvenida a tu espacio especial.
             </div>
         </div>
-
+ 
         <div class="divider"></div>
-
+ 
         <!-- SECCIÓN DE MENSAJES MÁGICOS -->
         <div class="seccion-mensajes">
-            <h2>Escucha esto</h2>
+            <h2>✨ Accio Mensajes ✨</h2>
             <div class="botones-container">
                 <button class="boton-mensaje" onclick="reproducirAudio('audio1')">
-                    <span>▶ Mensaje mágico 1</span>
+                    <span>▶ Mensaje Mágico 1</span>
                 </button>
                 <button class="boton-mensaje" onclick="reproducirAudio('audio2')">
-                    <span>▶ Mensaje mágico 2</span>
+                    <span>▶ Mensaje Mágico 2</span>
                 </button>
                 <button class="boton-mensaje" onclick="reproducirAudio('audio3')">
-                    <span>▶ Mensaje mágico 3</span>
+                    <span>▶ Mensaje Mágico 3</span>
                 </button>
             </div>
-
+ 
             <button class="boton-album" onclick="abrirAlbum()">
                 📸 Ver Album de Fotos 📸
             </button>
         </div>
-
+ 
         <!-- GALERÍA DE FOTOS -->
         <div class="galeria" id="galeria">
             <h2>Nuestro Album</h2>
@@ -536,45 +605,45 @@
                 <div class="foto-item">
                     <div class="foto-placeholder">📸</div>
                 </div>
-
+ 
                 <div class="foto-item">
                     <div class="foto-placeholder">📸</div>
                 </div>
-
+ 
                 <div class="foto-item">
                     <div class="foto-placeholder">📸</div>
                 </div>
-
+ 
                 <div class="foto-item">
                     <div class="foto-placeholder">📸</div>
                 </div>
-
+ 
                 <div class="foto-item">
                     <div class="foto-placeholder">📸</div>
                 </div>
-
+ 
                 <div class="foto-item">
                     <div class="foto-placeholder">📸</div>
                 </div>
             </div>
         </div>
-
+ 
         <div style="text-align: center;">
             <a href="../index.html" class="volver">← Volver</a>
         </div>
-
+ 
     </div>
-
+ 
     <!-- AUDIOS -->
     <audio id="audio1"><source src="../media/Daniela/audio1.mp3" type="audio/mpeg"></audio>
     <audio id="audio2"><source src="../media/Daniela/audio2.mp3" type="audio/mpeg"></audio>
     <audio id="audio3"><source src="../media/Daniela/audio3.mp3" type="audio/mpeg"></audio>
-
+ 
     <script>
-        // Generar partículas flotantes
+        // Generar partículas flotantes mágicas
         function generarParticulas() {
             const contenedor = document.getElementById('particulas');
-            for (let i = 0; i < 40; i++) {
+            for (let i = 0; i < 45; i++) {
                 const particle = document.createElement('div');
                 particle.className = 'particle';
                 particle.style.left = Math.random() * 100 + 'vw';
@@ -584,30 +653,30 @@
             }
         }
         generarParticulas();
-
+ 
         // Control de audio
         let audioActual = null;
-
+ 
         function reproducirAudio(id) {
             if (audioActual && !audioActual.paused) {
                 audioActual.pause();
                 audioActual.currentTime = 0;
             }
-
+ 
             audioActual = document.getElementById(id);
             audioActual.play();
         }
-
-        // Abrir sobre
+ 
+        // Abrir sobre con efecto mágico
         function abrirSobre() {
             document.getElementById('sobre-inicial').style.display = 'none';
             document.getElementById('contenedor').classList.add('visible');
-
+ 
             // Iniciar música
             const musica = document.getElementById('musica');
             musica.play();
         }
-
+ 
         // Álbum de fotos
         function abrirAlbum() {
             const galeria = document.getElementById('galeria');
@@ -618,6 +687,6 @@
             }, 100);
         }
     </script>
-
+ 
 </body>
 </html>
