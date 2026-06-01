@@ -12,7 +12,7 @@ function verificar()
         window.location.href = "personas/ana.html";
 
     else if(clave === "daniela2026")
-        window.location.href = "personas/daniela.html";
+        window.location.href = "personas/Daniela.html";
 
     else if(clave === "guevara2026")
         window.location.href = "personas/guevara.html";
