@@ -1,356 +1,669 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<meta charset="UTF-8">
-<title>Archivo Clasificado: Bocacho</title>
-
-<!-- FUENTES ESTILO JURÁSICO REALISTA -->
-<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Roboto+Mono:wght@300;500&display=swap" rel="stylesheet">
-
-<style>
-
-/* ================= FONDO SELVA JURÁSICA REALISTA ================= */
-
-body
-{
-    margin: 0;
-
-    background:
-    radial-gradient(circle at 50% 20%, rgba(0,0,0,0.6), transparent 70%),
-    radial-gradient(circle at 20% 80%, rgba(0,40,0,0.7), transparent 60%),
-    radial-gradient(circle at 80% 80%, rgba(20,50,0,0.6), transparent 60%),
-    linear-gradient(180deg, #020402, #050a05, #020402);
-
-    font-family: 'Roboto Mono', monospace;
-
-    color: #d6d2b6;
-
-    text-align: center;
-
-    overflow-x: hidden;
-}
-
-/* ================= NIEBLA ================= */
-
-.niebla
-{
-    position: fixed;
-    inset: 0;
-
-    background:
-    radial-gradient(circle at 30% 60%, rgba(0,80,20,0.15), transparent 50%),
-    radial-gradient(circle at 70% 40%, rgba(50,80,20,0.12), transparent 50%);
-
-    animation: moverNiebla 20s infinite alternate ease-in-out;
-
-    pointer-events: none;
-}
-
-@keyframes moverNiebla
-{
-    from { opacity: 0.3; }
-    to { opacity: 0.6; }
-}
-
-/* ================= POLVO ================= */
-
-.polvo
-{
-    position: fixed;
-
-    width: 2px;
-    height: 2px;
-
-    background: rgba(200,180,120,0.4);
-
-    border-radius: 50%;
-
-    animation: flotar linear infinite;
-}
-
-@keyframes flotar
-{
-    from
-    {
-        transform: translateY(100vh);
-        opacity: 0;
-    }
-
-    10%
-    {
-        opacity: 1;
-    }
-
-    to
-    {
-        transform: translateY(-10vh);
-        opacity: 0;
-    }
-}
-
-/* ================= CONTENEDOR ================= */
-
-.carta
-{
-    display: none;
-
-    margin: auto;
-
-    margin-top: 80px;
-
-    max-width: 800px;
-
-    padding: 50px;
-
-    background: rgba(10,10,5,0.85);
-
-    border: 1px solid rgba(200,180,120,0.3);
-
-    box-shadow:
-    0 0 60px rgba(0,0,0,0.8);
-}
-
-/* ================= TITULO ================= */
-
-.titulo
-{
-    font-family: 'Cinzel', serif;
-
-    font-size: 46px;
-
-    color: #c2b280;
-
-    letter-spacing: 3px;
-
-    margin-bottom: 40px;
-}
-
-/* ================= TEXTO ================= */
-
-#textoCarta
-{
-    font-size: 20px;
-
-    line-height: 1.8;
-
-    border-right: 2px solid #c2b280;
-
-    white-space: pre-line;
-}
-
-/* ================= BOTON ================= */
-
-#sobre
-{
-    margin-top: 260px;
-
-    width: 300px;
-
-    padding: 20px;
-
-    border: 1px solid #c2b280;
-
-    background: rgba(0,0,0,0.7);
-
-    color: #c2b280;
-
-    cursor: pointer;
-
-    margin-left: auto;
-
-    margin-right: auto;
-
-    font-family: Cinzel;
-
-    letter-spacing: 2px;
-
-    transition: 0.4s;
-}
-
-#sobre:hover
-{
-    background: rgba(194,178,128,0.1);
-}
-
-/* ================= FOTOS ================= */
-
-.foto
-{
-    position: fixed;
-
-    width: 180px;
-
-    border: 1px solid rgba(200,180,120,0.4);
-
-    box-shadow: 0 0 20px rgba(0,0,0,0.7);
-
-    opacity: 0;
-
-    transition: opacity 2s;
-}
-
-.foto.visible
-{
-    opacity: 1;
-}
-
-.foto.izq
-{
-    left: 60px;
-
-    bottom: 120px;
-}
-
-.foto.der
-{
-    right: 60px;
-
-    bottom: 120px;
-}
-
-/* ================= BOTONES AUDIO ================= */
-
-.audios button
-{
-    margin: 12px;
-
-    padding: 10px 18px;
-
-    border: 1px solid #c2b280;
-
-    background: transparent;
-
-    color: #c2b280;
-
-    cursor: pointer;
-
-    font-family: Roboto Mono;
-}
-
-.audios button:hover
-{
-    background: rgba(194,178,128,0.1);
-}
-
-</style>
-
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BOCACHO - ALBUM EXPERIENCE</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700;800&family=Courier+Prime:wght@400;700&display=swap" rel="stylesheet">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #0d0d0d 0%, #1a0a2e 50%, #0d0d0d 100%);
+            font-family: 'Montserrat', sans-serif;
+            color: #fff;
+            overflow-x: hidden;
+        }
+        
+        /* Partículas flotantes */
+        .particle-bg {
+            position: fixed;
+            width: 1px;
+            height: 1px;
+            background: #00ff00;
+            border-radius: 50%;
+            opacity: 0.3;
+            pointer-events: none;
+            animation: float-bg 25s linear infinite;
+            z-index: 0;
+        }
+        
+        @keyframes float-bg {
+            from {
+                transform: translateY(100vh) translateX(0);
+                opacity: 0;
+            }
+            10% {
+                opacity: 0.4;
+            }
+            90% {
+                opacity: 0.4;
+            }
+            to {
+                transform: translateY(-100vh) translateX(150px);
+                opacity: 0;
+            }
+        }
+        
+        /* ===== PANTALLA INICIAL ÁLBUM ===== */
+        #album-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 100;
+            background: linear-gradient(135deg, #0d0d0d 0%, #1a0a2e 100%);
+            animation: fade-out 0.8s ease forwards 7s;
+        }
+        
+        @keyframes fade-out {
+            to {
+                opacity: 0;
+                pointer-events: none;
+            }
+        }
+        
+        .album-container {
+            position: relative;
+            width: 320px;
+            height: 320px;
+        }
+        
+        /* Vinilo girando */
+        .vinyl-record {
+            width: 300px;
+            height: 300px;
+            border-radius: 50%;
+            background: radial-gradient(circle at 30% 30%, rgba(0, 255, 0, 0.2), #000);
+            border: 8px solid #00ff00;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            animation: spin-vinyl 8s linear infinite;
+            box-shadow: 0 0 50px #00ff00, inset 0 0 40px rgba(0, 255, 0, 0.1);
+            position: relative;
+            cursor: pointer;
+        }
+        
+        @keyframes spin-vinyl {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+        
+        .vinyl-center {
+            width: 60px;
+            height: 60px;
+            background: radial-gradient(circle at 35% 35%, #00ff00, #000);
+            border-radius: 50%;
+            box-shadow: 0 0 30px #00ff00;
+        }
+        
+        .vinyl-label {
+            position: absolute;
+            width: 200px;
+            height: 200px;
+            background: rgba(0, 0, 0, 0.9);
+            border-radius: 50%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            border: 2px solid #00ff00;
+            text-align: center;
+            pointer-events: none;
+        }
+        
+        .vinyl-title {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 28px;
+            font-weight: 800;
+            color: #00ff00;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            text-shadow: 0 0 15px #00ff00;
+        }
+        
+        .vinyl-artist {
+            font-size: 11px;
+            color: #00ff00;
+            margin-top: 5px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            opacity: 0.8;
+        }
+        
+        /* ===== CONTENIDO PRINCIPAL ===== */
+        .contenedor {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 80px 40px;
+            display: none;
+            animation: fade-in 1s ease;
+            position: relative;
+            z-index: 10;
+        }
+        
+        .contenedor.visible {
+            display: block;
+        }
+        
+        @keyframes fade-in {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        /* Header asimétrico */
+        .header-album {
+            display: grid;
+            grid-template-columns: 1fr 1.2fr;
+            gap: 60px;
+            align-items: center;
+            margin-bottom: 100px;
+        }
+        
+        .album-cover {
+            width: 100%;
+            aspect-ratio: 1;
+            background: linear-gradient(135deg, rgba(0, 255, 0, 0.1), rgba(0, 200, 0, 0.05));
+            border: 3px solid #00ff00;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 10px 50px rgba(0, 255, 0, 0.2);
+            animation: float-cover 6s ease-in-out infinite;
+        }
+        
+        @keyframes float-cover {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-15px); }
+        }
+        
+        .cover-placeholder {
+            font-size: 120px;
+            opacity: 0.5;
+            animation: rotate-placeholder 20s linear infinite;
+        }
+        
+        @keyframes rotate-placeholder {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+        
+        .album-info h1 {
+            font-size: 56px;
+            font-weight: 800;
+            color: #00ff00;
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            margin-bottom: 20px;
+            text-shadow: 0 0 20px #00ff00;
+            line-height: 1.2;
+        }
+        
+        .album-info .subtitle {
+            font-size: 18px;
+            color: #00dd00;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            margin-bottom: 30px;
+            font-weight: 600;
+        }
+        
+        .album-credits {
+            font-family: 'Courier Prime', monospace;
+            font-size: 13px;
+            color: #00aa00;
+            line-height: 2;
+            margin-top: 40px;
+            border-top: 2px solid #00ff00;
+            padding-top: 20px;
+        }
+        
+        .credit-line {
+            display: grid;
+            grid-template-columns: 150px 1fr;
+            gap: 20px;
+        }
+        
+        /* ===== SECCIÓN TRACKS ===== */
+        .tracks-section {
+            margin: 120px 0;
+        }
+        
+        .section-title {
+            font-size: 32px;
+            font-weight: 800;
+            color: #00ff00;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            margin-bottom: 50px;
+            text-shadow: 0 0 15px #00ff00;
+            border-bottom: 3px solid #00ff00;
+            padding-bottom: 20px;
+            display: inline-block;
+        }
+        
+        .tracks-list {
+            display: flex;
+            flex-direction: column;
+            gap: 0;
+        }
+        
+        .track-item {
+            display: grid;
+            grid-template-columns: 50px 1fr 100px;
+            align-items: center;
+            gap: 30px;
+            padding: 25px 30px;
+            border-bottom: 1px solid rgba(0, 255, 0, 0.2);
+            background: rgba(0, 255, 0, 0.02);
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        
+        .track-item:hover {
+            background: rgba(0, 255, 0, 0.08);
+            border-bottom-color: #00ff00;
+            padding-left: 40px;
+        }
+        
+        .track-num {
+            font-family: 'Courier Prime', monospace;
+            font-size: 24px;
+            font-weight: 700;
+            color: #00ff00;
+            text-shadow: 0 0 10px #00ff00;
+        }
+        
+        .track-title {
+            font-size: 16px;
+            font-weight: 600;
+            color: #fff;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .track-play {
+            font-size: 20px;
+            color: #00ff00;
+            transition: all 0.3s ease;
+        }
+        
+        .track-item:hover .track-play {
+            transform: scale(1.3);
+            text-shadow: 0 0 15px #00ff00;
+        }
+        
+        /* ===== GALERÍA PORTFOLIO ===== */
+        .portfolio-section {
+            display: none;
+            margin-top: 120px;
+        }
+        
+        .portfolio-section.active {
+            display: block;
+            animation: fade-in 0.8s ease;
+        }
+        
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 40px;
+            margin-bottom: 80px;
+        }
+        
+        .portfolio-item {
+            position: relative;
+            aspect-ratio: 1;
+            background: linear-gradient(135deg, rgba(0, 255, 0, 0.1), rgba(0, 200, 0, 0.05));
+            border: 2px solid #00ff00;
+            overflow: hidden;
+            cursor: pointer;
+            opacity: 0;
+            animation: fade-in 0.8s ease forwards;
+            transition: all 0.4s ease;
+        }
+        
+        .portfolio-item:nth-child(1) { animation-delay: 0.1s; }
+        .portfolio-item:nth-child(2) { animation-delay: 0.2s; }
+        .portfolio-item:nth-child(3) { animation-delay: 0.3s; }
+        
+        .portfolio-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: all 0.5s ease;
+            filter: brightness(0.9);
+        }
+        
+        .portfolio-item:hover {
+            border-color: #00ff00;
+            box-shadow: 0 0 40px #00ff00;
+            transform: scale(1.05);
+        }
+        
+        .portfolio-item:hover img {
+            filter: brightness(1.1) contrast(1.2);
+        }
+        
+        .portfolio-placeholder {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 80px;
+            background: linear-gradient(135deg, rgba(0, 255, 0, 0.15), rgba(0, 200, 0, 0.08));
+        }
+        
+        /* ===== BOTÓN PORTFOLIO ===== */
+        .btn-portfolio {
+            margin: 80px auto;
+            display: block;
+            padding: 22px 70px;
+            background: transparent;
+            border: 3px solid #00ff00;
+            color: #00ff00;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 15px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .btn-portfolio::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: #00ff00;
+            transition: left 0.4s ease;
+            z-index: -1;
+        }
+        
+        .btn-portfolio:hover::before {
+            left: 0;
+        }
+        
+        .btn-portfolio:hover {
+            color: #0a0a0a;
+            box-shadow: 0 0 30px #00ff00;
+            transform: translateY(-3px);
+        }
+        
+        /* ===== FOOTER ===== */
+        .footer-credits {
+            margin-top: 120px;
+            padding: 60px 40px;
+            border-top: 2px solid #00ff00;
+            text-align: center;
+            font-family: 'Courier Prime', monospace;
+            font-size: 12px;
+            color: #00aa00;
+            line-height: 2;
+        }
+        
+        .volver {
+            display: inline-block;
+            margin-top: 30px;
+            padding: 12px 40px;
+            background: transparent;
+            border: 2px solid #00ff00;
+            color: #00ff00;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 13px;
+            text-decoration: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-weight: 700;
+        }
+        
+        .volver:hover {
+            background: #00ff00;
+            color: #0a0a0a;
+            box-shadow: 0 0 30px #00ff00;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .header-album {
+                grid-template-columns: 1fr;
+            }
+            
+            .album-info h1 {
+                font-size: 36px;
+            }
+            
+            .track-item {
+                grid-template-columns: 1fr;
+                gap: 10px;
+            }
+            
+            .portfolio-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .contenedor {
+                padding: 60px 20px;
+            }
+        }
+    </style>
 </head>
-
 <body>
 
-<div class="niebla"></div>
+    <!-- PARTÍCULAS DE FONDO -->
+    <div id="particulas"></div>
 
-<audio id="musica" loop>
-<source src="../media/bocacho/musica.mp3">
-</audio>
+    <!-- PANTALLA INICIAL ÁLBUM -->
+    <div id="album-screen">
+        <div class="album-container" onclick="activarAlbum()">
+            <div class="vinyl-record">
+                <div class="vinyl-center"></div>
+                <div class="vinyl-label">
+                    <div class="vinyl-title">BOCACHO</div>
+                    <div class="vinyl-artist">Creative Edition</div>
+                </div>
+            </div>
+        </div>
+    </div>
 
-<div id="sobre" onclick="abrirCarta()">
-ABRIR ARCHIVO CLASIFICADO
-</div>
+    <!-- MÚSICA DE FONDO -->
+    <audio id="musica" loop volume="0.15">
+        <source src="../media/Bocacho/musica.mp3" type="audio/mpeg">
+    </audio>
 
-<div class="carta" id="carta">
+    <!-- CONTENIDO PRINCIPAL -->
+    <div class="contenedor" id="contenedor">
+        
+        <!-- HEADER ÁLBUM -->
+        <div class="header-album">
+            <div class="album-cover">
+                <div class="cover-placeholder">🎨</div>
+            </div>
+            
+            <div class="album-info">
+                <h1>BOCACHO<br>CREATIVE<br>VISION</h1>
+                <div class="subtitle">Album de Diseño & Creatividad</div>
+                
+                <div class="album-credits">
+                    <div class="credit-line">
+                        <strong>Artista</strong>
+                        <span>Bocacho</span>
+                    </div>
+                    <div class="credit-line">
+                        <strong>Género</strong>
+                        <span>Diseño Gráfico / Reggaeton</span>
+                    </div>
+                    <div class="credit-line">
+                        <strong>Año</strong>
+                        <span>2025</span>
+                    </div>
+                    <div class="credit-line">
+                        <strong>Productor</strong>
+                        <span>Creatividad Pura</span>
+                    </div>
+                </div>
+            </div>
+        </div>
 
-<h1 class="titulo">BOCACHO REX</h1>
+        <!-- MENSAJE PERSONALIZADO -->
+        <div style="background: rgba(0, 255, 0, 0.08); border: 2px solid #00ff00; padding: 40px; margin: 80px 0; border-radius: 3px; box-shadow: 0 0 30px rgba(0, 255, 0, 0.1);">
+            <div style="font-family: 'Courier Prime', monospace; font-size: 12px; color: #00ff00; margin-bottom: 15px; text-transform: uppercase; letter-spacing: 2px;">/// MENSAJE PERSONAL ///</div>
+            <div id="mensaje-personalizado" style="font-size: 16px; color: #fff; line-height: 1.8; min-height: 100px; font-family: 'Montserrat', sans-serif;">
+                La creatividad es donde los sueños se hacen diseño,
+                y el diseño es donde el arte encuentra su propósito.
+                <br><br>
+                Bienvenido a tu espacio creativo.
+            </div>
+        </div>
 
-<p id="textoCarta"></p>
+        <!-- TRACKS -->
+        <div class="tracks-section">
+            <div class="section-title">TRACKS</div>
+            
+            <div class="tracks-list">
+                <div class="track-item" onclick="reproducirAudio('audio1')">
+                    <div class="track-num">01</div>
+                    <div class="track-title">Mensaje Inspiración</div>
+                    <div class="track-play">▶</div>
+                </div>
+                
+                <div class="track-item" onclick="reproducirAudio('audio2')">
+                    <div class="track-num">02</div>
+                    <div class="track-title">Mensaje Creatividad</div>
+                    <div class="track-play">▶</div>
+                </div>
+                
+                <div class="track-item" onclick="reproducirAudio('audio3')">
+                    <div class="track-num">03</div>
+                    <div class="track-title">Mensaje Especial</div>
+                    <div class="track-play">▶</div>
+                </div>
+            </div>
+        </div>
 
-<img src="../media/bocacho/foto1.jpg" class="foto izq" id="foto1">
-<img src="../media/bocacho/foto2.jpg" class="foto der" id="foto2">
+        <!-- BOTÓN PORTFOLIO -->
+        <button class="btn-portfolio" onclick="abrirPortfolio()">
+            📸 Ver Portfolio Creativo 📸
+        </button>
 
-<div class="audios">
-<button onclick="reproducirAudio('audio1')">REGISTRO 01</button>
-<button onclick="reproducirAudio('audio2')">REGISTRO 02</button>
-<button onclick="reproducirAudio('audio3')">REGISTRO 03</button>
-</div>
+        <!-- PORTFOLIO -->
+        <div class="portfolio-section" id="portfolio">
+            <div class="section-title">GALERÍA</div>
+            
+            <div class="portfolio-grid">
+                <div class="portfolio-item">
+                    <div class="portfolio-placeholder">🎨</div>
+                </div>
+                
+                <div class="portfolio-item">
+                    <div class="portfolio-placeholder">🎨</div>
+                </div>
+                
+                <div class="portfolio-item">
+                    <div class="portfolio-placeholder">🎨</div>
+                </div>
+            </div>
+        </div>
 
-<audio id="audio1"><source src="../media/bocacho/audio1.mp3"></audio>
-<audio id="audio2"><source src="../media/bocacho/audio2.mp3"></audio>
-<audio id="audio3"><source src="../media/bocacho/audio3.mp3"></audio>
+        <!-- FOOTER -->
+        <div class="footer-credits">
+            <p>© 2025 BOCACHO CREATIVE STUDIO<br>
+            ALL RIGHTS RESERVED<br>
+            <span style="margin-top: 20px; display: block;">✦ DISEÑO PARA LA VIDA ✦</span></p>
+            
+            <a href="../index.html" class="volver">Salir</a>
+        </div>
 
-</div>
+    </div>
 
-<script>
+    <!-- AUDIOS -->
+    <audio id="audio1"><source src="../media/Bocacho/audio1.mp3" type="audio/mpeg"></audio>
+    <audio id="audio2"><source src="../media/Bocacho/audio2.mp3" type="audio/mpeg"></audio>
+    <audio id="audio3"><source src="../media/Bocacho/audio3.mp3" type="audio/mpeg"></audio>
 
-for(let i=0;i<60;i++)
-{
-    let p=document.createElement("div");
+    <script>
+        // Generar partículas
+        function generarParticulas() {
+            const contenedor = document.getElementById('particulas');
+            for (let i = 0; i < 40; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle-bg';
+                particle.style.left = Math.random() * 100 + 'vw';
+                particle.style.animationDuration = (20 + Math.random() * 20) + 's';
+                particle.style.animationDelay = Math.random() * 10 + 's';
+                contenedor.appendChild(particle);
+            }
+        }
+        generarParticulas();
 
-    p.className="polvo";
+        // Control de audio
+        let audioActual = null;
 
-    p.style.left=Math.random()*100+"vw";
+        function reproducirAudio(id) {
+            if (audioActual && !audioActual.paused) {
+                audioActual.pause();
+                audioActual.currentTime = 0;
+            }
 
-    p.style.animationDuration=(8+Math.random()*12)+"s";
+            audioActual = document.getElementById(id);
+            audioActual.play();
+            
+            event.target.closest('.track-item').style.background = 'rgba(0, 255, 0, 0.15)';
+            
+            audioActual.addEventListener('ended', () => {
+                event.target.closest('.track-item').style.background = 'rgba(0, 255, 0, 0.02)';
+            });
+        }
 
-    document.body.appendChild(p);
-}
+        // Activar álbum
+        function activarAlbum() {
+            document.getElementById('album-screen').style.display = 'none';
+            document.getElementById('contenedor').classList.add('visible');
 
-let audioActual=null;
+            const musica = document.getElementById('musica');
+            musica.play();
+        }
 
-function reproducirAudio(id)
-{
-    if(audioActual)
-    {
-        audioActual.pause();
-        audioActual.currentTime=0;
-    }
-
-    audioActual=document.getElementById(id);
-
-    audioActual.play();
-}
-
-function abrirCarta()
-{
-    sobre.style.display="none";
-
-    carta.style.display="block";
-
-    musica.volume=0;
-
-    musica.play();
-
-    let fade=setInterval(()=>{
-
-        if(musica.volume<0.2)
-            musica.volume+=0.01;
-
-        else
-            clearInterval(fade);
-
-    },200);
-
-    escribirTexto();
-}
-
-const texto=`ARCHIVO CONFIRMADO.
-
-ESPECIE: ÚNICA.
-
-PRESENCIA: IMPONENTE.
-
-ESTADO: IRREPETIBLE.`;
-
-let i=0;
-
-function escribirTexto()
-{
-    if(i<texto.length)
-    {
-        textoCarta.innerHTML+=texto.charAt(i);
-
-        i++;
-
-        if(i==40)
-            foto1.classList.add("visible");
-
-        if(i==80)
-            foto2.classList.add("visible");
-
-        setTimeout(escribirTexto,35);
-    }
-}
-
-</script>
+        // Abrir portfolio
+        function abrirPortfolio() {
+            const portfolio = document.getElementById('portfolio');
+            portfolio.classList.toggle('active');
+            
+            setTimeout(() => {
+                portfolio.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }, 100);
+        }
+    </script>
 
 </body>
 </html>
