@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AGENT: CAMILO</title>
+    <title>CAMILO - BLUEPRINT</title>
     
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Roboto+Condensed:wght@300;400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
     
     <style>
         * {
@@ -15,65 +15,32 @@
         }
         
         body {
-            background: #0a0e27;
+            background: #000;
             background-image: 
-                linear-gradient(0deg, transparent 24%, rgba(255, 0, 150, 0.05) 25%, rgba(255, 0, 150, 0.05) 26%, transparent 27%, transparent 74%, rgba(255, 0, 150, 0.05) 75%, rgba(255, 0, 150, 0.05) 76%, transparent 77%, transparent),
-                linear-gradient(90deg, transparent 24%, rgba(255, 0, 150, 0.05) 25%, rgba(255, 0, 150, 0.05) 26%, transparent 27%, transparent 74%, rgba(255, 0, 150, 0.05) 75%, rgba(255, 0, 150, 0.05) 76%, transparent 77%, transparent);
-            background-size: 50px 50px;
-            font-family: 'Roboto Condensed', sans-serif;
+                linear-gradient(0deg, transparent 24%, rgba(0, 200, 255, 0.05) 25%, rgba(0, 200, 255, 0.05) 26%, transparent 27%, transparent 74%, rgba(0, 200, 255, 0.05) 75%, rgba(0, 200, 255, 0.05) 76%, transparent 77%, transparent),
+                linear-gradient(90deg, transparent 24%, rgba(0, 200, 255, 0.05) 25%, rgba(0, 200, 255, 0.05) 26%, transparent 27%, transparent 74%, rgba(0, 200, 255, 0.05) 75%, rgba(0, 200, 255, 0.05) 76%, transparent 77%, transparent);
+            background-size: 80px 80px;
+            font-family: 'Roboto', sans-serif;
             color: #fff;
             overflow-x: hidden;
         }
         
-        /* Efectos Neon */
-        .neon-glow {
-            text-shadow: 0 0 10px #ff006e, 0 0 20px #ff006e, 0 0 30px #ff006e;
-        }
-        
-        /* Partículas Radianita */
-        .particle {
+        /* Líneas arquitectónicas flotantes */
+        .arch-line {
             position: fixed;
-            width: 2px;
-            height: 2px;
-            border-radius: 50%;
+            background: linear-gradient(90deg, transparent, rgba(0, 200, 255, 0.3), transparent);
             pointer-events: none;
-            animation: float-radianita 20s linear infinite;
+            animation: move-line 8s linear infinite;
+            z-index: 1;
         }
         
-        .particle {
-            background: #ff006e;
-            box-shadow: 0 0 5px #ff006e;
+        @keyframes move-line {
+            from { transform: translateY(-100vh); }
+            to { transform: translateY(100vh); }
         }
         
-        .particle:nth-child(odd) {
-            background: #0084ff;
-            box-shadow: 0 0 5px #0084ff;
-        }
-        
-        .particle:nth-child(3n) {
-            background: #00d9ff;
-            box-shadow: 0 0 5px #00d9ff;
-        }
-        
-        @keyframes float-radianita {
-            from {
-                transform: translateY(100vh) translateX(0);
-                opacity: 0;
-            }
-            10% {
-                opacity: 0.8;
-            }
-            90% {
-                opacity: 0.8;
-            }
-            to {
-                transform: translateY(-100vh) translateX(100px);
-                opacity: 0;
-            }
-        }
-        
-        /* ===== PANTALLA INICIAL - AGENT SCANNER ===== */
-        #agent-scanner {
+        /* ===== PANTALLA LOADING ===== */
+        #blueprint-loading {
             position: fixed;
             top: 0;
             left: 0;
@@ -83,122 +50,81 @@
             align-items: center;
             justify-content: center;
             z-index: 100;
-            background: linear-gradient(135deg, #0a0e27 0%, #1a0033 100%);
-            animation: scan-fade 0.8s ease forwards 8s;
+            background: #000;
+            animation: fade-out-blueprint 0.8s ease forwards 7s;
         }
         
-        @keyframes scan-fade {
+        @keyframes fade-out-blueprint {
             to {
                 opacity: 0;
                 pointer-events: none;
             }
         }
         
-        .scanner-wrapper {
+        .blueprint-wrapper {
             position: relative;
-            width: 300px;
-            height: 300px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            width: 340px;
+            height: 340px;
         }
         
-        /* Líneas de escaneo */
-        .scan-line {
+        /* Grid de construcción */
+        .construction-grid {
             position: absolute;
-            width: 300px;
-            height: 2px;
-            background: linear-gradient(90deg, transparent, #ff006e, transparent);
-            left: 0;
-            animation: scan-move 3s linear infinite;
+            width: 340px;
+            height: 340px;
+            border: 3px solid #00c8ff;
+            background: 
+                linear-gradient(0deg, transparent 24%, rgba(0, 200, 255, 0.1) 25%, rgba(0, 200, 255, 0.1) 26%, transparent 27%, transparent 74%, rgba(0, 200, 255, 0.1) 75%, rgba(0, 200, 255, 0.1) 76%, transparent 77%, transparent),
+                linear-gradient(90deg, transparent 24%, rgba(0, 200, 255, 0.1) 25%, rgba(0, 200, 255, 0.1) 26%, transparent 27%, transparent 74%, rgba(0, 200, 255, 0.1) 75%, rgba(0, 200, 255, 0.1) 76%, transparent 77%, transparent);
+            background-size: 34px 34px;
+            box-shadow: 0 0 40px #00c8ff, inset 0 0 40px rgba(0, 200, 255, 0.1);
+            animation: pulse-grid 2s ease-in-out infinite;
         }
         
-        @keyframes scan-move {
-            0% { top: 0; }
-            100% { top: 300px; }
+        @keyframes pulse-grid {
+            0%, 100% { box-shadow: 0 0 40px #00c8ff, inset 0 0 40px rgba(0, 200, 255, 0.1); }
+            50% { box-shadow: 0 0 60px #00c8ff, inset 0 0 60px rgba(0, 200, 255, 0.2); }
         }
         
-        .scan-line:nth-child(1) { animation-delay: 0s; }
-        .scan-line:nth-child(2) { animation-delay: 1s; }
-        .scan-line:nth-child(3) { animation-delay: 2s; }
+        .blueprint-building {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 100px;
+            animation: construct 3s ease-in-out infinite;
+            opacity: 0.8;
+        }
         
-        /* Caja de agente */
-        .agent-box {
-            width: 280px;
-            height: 280px;
-            border: 3px solid #ff006e;
-            background: rgba(255, 0, 110, 0.05);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            position: relative;
-            z-index: 10;
-            box-shadow: 0 0 20px #ff006e, inset 0 0 20px rgba(255, 0, 110, 0.1);
+        @keyframes construct {
+            0%, 100% { transform: translate(-50%, -50%) scale(1); }
+            50% { transform: translate(-50%, -50%) scale(1.1); }
+        }
+        
+        .blueprint-title {
+            position: absolute;
+            bottom: -50px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-family: 'Space Mono', monospace;
+            font-size: 18px;
+            color: #00c8ff;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            text-shadow: 0 0 15px #00c8ff;
+            white-space: nowrap;
             cursor: pointer;
-            animation: pulse-agent 2s ease-in-out infinite;
-        }
-        
-        @keyframes pulse-agent {
-            0%, 100% { box-shadow: 0 0 20px #ff006e, inset 0 0 20px rgba(255, 0, 110, 0.1); }
-            50% { box-shadow: 0 0 40px #ff006e, inset 0 0 40px rgba(255, 0, 110, 0.2); }
-        }
-        
-        /* Esquinas de la caja */
-        .agent-box::before,
-        .agent-box::after {
-            content: '';
-            position: absolute;
-            width: 30px;
-            height: 30px;
-            border: 3px solid #00d9ff;
-        }
-        
-        .agent-box::before {
-            top: -15px;
-            left: -15px;
-            border-right: none;
-            border-bottom: none;
-        }
-        
-        .agent-box::after {
-            bottom: -15px;
-            right: -15px;
-            border-left: none;
-            border-top: none;
-        }
-        
-        .agent-titulo {
-            font-family: 'Orbitron', sans-serif;
-            font-size: 28px;
-            font-weight: 900;
-            color: #ff006e;
-            text-transform: uppercase;
-            letter-spacing: 4px;
-            text-shadow: 0 0 10px #ff006e;
-            margin-bottom: 10px;
-        }
-        
-        .agent-subtitulo {
-            font-size: 12px;
-            color: #00d9ff;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            animation: blink-text 1.5s ease-in-out infinite;
-        }
-        
-        @keyframes blink-text {
-            0%, 100% { opacity: 0.7; }
-            50% { opacity: 1; }
         }
         
         /* ===== CONTENIDO PRINCIPAL ===== */
         .contenedor {
-            max-width: 1000px;
+            max-width: 1200px;
             margin: 0 auto;
             padding: 100px 40px;
             display: none;
             animation: fade-in 1s ease;
+            position: relative;
+            z-index: 10;
         }
         
         .contenedor.visible {
@@ -208,7 +134,7 @@
         @keyframes fade-in {
             from {
                 opacity: 0;
-                transform: translateY(20px);
+                transform: translateY(30px);
             }
             to {
                 opacity: 1;
@@ -218,272 +144,310 @@
         
         /* Título principal */
         h1 {
-            font-family: 'Orbitron', sans-serif;
-            font-size: 72px;
+            font-family: 'Space Mono', monospace;
+            font-size: 64px;
             text-align: center;
-            color: #ff006e;
-            margin-bottom: 10px;
+            color: #00c8ff;
+            margin-bottom: 20px;
             text-transform: uppercase;
-            letter-spacing: 6px;
-            text-shadow: 0 0 20px #ff006e, 0 0 40px #ff006e;
-            font-weight: 900;
-            animation: flicker 3s ease-in-out infinite;
-        }
-        
-        @keyframes flicker {
-            0%, 100% { text-shadow: 0 0 20px #ff006e, 0 0 40px #ff006e; }
-            50% { text-shadow: 0 0 10px #ff006e, 0 0 20px #ff006e; }
-        }
-        
-        .agent-code {
-            text-align: center;
-            font-family: 'Orbitron', monospace;
-            font-size: 14px;
-            color: #00d9ff;
-            margin-bottom: 40px;
-            letter-spacing: 3px;
-        }
-        
-        /* ===== BRIEF DE MISIÓN ===== */
-        .mission-brief {
-            background: rgba(255, 0, 110, 0.08);
-            border: 2px solid #ff006e;
-            border-radius: 0;
-            padding: 40px;
-            margin-bottom: 60px;
-            position: relative;
-        }
-        
-        .mission-brief::before {
-            content: '█ MISIÓN CONFIDENCIAL';
-            position: absolute;
-            top: -12px;
-            left: 20px;
-            background: #0a0e27;
-            padding: 0 10px;
-            font-family: 'Orbitron', monospace;
-            color: #ff006e;
-            font-size: 12px;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            text-shadow: 0 0 10px #ff006e;
-        }
-        
-        .mission-text {
-            background: rgba(10, 14, 39, 0.8);
-            border: 1px solid #00d9ff;
-            padding: 20px;
-            color: #00d9ff;
-            font-size: 16px;
-            line-height: 1.8;
-            font-family: 'Roboto Condensed', monospace;
-            min-height: 120px;
-        }
-        
-        /* ===== SECCIÓN DE ABILITIES ===== */
-        .abilities-section {
-            margin: 80px 0;
-            text-align: center;
-        }
-        
-        .abilities-section h2 {
-            font-family: 'Orbitron', sans-serif;
-            font-size: 40px;
-            color: #ff006e;
-            margin-bottom: 50px;
-            text-transform: uppercase;
-            letter-spacing: 4px;
-            text-shadow: 0 0 20px #ff006e;
-        }
-        
-        .abilities-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 20px;
-            margin-bottom: 40px;
-        }
-        
-        .ability-btn {
-            padding: 20px;
-            background: linear-gradient(135deg, rgba(255, 0, 110, 0.2), rgba(0, 132, 255, 0.2));
-            border: 2px solid #ff006e;
-            border-radius: 0;
-            color: #fff;
-            font-family: 'Orbitron', sans-serif;
-            font-size: 14px;
+            letter-spacing: 5px;
+            text-shadow: 0 0 20px #00c8ff;
             font-weight: 700;
+        }
+        
+        .blueprint-code {
+            text-align: center;
+            font-family: 'Space Mono', monospace;
+            font-size: 13px;
+            color: #00a8d8;
+            margin-bottom: 60px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+        
+        /* ===== PROYECTO PRINCIPAL ===== */
+        .main-project {
+            display: grid;
+            grid-template-columns: 1fr 1.3fr;
+            gap: 60px;
+            align-items: center;
+            margin-bottom: 100px;
+        }
+        
+        .project-visual {
+            width: 100%;
+            aspect-ratio: 1;
+            border: 2px solid #00c8ff;
+            background: linear-gradient(135deg, rgba(0, 200, 255, 0.1), rgba(0, 150, 200, 0.05));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 0 40px rgba(0, 200, 255, 0.2), inset 0 0 40px rgba(0, 200, 255, 0.05);
+        }
+        
+        .project-visual::before {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, #00c8ff, transparent);
+            top: 50%;
+            animation: scan-line 3s linear infinite;
+        }
+        
+        @keyframes scan-line {
+            from { top: 0%; }
+            to { top: 100%; }
+        }
+        
+        .visual-icon {
+            font-size: 120px;
+            opacity: 0.6;
+            animation: float-icon 6s ease-in-out infinite;
+        }
+        
+        @keyframes float-icon {
+            0%, 100% { transform: translateY(0) rotateZ(0deg); }
+            50% { transform: translateY(-30px) rotateZ(5deg); }
+        }
+        
+        .project-info h2 {
+            font-family: 'Space Mono', monospace;
+            font-size: 42px;
+            color: #00c8ff;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            text-shadow: 0 0 15px #00c8ff;
+            line-height: 1.3;
+        }
+        
+        .project-description {
+            font-size: 15px;
+            color: #ccc;
+            line-height: 1.9;
+            margin-bottom: 30px;
+            font-weight: 300;
+        }
+        
+        .specs {
+            font-family: 'Space Mono', monospace;
+            font-size: 12px;
+            color: #00a8d8;
+            line-height: 2;
+            border-top: 2px solid #00c8ff;
+            padding-top: 20px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .spec-line {
+            display: grid;
+            grid-template-columns: 140px 1fr;
+            gap: 20px;
+        }
+        
+        /* ===== SECCIÓN MISIONES ===== */
+        .missions-section {
+            margin: 120px 0;
+        }
+        
+        .section-heading {
+            font-family: 'Space Mono', monospace;
+            font-size: 28px;
+            color: #00c8ff;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            margin-bottom: 50px;
+            text-shadow: 0 0 15px #00c8ff;
+            border-bottom: 2px solid #00c8ff;
+            padding-bottom: 15px;
+            display: inline-block;
+        }
+        
+        .missions-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin-bottom: 50px;
+        }
+        
+        .mission-card {
+            background: rgba(0, 200, 255, 0.05);
+            border: 2px solid #00c8ff;
+            padding: 30px;
             cursor: pointer;
             transition: all 0.3s ease;
-            text-transform: uppercase;
-            letter-spacing: 2px;
             position: relative;
             overflow: hidden;
         }
         
-        .ability-btn::before {
+        .mission-card::before {
             content: '';
             position: absolute;
             top: 0;
             left: -100%;
             width: 100%;
             height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            background: linear-gradient(90deg, transparent, rgba(0, 200, 255, 0.2), transparent);
             transition: left 0.5s ease;
         }
         
-        .ability-btn:hover::before {
+        .mission-card:hover::before {
             left: 100%;
         }
         
-        .ability-btn:hover {
-            background: linear-gradient(135deg, rgba(255, 0, 110, 0.4), rgba(0, 132, 255, 0.4));
-            box-shadow: 0 0 20px #ff006e, 0 0 10px #0084ff;
-            transform: translateY(-5px);
-            border-color: #00d9ff;
+        .mission-card:hover {
+            background: rgba(0, 200, 255, 0.12);
+            box-shadow: 0 0 30px #00c8ff;
+            transform: translateY(-8px);
+            border-color: #00e8ff;
         }
         
-        .ability-btn:nth-child(1)::after { content: ' [Q]'; }
-        .ability-btn:nth-child(2)::after { content: ' [E]'; }
-        .ability-btn:nth-child(3)::after { content: ' [C]'; }
+        .mission-num {
+            font-family: 'Space Mono', monospace;
+            font-size: 36px;
+            color: #00c8ff;
+            font-weight: 700;
+            margin-bottom: 15px;
+            text-shadow: 0 0 10px #00c8ff;
+        }
         
-        /* ===== GALERÍA DE FOTOS ===== */
-        .galeria {
+        .mission-title {
+            font-size: 18px;
+            color: #00e8ff;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+        
+        /* ===== GALERÍA PROYECTOS ===== */
+        .projects-gallery {
             display: none;
-            margin-top: 80px;
+            margin-top: 100px;
         }
         
-        .galeria.activa {
+        .projects-gallery.active {
             display: block;
             animation: fade-in 0.8s ease;
         }
         
-        .galeria h2 {
-            font-family: 'Orbitron', sans-serif;
-            font-size: 36px;
-            color: #ff006e;
-            text-align: center;
-            margin-bottom: 50px;
-            text-transform: uppercase;
-            letter-spacing: 3px;
-            text-shadow: 0 0 20px #ff006e;
-        }
-        
-        .grid-fotos {
+        .gallery-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 30px;
-            margin-bottom: 60px;
+            margin-bottom: 80px;
         }
         
-        .foto-item {
-            position: relative;
+        .project-card {
             aspect-ratio: 1;
-            border: 3px solid #ff006e;
+            border: 2px solid #00c8ff;
+            background: linear-gradient(135deg, rgba(0, 200, 255, 0.08), rgba(0, 150, 200, 0.05));
             overflow: hidden;
             cursor: pointer;
             opacity: 0;
             animation: fade-in 0.8s ease forwards;
-            transition: all 0.3s ease;
-            box-shadow: 0 0 20px rgba(255, 0, 110, 0.3);
+            transition: all 0.4s ease;
+            position: relative;
         }
         
-        .foto-item:nth-child(1) { animation-delay: 0.1s; }
-        .foto-item:nth-child(2) { animation-delay: 0.2s; }
-        .foto-item:nth-child(3) { animation-delay: 0.3s; }
-        .foto-item:nth-child(4) { animation-delay: 0.4s; }
+        .project-card:nth-child(1) { animation-delay: 0.1s; }
+        .project-card:nth-child(2) { animation-delay: 0.2s; }
+        .project-card:nth-child(3) { animation-delay: 0.3s; }
         
-        .foto-item img {
+        .project-card img {
             width: 100%;
             height: 100%;
             object-fit: cover;
             transition: all 0.5s ease;
-            filter: contrast(1.1);
+            filter: brightness(0.8) contrast(1.2);
         }
         
-        .foto-item:hover {
-            border-color: #00d9ff;
-            box-shadow: 0 0 30px #ff006e, 0 0 20px #0084ff;
+        .project-card:hover {
+            border-color: #00e8ff;
+            box-shadow: 0 0 40px #00c8ff;
             transform: scale(1.05);
         }
         
-        .foto-item:hover img {
-            filter: contrast(1.3) hue-rotate(10deg);
+        .project-card:hover img {
+            filter: brightness(1) contrast(1.4);
         }
         
-        .foto-placeholder {
+        .project-placeholder {
             width: 100%;
             height: 100%;
-            background: linear-gradient(135deg, rgba(255, 0, 110, 0.1), rgba(0, 132, 255, 0.1));
             display: flex;
             align-items: center;
             justify-content: center;
-            border: 2px dashed #00d9ff;
-            font-size: 60px;
-            color: #00d9ff;
+            font-size: 80px;
+            background: linear-gradient(135deg, rgba(0, 200, 255, 0.12), rgba(0, 150, 200, 0.08));
         }
         
         /* ===== BOTÓN GALERÍA ===== */
-        .btn-galeria {
+        .btn-projects {
+            margin: 80px auto;
             display: block;
-            margin: 60px auto;
-            padding: 20px 50px;
-            background: linear-gradient(135deg, #ff006e, #0084ff);
-            border: 2px solid #00d9ff;
-            border-radius: 0;
-            color: #fff;
-            font-family: 'Orbitron', sans-serif;
-            font-size: 16px;
+            padding: 22px 60px;
+            background: transparent;
+            border: 2px solid #00c8ff;
+            color: #00c8ff;
+            font-family: 'Space Mono', monospace;
+            font-size: 14px;
             font-weight: 700;
             cursor: pointer;
             transition: all 0.3s ease;
             text-transform: uppercase;
             letter-spacing: 3px;
-            box-shadow: 0 0 30px #ff006e, 0 0 20px #0084ff;
             position: relative;
             overflow: hidden;
         }
         
-        .btn-galeria::before {
+        .btn-projects::before {
             content: '';
             position: absolute;
             top: 0;
             left: -100%;
             width: 100%;
             height: 100%;
-            background: rgba(255, 255, 255, 0.3);
-            transition: left 0.5s ease;
+            background: #00c8ff;
+            transition: left 0.4s ease;
+            z-index: -1;
         }
         
-        .btn-galeria:hover::before {
-            left: 100%;
+        .btn-projects:hover::before {
+            left: 0;
         }
         
-        .btn-galeria:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 0 50px #ff006e, 0 0 30px #0084ff;
-            background: linear-gradient(135deg, #0084ff, #ff006e);
+        .btn-projects:hover {
+            color: #000;
+            box-shadow: 0 0 40px #00c8ff;
+            transform: translateY(-4px);
         }
         
-        /* ===== LÍNEA DIVISORA ===== */
-        .divider {
-            width: 100%;
-            height: 2px;
-            background: linear-gradient(90deg, transparent, #ff006e, #00d9ff, #ff006e, transparent);
-            margin: 80px 0;
-            box-shadow: 0 0 20px #ff006e;
+        /* ===== FOOTER ===== */
+        .footer-section {
+            margin-top: 120px;
+            padding: 80px 40px;
+            border-top: 2px solid #00c8ff;
+            text-align: center;
+            font-family: 'Space Mono', monospace;
+            font-size: 12px;
+            color: #00a8d8;
+            line-height: 2;
         }
         
-        /* ===== BOTÓN VOLVER ===== */
         .volver {
             display: inline-block;
-            margin-top: 60px;
+            margin-top: 30px;
             padding: 12px 40px;
             background: transparent;
-            border: 2px solid #ff006e;
-            border-radius: 0;
-            color: #ff006e;
-            font-family: 'Orbitron', sans-serif;
-            font-size: 14px;
+            border: 2px solid #00c8ff;
+            color: #00c8ff;
+            font-family: 'Space Mono', monospace;
+            font-size: 12px;
             text-decoration: none;
             cursor: pointer;
             transition: all 0.3s ease;
@@ -493,21 +457,24 @@
         }
         
         .volver:hover {
-            background: #ff006e;
-            color: #0a0e27;
-            box-shadow: 0 0 30px #ff006e;
-            transform: translateY(-3px);
+            background: #00c8ff;
+            color: #000;
+            box-shadow: 0 0 30px #00c8ff;
         }
         
         /* Responsive */
         @media (max-width: 768px) {
-            h1 { font-size: 48px; }
+            h1 { font-size: 42px; }
             
-            .abilities-grid {
+            .main-project {
                 grid-template-columns: 1fr;
             }
             
-            .grid-fotos {
+            .missions-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .gallery-grid {
                 grid-template-columns: 1fr;
             }
             
@@ -519,24 +486,19 @@
 </head>
 <body>
 
-    <!-- AGENT SCANNER INICIAL -->
-    <div id="agent-scanner">
-        <div class="scanner-wrapper" onclick="activarAgente()">
-            <div class="scan-line"></div>
-            <div class="scan-line"></div>
-            <div class="scan-line"></div>
-            
-            <div class="agent-box">
-                <div class="agent-titulo">CAMILO</div>
-                <div class="agent-subtitulo">● AGENT ONLINE ●</div>
-            </div>
+    <!-- BLUEPRINT LOADING -->
+    <div id="blueprint-loading">
+        <div class="blueprint-wrapper" onclick="cargarProyecto()">
+            <div class="construction-grid"></div>
+            <div class="blueprint-building">🏗️</div>
+            <div class="blueprint-title">▶ PRESIONA PARA INGRESAR ◀</div>
         </div>
     </div>
 
-    <!-- PARTÍCULAS RADIANITA -->
-    <div id="particulas"></div>
+    <!-- LÍNEAS ARQUITECTÓNICAS -->
+    <div id="arch-lines"></div>
 
-    <!-- MÚSICA DE FONDO -->
+    <!-- MÚSICA -->
     <audio id="musica" loop volume="0.15">
         <source src="../media/Camilo/musica.mp3" type="audio/mpeg">
     </audio>
@@ -544,16 +506,28 @@
     <!-- CONTENIDO PRINCIPAL -->
     <div class="contenedor" id="contenedor">
         
-        <h1>AGENT: CAMILO</h1>
-        <div class="agent-code">█ CONFIDENTIAL █ ENCRYPTED █ CLASSIFIED █</div>
+        <h1>CAMILO</h1>
+        <div class="blueprint-code">█ PROYECTO MAESTRO █ CONSTRUCCIÓN EN PROGRESO █</div>
 
-        <!-- BRIEF DE MISIÓN -->
-        <div class="mission-brief">
-            <div class="mission-text" id="mensaje-personalizado">
-                Algunos llegan por una misión,
-                otros llegan para cambiar el juego.
-                <br><br>
-                Bueno rey, quería hacer algo especial para el día de mi cumpleaños y pensé: ¿qué mejor que agradecerles a las personas con las que crecí durante gran parte de mi vida y que han sido importantes para mí?
+        <!-- PROYECTO PRINCIPAL -->
+        <div class="main-project">
+            <div class="project-visual">
+                <div class="visual-icon">🎮</div>
+            </div>
+            
+            <div class="project-info">
+                <h2>IMPERIO<br>DIGITAL</h2>
+                <p class="project-description">
+                    Un arquitecto no solo construye edificios. Construye mundos, construye vidas, construye historias. En cada juego, en cada partida, estás diseñando tu propio imperio.
+                </p>
+            </div>
+        </div>
+
+        <!-- MENSAJE PERSONALIZADO -->
+        <div style="background: rgba(0, 200, 255, 0.06); border: 2px solid #00c8ff; padding: 40px; margin: 80px 0; border-radius: 3px; box-shadow: 0 0 30px rgba(0, 200, 255, 0.1);">
+            <div style="font-family: 'Space Mono', monospace; font-size: 12px; color: #00c8ff; margin-bottom: 20px; text-transform: uppercase; letter-spacing: 2px;">/// MENSAJE PERSONAL ///</div>
+            <div id="mensaje-personalizado" style="font-size: 15px; color: #fff; line-height: 1.9; font-family: 'Roboto', sans-serif;">
+Bueno rey, quería hacer algo especial para el día de mi cumpleaños y pensé: ¿qué mejor que agradecerles a las personas con las que crecí durante gran parte de mi vida y que han sido importantes para mí?
 
 Lo quiero mucho, rey. La verdad me pongo a pensar y digo: ush, ¿cómo pudieron haber pasado tantos años? Desde cuarto o quinto de primaria, si no estoy mal. Pero uff, rey, de verdad estoy muy agradecido de conocerlo.
 
@@ -572,49 +546,68 @@ Bueno, supongo que en los audios diré esto de alguna otra manera o contaré alg
 Lo quiero mucho, rey, y muchas gracias por todo. ❤️
             </div>
         </div>
-
-        <div class="divider"></div>
-
-        <!-- ABILITIES -->
-        <div class="abilities-section">
-            <h2>ABILITIES DESBLOQUEADAS</h2>
-            <div class="abilities-grid">
-                <button class="ability-btn" onclick="reproducirAudio('audio1')">
-                    ▶ Mensaje Táctico 1
-                </button>
-                <button class="ability-btn" onclick="reproducirAudio('audio2')">
-                    ▶ Mensaje Táctico 2
-                </button>
-                <button class="ability-btn" onclick="reproducirAudio('audio3')">
-                    ▶ Mensaje Táctico 3
-                </button>
+                
+                <div class="specs"></div>
             </div>
-
-            <button class="btn-galeria" onclick="abrirGaleria()">
-                🎮 ACCESO A GALERÍA 🎮
-            </button>
         </div>
+
+        <!-- MISIONES -->
+        <div class="missions-section">
+            <div class="section-heading">Comunicaciones</div>
+            
+            <div class="missions-grid">
+                <div class="mission-card" onclick="reproducirAudio('audio1')">
+                    <div class="mission-num">01</div>
+                    <div class="mission-title">Mensaje de Amistad</div>
+                    <p style="color: #aaa; font-size: 13px; margin-top: 10px;">► Reproducir Audio</p>
+                </div>
+                
+                <div class="mission-card" onclick="reproducirAudio('audio2')">
+                    <div class="mission-num">02</div>
+                    <div class="mission-title">Consejo del Camino</div>
+                    <p style="color: #aaa; font-size: 13px; margin-top: 10px;">► Reproducir Audio</p>
+                </div>
+                
+                <div class="mission-card" onclick="reproducirAudio('audio3')">
+                    <div class="mission-num">03</div>
+                    <div class="mission-title">Visionario</div>
+                    <p style="color: #aaa; font-size: 13px; margin-top: 10px;">► Reproducir Audio</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- BOTÓN GALERÍA -->
+        <button class="btn-projects" onclick="abrirGaleria()">
+            📸 Ver Proyecto Completo 📸
+        </button>
 
         <!-- GALERÍA -->
-        <div class="galeria" id="galeria">
-            <h2>INTEL CLASIFICADO</h2>
-            <div class="grid-fotos">
-                <div class="foto-item">
-                    <div class="foto-placeholder">🎮</div>
+        <div class="projects-gallery" id="galeria">
+            <div class="section-heading">Galería de Obras</div>
+            
+            <div class="gallery-grid">
+                <div class="project-card">
+                    <div class="project-placeholder">🏢</div>
                 </div>
-
-                <div class="foto-item">
-                    <div class="foto-placeholder">🎮</div>
+                
+                <div class="project-card">
+                    <div class="project-placeholder">🏢</div>
                 </div>
-
-                <div class="foto-item">
-                    <div class="foto-placeholder">🎮</div>
+                
+                <div class="project-card">
+                    <div class="project-placeholder">🏢</div>
                 </div>
             </div>
         </div>
 
-        <div style="text-align: center;">
-            <a href="../index.html" class="volver">LOGOUT</a>
+        <!-- FOOTER -->
+        <div class="footer-section">
+            <p>PROYECTO CAMILO © 2025<br>
+            ARQUITECTO DE SUEÑOS<br>
+            CONSTRUCTOR DE IMPERIOS<br>
+            <span style="margin-top: 20px; display: block;">▭ EN CONSTRUCCIÓN PERMANENTE ▭</span></p>
+            
+            <a href="../index.html" class="volver">Salir del Proyecto</a>
         </div>
 
     </div>
@@ -625,19 +618,21 @@ Lo quiero mucho, rey, y muchas gracias por todo. ❤️
     <audio id="audio3"><source src="../media/Camilo/audio3.mp3" type="audio/mpeg"></audio>
 
     <script>
-        // Generar partículas Radianita
-        function generarParticulas() {
-            const contenedor = document.getElementById('particulas');
-            for (let i = 0; i < 60; i++) {
-                const particle = document.createElement('div');
-                particle.className = 'particle';
-                particle.style.left = Math.random() * 100 + 'vw';
-                particle.style.animationDuration = (15 + Math.random() * 15) + 's';
-                particle.style.animationDelay = Math.random() * 5 + 's';
-                contenedor.appendChild(particle);
+        // Generar líneas arquitectónicas
+        function generarLineas() {
+            const container = document.getElementById('arch-lines');
+            for (let i = 0; i < 8; i++) {
+                const line = document.createElement('div');
+                line.className = 'arch-line';
+                line.style.width = Math.random() * 300 + 100 + 'px';
+                line.style.height = '1px';
+                line.style.left = Math.random() * 100 + 'vw';
+                line.style.animationDuration = (8 + Math.random() * 12) + 's';
+                line.style.animationDelay = Math.random() * 5 + 's';
+                container.appendChild(line);
             }
         }
-        generarParticulas();
+        generarLineas();
 
         // Control de audio
         let audioActual = null;
@@ -646,26 +641,23 @@ Lo quiero mucho, rey, y muchas gracias por todo. ❤️
             if (audioActual && !audioActual.paused) {
                 audioActual.pause();
                 audioActual.currentTime = 0;
-                document.querySelectorAll('.ability-btn').forEach(btn => {
-                    btn.style.opacity = '1';
-                });
             }
 
             audioActual = document.getElementById(id);
             audioActual.play();
-            event.target.style.opacity = '0.7';
+            
+            event.target.closest('.mission-card').style.background = 'rgba(0, 200, 255, 0.15)';
             
             audioActual.addEventListener('ended', () => {
-                event.target.style.opacity = '1';
+                event.target.closest('.mission-card').style.background = 'rgba(0, 200, 255, 0.05)';
             });
         }
 
-        // Activar agente
-        function activarAgente() {
-            document.getElementById('agent-scanner').style.display = 'none';
+        // Cargar proyecto
+        function cargarProyecto() {
+            document.getElementById('blueprint-loading').style.display = 'none';
             document.getElementById('contenedor').classList.add('visible');
 
-            // Iniciar música
             const musica = document.getElementById('musica');
             musica.play();
         }
@@ -673,7 +665,7 @@ Lo quiero mucho, rey, y muchas gracias por todo. ❤️
         // Abrir galería
         function abrirGaleria() {
             const galeria = document.getElementById('galeria');
-            galeria.classList.toggle('activa');
+            galeria.classList.toggle('active');
             
             setTimeout(() => {
                 galeria.scrollIntoView({ behavior: 'smooth', block: 'start' });
