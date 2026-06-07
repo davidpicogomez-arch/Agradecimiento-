@@ -1,414 +1,954 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<meta charset="UTF-8">
-<title>Para ti, Guevara</title>
-
-<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&family=Rajdhani:wght@400;600&display=swap" rel="stylesheet">
-
-<style>
-
-/* ================= CÉSPED REAL CON FRANJAS VERTICALES ================= */
-
-body
-{
-    margin: 0;
-
-    background:
-    repeating-linear-gradient(
-        90deg,
-        #0b3d2a 0px,
-        #0b3d2a 120px,
-        #0f4d35 120px,
-        #0f4d35 240px
-    );
-
-    font-family: 'Rajdhani', sans-serif;
-
-    color: white;
-
-    text-align: center;
-
-    overflow-x: hidden;
-}
-
-/* ================= LINEAS DEL CAMPO ================= */
-
-.campo-lineas
-{
-    position: fixed;
-    inset: 0;
-
-    background:
-    linear-gradient(white, white) center / 3px 100% no-repeat,
-    radial-gradient(circle at center, transparent 140px, white 142px, white 145px, transparent 148px);
-
-    opacity: 0.35;
-
-    pointer-events: none;
-}
-
-/* ================= PORTERIA ================= */
-
-.porteria
-{
-    position: fixed;
-
-    bottom: 0;
-    left: 50%;
-
-    transform: translateX(-50%);
-
-    width: 400px;
-    height: 200px;
-
-    border: 5px solid white;
-
-    border-bottom: none;
-
-    box-shadow: 0 0 20px rgba(255,255,255,0.5);
-}
-
-.porteria::before
-{
-    content: "";
-
-    position: absolute;
-
-    inset: 0;
-
-    background:
-    repeating-linear-gradient(
-        90deg,
-        rgba(255,255,255,0.25) 0px,
-        rgba(255,255,255,0.25) 2px,
-        transparent 2px,
-        transparent 30px
-    ),
-
-    repeating-linear-gradient(
-        0deg,
-        rgba(255,255,255,0.25) 0px,
-        rgba(255,255,255,0.25) 2px,
-        transparent 2px,
-        transparent 30px
-    );
-}
-
-/* ================= MARCADOR ================= */
-
-.marcador
-{
-    position: fixed;
-
-    top: 20px;
-    left: 50%;
-
-    transform: translateX(-50%);
-
-    background: rgba(0,0,0,0.7);
-
-    padding: 10px 30px;
-
-    border-radius: 10px;
-
-    font-family: Orbitron;
-
-    font-size: 22px;
-
-    border: 2px solid #00ff88;
-
-    box-shadow: 0 0 20px #00ff88;
-}
-
-/* ================= LUCES ================= */
-
-.luz
-{
-    position: fixed;
-
-    width: 600px;
-    height: 300px;
-
-    background: radial-gradient(circle, rgba(255,255,255,0.35), transparent);
-
-    filter: blur(100px);
-
-    animation: pulso 6s infinite alternate;
-}
-
-.luz:nth-child(1)
-{
-    left: -200px;
-    top: -100px;
-}
-
-.luz:nth-child(2)
-{
-    right: -200px;
-    top: -100px;
-}
-
-@keyframes pulso
-{
-    from { opacity: 0.3; }
-    to { opacity: 0.6; }
-}
-
-/* ================= SOBRE ================= */
-
-#sobre
-{
-    margin-top: 260px;
-
-    width: 260px;
-    height: 140px;
-
-    background: linear-gradient(45deg, #00ff88, white);
-
-    border-radius: 12px;
-
-    cursor: pointer;
-
-    margin-left: auto;
-    margin-right: auto;
-
-    animation: latido 1.2s infinite;
-
-    box-shadow:
-    0 0 20px #00ff88,
-    0 0 60px white;
-}
-
-@keyframes latido
-{
-    0% { transform: scale(1); }
-    50% { transform: scale(1.15); }
-    100% { transform: scale(1); }
-}
-
-/* ================= CARTA ================= */
-
-.carta
-{
-    display: none;
-
-    margin: auto;
-
-    margin-top: 40px;
-
-    max-width: 720px;
-
-    padding: 40px;
-
-    background: rgba(0,0,0,0.85);
-
-    border-radius: 20px;
-
-    border: 2px solid #00ff88;
-
-    box-shadow: 0 0 30px #00ff88;
-}
-
-/* ================= TITULO ================= */
-
-.titulo
-{
-    font-family: Orbitron;
-
-    font-size: 50px;
-
-    color: #00ff88;
-
-    text-shadow: 0 0 25px #00ff88;
-}
-
-/* ================= TEXTO ================= */
-
-#textoCarta
-{
-    font-size: 22px;
-
-    border-right: 2px solid #00ff88;
-
-    white-space: pre-line;
-}
-
-/* ================= FOTOS ================= */
-
-.foto
-{
-    position: fixed;
-
-    width: 180px;
-
-    border-radius: 12px;
-
-    border: 3px solid white;
-
-    box-shadow:
-    0 0 15px white,
-    0 0 30px #00ff88;
-
-    opacity: 0;
-
-    transition: opacity 2s, transform 0.5s;
-}
-
-.foto.visible
-{
-    opacity: 1;
-}
-
-.foto.izq
-{
-    left: 40px;
-    bottom: 220px;
-
-    transform: rotate(-5deg);
-}
-
-.foto.der
-{
-    right: 40px;
-    bottom: 220px;
-
-    transform: rotate(5deg);
-}
-
-/* ================= BOTONES ================= */
-
-.audios button
-{
-    margin: 10px;
-
-    padding: 12px 20px;
-
-    border: none;
-
-    border-radius: 10px;
-
-    background: #00ff88;
-
-    color: black;
-
-    font-weight: bold;
-
-    cursor: pointer;
-
-    box-shadow: 0 0 20px #00ff88;
-}
-
-</style>
-
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GUEVARA - PLAYER PROFILE</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Anton&family=Roboto:wght@300;400;700;900&family=Bebas+Neue&display=swap" rel="stylesheet">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            background: #0a1929;
+            background-image: 
+                linear-gradient(0deg, transparent 49%, rgba(255, 215, 0, 0.05) 50%, transparent 51%),
+                linear-gradient(90deg, transparent 49%, rgba(255, 215, 0, 0.05) 50%, transparent 51%);
+            background-size: 80px 80px;
+            font-family: 'Roboto', sans-serif;
+            color: #fff;
+            overflow-x: hidden;
+        }
+        
+        /* Líneas de cancha animadas - DORADO + ROJO */
+        .field-line {
+            position: fixed;
+            pointer-events: none;
+            animation: line-move 10s linear infinite;
+            z-index: 1;
+        }
+        
+        .field-line {
+            background: rgba(255, 215, 0, 0.2);
+        }
+        
+        .field-line:nth-child(odd) {
+            background: rgba(206, 17, 38, 0.15);
+        }
+        
+        @keyframes line-move {
+            from { transform: translateX(-100vw); }
+            to { transform: translateX(100vw); }
+        }
+        
+        /* ===== PANTALLA INICIAL - STADIUM ===== */
+        #stadium-loading {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 100;
+            background: linear-gradient(135deg, #0a1929 0%, #1a2942 100%);
+            animation: fade-out-stadium 0.8s ease forwards 8s;
+        }
+        
+        @keyframes fade-out-stadium {
+            to {
+                opacity: 0;
+                pointer-events: none;
+            }
+        }
+        
+        .stadium-wrapper {
+            position: relative;
+            width: 350px;
+            height: 350px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        /* Balón rebotando */
+        .ball {
+            position: absolute;
+            font-size: 50px;
+            animation: bounce-ball 2s ease-in-out infinite;
+        }
+        
+        .ball:nth-child(1) {
+            top: 20px;
+            left: 20px;
+            animation-delay: 0s;
+        }
+        
+        .ball:nth-child(2) {
+            top: 30px;
+            right: 20px;
+            animation-delay: 0.5s;
+        }
+        
+        .ball:nth-child(3) {
+            bottom: 30px;
+            left: 20px;
+            animation-delay: 1s;
+        }
+        
+        .ball:nth-child(4) {
+            bottom: 20px;
+            right: 30px;
+            animation-delay: 1.5s;
+        }
+        
+        @keyframes bounce-ball {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-30px); }
+        }
+        
+        .player-card {
+            width: 280px;
+            height: 280px;
+            background: linear-gradient(135deg, #FFD700 0%, #FFC700 100%);
+            border: 4px solid #fff;
+            border-radius: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            z-index: 10;
+            box-shadow: 0 20px 60px rgba(255, 215, 0, 0.4),
+                        0 0 40px rgba(206, 17, 38, 0.4);
+            cursor: pointer;
+            animation: pulse-card 2s ease-in-out infinite;
+            overflow: hidden;
+        }
+        
+        /* Banda roja decorativa */
+        .player-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 8px;
+            background: linear-gradient(90deg, #ce1126, #ffd700, #003893, #ffd700, #ce1126);
+        }
+        
+        .player-card::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 8px;
+            background: linear-gradient(90deg, #ce1126, #ffd700, #003893, #ffd700, #ce1126);
+        }
+        
+        @keyframes pulse-card {
+            0%, 100% { 
+                box-shadow: 0 20px 60px rgba(255, 215, 0, 0.4),
+                            0 0 40px rgba(206, 17, 38, 0.4);
+            }
+            50% { 
+                box-shadow: 0 20px 60px rgba(255, 215, 0, 0.6),
+                            0 0 60px rgba(206, 17, 38, 0.6);
+            }
+        }
+        
+        .player-rating {
+            font-family: 'Anton', sans-serif;
+            font-size: 60px;
+            color: #ce1126;
+            line-height: 1;
+            margin-bottom: 5px;
+            text-shadow: 2px 2px 0 rgba(0, 0, 0, 0.1);
+        }
+        
+        .player-position {
+            font-family: 'Anton', sans-serif;
+            font-size: 20px;
+            color: #003893;
+            margin-bottom: 20px;
+            letter-spacing: 3px;
+        }
+        
+        .player-name {
+            font-family: 'Anton', sans-serif;
+            font-size: 32px;
+            color: #0a1929;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            border-top: 2px solid #ce1126;
+            border-bottom: 2px solid #003893;
+            padding: 8px 0;
+            margin-bottom: 15px;
+            width: 80%;
+            text-align: center;
+        }
+        
+        .player-flag {
+            font-size: 40px;
+            margin-bottom: 5px;
+        }
+        
+        .player-instruccion {
+            font-size: 11px;
+            color: #ce1126;
+            opacity: 0.9;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: 700;
+            animation: blink-text 1.5s ease-in-out infinite;
+        }
+        
+        @keyframes blink-text {
+            0%, 100% { opacity: 0.7; }
+            50% { opacity: 1; }
+        }
+        
+        /* ===== CONTENIDO PRINCIPAL ===== */
+        .contenedor {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 80px 40px;
+            display: none;
+            animation: fade-in 1s ease;
+            position: relative;
+            z-index: 10;
+        }
+        
+        .contenedor.visible {
+            display: block;
+        }
+        
+        @keyframes fade-in {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        /* Título principal - con efecto colombiano */
+        h1 {
+            font-family: 'Anton', sans-serif;
+            font-size: 84px;
+            text-align: center;
+            color: #FFD700;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            letter-spacing: 5px;
+            text-shadow: 0 0 30px rgba(255, 215, 0, 0.5),
+                         3px 3px 0 #ce1126,
+                         6px 6px 0 #003893;
+            line-height: 1;
+        }
+        
+        .subtitle-deportivo {
+            text-align: center;
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 20px;
+            color: #fff;
+            margin-bottom: 60px;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+        }
+        
+        .subtitle-deportivo span.amarillo {
+            color: #FFD700;
+        }
+        
+        .subtitle-deportivo span.rojo {
+            color: #ce1126;
+        }
+        
+        /* ===== PLAYER PROFILE ===== */
+        .profile-section {
+            display: grid;
+            grid-template-columns: 1fr 1.2fr;
+            gap: 50px;
+            align-items: center;
+            margin-bottom: 80px;
+        }
+        
+        .profile-image {
+            width: 100%;
+            aspect-ratio: 1;
+            background: linear-gradient(135deg, #FFD700 0%, #FFC700 100%);
+            border: 4px solid #fff;
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 20px 50px rgba(255, 215, 0, 0.3),
+                        0 0 30px rgba(206, 17, 38, 0.3);
+            animation: float-card 6s ease-in-out infinite;
+        }
+        
+        .profile-image::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 10px;
+            background: linear-gradient(90deg, #ce1126, #ffd700, #003893);
+        }
+        
+        .profile-image::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 10px;
+            background: linear-gradient(90deg, #003893, #ffd700, #ce1126);
+        }
+        
+        @keyframes float-card {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-15px); }
+        }
+        
+        .profile-icon {
+            font-size: 150px;
+            animation: rotate-icon 8s linear infinite;
+        }
+        
+        @keyframes rotate-icon {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+        
+        .profile-info h2 {
+            font-family: 'Anton', sans-serif;
+            font-size: 48px;
+            color: #FFD700;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            line-height: 1.2;
+            text-shadow: 0 0 15px rgba(255, 215, 0, 0.3),
+                         3px 3px 0 #ce1126;
+        }
+        
+        .profile-stats {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin: 30px 0;
+        }
+        
+        .stat-card {
+            background: rgba(255, 215, 0, 0.1);
+            border: 2px solid #FFD700;
+            border-radius: 10px;
+            padding: 20px;
+            text-align: center;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .stat-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, #ce1126, #ffd700, #003893);
+        }
+        
+        .stat-card:hover {
+            background: rgba(255, 215, 0, 0.2);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(255, 215, 0, 0.3),
+                        0 0 15px rgba(206, 17, 38, 0.2);
+            border-color: #ce1126;
+        }
+        
+        .stat-num {
+            font-family: 'Anton', sans-serif;
+            font-size: 36px;
+            color: #FFD700;
+            line-height: 1;
+            margin-bottom: 5px;
+            text-shadow: 0 0 10px rgba(255, 215, 0, 0.4),
+                         2px 2px 0 #ce1126;
+        }
+        
+        .stat-label {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 14px;
+            color: #fff;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+        
+        /* ===== MENSAJE PERSONALIZADO ===== */
+        .mensaje-section {
+            background: rgba(255, 215, 0, 0.06);
+            border: 2px solid #FFD700;
+            padding: 40px;
+            margin: 80px 0;
+            border-radius: 12px;
+            box-shadow: 0 0 30px rgba(255, 215, 0, 0.1),
+                        0 0 20px rgba(206, 17, 38, 0.1);
+            position: relative;
+        }
+        
+        .mensaje-section::before {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, #ce1126, #ffd700, #003893);
+            border-radius: 12px 12px 0 0;
+        }
+        
+        .mensaje-header {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 14px;
+            color: #FFD700;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+        }
+        
+        .mensaje-header::before {
+            content: '⚽ ';
+        }
+        
+        .mensaje-text {
+            font-size: 15px;
+            color: #fff;
+            line-height: 1.9;
+            font-family: 'Roboto', sans-serif;
+        }
+        
+        /* ===== HIGHLIGHTS ===== */
+        .highlights-section {
+            margin: 100px 0;
+        }
+        
+        .section-title {
+            font-family: 'Anton', sans-serif;
+            font-size: 42px;
+            color: #FFD700;
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            margin-bottom: 50px;
+            text-shadow: 0 0 15px rgba(255, 215, 0, 0.3),
+                         3px 3px 0 #ce1126;
+            text-align: center;
+            border-bottom: 3px solid #FFD700;
+            padding-bottom: 20px;
+            position: relative;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -3px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 3px;
+            background: #ce1126;
+        }
+        
+        .highlights-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+        }
+        
+        .highlight-btn {
+            padding: 30px 25px;
+            background: linear-gradient(135deg, rgba(255, 215, 0, 0.15), rgba(0, 56, 147, 0.1));
+            border: 2px solid #FFD700;
+            border-radius: 12px;
+            color: #fff;
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 18px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .highlight-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(90deg, #ce1126, #ffd700, #003893);
+        }
+        
+        .highlight-btn::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(206, 17, 38, 0.2), transparent);
+            transition: left 0.5s ease;
+        }
+        
+        .highlight-btn:hover::after {
+            left: 100%;
+        }
+        
+        .highlight-btn:hover {
+            background: linear-gradient(135deg, rgba(255, 215, 0, 0.3), rgba(206, 17, 38, 0.2));
+            box-shadow: 0 0 30px rgba(255, 215, 0, 0.4),
+                        0 0 20px rgba(206, 17, 38, 0.3);
+            transform: translateY(-8px);
+            border-color: #ce1126;
+        }
+        
+        .highlight-icon {
+            font-size: 40px;
+        }
+        
+        .highlight-text {
+            font-size: 14px;
+            color: #FFD700;
+        }
+        
+        /* ===== GALERÍA ===== */
+        .gallery-section {
+            display: none;
+            margin-top: 80px;
+        }
+        
+        .gallery-section.active {
+            display: block;
+            animation: fade-in 0.8s ease;
+        }
+        
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            margin-bottom: 80px;
+        }
+        
+        .gallery-item {
+            position: relative;
+            aspect-ratio: 1;
+            border: 3px solid #FFD700;
+            border-radius: 12px;
+            overflow: hidden;
+            cursor: pointer;
+            opacity: 0;
+            animation: fade-in 0.8s ease forwards;
+            transition: all 0.4s ease;
+            box-shadow: 0 0 20px rgba(255, 215, 0, 0.2);
+        }
+        
+        .gallery-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 6px;
+            background: linear-gradient(90deg, #ce1126, #ffd700, #003893);
+            z-index: 5;
+        }
+        
+        .gallery-item:nth-child(1) { animation-delay: 0.1s; }
+        .gallery-item:nth-child(2) { animation-delay: 0.2s; }
+        .gallery-item:nth-child(3) { animation-delay: 0.3s; }
+        .gallery-item:nth-child(4) { animation-delay: 0.4s; }
+        
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: all 0.5s ease;
+        }
+        
+        .gallery-item:hover {
+            border-color: #ce1126;
+            box-shadow: 0 0 40px rgba(255, 215, 0, 0.5),
+                        0 0 25px rgba(206, 17, 38, 0.4);
+            transform: scale(1.05);
+        }
+        
+        .gallery-item:hover img {
+            transform: scale(1.1);
+        }
+        
+        .gallery-placeholder {
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(255, 215, 0, 0.15), rgba(206, 17, 38, 0.1));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 70px;
+        }
+        
+        /* ===== BOTÓN GALERÍA ===== */
+        .btn-gallery {
+            display: block;
+            margin: 60px auto;
+            padding: 22px 60px;
+            background: linear-gradient(135deg, #FFD700, #FFC700);
+            border: 3px solid #fff;
+            border-radius: 12px;
+            color: #0a1929;
+            font-family: 'Anton', sans-serif;
+            font-size: 22px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(255, 215, 0, 0.4),
+                        0 0 20px rgba(206, 17, 38, 0.2);
+        }
+        
+        .btn-gallery::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, #ce1126, #ffd700, #003893);
+        }
+        
+        .btn-gallery::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.4);
+            transition: left 0.5s ease;
+        }
+        
+        .btn-gallery:hover::after {
+            left: 100%;
+        }
+        
+        .btn-gallery:hover {
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 20px 50px rgba(255, 215, 0, 0.6),
+                        0 0 30px rgba(206, 17, 38, 0.4);
+        }
+        
+        /* ===== FOOTER ===== */
+        .footer-section {
+            margin-top: 100px;
+            padding: 60px 40px;
+            border-top: 3px solid #FFD700;
+            text-align: center;
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 14px;
+            color: #FFD700;
+            letter-spacing: 3px;
+            line-height: 2;
+            position: relative;
+        }
+        
+        .footer-section::before {
+            content: '';
+            position: absolute;
+            top: -3px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 200px;
+            height: 3px;
+            background: linear-gradient(90deg, #ce1126, #ffd700, #003893);
+        }
+        
+        .volver {
+            display: inline-block;
+            margin-top: 30px;
+            padding: 14px 40px;
+            background: transparent;
+            border: 2px solid #FFD700;
+            border-radius: 8px;
+            color: #FFD700;
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 16px;
+            text-decoration: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-weight: 700;
+        }
+        
+        .volver:hover {
+            background: linear-gradient(135deg, #ce1126, #ffd700, #003893);
+            color: #fff;
+            box-shadow: 0 0 30px rgba(255, 215, 0, 0.5);
+            transform: translateY(-3px);
+            border-color: #fff;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            h1 { font-size: 56px; }
+            
+            .profile-section {
+                grid-template-columns: 1fr;
+            }
+            
+            .highlights-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .gallery-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .contenedor {
+                padding: 60px 20px;
+            }
+        }
+    </style>
 </head>
-
 <body>
 
-<div class="campo-lineas"></div>
-<div class="porteria"></div>
+    <!-- STADIUM LOADING -->
+    <div id="stadium-loading">
+        <div class="stadium-wrapper" onclick="iniciarPartido()">
+            <div class="ball">⚽</div>
+            <div class="ball">🏐</div>
+            <div class="ball">⚽</div>
+            <div class="ball">🏐</div>
+            
+            <div class="player-card">
+                <div class="player-flag">🇨🇴</div>
+                <div class="player-rating">99</div>
+                <div class="player-position">CAM</div>
+                <div class="player-name">GUEVARA</div>
+                <div class="player-instruccion">▶ Presiona para ingresar ◀</div>
+            </div>
+        </div>
+    </div>
 
-<div class="luz"></div>
-<div class="luz"></div>
+    <!-- LÍNEAS DE CANCHA -->
+    <div id="field-lines"></div>
 
-<div class="marcador">
-GUEVARA — LA MAQUINA
-</div>
+    <!-- MÚSICA -->
+    <audio id="musica" loop volume="0.15">
+        <source src="../media/Guevara/musica.mp3" type="audio/mpeg">
+    </audio>
 
-<audio id="musica" loop>
-<source src="../media/guevara/musica.mp3">
-</audio>
+    <!-- CONTENIDO PRINCIPAL -->
+    <div class="contenedor" id="contenedor">
+        
+        <h1>GUEVARA</h1>
+        <div class="subtitle-deportivo">⚽ <span class="amarillo">PLAYER PROFILE</span> 🏐 <span class="rojo">COLOMBIA</span> ⚽</div>
 
-<div id="sobre" onclick="abrirCarta()"></div>
+        <!-- PROFILE -->
+        <div class="profile-section">
+            <div class="profile-image">
+                <div class="profile-icon">⚽</div>
+            </div>
+            
+            <div class="profile-info">
+                <h2>EL ATLETA<br>COMPLETO</h2>
+                <p style="color: #ccc; line-height: 1.8; font-size: 15px; margin-bottom: 20px;">
+                    Un deportista no nace, se construye. Con disciplina, pasión y el corazón puesto en cada jugada. Educación física no es una carrera, es una filosofía de vida.
+                </p>
+                
+                <div class="profile-stats">
+                    <div class="stat-card">
+                        <div class="stat-num">99</div>
+                        <div class="stat-label">Pasión</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-num">95</div>
+                        <div class="stat-label">Disciplina</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-num">98</div>
+                        <div class="stat-label">Energía</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-num">100</div>
+                        <div class="stat-label">Corazón</div>
+                    </div>
+                </div>
+            </div>
+        </div>
 
-<div class="carta" id="carta">
+        <!-- MENSAJE PERSONALIZADO -->
+        <div class="mensaje-section">
+            <div class="mensaje-header">/// MENSAJE DEL CAPITÁN ///</div>
+            <div class="mensaje-text" id="mensaje-personalizado">
+                Aquí va tu mensaje personalizado para Guevara. 
+                <br><br>
+                Habla de la cancha, los partidos, la disciplina, los entrenamientos, las risas en los descansos, las victorias compartidas y todos esos momentos que solo el deporte puede dar.
+                <br><br>
+                Recuerda: la grandeza no se mide en trofeos, se mide en cómo te levantas después de cada caída.
+            </div>
+        </div>
 
-<h1 class="titulo">Para ti, Guevara</h1>
+        <!-- HIGHLIGHTS -->
+        <div class="highlights-section">
+            <div class="section-title">⚡ HIGHLIGHTS ⚡</div>
+            
+            <div class="highlights-grid">
+                <button class="highlight-btn" onclick="reproducirAudio('audio1')">
+                    <div class="highlight-icon">🎤</div>
+                    <div>Mensaje 1</div>
+                    <div class="highlight-text">▶ Reproducir</div>
+                </button>
+                
+                <button class="highlight-btn" onclick="reproducirAudio('audio2')">
+                    <div class="highlight-icon">🎤</div>
+                    <div>Mensaje 2</div>
+                    <div class="highlight-text">▶ Reproducir</div>
+                </button>
+                
+                <button class="highlight-btn" onclick="reproducirAudio('audio3')">
+                    <div class="highlight-icon">🎤</div>
+                    <div>Mensaje 3</div>
+                    <div class="highlight-text">▶ Reproducir</div>
+                </button>
+            </div>
+        </div>
 
-<p id="textoCarta"></p>
+        <!-- BOTÓN GALERÍA -->
+        <button class="btn-gallery" onclick="abrirGaleria()">
+            📸 VER GALERÍA DEL PARTIDO 📸
+        </button>
 
-<img src="../media/guevara/foto1.jpg" class="foto izq" id="foto1">
-<img src="../media/guevara/foto2.jpg" class="foto der" id="foto2">
+        <!-- GALERÍA -->
+        <div class="gallery-section" id="galeria">
+            <div class="section-title">🏆 MEJORES MOMENTOS 🏆</div>
+            
+            <div class="gallery-grid">
+                <div class="gallery-item">
+                    <div class="gallery-placeholder">⚽</div>
+                </div>
+                
+                <div class="gallery-item">
+                    <div class="gallery-placeholder">🏐</div>
+                </div>
+                
+                <div class="gallery-item">
+                    <div class="gallery-placeholder">🏆</div>
+                </div>
+                
+                <div class="gallery-item">
+                    <div class="gallery-placeholder">⚽</div>
+                </div>
+            </div>
+        </div>
 
-<div class="audios">
-<button onclick="reproducirAudio('audio1')">▶ Escuchar</button>
-<button onclick="reproducirAudio('audio2')">▶ Mensaje</button>
-<button onclick="reproducirAudio('audio3')">▶ Importante</button>
-</div>
+        <!-- FOOTER -->
+        <div class="footer-section">
+            <p>🇨🇴 GUEVARA - ATHLETE PROFILE © 2025 🇨🇴<br>
+            CAPITÁN • DEPORTISTA • LEYENDA<br>
+            <span style="margin-top: 20px; display: block; font-size: 12px;">⚽ EL DEPORTE ES VIDA ⚽</span></p>
+            
+            <a href="../index.html" class="volver">← Salir del Estadio</a>
+        </div>
 
-<audio id="audio1"><source src="../media/guevara/audio1.mp3"></audio>
-<audio id="audio2"><source src="../media/guevara/audio2.mp3"></audio>
-<audio id="audio3"><source src="../media/guevara/audio3.mp3"></audio>
+    </div>
 
-</div>
+    <!-- AUDIOS -->
+    <audio id="audio1"><source src="../media/Guevara/audio1.mp3" type="audio/mpeg"></audio>
+    <audio id="audio2"><source src="../media/Guevara/audio2.mp3" type="audio/mpeg"></audio>
+    <audio id="audio3"><source src="../media/Guevara/audio3.mp3" type="audio/mpeg"></audio>
 
-<script>
+    <script>
+        // Generar líneas de cancha
+        function generarLineas() {
+            const container = document.getElementById('field-lines');
+            for (let i = 0; i < 8; i++) {
+                const line = document.createElement('div');
+                line.className = 'field-line';
+                line.style.width = Math.random() * 200 + 100 + 'px';
+                line.style.height = '1px';
+                line.style.top = Math.random() * 100 + 'vh';
+                line.style.animationDuration = (10 + Math.random() * 10) + 's';
+                line.style.animationDelay = Math.random() * 5 + 's';
+                container.appendChild(line);
+            }
+        }
+        generarLineas();
 
-let audioActual=null;
+        // Control de audio
+        let audioActual = null;
 
-function reproducirAudio(id)
-{
-    if(audioActual)
-    {
-        audioActual.pause();
-        audioActual.currentTime=0;
-    }
+        function reproducirAudio(id) {
+            if (audioActual && !audioActual.paused) {
+                audioActual.pause();
+                audioActual.currentTime = 0;
+            }
 
-    audioActual=document.getElementById(id);
+            audioActual = document.getElementById(id);
+            audioActual.play();
+            
+            event.target.closest('.highlight-btn').style.background = 
+                'linear-gradient(135deg, rgba(206, 17, 38, 0.4), rgba(255, 215, 0, 0.3))';
+            
+            audioActual.addEventListener('ended', () => {
+                event.target.closest('.highlight-btn').style.background = 
+                    'linear-gradient(135deg, rgba(255, 215, 0, 0.15), rgba(0, 56, 147, 0.1))';
+            });
+        }
 
-    audioActual.play();
-}
+        // Iniciar partido
+        function iniciarPartido() {
+            document.getElementById('stadium-loading').style.display = 'none';
+            document.getElementById('contenedor').classList.add('visible');
 
-function abrirCarta()
-{
-    sobre.style.display="none";
+            const musica = document.getElementById('musica');
+            musica.play();
+        }
 
-    carta.style.display="block";
-
-    musica.volume=0;
-
-    musica.play();
-
-    let fade=setInterval(()=>{
-
-        if(musica.volume<0.3)
-            musica.volume+=0.01;
-
-        else
-            clearInterval(fade);
-
-    },120);
-
-    escribirTexto();
-}
-
-const texto=`El campo está listo.
-
-Este es tu momento.
-
-Gracias por jugar este partido.`;
-
-let i=0;
-
-function escribirTexto()
-{
-    if(i<texto.length)
-    {
-        textoCarta.innerHTML+=texto.charAt(i);
-
-        i++;
-
-        if(i==40)
-            foto1.classList.add("visible");
-
-        if(i==80)
-            foto2.classList.add("visible");
-
-        setTimeout(escribirTexto,30);
-    }
-}
-
-</script>
+        // Abrir galería
+        function abrirGaleria() {
+            const galeria = document.getElementById('galeria');
+            galeria.classList.toggle('active');
+            
+            setTimeout(() => {
+                galeria.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }, 100);
+        }
+    </script>
 
 </body>
 </html>
