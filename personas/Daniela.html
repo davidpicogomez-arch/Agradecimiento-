@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Para ti, Daniela</title>
     
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Lora:wght@400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Lora:wght@400;500;600&display=swap" rel="stylesheet">
     
     <style>
         * {
@@ -15,14 +15,167 @@
         }
         
         body {
-            background: linear-gradient(135deg, #0f1419 0%, #1a1f2e 50%, #0f1419 100%);
+            background: linear-gradient(135deg, #050a14 0%, #0f1419 50%, #050a14 100%);
             font-family: 'Lora', serif;
             color: #e8e8e8;
             min-height: 100vh;
             overflow-x: hidden;
+            position: relative;
         }
         
-        /* Partículas mágicas doradas y plateadas */
+        /* === CIELO ESTRELLADO (TECHO DEL GRAN COMEDOR) === */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                radial-gradient(2px 2px at 20% 30%, white, transparent),
+                radial-gradient(1px 1px at 60% 70%, white, transparent),
+                radial-gradient(1px 1px at 50% 50%, white, transparent),
+                radial-gradient(2px 2px at 80% 10%, #d4af37, transparent),
+                radial-gradient(1px 1px at 90% 60%, white, transparent),
+                radial-gradient(2px 2px at 33% 80%, #d4af37, transparent),
+                radial-gradient(1px 1px at 15% 65%, white, transparent),
+                radial-gradient(1px 1px at 70% 20%, #c0c0c0, transparent),
+                radial-gradient(2px 2px at 5% 25%, white, transparent),
+                radial-gradient(1px 1px at 45% 15%, #d4af37, transparent);
+            background-size: 100% 100%;
+            pointer-events: none;
+            z-index: 1;
+            opacity: 0.6;
+            animation: twinkle 4s ease-in-out infinite;
+        }
+        
+        @keyframes twinkle {
+            0%, 100% { opacity: 0.4; }
+            50% { opacity: 0.8; }
+        }
+        
+        /* === NIEBLA MÁGICA === */
+        body::after {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 20% 50%, rgba(212, 175, 55, 0.05) 0%, transparent 50%),
+                radial-gradient(circle at 80% 30%, rgba(192, 192, 192, 0.04) 0%, transparent 50%);
+            pointer-events: none;
+            z-index: 1;
+            animation: fog-magic 15s ease-in-out infinite;
+        }
+        
+        @keyframes fog-magic {
+            0%, 100% { opacity: 0.5; }
+            50% { opacity: 0.9; }
+        }
+        
+        /* === VELAS FLOTANTES (GRAN COMEDOR) === */
+        .candle {
+            position: fixed;
+            font-size: 50px;
+            pointer-events: none;
+            z-index: 2;
+            animation: float-candle 4s ease-in-out infinite;
+            filter: drop-shadow(0 0 15px #d4af37);
+        }
+        
+        .candle:nth-child(1) {
+            top: 100px;
+            left: 5%;
+            animation-delay: 0s;
+        }
+        
+        .candle:nth-child(2) {
+            top: 150px;
+            right: 5%;
+            animation-delay: 1s;
+        }
+        
+        .candle:nth-child(3) {
+            top: 300px;
+            left: 8%;
+            animation-delay: 2s;
+        }
+        
+        .candle:nth-child(4) {
+            top: 400px;
+            right: 8%;
+            animation-delay: 0.5s;
+        }
+        
+        @keyframes float-candle {
+            0%, 100% { transform: translateY(0px) rotate(-2deg); }
+            50% { transform: translateY(-15px) rotate(2deg); }
+        }
+        
+        /* === LECHUZAS VOLANDO === */
+        .owl {
+            position: fixed;
+            font-size: 32px;
+            pointer-events: none;
+            z-index: 3;
+            animation: fly-owl 25s linear infinite;
+            filter: drop-shadow(0 0 5px rgba(212, 175, 55, 0.5));
+        }
+        
+        @keyframes fly-owl {
+            from {
+                transform: translateX(-100px) translateY(100vh);
+                opacity: 0;
+            }
+            10% { opacity: 0.7; }
+            90% { opacity: 0.7; }
+            to {
+                transform: translateX(calc(100vw + 100px)) translateY(-100px);
+                opacity: 0;
+            }
+        }
+        
+        /* === SNITCH DORADA === */
+        .snitch {
+            position: fixed;
+            font-size: 28px;
+            pointer-events: none;
+            z-index: 3;
+            animation: snitch-fly 12s ease-in-out infinite;
+            filter: drop-shadow(0 0 10px #d4af37);
+        }
+        
+        @keyframes snitch-fly {
+            0% { transform: translateX(0) translateY(50vh); }
+            25% { transform: translateX(80vw) translateY(30vh); }
+            50% { transform: translateX(60vw) translateY(70vh); }
+            75% { transform: translateX(20vw) translateY(40vh); }
+            100% { transform: translateX(0) translateY(50vh); }
+        }
+        
+        /* === HECHIZOS FLOTANDO === */
+        .spell {
+            position: fixed;
+            font-family: 'Cinzel', serif;
+            color: #d4af37;
+            font-size: 14px;
+            font-style: italic;
+            opacity: 0;
+            pointer-events: none;
+            z-index: 2;
+            text-shadow: 0 0 10px #d4af37;
+            animation: spell-appear 8s ease-in-out infinite;
+            letter-spacing: 2px;
+        }
+        
+        @keyframes spell-appear {
+            0%, 100% { opacity: 0; transform: scale(0.5); }
+            20%, 80% { opacity: 0.6; transform: scale(1); }
+        }
+        
+        /* === PARTÍCULAS MÁGICAS DORADAS === */
         .particle {
             position: fixed;
             width: 3px;
@@ -31,6 +184,7 @@
             opacity: 0.7;
             pointer-events: none;
             animation: float-particle 15s linear infinite;
+            z-index: 2;
         }
         
         .particle {
@@ -53,12 +207,8 @@
                 transform: translateY(100vh) translateX(0);
                 opacity: 0;
             }
-            10% {
-                opacity: 0.8;
-            }
-            90% {
-                opacity: 0.8;
-            }
+            10% { opacity: 0.8; }
+            90% { opacity: 0.8; }
             to {
                 transform: translateY(-100vh) translateX(100px);
                 opacity: 0;
@@ -76,7 +226,7 @@
             align-items: center;
             justify-content: center;
             z-index: 100;
-            background: linear-gradient(135deg, #0f1419 0%, #1a1f2e 100%);
+            background: linear-gradient(135deg, #050a14 0%, #0f1419 100%);
             animation: fade-out 0.8s ease forwards 8s;
         }
         
@@ -89,65 +239,85 @@
         
         .sobre-wrapper {
             position: relative;
-            width: 320px;
-            height: 200px;
+            width: 380px;
+            height: 380px;
             display: flex;
             align-items: center;
             justify-content: center;
+            z-index: 10;
         }
         
-        /* Partículas orbitando al sobre */
+        /* === LETRAS BRILLANDO (estilo Harry Potter) === */
+        .magic-letter {
+            position: absolute;
+            font-family: 'Cinzel', serif;
+            font-size: 40px;
+            color: #d4af37;
+            font-weight: 900;
+            opacity: 0;
+            text-shadow: 
+                0 0 15px #d4af37, 
+                0 0 30px #d4af37,
+                0 0 50px rgba(212, 175, 55, 0.5);
+            animation: blink-letter 4s ease-in-out infinite;
+        }
+        
+        @keyframes blink-letter {
+            0%, 90%, 100% { opacity: 0; }
+            5%, 15% { opacity: 1; }
+            7%, 13% { opacity: 0.3; }
+        }
+        
+        .magic-letter:nth-child(1) { 
+            top: 0; left: 30px; 
+            animation-delay: 0s;
+        }
+        .magic-letter:nth-child(2) { 
+            top: 0; right: 30px; 
+            animation-delay: 1s;
+        }
+        .magic-letter:nth-child(3) { 
+            bottom: 0; left: 30px; 
+            animation-delay: 2s;
+        }
+        .magic-letter:nth-child(4) { 
+            bottom: 0; right: 30px; 
+            animation-delay: 3s;
+        }
+        
+        /* Partículas orbitando */
         .particle-orbit {
             position: absolute;
-            width: 4px;
-            height: 4px;
+            width: 5px;
+            height: 5px;
             border-radius: 50%;
             animation: orbit-particle 8s linear infinite;
         }
         
-        .particle-orbit {
-            background: #d4af37;
-            box-shadow: 0 0 10px #d4af37;
-        }
-        
-        .particle-orbit:nth-child(2) {
-            background: #c0c0c0;
-            box-shadow: 0 0 10px #c0c0c0;
-        }
-        
-        .particle-orbit:nth-child(3) {
-            background: #e8d44f;
-            box-shadow: 0 0 10px #e8d44f;
-        }
-        
-        .particle-orbit:nth-child(4) {
-            background: #d4af37;
-            box-shadow: 0 0 10px #d4af37;
-        }
-        
-        .particle-orbit:nth-child(5) {
-            background: #c0c0c0;
-            box-shadow: 0 0 10px #c0c0c0;
-        }
+        .particle-orbit { background: #d4af37; box-shadow: 0 0 12px #d4af37; }
+        .particle-orbit:nth-child(7) { background: #c0c0c0; box-shadow: 0 0 12px #c0c0c0; }
+        .particle-orbit:nth-child(8) { background: #e8d44f; box-shadow: 0 0 12px #e8d44f; }
+        .particle-orbit:nth-child(9) { background: #d4af37; box-shadow: 0 0 12px #d4af37; }
+        .particle-orbit:nth-child(10) { background: #c0c0c0; box-shadow: 0 0 12px #c0c0c0; }
         
         @keyframes orbit-particle {
             0% {
-                transform: rotate(0deg) translateX(180px) rotate(0deg);
+                transform: rotate(0deg) translateX(200px) rotate(0deg);
                 opacity: 0.8;
             }
             100% {
-                transform: rotate(360deg) translateX(180px) rotate(-360deg);
+                transform: rotate(360deg) translateX(200px) rotate(-360deg);
                 opacity: 0.8;
             }
         }
         
-        /* Variar delays de órbita */
-        .particle-orbit:nth-child(1) { animation-delay: 0s; }
-        .particle-orbit:nth-child(2) { animation-delay: 1.5s; }
-        .particle-orbit:nth-child(3) { animation-delay: 3s; }
-        .particle-orbit:nth-child(4) { animation-delay: 4.5s; }
-        .particle-orbit:nth-child(5) { animation-delay: 6s; }
+        .particle-orbit:nth-child(6) { animation-delay: 0s; }
+        .particle-orbit:nth-child(7) { animation-delay: 1.5s; }
+        .particle-orbit:nth-child(8) { animation-delay: 3s; }
+        .particle-orbit:nth-child(9) { animation-delay: 4.5s; }
+        .particle-orbit:nth-child(10) { animation-delay: 6s; }
         
+        /* SOBRE - Estilo carta Hogwarts */
         .sobre {
             width: 320px;
             height: 200px;
@@ -157,12 +327,32 @@
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            box-shadow: 0 20px 60px rgba(212, 175, 55, 0.3),
-                        0 0 30px rgba(192, 192, 192, 0.2);
+            box-shadow: 
+                0 20px 60px rgba(212, 175, 55, 0.3),
+                0 0 30px rgba(192, 192, 192, 0.2);
             cursor: pointer;
             animation: pulse-sobre 2s ease-in-out infinite, magic-glow 3s ease-in-out infinite;
             position: relative;
             z-index: 10;
+        }
+        
+        /* Doble borde estilo Hogwarts */
+        .sobre::before {
+            content: '';
+            position: absolute;
+            top: -10px;
+            left: -10px;
+            right: -10px;
+            bottom: -10px;
+            border: 2px solid #d4af37;
+            border-radius: 16px;
+            opacity: 0.5;
+            animation: pulse-border 3s ease-in-out infinite;
+        }
+        
+        @keyframes pulse-border {
+            0%, 100% { opacity: 0.3; transform: scale(1); }
+            50% { opacity: 0.7; transform: scale(1.02); }
         }
         
         @keyframes pulse-sobre {
@@ -176,29 +366,52 @@
         }
         
         .sobre-titulo {
-            font-family: 'Playfair Display', serif;
-            font-size: 32px;
+            font-family: 'Cinzel', serif;
+            font-size: 28px;
             color: #0f1419;
-            font-weight: 700;
-            margin-bottom: 10px;
+            font-weight: 900;
+            margin-bottom: 8px;
             text-align: center;
+            line-height: 1.2;
+            letter-spacing: 2px;
         }
         
         .sobre-subtitulo {
-            font-size: 13px;
+            font-family: 'Cinzel', serif;
+            font-size: 12px;
             color: #0f1419;
-            font-weight: 500;
+            font-weight: 600;
             opacity: 0.8;
-            letter-spacing: 1px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+        }
+        
+        .sobre-instruccion {
+            font-family: 'Cinzel', serif;
+            font-size: 10px;
+            color: #0f1419;
+            margin-top: 12px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            opacity: 0.8;
+            animation: blink-instruction 1.5s ease-in-out infinite;
+            font-weight: 600;
+        }
+        
+        @keyframes blink-instruction {
+            0%, 100% { opacity: 0.6; }
+            50% { opacity: 0.95; }
         }
         
         /* ===== CONTENIDO PRINCIPAL ===== */
         .contenedor {
             max-width: 900px;
             margin: 0 auto;
-            padding: 80px 40px;
+            padding: 100px 40px 80px;
             display: none;
             animation: fade-in 1s ease;
+            position: relative;
+            z-index: 10;
         }
         
         .contenedor.visible {
@@ -206,26 +419,43 @@
         }
         
         @keyframes fade-in {
-            from {
-                opacity: 0;
-                transform: translateY(20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
         }
         
-        /* Título principal con efecto mágico */
+        /* === BANNER HOGWARTS === */
+        .hogwarts-banner {
+            text-align: center;
+            margin-bottom: 30px;
+            font-family: 'Cinzel', serif;
+            font-size: 12px;
+            color: #d4af37;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            opacity: 0.7;
+            font-weight: 600;
+        }
+        
+        .hogwarts-banner::before,
+        .hogwarts-banner::after {
+            content: ' ⚜ ';
+            color: #d4af37;
+        }
+        
+        /* Título principal con efecto mágico MEJORADO */
         h1 {
-            font-family: 'Playfair Display', serif;
-            font-size: 58px;
+            font-family: 'Cinzel', serif;
+            font-size: 64px;
             text-align: center;
             color: #d4af37;
-            margin-bottom: 30px;
-            text-shadow: 0 2px 10px rgba(212, 175, 55, 0.2);
-            font-weight: 700;
+            margin-bottom: 20px;
+            text-shadow: 
+                0 2px 10px rgba(212, 175, 55, 0.5),
+                0 0 30px rgba(212, 175, 55, 0.3);
+            font-weight: 900;
             animation: levitate 3s ease-in-out infinite;
+            line-height: 1.1;
+            letter-spacing: 3px;
         }
         
         @keyframes levitate {
@@ -233,7 +463,53 @@
             50% { transform: translateY(-10px); }
         }
         
-        /* ===== SECCIÓN DE MENSAJE PERSONALIZADO ===== */
+        /* === SUBTITULO === */
+        .magic-subtitle {
+            text-align: center;
+            font-family: 'Cinzel', serif;
+            font-size: 13px;
+            color: #d4af37;
+            margin-bottom: 50px;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            opacity: 0.8;
+            border-top: 1px solid #d4af37;
+            border-bottom: 1px solid #d4af37;
+            padding: 10px 0;
+            max-width: 450px;
+            margin-left: auto;
+            margin-right: auto;
+            font-style: italic;
+            font-weight: 600;
+        }
+        
+        /* === ICONOS MÁGICOS === */
+        .icons-row {
+            text-align: center;
+            margin: 30px 0;
+            font-size: 28px;
+        }
+        
+        .icons-row span {
+            display: inline-block;
+            margin: 0 15px;
+            animation: float-icon 3s ease-in-out infinite;
+            opacity: 0.8;
+            filter: drop-shadow(0 0 5px rgba(212, 175, 55, 0.5));
+        }
+        
+        .icons-row span:nth-child(1) { animation-delay: 0s; }
+        .icons-row span:nth-child(2) { animation-delay: 0.5s; }
+        .icons-row span:nth-child(3) { animation-delay: 1s; }
+        .icons-row span:nth-child(4) { animation-delay: 1.5s; }
+        .icons-row span:nth-child(5) { animation-delay: 2s; }
+        
+        @keyframes float-icon {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+        
+        /* ===== SECCIÓN DE MENSAJE PERSONALIZADO (estilo pergamino) ===== */
         .seccion-mensaje {
             background: rgba(212, 175, 55, 0.08);
             border: 2px solid #d4af37;
@@ -242,16 +518,35 @@
             margin-bottom: 60px;
             text-align: center;
             position: relative;
+            box-shadow: 0 0 20px rgba(212, 175, 55, 0.2);
+        }
+        
+        /* Doble borde decorativo */
+        .seccion-mensaje::after {
+            content: '';
+            position: absolute;
+            top: -8px;
+            left: -8px;
+            right: -8px;
+            bottom: -8px;
+            border: 1px solid #d4af37;
+            border-radius: 14px;
+            opacity: 0.4;
+            pointer-events: none;
         }
         
         .seccion-mensaje::before {
             content: '✨';
             position: absolute;
-            top: -15px;
+            top: -20px;
             left: 50%;
             transform: translateX(-50%);
-            font-size: 24px;
+            font-size: 32px;
             animation: sparkle 2s ease-in-out infinite;
+            background: #050a14;
+            padding: 0 10px;
+            z-index: 5;
+            filter: drop-shadow(0 0 10px #d4af37);
         }
         
         @keyframes sparkle {
@@ -260,26 +555,54 @@
         }
         
         .seccion-mensaje p {
-            font-size: 16px;
+            font-family: 'Cinzel', serif;
+            font-size: 18px;
             color: #d4af37;
             margin-bottom: 20px;
-            font-weight: 500;
+            letter-spacing: 3px;
+            text-shadow: 0 0 10px rgba(212, 175, 55, 0.5);
+            font-weight: 600;
             text-transform: uppercase;
-            letter-spacing: 2px;
         }
         
         .mensaje-box {
             background: rgba(20, 25, 35, 0.8);
             border: 1px solid #d4af37;
             border-radius: 8px;
-            padding: 20px;
+            padding: 25px;
             min-height: 120px;
             color: #e8e8e8;
-            font-size: 16px;
+            font-size: 15px;
             line-height: 1.8;
             margin: 20px 0;
-            font-style: italic;
+            font-family: 'Lora', serif;
             box-shadow: inset 0 0 20px rgba(212, 175, 55, 0.05);
+            text-align: left;
+            position: relative;
+        }
+        
+        /* Esquinas decorativas */
+        .mensaje-box::before,
+        .mensaje-box::after {
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            border: 2px solid #d4af37;
+        }
+        
+        .mensaje-box::before {
+            top: -2px;
+            left: -2px;
+            border-right: none;
+            border-bottom: none;
+        }
+        
+        .mensaje-box::after {
+            bottom: -2px;
+            right: -2px;
+            border-left: none;
+            border-top: none;
         }
         
         /* ===== SECCIÓN DE MENSAJES ===== */
@@ -289,13 +612,14 @@
         }
         
         .seccion-mensajes h2 {
-            font-family: 'Playfair Display', serif;
+            font-family: 'Cinzel', serif;
             font-size: 36px;
             color: #d4af37;
             margin-bottom: 40px;
-            font-weight: 400;
+            font-weight: 700;
+            letter-spacing: 3px;
+            text-shadow: 0 0 15px rgba(212, 175, 55, 0.5);
             font-style: italic;
-            letter-spacing: 2px;
         }
         
         .botones-container {
@@ -307,20 +631,21 @@
         }
         
         .boton-mensaje {
-            padding: 16px 30px;
+            padding: 18px 30px;
             background: linear-gradient(135deg, #d4af37, #ffed4e);
-            border: none;
+            border: 2px solid #fff;
             border-radius: 8px;
             color: #0f1419;
+            font-family: 'Cinzel', serif;
             font-size: 14px;
-            font-weight: 600;
+            font-weight: 700;
             cursor: pointer;
             transition: all 0.3s ease;
-            font-family: 'Lora', serif;
             position: relative;
             overflow: hidden;
             text-transform: uppercase;
-            letter-spacing: 1.5px;
+            letter-spacing: 2px;
+            box-shadow: 0 0 15px rgba(212, 175, 55, 0.4);
         }
         
         .boton-mensaje::before {
@@ -341,8 +666,9 @@
         
         .boton-mensaje:hover {
             transform: translateY(-4px) scale(1.05);
-            box-shadow: 0 12px 25px rgba(212, 175, 55, 0.4),
-                        0 0 15px rgba(192, 192, 192, 0.2);
+            box-shadow: 
+                0 12px 25px rgba(212, 175, 55, 0.6),
+                0 0 30px rgba(192, 192, 192, 0.3);
             background: linear-gradient(135deg, #ffed4e, #d4af37);
         }
         
@@ -358,21 +684,23 @@
         /* ===== BOTÓN ALBUM ===== */
         .boton-album {
             margin-top: 50px;
-            padding: 18px 50px;
+            padding: 20px 50px;
             background: linear-gradient(135deg, #d4af37, #ffed4e);
-            border: none;
+            border: 2px solid #fff;
             border-radius: 8px;
             color: #0f1419;
+            font-family: 'Cinzel', serif;
             font-size: 16px;
-            font-weight: 600;
+            font-weight: 700;
             cursor: pointer;
             transition: all 0.3s ease;
-            font-family: 'Lora', serif;
             position: relative;
             overflow: hidden;
             text-transform: uppercase;
             letter-spacing: 2px;
-            box-shadow: 0 8px 20px rgba(212, 175, 55, 0.3);
+            box-shadow: 
+                0 8px 20px rgba(212, 175, 55, 0.4),
+                0 0 20px rgba(192, 192, 192, 0.3);
         }
         
         .boton-album::before {
@@ -392,8 +720,9 @@
         
         .boton-album:hover {
             transform: translateY(-5px) scale(1.08);
-            box-shadow: 0 18px 40px rgba(212, 175, 55, 0.6),
-                        0 0 20px rgba(192, 192, 192, 0.3);
+            box-shadow: 
+                0 18px 40px rgba(212, 175, 55, 0.6),
+                0 0 30px rgba(192, 192, 192, 0.4);
             background: linear-gradient(135deg, #ffed4e, #d4af37);
         }
         
@@ -409,12 +738,14 @@
         }
         
         .galeria h2 {
-            font-family: 'Playfair Display', serif;
+            font-family: 'Cinzel', serif;
             font-size: 36px;
             color: #d4af37;
             text-align: center;
             margin-bottom: 50px;
-            font-weight: 400;
+            font-weight: 700;
+            letter-spacing: 3px;
+            text-shadow: 0 0 15px rgba(212, 175, 55, 0.5);
             font-style: italic;
         }
         
@@ -435,6 +766,31 @@
             animation: fade-in 0.8s ease forwards;
             transition: all 0.3s ease;
             border: 2px solid rgba(212, 175, 55, 0.3);
+        }
+        
+        /* Esquinas decorativas en fotos */
+        .foto-item::before,
+        .foto-item::after {
+            content: '';
+            position: absolute;
+            width: 15px;
+            height: 15px;
+            border: 2px solid #d4af37;
+            z-index: 5;
+        }
+        
+        .foto-item::before {
+            top: 5px;
+            left: 5px;
+            border-right: none;
+            border-bottom: none;
+        }
+        
+        .foto-item::after {
+            bottom: 5px;
+            right: 5px;
+            border-left: none;
+            border-top: none;
         }
         
         .foto-item:nth-child(1) { animation-delay: 0.1s; }
@@ -476,10 +832,30 @@
         
         /* ===== LÍNEA DIVISORA ===== */
         .divider {
-            width: 80px;
+            width: 200px;
             height: 2px;
             background: linear-gradient(90deg, transparent, #d4af37, #c0c0c0, #d4af37, transparent);
             margin: 60px auto;
+            box-shadow: 0 0 15px #d4af37;
+            position: relative;
+        }
+        
+        .divider::before,
+        .divider::after {
+            content: '✦';
+            position: absolute;
+            top: -10px;
+            color: #d4af37;
+            text-shadow: 0 0 10px #d4af37;
+            font-size: 16px;
+        }
+        
+        .divider::before {
+            left: -20px;
+        }
+        
+        .divider::after {
+            right: -20px;
         }
         
         /* ===== BOTÓN VOLVER ===== */
@@ -491,14 +867,14 @@
             border: 2px solid #d4af37;
             border-radius: 6px;
             color: #d4af37;
-            font-family: 'Lora', serif;
+            font-family: 'Cinzel', serif;
             font-size: 14px;
             text-decoration: none;
             cursor: pointer;
             transition: all 0.3s ease;
             text-transform: uppercase;
-            letter-spacing: 1.5px;
-            font-weight: 500;
+            letter-spacing: 2px;
+            font-weight: 700;
         }
         
         .volver:hover {
@@ -508,9 +884,23 @@
             box-shadow: 0 8px 20px rgba(212, 175, 55, 0.3);
         }
         
+        /* === FOOTER HOGWARTS === */
+        .footer-hogwarts {
+            text-align: center;
+            margin-top: 80px;
+            padding-top: 30px;
+            border-top: 1px solid rgba(212, 175, 55, 0.3);
+            font-family: 'Cinzel', serif;
+            font-size: 11px;
+            color: rgba(212, 175, 55, 0.6);
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            font-style: italic;
+        }
+        
         /* Responsive */
         @media (max-width: 768px) {
-            h1 { font-size: 42px; }
+            h1 { font-size: 44px; }
             
             .seccion-mensajes h2 {
                 font-size: 28px;
@@ -527,16 +917,46 @@
             }
             
             .contenedor {
-                padding: 60px 20px;
+                padding: 80px 20px 60px;
+            }
+            
+            .candle, .owl { display: none; }
+            
+            .icons-row span {
+                margin: 0 8px;
             }
         }
     </style>
 </head>
 <body>
  
-    <!-- SOBRE INICIAL CON PARTÍCULAS ORBITANDO -->
+    <!-- VELAS FLOTANTES -->
+    <div class="candle">🕯️</div>
+    <div class="candle">🕯️</div>
+    <div class="candle">🕯️</div>
+    <div class="candle">🕯️</div>
+    
+    <!-- LECHUZA VOLANDO -->
+    <div class="owl" style="animation-delay: 0s; top: 30%; left: 0;">🦉</div>
+    
+    <!-- SNITCH DORADA -->
+    <div class="snitch" style="top: 20%;">✨</div>
+    
+    <!-- HECHIZOS FLOTANDO -->
+    <div class="spell" style="top: 20%; left: 10%; animation-delay: 0s;">Lumos</div>
+    <div class="spell" style="top: 40%; right: 10%; animation-delay: 2s;">Expecto Patronum</div>
+    <div class="spell" style="top: 70%; left: 15%; animation-delay: 4s;">Wingardium Leviosa</div>
+    <div class="spell" style="top: 85%; right: 15%; animation-delay: 6s;">Alohomora</div>
+    
+    <!-- SOBRE INICIAL CON LETRAS Y PARTÍCULAS -->
     <div id="sobre-inicial">
         <div class="sobre-wrapper" onclick="abrirSobre()">
+            <!-- Letras mágicas brillando -->
+            <div class="magic-letter">D</div>
+            <div class="magic-letter">A</div>
+            <div class="magic-letter">N</div>
+            <div class="magic-letter">I</div>
+            
             <!-- Partículas orbitando mágicas -->
             <div class="particle-orbit"></div>
             <div class="particle-orbit"></div>
@@ -547,7 +967,8 @@
             <!-- Sobre -->
             <div class="sobre">
                 <div class="sobre-titulo">Para ti,<br>Daniela</div>
-                <div class="sobre-subtitulo">✨ Toca para abrir ✨</div>
+                <div class="sobre-subtitulo">✨ Bienvenida a Hogwarts ✨</div>
+                <div class="sobre-instruccion">▶ Presiona para ingresar ◀</div>
             </div>
         </div>
     </div>
@@ -563,15 +984,26 @@
     <!-- CONTENIDO PRINCIPAL -->
     <div class="contenedor" id="contenedor">
         
-        <h1>Para ti, Daniela</h1>
+        <!-- BANNER HOGWARTS -->
+        <div class="hogwarts-banner">HOGWARTS SCHOOL OF WITCHCRAFT AND WIZARDRY</div>
+        
+        <h1>Para ti,<br>Daniela</h1>
+        
+        <div class="magic-subtitle">"Algunas personas no llegan por casualidad, llegan por magia"</div>
+        
+        <!-- ICONOS MÁGICOS -->
+        <div class="icons-row">
+            <span>🦉</span>
+            <span>🕯️</span>
+            <span>🪄</span>
+            <span>📜</span>
+            <span>⚡</span>
+        </div>
  
         <!-- SECCIÓN DE MENSAJE PERSONALIZADO -->
         <div class="seccion-mensaje">
             <p>Un Mensaje Para Ti Capitana</p>
             <div class="mensaje-box" id="mensaje-personalizado">
-                Algunas personas no llegan por casualidad,
-                llegan por magia.
-                <br><br>
 Buenassss. Bueno… ¿por dónde empezar? La verdad llevo como dos meses pensando en cómo hacer esto y encontrar las palabras correctas. Seguramente te llegue el día de mi cumpleaños, porque justamente el objetivo es agradecer en ese día a todas las personas especiales que he conocido en mi vida, y tú claramente haces parte de eso.
 
 De hecho, la idea nació gracias a ti, cuando en tu cumpleaños nos diste cartas a todos. Quise hacer algo parecido, pero a mi estilo. (El arte no es lo mío jajajaja, y menos sacar números, lo mío es chupar helados del Simón… no mentiras jajajaja).
@@ -608,7 +1040,7 @@ Pero bueno, en resumen: gracias por todos estos años. Estoy demasiado agradecid
  
         <!-- GALERÍA DE FOTOS -->
         <div class="galeria" id="galeria">
-            <h2>Nuestro Album</h2>
+            <h2>📜 Nuestro Album 📜</h2>
             <div class="grid-fotos">
                 <div class="foto-item">
                     <div class="foto-placeholder">📸</div>
@@ -639,6 +1071,12 @@ Pero bueno, en resumen: gracias por todos estos años. Estoy demasiado agradecid
         <div style="text-align: center;">
             <a href="../index.html" class="volver">← Volver</a>
         </div>
+        
+        <!-- FOOTER -->
+        <div class="footer-hogwarts">
+            ⚜ Mischief Managed ⚜<br>
+            HOGWARTS · DRACO DORMIENS NUNQUAM TITILLANDUS
+        </div>
  
     </div>
  
@@ -651,7 +1089,7 @@ Pero bueno, en resumen: gracias por todos estos años. Estoy demasiado agradecid
         // Generar partículas flotantes mágicas
         function generarParticulas() {
             const contenedor = document.getElementById('particulas');
-            for (let i = 0; i < 45; i++) {
+            for (let i = 0; i < 50; i++) {
                 const particle = document.createElement('div');
                 particle.className = 'particle';
                 particle.style.left = Math.random() * 100 + 'vw';
@@ -661,6 +1099,19 @@ Pero bueno, en resumen: gracias por todos estos años. Estoy demasiado agradecid
             }
         }
         generarParticulas();
+        
+        // Generar lechuzas adicionales
+        function generarLechuzas() {
+            for (let i = 0; i < 3; i++) {
+                const owl = document.createElement('div');
+                owl.className = 'owl';
+                owl.textContent = '🦉';
+                owl.style.animationDelay = (i * 8) + 's';
+                owl.style.top = (Math.random() * 60 + 20) + '%';
+                document.body.appendChild(owl);
+            }
+        }
+        generarLechuzas();
  
         // Control de audio
         let audioActual = null;
