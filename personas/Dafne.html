@@ -1,396 +1,1156 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<meta charset="UTF-8">
-<title>Historia: Dafne</title>
-
-<!-- FUENTES ESTILO MANGA ELEGANTE -->
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&family=Noto+Sans+JP:wght@300;500&display=swap" rel="stylesheet">
-
-<style>
-
-/* ================= FONDO MANGA OSCURO ELEGANTE ================= */
-
-body
-{
-    margin: 0;
-
-    background:
-    radial-gradient(circle at 50% 20%, rgba(120,120,255,0.15), transparent 60%),
-    radial-gradient(circle at 80% 80%, rgba(180,120,255,0.12), transparent 60%),
-    linear-gradient(180deg, #05060a, #0a0b14, #05060a);
-
-    font-family: 'Playfair Display', serif;
-
-    color: #e8e8f5;
-
-    overflow-x: hidden;
-
-    text-align: center;
-}
-
-/* ================= PARTICULAS SUAVES ================= */
-
-.particula
-{
-    position: fixed;
-
-    width: 2px;
-    height: 2px;
-
-    background: rgba(255,255,255,0.6);
-
-    border-radius: 50%;
-
-    animation: flotar linear infinite;
-}
-
-@keyframes flotar
-{
-    from
-    {
-        transform: translateY(100vh);
-        opacity: 0;
-    }
-
-    10%
-    {
-        opacity: 1;
-    }
-
-    to
-    {
-        transform: translateY(-10vh);
-        opacity: 0;
-    }
-}
-
-/* ================= SILUETA GATO ================= */
-
-.gato
-{
-    position: fixed;
-
-    bottom: 0;
-
-    right: 40px;
-
-    width: 120px;
-
-    height: 180px;
-
-    background: linear-gradient(180deg, #0a0a12, #020204);
-
-    border-radius: 60px 60px 20px 20px;
-
-    box-shadow:
-    0 0 40px rgba(180,120,255,0.15);
-}
-
-.gato::before,
-.gato::after
-{
-    content: "";
-
-    position: absolute;
-
-    width: 30px;
-    height: 30px;
-
-    background: #020204;
-
-    top: -15px;
-
-    border-radius: 50%;
-}
-
-.gato::before
-{
-    left: 10px;
-}
-
-.gato::after
-{
-    right: 10px;
-}
-
-/* ================= PANEL HISTORIA ================= */
-
-.panel
-{
-    display: none;
-
-    margin: auto;
-
-    margin-top: 80px;
-
-    max-width: 800px;
-
-    padding: 60px;
-
-    border: 1px solid rgba(180,120,255,0.3);
-
-    background: rgba(10,10,20,0.85);
-
-    box-shadow:
-    0 0 60px rgba(180,120,255,0.15);
-}
-
-/* ================= TITULO ================= */
-
-.titulo
-{
-    font-size: 46px;
-
-    letter-spacing: 6px;
-
-    color: #d0c0ff;
-
-    margin-bottom: 40px;
-
-    text-shadow: 0 0 20px rgba(180,120,255,0.4);
-}
-
-/* ================= TEXTO ================= */
-
-#textoCarta
-{
-    font-family: 'Noto Sans JP', sans-serif;
-
-    font-size: 18px;
-
-    border-right: 2px solid rgba(180,120,255,0.5);
-
-    white-space: pre-line;
-
-    line-height: 1.8;
-}
-
-/* ================= BOTON ================= */
-
-#acceso
-{
-    margin-top: 260px;
-
-    padding: 20px 40px;
-
-    border: 1px solid rgba(180,120,255,0.4);
-
-    background: rgba(180,120,255,0.08);
-
-    color: #d0c0ff;
-
-    cursor: pointer;
-
-    letter-spacing: 4px;
-
-    transition: 0.3s;
-}
-
-#acceso:hover
-{
-    background: rgba(180,120,255,0.18);
-}
-
-/* ================= FOTOS ================= */
-
-.foto
-{
-    position: fixed;
-
-    width: 180px;
-
-    border: 1px solid rgba(180,120,255,0.3);
-
-    box-shadow:
-    0 0 20px rgba(180,120,255,0.2);
-
-    opacity: 0;
-
-    transition: opacity 2s;
-}
-
-.foto.visible
-{
-    opacity: 1;
-}
-
-.foto.izq
-{
-    left: 60px;
-
-    bottom: 140px;
-}
-
-.foto.der
-{
-    right: 60px;
-
-    bottom: 140px;
-}
-
-/* ================= BOTONES CAPITULO ================= */
-
-.audios button
-{
-    margin: 12px;
-
-    padding: 12px 22px;
-
-    border: 1px solid rgba(180,120,255,0.5);
-
-    background: transparent;
-
-    color: #d0c0ff;
-
-    cursor: pointer;
-
-    font-family: Playfair Display;
-}
-
-.audios button:hover
-{
-    background: rgba(180,120,255,0.2);
-}
-
-/* ================= INDICADOR ================= */
-
-.estado
-{
-    position: fixed;
-
-    top: 20px;
-
-    right: 30px;
-
-    font-size: 14px;
-
-    opacity: 0.7;
-}
-
-</style>
-
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Para ti, Dafne</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Caveat:wght@400;700&display=swap" rel="stylesheet">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #1a1410 0%, #2a1f1a 50%, #1a1410 100%);
+            font-family: 'Cormorant Garamond', serif;
+            color: #f4ebd0;
+            min-height: 100vh;
+            overflow-x: hidden;
+            position: relative;
+        }
+        
+        /* === TEXTURA DE PAPEL ENVEJECIDO === */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                radial-gradient(circle at 25% 25%, rgba(212, 175, 55, 0.02) 0%, transparent 50%),
+                radial-gradient(circle at 75% 75%, rgba(139, 69, 19, 0.03) 0%, transparent 50%);
+            pointer-events: none;
+            z-index: 1;
+        }
+        
+        /* === ESTANTERÍA DE FONDO (LÍNEAS HORIZONTALES) === */
+        body::after {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                repeating-linear-gradient(
+                    180deg,
+                    transparent,
+                    transparent 150px,
+                    rgba(139, 69, 19, 0.05) 150px,
+                    rgba(139, 69, 19, 0.05) 152px
+                );
+            pointer-events: none;
+            z-index: 1;
+        }
+        
+        /* === LIBROS FLOTANTES EN ESQUINAS === */
+        .book-decoration {
+            position: fixed;
+            font-size: 50px;
+            opacity: 0.15;
+            pointer-events: none;
+            z-index: 1;
+            animation: float-book 5s ease-in-out infinite;
+            filter: drop-shadow(0 0 5px rgba(212, 175, 55, 0.3));
+        }
+        
+        .book-decoration.top-left {
+            top: 80px;
+            left: 30px;
+            animation-delay: 0s;
+        }
+        
+        .book-decoration.top-right {
+            top: 100px;
+            right: 30px;
+            animation-delay: 1s;
+            transform: scaleX(-1);
+        }
+        
+        .book-decoration.bottom-left {
+            bottom: 80px;
+            left: 30px;
+            animation-delay: 2s;
+        }
+        
+        .book-decoration.bottom-right {
+            bottom: 100px;
+            right: 30px;
+            animation-delay: 3s;
+            transform: scaleX(-1);
+        }
+        
+        @keyframes float-book {
+            0%, 100% { transform: translateY(0px) rotate(-5deg); }
+            50% { transform: translateY(-15px) rotate(5deg); }
+        }
+        
+        /* === HOJAS DE PAPEL CAYENDO === */
+        .paper {
+            position: fixed;
+            font-size: 24px;
+            pointer-events: none;
+            z-index: 2;
+            animation: paper-fall 15s linear infinite;
+            opacity: 0.6;
+        }
+        
+        @keyframes paper-fall {
+            from {
+                transform: translateY(-100px) rotate(0deg);
+                opacity: 0;
+            }
+            10% { opacity: 0.7; }
+            90% { opacity: 0.7; }
+            to {
+                transform: translateY(100vh) rotate(720deg);
+                opacity: 0;
+            }
+        }
+        
+        /* === CITAS LITERARIAS FLOTANDO === */
+        .quote {
+            position: fixed;
+            font-family: 'Caveat', cursive;
+            color: #d4af37;
+            font-size: 18px;
+            font-style: italic;
+            opacity: 0;
+            pointer-events: none;
+            z-index: 2;
+            text-shadow: 0 0 8px rgba(212, 175, 55, 0.3);
+            animation: quote-appear 12s ease-in-out infinite;
+            max-width: 200px;
+            text-align: center;
+        }
+        
+        @keyframes quote-appear {
+            0%, 100% { opacity: 0; transform: scale(0.5); }
+            20%, 80% { opacity: 0.5; transform: scale(1); }
+        }
+        
+        /* === PARTÍCULAS DE TINTA === */
+        .particle {
+            position: fixed;
+            width: 3px;
+            height: 3px;
+            border-radius: 50%;
+            opacity: 0.6;
+            pointer-events: none;
+            animation: float-particle 18s linear infinite;
+            z-index: 2;
+        }
+        
+        .particle {
+            background: #d4af37;
+            box-shadow: 0 0 6px rgba(212, 175, 55, 0.5);
+        }
+        
+        .particle:nth-child(odd) {
+            background: #c9a876;
+            box-shadow: 0 0 6px rgba(201, 168, 118, 0.5);
+        }
+        
+        .particle:nth-child(3n) {
+            background: #f4ebd0;
+            box-shadow: 0 0 6px rgba(244, 235, 208, 0.5);
+            opacity: 0.4;
+        }
+        
+        @keyframes float-particle {
+            from {
+                transform: translateY(100vh) translateX(0);
+                opacity: 0;
+            }
+            10% { opacity: 0.7; }
+            90% { opacity: 0.7; }
+            to {
+                transform: translateY(-100vh) translateX(80px);
+                opacity: 0;
+            }
+        }
+        
+        /* ===== LIBRO INICIAL ===== */
+        #libro-inicial {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 100;
+            background: linear-gradient(135deg, #1a1410 0%, #2a1f1a 100%);
+            animation: fade-out 0.8s ease forwards 8s;
+        }
+        
+        @keyframes fade-out {
+            to {
+                opacity: 0;
+                pointer-events: none;
+            }
+        }
+        
+        /* Textura de fondo en libro inicial */
+        #libro-inicial::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                repeating-linear-gradient(
+                    180deg,
+                    transparent,
+                    transparent 100px,
+                    rgba(139, 69, 19, 0.04) 100px,
+                    rgba(139, 69, 19, 0.04) 102px
+                );
+            pointer-events: none;
+            z-index: 1;
+        }
+        
+        .libro-wrapper {
+            position: relative;
+            width: 420px;
+            height: 380px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 10;
+        }
+        
+        /* === LETRAS APARECIENDO COMO TINTA === */
+        .ink-letter {
+            position: absolute;
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 36px;
+            color: #d4af37;
+            font-weight: 700;
+            opacity: 0;
+            text-shadow: 
+                0 0 15px #d4af37, 
+                0 0 30px rgba(212, 175, 55, 0.5);
+            animation: ink-write 4s ease-in-out infinite;
+            font-style: italic;
+        }
+        
+        @keyframes ink-write {
+            0%, 90%, 100% { opacity: 0; }
+            5%, 15% { opacity: 1; }
+            7%, 13% { opacity: 0.4; }
+        }
+        
+        .ink-letter:nth-child(1) { 
+            top: 20px; left: 50px; 
+            animation-delay: 0s;
+        }
+        .ink-letter:nth-child(2) { 
+            top: 20px; right: 50px; 
+            animation-delay: 1s;
+        }
+        .ink-letter:nth-child(3) { 
+            bottom: 20px; left: 50px; 
+            animation-delay: 2s;
+        }
+        .ink-letter:nth-child(4) { 
+            bottom: 20px; right: 50px; 
+            animation-delay: 3s;
+        }
+        
+        /* Pluma orbitando el libro */
+        .quill-orbit {
+            position: absolute;
+            font-size: 28px;
+            animation: orbit-quill 10s linear infinite;
+            filter: drop-shadow(0 0 10px rgba(212, 175, 55, 0.5));
+        }
+        
+        @keyframes orbit-quill {
+            0% {
+                transform: rotate(0deg) translateX(220px) rotate(0deg);
+            }
+            100% {
+                transform: rotate(360deg) translateX(220px) rotate(-360deg);
+            }
+        }
+        
+        /* LIBRO - Estilo libro antiguo abierto */
+        .libro {
+            width: 380px;
+            height: 280px;
+            background: linear-gradient(135deg, #8B4513 0%, #654321 50%, #8B4513 100%);
+            border: 4px solid #d4af37;
+            border-radius: 5px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 
+                0 20px 60px rgba(0, 0, 0, 0.5),
+                0 0 30px rgba(212, 175, 55, 0.3),
+                inset 0 0 30px rgba(0, 0, 0, 0.3);
+            cursor: pointer;
+            animation: pulse-libro 2s ease-in-out infinite;
+            position: relative;
+            z-index: 10;
+        }
+        
+        /* Lomo del libro */
+        .libro::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 4px;
+            height: 80%;
+            background: rgba(0, 0, 0, 0.3);
+        }
+        
+        /* Marcador con borla */
+        .libro::after {
+            content: '🔖';
+            position: absolute;
+            top: -15px;
+            right: 50px;
+            font-size: 40px;
+            animation: bookmark-sway 3s ease-in-out infinite;
+            filter: drop-shadow(0 5px 10px rgba(0, 0, 0, 0.5));
+        }
+        
+        @keyframes bookmark-sway {
+            0%, 100% { transform: rotate(-5deg); }
+            50% { transform: rotate(5deg); }
+        }
+        
+        @keyframes pulse-libro {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.03); }
+        }
+        
+        .libro-titulo {
+            font-family: 'Playfair Display', serif;
+            font-size: 32px;
+            color: #d4af37;
+            font-weight: 700;
+            margin-bottom: 12px;
+            text-align: center;
+            line-height: 1.2;
+            text-shadow: 
+                0 0 10px rgba(212, 175, 55, 0.5),
+                2px 2px 0 rgba(0, 0, 0, 0.3);
+            font-style: italic;
+        }
+        
+        .libro-subtitulo {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 14px;
+            color: #f4ebd0;
+            font-weight: 500;
+            opacity: 0.9;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            font-style: italic;
+            border-top: 1px solid rgba(212, 175, 55, 0.5);
+            border-bottom: 1px solid rgba(212, 175, 55, 0.5);
+            padding: 8px 20px;
+            margin: 10px 0;
+        }
+        
+        .libro-instruccion {
+            font-family: 'Caveat', cursive;
+            font-size: 16px;
+            color: #d4af37;
+            margin-top: 15px;
+            opacity: 0.9;
+            animation: blink-instruction 1.5s ease-in-out infinite;
+        }
+        
+        @keyframes blink-instruction {
+            0%, 100% { opacity: 0.7; }
+            50% { opacity: 1; }
+        }
+        
+        /* ===== CONTENIDO PRINCIPAL ===== */
+        .contenedor {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 100px 40px 80px;
+            display: none;
+            animation: fade-in 1s ease;
+            position: relative;
+            z-index: 10;
+        }
+        
+        .contenedor.visible {
+            display: block;
+        }
+        
+        @keyframes fade-in {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        /* === BANNER LIBRERÍA === */
+        .library-banner {
+            text-align: center;
+            margin-bottom: 30px;
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 13px;
+            color: #d4af37;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            opacity: 0.7;
+            font-style: italic;
+            font-weight: 600;
+        }
+        
+        .library-banner::before,
+        .library-banner::after {
+            content: ' ✦ ';
+            color: #d4af37;
+        }
+        
+        /* Título principal */
+        h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 72px;
+            text-align: center;
+            color: #d4af37;
+            margin-bottom: 20px;
+            text-shadow: 
+                0 2px 10px rgba(212, 175, 55, 0.4),
+                0 0 30px rgba(212, 175, 55, 0.3);
+            font-weight: 700;
+            font-style: italic;
+            animation: levitate 3s ease-in-out infinite;
+            line-height: 1.1;
+        }
+        
+        @keyframes levitate {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+        
+        /* === SUBTITULO TIPO CITA === */
+        .literary-subtitle {
+            text-align: center;
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 17px;
+            color: #f4ebd0;
+            margin-bottom: 50px;
+            letter-spacing: 1px;
+            opacity: 0.85;
+            border-top: 1px solid #d4af37;
+            border-bottom: 1px solid #d4af37;
+            padding: 15px 20px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            font-style: italic;
+        }
+        
+        /* === ICONOS LITERARIOS === */
+        .icons-row {
+            text-align: center;
+            margin: 30px 0;
+            font-size: 32px;
+        }
+        
+        .icons-row span {
+            display: inline-block;
+            margin: 0 15px;
+            animation: float-icon 3s ease-in-out infinite;
+            opacity: 0.8;
+            filter: drop-shadow(0 0 5px rgba(212, 175, 55, 0.5));
+        }
+        
+        .icons-row span:nth-child(1) { animation-delay: 0s; }
+        .icons-row span:nth-child(2) { animation-delay: 0.5s; }
+        .icons-row span:nth-child(3) { animation-delay: 1s; }
+        .icons-row span:nth-child(4) { animation-delay: 1.5s; }
+        .icons-row span:nth-child(5) { animation-delay: 2s; }
+        
+        @keyframes float-icon {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+        
+        /* ===== SECCIÓN DE MENSAJE (estilo página de libro) ===== */
+        .seccion-mensaje {
+            background: rgba(244, 235, 208, 0.05);
+            border: 2px solid #d4af37;
+            border-radius: 8px;
+            padding: 40px;
+            margin-bottom: 60px;
+            text-align: center;
+            position: relative;
+            box-shadow: 
+                0 0 20px rgba(212, 175, 55, 0.2),
+                inset 0 0 30px rgba(244, 235, 208, 0.03);
+        }
+        
+        /* Doble borde decorativo (como una página enmarcada) */
+        .seccion-mensaje::after {
+            content: '';
+            position: absolute;
+            top: -8px;
+            left: -8px;
+            right: -8px;
+            bottom: -8px;
+            border: 1px solid #d4af37;
+            border-radius: 10px;
+            opacity: 0.4;
+            pointer-events: none;
+        }
+        
+        .seccion-mensaje::before {
+            content: '✒️';
+            position: absolute;
+            top: -20px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 32px;
+            background: #1a1410;
+            padding: 0 15px;
+            z-index: 5;
+            filter: drop-shadow(0 0 10px rgba(212, 175, 55, 0.5));
+        }
+        
+        .seccion-mensaje p {
+            font-family: 'Playfair Display', serif;
+            font-size: 20px;
+            color: #d4af37;
+            margin-bottom: 20px;
+            letter-spacing: 2px;
+            font-style: italic;
+            font-weight: 700;
+        }
+        
+        .mensaje-box {
+            background: rgba(20, 15, 10, 0.7);
+            border: 1px solid #d4af37;
+            border-radius: 5px;
+            padding: 30px;
+            min-height: 120px;
+            color: #f4ebd0;
+            font-size: 16px;
+            line-height: 1.9;
+            margin: 20px 0;
+            font-family: 'Cormorant Garamond', serif;
+            box-shadow: inset 0 0 20px rgba(212, 175, 55, 0.05);
+            text-align: left;
+            position: relative;
+        }
+        
+        /* Esquinas decorativas */
+        .mensaje-box::before,
+        .mensaje-box::after {
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            border: 2px solid #d4af37;
+        }
+        
+        .mensaje-box::before {
+            top: -2px;
+            left: -2px;
+            border-right: none;
+            border-bottom: none;
+        }
+        
+        .mensaje-box::after {
+            bottom: -2px;
+            right: -2px;
+            border-left: none;
+            border-top: none;
+        }
+        
+        /* ===== SECCIÓN DE MENSAJES ===== */
+        .seccion-mensajes {
+            margin: 80px 0;
+            text-align: center;
+        }
+        
+        .seccion-mensajes h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 38px;
+            color: #d4af37;
+            margin-bottom: 40px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-shadow: 0 0 15px rgba(212, 175, 55, 0.4);
+            font-style: italic;
+        }
+        
+        .botones-container {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            max-width: 500px;
+            margin: 0 auto;
+        }
+        
+        .boton-mensaje {
+            padding: 18px 30px;
+            background: linear-gradient(135deg, #8B4513 0%, #654321 100%);
+            border: 2px solid #d4af37;
+            border-radius: 5px;
+            color: #f4ebd0;
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            font-style: italic;
+            box-shadow: 
+                0 0 15px rgba(212, 175, 55, 0.3),
+                inset 0 0 15px rgba(0, 0, 0, 0.3);
+        }
+        
+        .boton-mensaje::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(212, 175, 55, 0.4), transparent);
+            transition: left 0.4s ease;
+            z-index: 1;
+        }
+        
+        .boton-mensaje:hover::before {
+            left: 100%;
+        }
+        
+        .boton-mensaje:hover {
+            transform: translateY(-4px) scale(1.05);
+            box-shadow: 
+                0 12px 25px rgba(0, 0, 0, 0.5),
+                0 0 30px rgba(212, 175, 55, 0.5);
+            background: linear-gradient(135deg, #A0522D 0%, #8B4513 100%);
+            border-color: #f4ebd0;
+        }
+        
+        .boton-mensaje:active {
+            transform: scale(0.98);
+        }
+        
+        .boton-mensaje span {
+            position: relative;
+            z-index: 2;
+        }
+        
+        /* ===== BOTÓN ALBUM ===== */
+        .boton-album {
+            margin-top: 50px;
+            padding: 20px 50px;
+            background: linear-gradient(135deg, #d4af37 0%, #c9a876 100%);
+            border: 2px solid #f4ebd0;
+            border-radius: 5px;
+            color: #1a1410;
+            font-family: 'Playfair Display', serif;
+            font-size: 17px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-style: italic;
+            box-shadow: 
+                0 8px 20px rgba(0, 0, 0, 0.5),
+                0 0 20px rgba(212, 175, 55, 0.4);
+        }
+        
+        .boton-album::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: rgba(255,255,255,0.3);
+            transition: left 0.4s ease;
+        }
+        
+        .boton-album:hover::before {
+            left: 100%;
+        }
+        
+        .boton-album:hover {
+            transform: translateY(-5px) scale(1.08);
+            box-shadow: 
+                0 18px 40px rgba(0, 0, 0, 0.6),
+                0 0 30px rgba(212, 175, 55, 0.6);
+            background: linear-gradient(135deg, #c9a876 0%, #d4af37 100%);
+        }
+        
+        /* ===== GALERÍA DE FOTOS ===== */
+        .galeria {
+            display: none;
+            margin-top: 80px;
+        }
+        
+        .galeria.activa {
+            display: block;
+            animation: fade-in 0.8s ease;
+        }
+        
+        .galeria h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 36px;
+            color: #d4af37;
+            text-align: center;
+            margin-bottom: 50px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-shadow: 0 0 15px rgba(212, 175, 55, 0.4);
+            font-style: italic;
+        }
+        
+        .galeria h2::before {
+            content: '📖 ';
+        }
+        
+        .galeria h2::after {
+            content: ' 📖';
+        }
+        
+        .grid-fotos {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+            gap: 25px;
+            margin-bottom: 60px;
+        }
+        
+        .foto-item {
+            position: relative;
+            aspect-ratio: 1;
+            border-radius: 5px;
+            overflow: hidden;
+            cursor: pointer;
+            opacity: 0;
+            animation: fade-in 0.8s ease forwards;
+            transition: all 0.3s ease;
+            border: 3px solid #8B4513;
+            box-shadow: 
+                0 0 15px rgba(0, 0, 0, 0.5),
+                0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+        
+        /* Esquinas decorativas en fotos */
+        .foto-item::before,
+        .foto-item::after {
+            content: '';
+            position: absolute;
+            width: 15px;
+            height: 15px;
+            border: 2px solid #d4af37;
+            z-index: 5;
+        }
+        
+        .foto-item::before {
+            top: 5px;
+            left: 5px;
+            border-right: none;
+            border-bottom: none;
+        }
+        
+        .foto-item::after {
+            bottom: 5px;
+            right: 5px;
+            border-left: none;
+            border-top: none;
+        }
+        
+        .foto-item:nth-child(1) { animation-delay: 0.1s; }
+        .foto-item:nth-child(2) { animation-delay: 0.2s; }
+        .foto-item:nth-child(3) { animation-delay: 0.3s; }
+        .foto-item:nth-child(4) { animation-delay: 0.4s; }
+        .foto-item:nth-child(5) { animation-delay: 0.5s; }
+        .foto-item:nth-child(6) { animation-delay: 0.6s; }
+        
+        .foto-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+            filter: sepia(0.2);
+        }
+        
+        .foto-item:hover {
+            border-color: #d4af37;
+            box-shadow: 
+                0 8px 25px rgba(0, 0, 0, 0.6),
+                0 0 25px rgba(212, 175, 55, 0.4);
+            transform: translateY(-5px);
+        }
+        
+        .foto-item:hover img {
+            transform: scale(1.08);
+            filter: sepia(0);
+        }
+        
+        .foto-placeholder {
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(139, 69, 19, 0.3), rgba(101, 67, 33, 0.2));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 2px dashed #d4af37;
+            font-size: 50px;
+            color: #d4af37;
+        }
+        
+        /* ===== LÍNEA DIVISORA ===== */
+        .divider {
+            width: 250px;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, #d4af37, transparent);
+            margin: 60px auto;
+            position: relative;
+        }
+        
+        .divider::before {
+            content: '✦';
+            position: absolute;
+            top: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: #d4af37;
+            font-size: 20px;
+            text-shadow: 0 0 10px #d4af37;
+            background: #1a1410;
+            padding: 0 10px;
+        }
+        
+        /* ===== BOTÓN VOLVER ===== */
+        .volver {
+            display: inline-block;
+            margin-top: 60px;
+            padding: 12px 35px;
+            background: transparent;
+            border: 2px solid #d4af37;
+            border-radius: 5px;
+            color: #d4af37;
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 15px;
+            text-decoration: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-weight: 600;
+            font-style: italic;
+        }
+        
+        .volver:hover {
+            background: #d4af37;
+            color: #1a1410;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(212, 175, 55, 0.3);
+        }
+        
+        /* === FOOTER === */
+        .footer-library {
+            text-align: center;
+            margin-top: 80px;
+            padding-top: 30px;
+            border-top: 1px solid rgba(212, 175, 55, 0.3);
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 13px;
+            color: rgba(212, 175, 55, 0.7);
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            font-style: italic;
+        }
+        
+        .footer-library .quote-final {
+            font-family: 'Caveat', cursive;
+            font-size: 22px;
+            color: #d4af37;
+            margin-top: 15px;
+            text-transform: none;
+            letter-spacing: 1px;
+            font-style: normal;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            h1 { font-size: 48px; }
+            
+            .seccion-mensajes h2 {
+                font-size: 28px;
+            }
+            
+            .grid-fotos {
+                grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+                gap: 15px;
+            }
+            
+            .boton-mensaje {
+                padding: 14px 20px;
+                font-size: 13px;
+            }
+            
+            .contenedor {
+                padding: 80px 20px 60px;
+            }
+            
+            .book-decoration { display: none; }
+            
+            .icons-row span {
+                margin: 0 8px;
+            }
+            
+            .libro-wrapper {
+                width: 340px;
+                height: 320px;
+            }
+            
+            .libro {
+                width: 320px;
+                height: 240px;
+            }
+        }
+    </style>
 </head>
-
 <body>
-
-<div class="estado">HISTORIA ACTIVA</div>
-
-<div class="gato"></div>
-
-<audio id="musica" loop>
-<source src="../media/dafne/musica.mp3">
-</audio>
-
-<div id="acceso" onclick="abrirHistoria()">
-ABRIR HISTORIA
-</div>
-
-<div class="panel" id="panel">
-
-<h1 class="titulo">DAFNE</h1>
-
-<p id="textoCarta"></p>
-
-<img src="../media/dafne/foto1.jpg" class="foto izq" id="foto1">
-<img src="../media/dafne/foto2.jpg" class="foto der" id="foto2">
-
-<div class="audios">
-<button onclick="reproducirAudio('audio1')">CAPÍTULO 01</button>
-<button onclick="reproducirAudio('audio2')">CAPÍTULO 02</button>
-<button onclick="reproducirAudio('audio3')">CAPÍTULO FINAL</button>
-</div>
-
-<audio id="audio1"><source src="../media/dafne/audio1.mp3"></audio>
-<audio id="audio2"><source src="../media/dafne/audio2.mp3"></audio>
-<audio id="audio3"><source src="../media/dafne/audio3.mp3"></audio>
-
-</div>
-
-<script>
-
-/* PARTICULAS */
-
-for(let i=0;i<120;i++)
-{
-    let p=document.createElement("div");
-
-    p.className="particula";
-
-    p.style.left=Math.random()*100+"vw";
-
-    p.style.animationDuration=(6+Math.random()*10)+"s";
-
-    document.body.appendChild(p);
-}
-
-let audioActual=null;
-
-function reproducirAudio(id)
-{
-    if(audioActual)
-    {
-        audioActual.pause();
-        audioActual.currentTime=0;
-    }
-
-    audioActual=document.getElementById(id);
-
-    audioActual.play();
-}
-
-function abrirHistoria()
-{
-    acceso.style.display="none";
-
-    panel.style.display="block";
-
-    musica.volume=0;
-
-    musica.play();
-
-    let fade=setInterval(()=>{
-
-        if(musica.volume<0.25)
-            musica.volume+=0.01;
-
-        else
-            clearInterval(fade);
-
-    },120);
-
-    escribirTexto();
-}
-
-const texto=`HISTORIA DETECTADA.
-
-PROTAGONISTA: DAFNE.
-
-ESTADO: ÚNICA.
-
-CONTINÚA...`;
-
-let i=0;
-
-function escribirTexto()
-{
-    if(i<texto.length)
-    {
-        textoCarta.innerHTML+=texto.charAt(i);
-
-        i++;
-
-        if(i==40)
-            foto1.classList.add("visible");
-
-        if(i==80)
-            foto2.classList.add("visible");
-
-        setTimeout(escribirTexto,35);
-    }
-}
-
-</script>
-
+ 
+    <!-- LIBROS DECORATIVOS -->
+    <div class="book-decoration top-left">📚</div>
+    <div class="book-decoration top-right">📖</div>
+    <div class="book-decoration bottom-left">📖</div>
+    <div class="book-decoration bottom-right">📚</div>
+    
+    <!-- CITAS LITERARIAS -->
+    <div class="quote" style="top: 15%; left: 5%; animation-delay: 0s;">"Un libro es un sueño que tienes en tus manos"</div>
+    <div class="quote" style="top: 40%; right: 5%; animation-delay: 3s;">"Leer es viajar sin moverte"</div>
+    <div class="quote" style="top: 65%; left: 8%; animation-delay: 6s;">"Las palabras tienen poder"</div>
+    <div class="quote" style="top: 80%; right: 8%; animation-delay: 9s;">"Cada página, un nuevo mundo"</div>
+    
+    <!-- LIBRO INICIAL -->
+    <div id="libro-inicial">
+        <div class="libro-wrapper" onclick="abrirLibro()">
+            <!-- Letras como tinta apareciendo -->
+            <div class="ink-letter">D</div>
+            <div class="ink-letter">A</div>
+            <div class="ink-letter">F</div>
+            <div class="ink-letter">N</div>
+            
+            <!-- Pluma orbitando -->
+            <div class="quill-orbit">🪶</div>
+            
+            <!-- Libro -->
+            <div class="libro">
+                <div class="libro-titulo">Para ti,<br>Dafne</div>
+                <div class="libro-subtitulo">Tomo I · Edición Especial</div>
+                <div class="libro-instruccion">Abre el libro para comenzar...</div>
+            </div>
+        </div>
+    </div>
+ 
+    <!-- PARTÍCULAS Y PAPELES -->
+    <div id="particulas"></div>
+    <div id="papers"></div>
+ 
+    <!-- MÚSICA DE FONDO -->
+    <audio id="musica" loop volume="0.15">
+        <source src="../media/Dafne/musica.mp3" type="audio/mpeg">
+    </audio>
+ 
+    <!-- CONTENIDO PRINCIPAL -->
+    <div class="contenedor" id="contenedor">
+        
+        <!-- BANNER -->
+        <div class="library-banner">Biblioteca Personal · Edición Limitada</div>
+        
+        <h1>Para ti, Dafne</h1>
+        
+        <div class="literary-subtitle">"Algunas amistades son como los buenos libros, perduran en el tiempo y siempre te dejan algo nuevo"</div>
+        
+        <!-- ICONOS -->
+        <div class="icons-row">
+            <span>📚</span>
+            <span>📖</span>
+            <span>🪶</span>
+            <span>📜</span>
+            <span>🔖</span>
+        </div>
+ 
+        <!-- SECCIÓN DE MENSAJE PERSONALIZADO -->
+        <div class="seccion-mensaje">
+            <p>Capítulo I · Un Mensaje Para Ti</p>
+            <div class="mensaje-box" id="mensaje-personalizado">
+                Hay personas que llegan a nuestra vida como un buen libro: 
+                te atrapan desde la primera página y no quieres que termine.
+                <br><br>
+                Aquí va tu mensaje personalizado para Dafne. Cuéntale lo que significa para ti, los momentos que han compartido, sus conversaciones, las risas, los libros que han comentado.
+                <br><br>
+                Recuerda: las historias más bonitas son las que se escriben juntos.
+            </div>
+        </div>
+ 
+        <div class="divider"></div>
+ 
+        <!-- SECCIÓN DE MENSAJES -->
+        <div class="seccion-mensajes">
+            <h2>📜 Capítulos de Voz 📜</h2>
+            <div class="botones-container">
+                <button class="boton-mensaje" onclick="reproducirAudio('audio1')">
+                    <span>▶ Capítulo I</span>
+                </button>
+                <button class="boton-mensaje" onclick="reproducirAudio('audio2')">
+                    <span>▶ Capítulo II</span>
+                </button>
+                <button class="boton-mensaje" onclick="reproducirAudio('audio3')">
+                    <span>▶ Capítulo III</span>
+                </button>
+            </div>
+ 
+            <button class="boton-album" onclick="abrirAlbum()">
+                📸 Galería de Recuerdos 📸
+            </button>
+        </div>
+ 
+        <!-- GALERÍA DE FOTOS -->
+        <div class="galeria" id="galeria">
+            <h2>Nuestros Recuerdos</h2>
+            <div class="grid-fotos">
+                <div class="foto-item">
+                    <div class="foto-placeholder">📸</div>
+                </div>
+ 
+                <div class="foto-item">
+                    <div class="foto-placeholder">📸</div>
+                </div>
+ 
+                <div class="foto-item">
+                    <div class="foto-placeholder">📸</div>
+                </div>
+ 
+                <div class="foto-item">
+                    <div class="foto-placeholder">📸</div>
+                </div>
+ 
+                <div class="foto-item">
+                    <div class="foto-placeholder">📸</div>
+                </div>
+ 
+                <div class="foto-item">
+                    <div class="foto-placeholder">📸</div>
+                </div>
+            </div>
+        </div>
+ 
+        <div style="text-align: center;">
+            <a href="../index.html" class="volver">← Cerrar el Libro</a>
+        </div>
+        
+        <!-- FOOTER -->
+        <div class="footer-library">
+            ✦ Fin del Capítulo · Para Continuarse ✦
+            <div class="quote-final">"Las mejores historias nunca terminan"</div>
+        </div>
+ 
+    </div>
+ 
+    <!-- AUDIOS -->
+    <audio id="audio1"><source src="../media/Dafne/audio1.mp3" type="audio/mpeg"></audio>
+    <audio id="audio2"><source src="../media/Dafne/audio2.mp3" type="audio/mpeg"></audio>
+    <audio id="audio3"><source src="../media/Dafne/audio3.mp3" type="audio/mpeg"></audio>
+ 
+    <script>
+        // Generar partículas
+        function generarParticulas() {
+            const contenedor = document.getElementById('particulas');
+            for (let i = 0; i < 40; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                particle.style.left = Math.random() * 100 + 'vw';
+                particle.style.animationDuration = (15 + Math.random() * 15) + 's';
+                particle.style.animationDelay = Math.random() * 5 + 's';
+                contenedor.appendChild(particle);
+            }
+        }
+        generarParticulas();
+        
+        // Generar papeles cayendo
+        function generarPapeles() {
+            const container = document.getElementById('papers');
+            const papers = ['📜', '📄', '📃'];
+            for (let i = 0; i < 5; i++) {
+                const paper = document.createElement('div');
+                paper.className = 'paper';
+                paper.textContent = papers[Math.floor(Math.random() * papers.length)];
+                paper.style.left = Math.random() * 100 + 'vw';
+                paper.style.animationDuration = (15 + Math.random() * 10) + 's';
+                paper.style.animationDelay = (Math.random() * 10) + 's';
+                container.appendChild(paper);
+            }
+        }
+        generarPapeles();
+ 
+        // Control de audio
+        let audioActual = null;
+ 
+        function reproducirAudio(id) {
+            if (audioActual && !audioActual.paused) {
+                audioActual.pause();
+                audioActual.currentTime = 0;
+            }
+ 
+            audioActual = document.getElementById(id);
+            audioActual.play();
+        }
+ 
+        // Abrir libro
+        function abrirLibro() {
+            document.getElementById('libro-inicial').style.display = 'none';
+            document.getElementById('contenedor').classList.add('visible');
+ 
+            // Iniciar música
+            const musica = document.getElementById('musica');
+            musica.play();
+        }
+ 
+        // Álbum de fotos
+        function abrirAlbum() {
+            const galeria = document.getElementById('galeria');
+            galeria.classList.toggle('activa');
+            
+            setTimeout(() => {
+                galeria.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }, 100);
+        }
+    </script>
+ 
 </body>
 </html>
