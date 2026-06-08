@@ -1,433 +1,1194 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<meta charset="UTF-8">
-<title>Para ti, Ana Lucía</title>
-
-<!-- FUENTE MÁS STRANGER THINGS -->
-<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
-
-<style>
-
-/* ================= FONDO STRANGER THINGS ROJO Y NEGRO ================= */
-
-body
-{
-    margin: 0;
-
-    background:
-    radial-gradient(circle at 50% 20%, rgba(255,0,0,0.35), transparent 60%),
-    radial-gradient(circle at 20% 80%, rgba(180,0,0,0.3), transparent 60%),
-    linear-gradient(180deg, #000000, #050505, #000000);
-
-    font-family: 'Poppins', sans-serif;
-
-    color: white;
-
-    text-align: center;
-
-    overflow-x: hidden;
-}
-
-/* ================= NIEBLA ROJA ================= */
-
-.niebla
-{
-    position: fixed;
-
-    width: 200%;
-    height: 200%;
-
-    background: radial-gradient(circle, rgba(255,0,0,0.08), transparent 70%);
-
-    animation: moverNiebla 30s infinite linear;
-
-    pointer-events: none;
-}
-
-@keyframes moverNiebla
-{
-    from { transform: translate(-20%, -20%); }
-    to { transform: translate(20%, 20%); }
-}
-
-/* ================= LETRAS NAVIDEÑAS FIJAS ================= */
-
-.letras
-{
-    position: fixed;
-
-    top: 20px;
-
-    width: 100%;
-
-    font-family: 'Cinzel', serif;
-
-    font-size: 24px;
-
-    letter-spacing: 10px;
-
-    z-index: 10;
-}
-
-.letra
-{
-    display: inline-block;
-
-    margin: 5px;
-
-    animation: parpadear 2s infinite;
-}
-
-@keyframes parpadear
-{
-    0% { color: #ff0000; text-shadow: 0 0 15px #ff0000; }
-    50% { color: #aa0000; text-shadow: 0 0 25px #ff0000; }
-    100% { color: #ff0000; text-shadow: 0 0 15px #ff0000; }
-}
-
-/* ================= TITULO STRANGER THINGS ================= */
-
-.glitch
-{
-    font-family: 'Cinzel', serif;
-
-    font-size: 48px;
-
-    color: #ff0000;
-
-    text-shadow:
-    0 0 10px #ff0000,
-    0 0 20px #ff0000,
-    0 0 40px #aa0000;
-}
-
-/* ================= SOBRE ================= */
-
-#sobre
-{
-    margin-top: 200px;
-
-    width: 240px;
-    height: 140px;
-
-    background: linear-gradient(45deg, #550000, #ff0000);
-
-    border-radius: 16px;
-
-    cursor: pointer;
-
-    margin-left: auto;
-    margin-right: auto;
-
-    animation: latido 1.5s infinite;
-
-    box-shadow:
-    0 0 20px #ff0000,
-    0 0 40px #ff0000,
-    0 0 80px #550000;
-}
-
-@keyframes latido
-{
-    0% { transform: scale(1); }
-    50% { transform: scale(1.1); }
-    100% { transform: scale(1); }
-}
-
-/* ================= CARTA ================= */
-
-.carta
-{
-    display: none;
-
-    margin: auto;
-
-    margin-top: 40px;
-
-    max-width: 720px;
-
-    padding: 40px;
-
-    background: rgba(0,0,0,0.85);
-
-    border-radius: 20px;
-
-    box-shadow:
-    0 0 30px #ff0000,
-    0 0 60px #550000;
-}
-
-/* ================= TEXTO ================= */
-
-#textoCarta
-{
-    font-size: 20px;
-
-    border-right: 2px solid #ff0000;
-
-    white-space: pre-line;
-}
-
-/* ================= PARTICULAS ROJAS ================= */
-
-.particula
-{
-    position: fixed;
-
-    width: 4px;
-    height: 4px;
-
-    border-radius: 50%;
-
-    background: #ff0000;
-
-    box-shadow: 0 0 10px #ff0000;
-
-    animation: flotar linear infinite;
-}
-
-@keyframes flotar
-{
-    from
-    {
-        transform: translateY(100vh);
-        opacity: 0;
-    }
-
-    10%
-    {
-        opacity: 1;
-    }
-
-    to
-    {
-        transform: translateY(-10vh);
-        opacity: 0;
-    }
-}
-
-/* ================= FOTOS ================= */
-
-.foto
-{
-    position: absolute;
-
-    width: 170px;
-
-    border-radius: 12px;
-
-    box-shadow: 0 0 20px #ff0000;
-
-    opacity: 0;
-
-    transition: opacity 2s;
-}
-
-.foto.visible
-{
-    opacity: 1;
-}
-
-.foto.izq
-{
-    left: 5%;
-    transform: rotate(-6deg);
-}
-
-.foto.der
-{
-    right: 5%;
-    transform: rotate(6deg);
-}
-
-/* ================= VIDEO ================= */
-
-.video
-{
-    margin-top: 30px;
-
-    width: 340px;
-
-    border-radius: 12px;
-
-    box-shadow: 0 0 25px #ff0000;
-
-    opacity: 0;
-
-    transition: opacity 2s;
-}
-
-.video.visible
-{
-    opacity: 1;
-}
-
-/* ================= BOTONES ================= */
-
-.audios button
-{
-    display: block;
-
-    margin: 12px auto;
-
-    padding: 12px 20px;
-
-    border: none;
-
-    border-radius: 12px;
-
-    background: linear-gradient(45deg, #550000, #ff0000);
-
-    color: white;
-
-    cursor: pointer;
-
-    width: 320px;
-
-    box-shadow:
-    0 0 20px #ff0000;
-}
-
-</style>
-
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Para ti, Ana Lucía</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Bungee+Inline&family=Roboto+Mono:wght@400;700&family=Lora:wght@400;500;600&display=swap" rel="stylesheet">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #050000 0%, #1a0505 50%, #050000 100%);
+            font-family: 'Lora', serif;
+            color: #e8e8e8;
+            min-height: 100vh;
+            overflow-x: hidden;
+            position: relative;
+        }
+        
+        /* === LÍNEAS DE TV ANTIGUA EN EL FONDO === */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: repeating-linear-gradient(
+                0deg,
+                transparent,
+                transparent 2px,
+                rgba(255, 0, 0, 0.02) 2px,
+                rgba(255, 0, 0, 0.02) 4px
+            );
+            pointer-events: none;
+            z-index: 1;
+        }
+        
+        /* === NIEBLA SUTIL === */
+        body::after {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 20% 50%, rgba(255, 0, 0, 0.05) 0%, transparent 50%),
+                        radial-gradient(circle at 80% 30%, rgba(255, 0, 0, 0.03) 0%, transparent 50%);
+            pointer-events: none;
+            z-index: 1;
+            animation: fog-move 15s ease-in-out infinite;
+        }
+        
+        @keyframes fog-move {
+            0%, 100% { opacity: 0.5; }
+            50% { opacity: 0.8; }
+        }
+        
+        /* === CHRISTMAS LIGHTS COLGANTES === */
+        .christmas-lights {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 80px;
+            z-index: 50;
+            pointer-events: none;
+        }
+        
+        .christmas-lights::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: #333;
+        }
+        
+        .light {
+            position: absolute;
+            top: 5px;
+            width: 14px;
+            height: 20px;
+            border-radius: 50% 50% 30% 30%;
+            animation: christmas-blink 2s ease-in-out infinite;
+        }
+        
+        @keyframes christmas-blink {
+            0%, 100% { 
+                opacity: 0.4;
+                box-shadow: 0 0 5px currentColor;
+            }
+            50% { 
+                opacity: 1;
+                box-shadow: 0 0 15px currentColor, 0 0 25px currentColor;
+            }
+        }
+        
+        /* === PARTÍCULAS ESTÁTICAS === */
+        .particle {
+            position: fixed;
+            width: 3px;
+            height: 3px;
+            border-radius: 50%;
+            opacity: 0.7;
+            pointer-events: none;
+            animation: float-particle 15s linear infinite;
+            z-index: 2;
+        }
+        
+        .particle {
+            background: #ff0000;
+            box-shadow: 0 0 8px #ff0000;
+        }
+        
+        .particle:nth-child(odd) {
+            background: #cc0000;
+            box-shadow: 0 0 8px #cc0000;
+        }
+        
+        .particle:nth-child(3n) {
+            background: #ffffff;
+            box-shadow: 0 0 8px #ffffff;
+            opacity: 0.4;
+        }
+        
+        @keyframes float-particle {
+            from {
+                transform: translateY(100vh) translateX(0);
+                opacity: 0;
+            }
+            10% { opacity: 0.8; }
+            90% { opacity: 0.8; }
+            to {
+                transform: translateY(-100vh) translateX(100px);
+                opacity: 0;
+            }
+        }
+        
+        /* === RAÍCES DEL UPSIDE DOWN (decoración esquinas) === */
+        .vines {
+            position: fixed;
+            font-size: 80px;
+            opacity: 0.15;
+            pointer-events: none;
+            z-index: 1;
+            animation: vine-grow 6s ease-in-out infinite;
+        }
+        
+        .vines.top-left {
+            top: 80px;
+            left: 0;
+            transform: rotate(-20deg);
+        }
+        
+        .vines.top-right {
+            top: 80px;
+            right: 0;
+            transform: scaleX(-1) rotate(-20deg);
+        }
+        
+        .vines.bottom-left {
+            bottom: 0;
+            left: 0;
+            transform: rotate(160deg);
+        }
+        
+        .vines.bottom-right {
+            bottom: 0;
+            right: 0;
+            transform: scaleX(-1) rotate(160deg);
+        }
+        
+        @keyframes vine-grow {
+            0%, 100% { transform: scale(1) rotate(var(--rot, 0deg)); opacity: 0.15; }
+            50% { transform: scale(1.05) rotate(var(--rot, 0deg)); opacity: 0.25; }
+        }
+        
+        /* ===== SOBRE INICIAL ===== */
+        #sobre-inicial {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 100;
+            background: linear-gradient(135deg, #050000 0%, #1a0505 100%);
+            animation: fade-out 0.8s ease forwards 8s;
+        }
+        
+        @keyframes fade-out {
+            to {
+                opacity: 0;
+                pointer-events: none;
+            }
+        }
+        
+        /* Líneas de TV en sobre inicial */
+        #sobre-inicial::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: repeating-linear-gradient(
+                0deg,
+                transparent,
+                transparent 2px,
+                rgba(255, 0, 0, 0.03) 2px,
+                rgba(255, 0, 0, 0.03) 4px
+            );
+            pointer-events: none;
+            z-index: 1;
+        }
+        
+        .sobre-wrapper {
+            position: relative;
+            width: 380px;
+            height: 380px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 10;
+        }
+        
+        /* === LETRAS DEL ALFABETO BRILLANDO (REFERENCIA A WILL/JOYCE) === */
+        .alphabet-letter {
+            position: absolute;
+            font-family: 'Bungee Inline', cursive;
+            font-size: 36px;
+            color: #ff0000;
+            opacity: 0;
+            text-shadow: 0 0 15px #ff0000, 0 0 30px #ff0000;
+            animation: blink-letter 4s ease-in-out infinite;
+        }
+        
+        @keyframes blink-letter {
+            0%, 90%, 100% { opacity: 0; }
+            5%, 15% { opacity: 1; }
+            7%, 13% { opacity: 0.3; }
+        }
+        
+        .alphabet-letter:nth-child(1) { 
+            top: 0; left: 30px; 
+            animation-delay: 0s;
+        }
+        .alphabet-letter:nth-child(2) { 
+            top: 0; right: 30px; 
+            animation-delay: 1s;
+        }
+        .alphabet-letter:nth-child(3) { 
+            bottom: 0; left: 30px; 
+            animation-delay: 2s;
+        }
+        .alphabet-letter:nth-child(4) { 
+            bottom: 0; right: 30px; 
+            animation-delay: 3s;
+        }
+        
+        /* Partículas orbitando */
+        .particle-orbit {
+            position: absolute;
+            width: 5px;
+            height: 5px;
+            border-radius: 50%;
+            animation: orbit-particle 8s linear infinite;
+        }
+        
+        .particle-orbit { background: #ff0000; box-shadow: 0 0 12px #ff0000; }
+        .particle-orbit:nth-child(7) { background: #ffffff; box-shadow: 0 0 12px #ffffff; }
+        .particle-orbit:nth-child(8) { background: #ff3333; box-shadow: 0 0 12px #ff3333; }
+        .particle-orbit:nth-child(9) { background: #cc0000; box-shadow: 0 0 12px #cc0000; }
+        .particle-orbit:nth-child(10) { background: #ffffff; box-shadow: 0 0 12px #ffffff; }
+        
+        @keyframes orbit-particle {
+            0% {
+                transform: rotate(0deg) translateX(200px) rotate(0deg);
+                opacity: 0.8;
+            }
+            100% {
+                transform: rotate(360deg) translateX(200px) rotate(-360deg);
+                opacity: 0.8;
+            }
+        }
+        
+        .particle-orbit:nth-child(6) { animation-delay: 0s; }
+        .particle-orbit:nth-child(7) { animation-delay: 1.5s; }
+        .particle-orbit:nth-child(8) { animation-delay: 3s; }
+        .particle-orbit:nth-child(9) { animation-delay: 4.5s; }
+        .particle-orbit:nth-child(10) { animation-delay: 6s; }
+        
+        /* SOBRE - Estilo logo Stranger Things */
+        .sobre {
+            width: 320px;
+            height: 200px;
+            background: linear-gradient(135deg, #1a0000 0%, #330000 100%);
+            border: 4px solid #ff0000;
+            border-radius: 12px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 
+                0 20px 60px rgba(255, 0, 0, 0.4),
+                0 0 30px rgba(255, 0, 0, 0.5),
+                inset 0 0 30px rgba(255, 0, 0, 0.2);
+            cursor: pointer;
+            animation: pulse-sobre 2s ease-in-out infinite, flicker-light 3s ease-in-out infinite;
+            position: relative;
+            z-index: 10;
+        }
+        
+        /* Doble borde como logo real de Stranger Things */
+        .sobre::before {
+            content: '';
+            position: absolute;
+            top: -10px;
+            left: -10px;
+            right: -10px;
+            bottom: -10px;
+            border: 2px solid #ff0000;
+            border-radius: 16px;
+            opacity: 0.5;
+            animation: pulse-border 3s ease-in-out infinite;
+        }
+        
+        @keyframes pulse-border {
+            0%, 100% { opacity: 0.3; transform: scale(1); }
+            50% { opacity: 0.7; transform: scale(1.02); }
+        }
+        
+        @keyframes pulse-sobre {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+        
+        @keyframes flicker-light {
+            0%, 100% { 
+                box-shadow: 
+                    0 20px 60px rgba(255, 0, 0, 0.4),
+                    0 0 30px rgba(255, 0, 0, 0.5),
+                    inset 0 0 30px rgba(255, 0, 0, 0.2);
+                border-color: #ff0000;
+            }
+            5% {
+                box-shadow: 
+                    0 20px 60px rgba(255, 0, 0, 0.2),
+                    0 0 15px rgba(255, 0, 0, 0.3),
+                    inset 0 0 15px rgba(255, 0, 0, 0.1);
+                border-color: #660000;
+            }
+            10%, 90% { 
+                box-shadow: 
+                    0 20px 60px rgba(255, 0, 0, 0.4),
+                    0 0 30px rgba(255, 0, 0, 0.5),
+                    inset 0 0 30px rgba(255, 0, 0, 0.2);
+                border-color: #ff0000;
+            }
+            50% { 
+                box-shadow: 
+                    0 20px 60px rgba(255, 0, 0, 0.7),
+                    0 0 60px rgba(255, 0, 0, 0.8),
+                    inset 0 0 60px rgba(255, 0, 0, 0.3);
+                border-color: #ff3333;
+            }
+        }
+        
+        .sobre-titulo {
+            font-family: 'Bungee Inline', cursive;
+            font-size: 28px;
+            color: #ff0000;
+            font-weight: 700;
+            margin-bottom: 10px;
+            text-align: center;
+            text-shadow: 
+                0 0 10px #ff0000, 
+                0 0 20px #ff0000,
+                0 0 30px rgba(255, 0, 0, 0.5);
+            line-height: 1.2;
+        }
+        
+        .sobre-subtitulo {
+            font-family: 'Roboto Mono', monospace;
+            font-size: 11px;
+            color: #ff6666;
+            font-weight: 500;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            animation: blink-static 2s ease-in-out infinite;
+        }
+        
+        @keyframes blink-static {
+            0%, 100% { opacity: 0.8; }
+            50% { opacity: 1; }
+        }
+        
+        .sobre-instruccion {
+            font-family: 'Roboto Mono', monospace;
+            font-size: 10px;
+            color: #ff0000;
+            margin-top: 12px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            opacity: 0.9;
+            animation: blink-instruction 1.5s ease-in-out infinite;
+        }
+        
+        @keyframes blink-instruction {
+            0%, 100% { opacity: 0.7; }
+            50% { opacity: 1; }
+        }
+        
+        /* ===== CONTENIDO PRINCIPAL ===== */
+        .contenedor {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 100px 40px 80px;
+            display: none;
+            animation: fade-in 1s ease;
+            position: relative;
+            z-index: 10;
+        }
+        
+        .contenedor.visible {
+            display: block;
+        }
+        
+        @keyframes fade-in {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        /* === BANNER HAWKINS === */
+        .hawkins-banner {
+            text-align: center;
+            margin-bottom: 30px;
+            font-family: 'Roboto Mono', monospace;
+            font-size: 12px;
+            color: #ff6666;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            opacity: 0.7;
+        }
+        
+        .hawkins-banner::before,
+        .hawkins-banner::after {
+            content: ' ━━━━━ ';
+            color: #ff0000;
+        }
+        
+        /* Título principal con efecto Stranger Things MEJORADO */
+        h1 {
+            font-family: 'Bungee Inline', cursive;
+            font-size: 72px;
+            text-align: center;
+            color: #ff0000;
+            margin-bottom: 20px;
+            text-shadow: 
+                0 0 20px #ff0000,
+                0 0 40px #ff0000,
+                0 0 60px rgba(255, 0, 0, 0.5);
+            font-weight: 700;
+            animation: title-flicker 4s ease-in-out infinite, levitate 3s ease-in-out infinite;
+            line-height: 1.1;
+            position: relative;
+        }
+        
+        @keyframes title-flicker {
+            0%, 100% { 
+                text-shadow: 
+                    0 0 20px #ff0000,
+                    0 0 40px #ff0000,
+                    0 0 60px rgba(255, 0, 0, 0.5);
+                opacity: 1;
+            }
+            3% { opacity: 0.7; }
+            6%, 94% { opacity: 1; }
+            50% { 
+                text-shadow: 
+                    0 0 30px #ff0000,
+                    0 0 60px #ff0000,
+                    0 0 90px rgba(255, 0, 0, 0.7);
+            }
+        }
+        
+        @keyframes levitate {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+        
+        /* === SUBTITULO ESTILO PELÍCULA === */
+        .pelicula-subtitle {
+            text-align: center;
+            font-family: 'Roboto Mono', monospace;
+            font-size: 13px;
+            color: #ff0000;
+            margin-bottom: 50px;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            opacity: 0.8;
+            border-top: 1px solid #ff0000;
+            border-bottom: 1px solid #ff0000;
+            padding: 10px 0;
+            max-width: 400px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        /* === ICONOS DECORATIVOS === */
+        .icons-row {
+            text-align: center;
+            margin: 30px 0;
+            font-size: 28px;
+        }
+        
+        .icons-row span {
+            display: inline-block;
+            margin: 0 15px;
+            animation: float-icon 3s ease-in-out infinite;
+            opacity: 0.7;
+        }
+        
+        .icons-row span:nth-child(1) { animation-delay: 0s; }
+        .icons-row span:nth-child(2) { animation-delay: 0.5s; }
+        .icons-row span:nth-child(3) { animation-delay: 1s; }
+        .icons-row span:nth-child(4) { animation-delay: 1.5s; }
+        .icons-row span:nth-child(5) { animation-delay: 2s; }
+        
+        @keyframes float-icon {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+        
+        /* ===== SECCIÓN DE MENSAJE PERSONALIZADO ===== */
+        .seccion-mensaje {
+            background: rgba(255, 0, 0, 0.05);
+            border: 2px solid #ff0000;
+            border-radius: 12px;
+            padding: 40px;
+            margin-bottom: 60px;
+            text-align: center;
+            position: relative;
+            box-shadow: 0 0 20px rgba(255, 0, 0, 0.2);
+        }
+        
+        /* Doble borde como Stranger Things */
+        .seccion-mensaje::after {
+            content: '';
+            position: absolute;
+            top: -8px;
+            left: -8px;
+            right: -8px;
+            bottom: -8px;
+            border: 1px solid #ff0000;
+            border-radius: 14px;
+            opacity: 0.4;
+            pointer-events: none;
+        }
+        
+        .seccion-mensaje::before {
+            content: '⚡';
+            position: absolute;
+            top: -20px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 32px;
+            animation: sparkle 2s ease-in-out infinite;
+            background: #050000;
+            padding: 0 10px;
+            z-index: 5;
+        }
+        
+        @keyframes sparkle {
+            0%, 100% { opacity: 0.5; transform: translateX(-50%) scale(1); }
+            50% { opacity: 1; transform: translateX(-50%) scale(1.2); }
+        }
+        
+        .seccion-mensaje p {
+            font-family: 'Bungee Inline', cursive;
+            font-size: 18px;
+            color: #ff0000;
+            margin-bottom: 20px;
+            letter-spacing: 3px;
+            text-shadow: 0 0 10px rgba(255, 0, 0, 0.5);
+        }
+        
+        .mensaje-box {
+            background: rgba(20, 0, 0, 0.8);
+            border: 1px solid #ff0000;
+            border-radius: 8px;
+            padding: 25px;
+            min-height: 120px;
+            color: #e8e8e8;
+            font-size: 15px;
+            line-height: 1.8;
+            margin: 20px 0;
+            font-family: 'Lora', serif;
+            box-shadow: inset 0 0 20px rgba(255, 0, 0, 0.1);
+            text-align: left;
+            position: relative;
+        }
+        
+        /* Mini esquinas decorativas */
+        .mensaje-box::before,
+        .mensaje-box::after {
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            border: 2px solid #ff0000;
+        }
+        
+        .mensaje-box::before {
+            top: -2px;
+            left: -2px;
+            border-right: none;
+            border-bottom: none;
+        }
+        
+        .mensaje-box::after {
+            bottom: -2px;
+            right: -2px;
+            border-left: none;
+            border-top: none;
+        }
+        
+        /* ===== SECCIÓN DE MENSAJES ===== */
+        .seccion-mensajes {
+            margin: 80px 0;
+            text-align: center;
+        }
+        
+        .seccion-mensajes h2 {
+            font-family: 'Bungee Inline', cursive;
+            font-size: 36px;
+            color: #ff0000;
+            margin-bottom: 40px;
+            font-weight: 400;
+            letter-spacing: 3px;
+            text-shadow: 0 0 15px #ff0000;
+        }
+        
+        .seccion-mensajes h2::before {
+            content: '⚡ ';
+        }
+        
+        .seccion-mensajes h2::after {
+            content: ' ⚡';
+        }
+        
+        .botones-container {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            max-width: 500px;
+            margin: 0 auto;
+        }
+        
+        .boton-mensaje {
+            padding: 18px 30px;
+            background: linear-gradient(135deg, #ff0000, #cc0000);
+            border: 2px solid #fff;
+            border-radius: 8px;
+            color: #fff;
+            font-family: 'Bungee Inline', cursive;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            text-shadow: 1px 1px 0 rgba(0,0,0,0.5);
+            box-shadow: 0 0 15px rgba(255, 0, 0, 0.4);
+        }
+        
+        .boton-mensaje::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+            transition: left 0.4s ease;
+            z-index: 1;
+        }
+        
+        .boton-mensaje:hover::before {
+            left: 100%;
+        }
+        
+        .boton-mensaje:hover {
+            transform: translateY(-4px) scale(1.05);
+            box-shadow: 
+                0 12px 25px rgba(255, 0, 0, 0.6),
+                0 0 30px rgba(255, 0, 0, 0.5);
+            background: linear-gradient(135deg, #ff3333, #ff0000);
+        }
+        
+        .boton-mensaje:active {
+            transform: scale(0.98);
+        }
+        
+        .boton-mensaje span {
+            position: relative;
+            z-index: 2;
+        }
+        
+        /* ===== BOTÓN ALBUM ===== */
+        .boton-album {
+            margin-top: 50px;
+            padding: 20px 50px;
+            background: linear-gradient(135deg, #ff0000, #cc0000);
+            border: 2px solid #fff;
+            border-radius: 8px;
+            color: #fff;
+            font-family: 'Bungee Inline', cursive;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            text-shadow: 1px 1px 0 rgba(0,0,0,0.5);
+            box-shadow: 
+                0 8px 20px rgba(255, 0, 0, 0.4),
+                0 0 20px rgba(255, 0, 0, 0.3);
+        }
+        
+        .boton-album::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: rgba(255,255,255,0.3);
+            transition: left 0.4s ease;
+        }
+        
+        .boton-album:hover::before {
+            left: 100%;
+        }
+        
+        .boton-album:hover {
+            transform: translateY(-5px) scale(1.08);
+            box-shadow: 
+                0 18px 40px rgba(255, 0, 0, 0.7),
+                0 0 30px rgba(255, 0, 0, 0.6);
+            background: linear-gradient(135deg, #ff3333, #ff0000);
+        }
+        
+        /* ===== GALERÍA DE FOTOS ===== */
+        .galeria {
+            display: none;
+            margin-top: 80px;
+        }
+        
+        .galeria.activa {
+            display: block;
+            animation: fade-in 0.8s ease;
+        }
+        
+        .galeria h2 {
+            font-family: 'Bungee Inline', cursive;
+            font-size: 36px;
+            color: #ff0000;
+            text-align: center;
+            margin-bottom: 50px;
+            letter-spacing: 3px;
+            text-shadow: 0 0 15px #ff0000;
+        }
+        
+        .galeria h2::before {
+            content: '📺 ';
+        }
+        
+        .galeria h2::after {
+            content: ' 📺';
+        }
+        
+        .grid-fotos {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+            gap: 25px;
+            margin-bottom: 60px;
+        }
+        
+        .foto-item {
+            position: relative;
+            aspect-ratio: 1;
+            border-radius: 8px;
+            overflow: hidden;
+            cursor: pointer;
+            opacity: 0;
+            animation: fade-in 0.8s ease forwards;
+            transition: all 0.3s ease;
+            border: 2px solid rgba(255, 0, 0, 0.3);
+            box-shadow: 0 0 15px rgba(255, 0, 0, 0.2);
+        }
+        
+        /* Esquinas decorativas en fotos */
+        .foto-item::before,
+        .foto-item::after {
+            content: '';
+            position: absolute;
+            width: 15px;
+            height: 15px;
+            border: 2px solid #ff0000;
+            z-index: 5;
+        }
+        
+        .foto-item::before {
+            top: 5px;
+            left: 5px;
+            border-right: none;
+            border-bottom: none;
+        }
+        
+        .foto-item::after {
+            bottom: 5px;
+            right: 5px;
+            border-left: none;
+            border-top: none;
+        }
+        
+        .foto-item:nth-child(1) { animation-delay: 0.1s; }
+        .foto-item:nth-child(2) { animation-delay: 0.2s; }
+        .foto-item:nth-child(3) { animation-delay: 0.3s; }
+        .foto-item:nth-child(4) { animation-delay: 0.4s; }
+        .foto-item:nth-child(5) { animation-delay: 0.5s; }
+        .foto-item:nth-child(6) { animation-delay: 0.6s; }
+        
+        .foto-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        
+        .foto-item:hover {
+            border-color: #ff0000;
+            box-shadow: 
+                0 8px 25px rgba(255, 0, 0, 0.5),
+                0 0 20px rgba(255, 0, 0, 0.4);
+            transform: translateY(-5px);
+        }
+        
+        .foto-item:hover img {
+            transform: scale(1.08);
+        }
+        
+        .foto-placeholder {
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 0, 0, 0.05);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 2px dashed #ff0000;
+            font-size: 50px;
+            color: #ff0000;
+        }
+        
+        /* ===== LÍNEA DIVISORA ===== */
+        .divider {
+            width: 200px;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, #ff0000, #ffffff, #ff0000, transparent);
+            margin: 60px auto;
+            box-shadow: 0 0 15px #ff0000;
+            position: relative;
+        }
+        
+        .divider::before,
+        .divider::after {
+            content: '⚡';
+            position: absolute;
+            top: -10px;
+            color: #ff0000;
+            text-shadow: 0 0 10px #ff0000;
+            font-size: 18px;
+        }
+        
+        .divider::before {
+            left: -20px;
+        }
+        
+        .divider::after {
+            right: -20px;
+        }
+        
+        /* ===== BOTÓN VOLVER ===== */
+        .volver {
+            display: inline-block;
+            margin-top: 60px;
+            padding: 12px 35px;
+            background: transparent;
+            border: 2px solid #ff0000;
+            border-radius: 6px;
+            color: #ff0000;
+            font-family: 'Bungee Inline', cursive;
+            font-size: 14px;
+            text-decoration: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            font-weight: 500;
+        }
+        
+        .volver:hover {
+            background: #ff0000;
+            color: #fff;
+            transform: translateY(-3px);
+            box-shadow: 
+                0 8px 20px rgba(255, 0, 0, 0.5),
+                0 0 20px rgba(255, 0, 0, 0.4);
+        }
+        
+        /* === FOOTER STRANGER THINGS === */
+        .footer-st {
+            text-align: center;
+            margin-top: 80px;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255, 0, 0, 0.3);
+            font-family: 'Roboto Mono', monospace;
+            font-size: 11px;
+            color: rgba(255, 0, 0, 0.6);
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            h1 { font-size: 48px; }
+            
+            .seccion-mensajes h2 {
+                font-size: 28px;
+            }
+            
+            .grid-fotos {
+                grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+                gap: 15px;
+            }
+            
+            .boton-mensaje {
+                padding: 14px 20px;
+                font-size: 12px;
+            }
+            
+            .contenedor {
+                padding: 80px 20px 60px;
+            }
+            
+            .vines { display: none; }
+            
+            .icons-row span {
+                margin: 0 8px;
+            }
+        }
+    </style>
 </head>
-
 <body>
-
-<div class="niebla"></div>
-
-<div class="letras">
-<span class="letra">A</span>
-<span class="letra">N</span>
-<span class="letra">A</span>
-<span class="letra">L</span>
-<span class="letra">U</span>
-<span class="letra">C</span>
-<span class="letra">I</span>
-<span class="letra">A</span>
-</div>
-
-<audio id="musica" loop>
-<source src="../media/ana/musica.mp3">
-</audio>
-
-<div id="sobre" onclick="abrirCarta()"></div>
-
-<div class="carta" id="carta">
-
-<h1 class="glitch">Para ti, Ana Lucía</h1>
-
-<p id="textoCarta"></p>
-
-<img src="../media/ana/foto1.jpg" class="foto izq" id="foto1">
-<img src="../media/ana/foto2.jpg" class="foto der" id="foto2">
-
-<video class="video" id="video1" autoplay muted loop>
-<source src="../media/ana/video1.mp4">
-</video>
-
-<h2>Escucha esto</h2>
-
-<div class="audios">
-<button onclick="reproducirAudio('audio1')">▶ Mensaje 1</button>
-<button onclick="reproducirAudio('audio2')">▶ Mensaje 2</button>
-<button onclick="reproducirAudio('audio3')">▶ Mensaje 3</button>
-</div>
-
-<audio id="audio1"><source src="../media/ana/audio1.mp3"></audio>
-<audio id="audio2"><source src="../media/ana/audio2.mp3"></audio>
-<audio id="audio3"><source src="../media/ana/audio3.mp3"></audio>
-
-</div>
-
-<script>
-
-/* PARTICULAS */
-
-for(let i=0;i<100;i++)
-{
-    let p=document.createElement("div");
-
-    p.className="particula";
-
-    p.style.left=Math.random()*100+"vw";
-
-    p.style.animationDuration=(4+Math.random()*8)+"s";
-
-    document.body.appendChild(p);
-}
-
-let audioActual=null;
-
-function reproducirAudio(id)
-{
-    if(audioActual)
-    {
-        audioActual.pause();
-        audioActual.currentTime=0;
-    }
-
-    audioActual=document.getElementById(id);
-
-    audioActual.play();
-}
-
-function abrirCarta()
-{
-    document.getElementById("sobre").style.display="none";
-
-    document.getElementById("carta").style.display="block";
-
-    let musica=document.getElementById("musica");
-
-    musica.volume=0;
-
-    musica.play();
-
-    let fade=setInterval(()=>{
-
-        if(musica.volume<0.3)
-            musica.volume+=0.01;
-
-        else
-            clearInterval(fade);
-
-    },120);
-
-    escribirTexto();
-}
-
-const texto=`Algunas conexiones...
-
-trascienden dimensiones.
-
-Y tú eres una de ellas.`;
-
-let i=0;
-
-function escribirTexto()
-{
-    if(i<texto.length)
-    {
-        textoCarta.innerHTML+=texto.charAt(i);
-
-        i++;
-
-        if(i==40)
-            foto1.classList.add("visible");
-
-        if(i==80)
-            foto2.classList.add("visible");
-
-        if(i==120)
-            video1.classList.add("visible");
-
-        setTimeout(escribirTexto,35);
-    }
-}
-
-</script>
-
+ 
+    <!-- CHRISTMAS LIGHTS -->
+    <div class="christmas-lights" id="lights"></div>
+    
+    <!-- RAÍCES DEL UPSIDE DOWN -->
+    <div class="vines top-left">🌿</div>
+    <div class="vines top-right">🌿</div>
+    <div class="vines bottom-left">🌿</div>
+    <div class="vines bottom-right">🌿</div>
+    
+    <!-- SOBRE INICIAL CON ALFABETO Y PARTÍCULAS -->
+    <div id="sobre-inicial">
+        <div class="sobre-wrapper" onclick="abrirSobre()">
+            <!-- Letras del alfabeto brillando -->
+            <div class="alphabet-letter">A</div>
+            <div class="alphabet-letter">L</div>
+            <div class="alphabet-letter">U</div>
+            <div class="alphabet-letter">C</div>
+            
+            <!-- Partículas orbitando -->
+            <div class="particle-orbit"></div>
+            <div class="particle-orbit"></div>
+            <div class="particle-orbit"></div>
+            <div class="particle-orbit"></div>
+            <div class="particle-orbit"></div>
+            
+            <!-- Sobre -->
+            <div class="sobre">
+                <div class="sobre-titulo">Para ti,<br>Ana Lucía</div>
+                <div class="sobre-subtitulo">⚡ FROM THE UPSIDE DOWN ⚡</div>
+                <div class="sobre-instruccion">▶ Presiona para ingresar ◀</div>
+            </div>
+        </div>
+    </div>
+ 
+    <!-- PARTÍCULAS FLOTANTES -->
+    <div id="particulas"></div>
+ 
+    <!-- MÚSICA DE FONDO -->
+    <audio id="musica" loop volume="0.15">
+        <source src="../media/Ana/musica.mp3" type="audio/mpeg">
+    </audio>
+ 
+    <!-- CONTENIDO PRINCIPAL -->
+    <div class="contenedor" id="contenedor">
+        
+        <!-- BANNER HAWKINS -->
+        <div class="hawkins-banner">HAWKINS, INDIANA · 1985</div>
+        
+        <h1>Para ti,<br>Ana Lucía</h1>
+        
+        <div class="pelicula-subtitle">A Netflix Original Series</div>
+        
+        <!-- ICONOS DECORATIVOS -->
+        <div class="icons-row">
+            <span>📺</span>
+            <span>📻</span>
+            <span>🚲</span>
+            <span>🧇</span>
+            <span>⚡</span>
+        </div>
+ 
+        <!-- SECCIÓN DE MENSAJE PERSONALIZADO -->
+        <div class="seccion-mensaje">
+            <p>MENSAJE DESDE HAWKINS</p>
+            <div class="mensaje-box" id="mensaje-personalizado">
+                Hay personas que no son de este mundo,
+                son de otro plano, de otra dimensión.
+                <br><br>
+                Aquí va tu mensaje personalizado para Ana Lucía. Cuéntale lo que significa para ti, los momentos especiales, las series que vieron juntos, las risas, los chismes.
+                <br><br>
+                Recuerda: las amistades más reales son las que se mantienen en cualquier dimensión.
+            </div>
+        </div>
+ 
+        <div class="divider"></div>
+ 
+        <!-- SECCIÓN DE MENSAJES -->
+        <div class="seccion-mensajes">
+            <h2>Mensajes Desde El Otro Lado</h2>
+            <div class="botones-container">
+                <button class="boton-mensaje" onclick="reproducirAudio('audio1')">
+                    <span>▶ Transmisión 1</span>
+                </button>
+                <button class="boton-mensaje" onclick="reproducirAudio('audio2')">
+                    <span>▶ Transmisión 2</span>
+                </button>
+                <button class="boton-mensaje" onclick="reproducirAudio('audio3')">
+                    <span>▶ Transmisión 3</span>
+                </button>
+            </div>
+ 
+            <button class="boton-album" onclick="abrirAlbum()">
+                📸 Ver Album de Fotos 📸
+            </button>
+        </div>
+ 
+        <!-- GALERÍA DE FOTOS -->
+        <div class="galeria" id="galeria">
+            <h2>Nuestros Recuerdos</h2>
+            <div class="grid-fotos">
+                <div class="foto-item">
+                    <div class="foto-placeholder">📸</div>
+                </div>
+ 
+                <div class="foto-item">
+                    <div class="foto-placeholder">📸</div>
+                </div>
+ 
+                <div class="foto-item">
+                    <div class="foto-placeholder">📸</div>
+                </div>
+ 
+                <div class="foto-item">
+                    <div class="foto-placeholder">📸</div>
+                </div>
+ 
+                <div class="foto-item">
+                    <div class="foto-placeholder">📸</div>
+                </div>
+ 
+                <div class="foto-item">
+                    <div class="foto-placeholder">📸</div>
+                </div>
+            </div>
+        </div>
+ 
+        <div style="text-align: center;">
+            <a href="../index.html" class="volver">← Volver</a>
+        </div>
+        
+        <!-- FOOTER -->
+        <div class="footer-st">
+            ━━━ HAWKINS NATIONAL LABORATORY ━━━<br>
+            CLASSIFIED · 1985 · TOP SECRET
+        </div>
+ 
+    </div>
+ 
+    <!-- AUDIOS -->
+    <audio id="audio1"><source src="../media/Ana/audio1.mp3" type="audio/mpeg"></audio>
+    <audio id="audio2"><source src="../media/Ana/audio2.mp3" type="audio/mpeg"></audio>
+    <audio id="audio3"><source src="../media/Ana/audio3.mp3" type="audio/mpeg"></audio>
+ 
+    <script>
+        // Generar Christmas Lights
+        function generarLuces() {
+            const container = document.getElementById('lights');
+            const colors = ['#ff0000', '#00ff00', '#ffff00', '#0066ff', '#ff00ff', '#ff8800'];
+            const totalLights = 20;
+            const spacing = 100 / totalLights;
+            
+            for (let i = 0; i < totalLights; i++) {
+                const light = document.createElement('div');
+                light.className = 'light';
+                light.style.left = (spacing * i + spacing/2) + '%';
+                const color = colors[i % colors.length];
+                light.style.background = color;
+                light.style.color = color;
+                light.style.animationDelay = (Math.random() * 2) + 's';
+                container.appendChild(light);
+            }
+        }
+        generarLuces();
+        
+        // Generar partículas flotantes
+        function generarParticulas() {
+            const contenedor = document.getElementById('particulas');
+            for (let i = 0; i < 50; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                particle.style.left = Math.random() * 100 + 'vw';
+                particle.style.animationDuration = (12 + Math.random() * 12) + 's';
+                particle.style.animationDelay = Math.random() * 5 + 's';
+                contenedor.appendChild(particle);
+            }
+        }
+        generarParticulas();
+ 
+        // Control de audio
+        let audioActual = null;
+ 
+        function reproducirAudio(id) {
+            if (audioActual && !audioActual.paused) {
+                audioActual.pause();
+                audioActual.currentTime = 0;
+            }
+ 
+            audioActual = document.getElementById(id);
+            audioActual.play();
+        }
+ 
+        // Abrir sobre con efecto
+        function abrirSobre() {
+            document.getElementById('sobre-inicial').style.display = 'none';
+            document.getElementById('contenedor').classList.add('visible');
+ 
+            // Iniciar música
+            const musica = document.getElementById('musica');
+            musica.play();
+        }
+ 
+        // Álbum de fotos
+        function abrirAlbum() {
+            const galeria = document.getElementById('galeria');
+            galeria.classList.toggle('activa');
+            
+            setTimeout(() => {
+                galeria.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }, 100);
+        }
+    </script>
+ 
 </body>
 </html>
