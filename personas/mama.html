@@ -1,441 +1,1133 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<meta charset="UTF-8">
-<title>Para ti, mamá</title>
-
-<link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;600&family=Great+Vibes&display=swap" rel="stylesheet">
-
-<style>
-
-/* ================= FONDO EMOCIONAL MEJORADO ================= */
-
-body
-{
-    margin: 0;
-
-    background:
-    radial-gradient(circle at 20% 30%, rgba(255,182,193,0.4), transparent 50%),
-    radial-gradient(circle at 80% 20%, rgba(216,180,254,0.4), transparent 50%),
-    radial-gradient(circle at 50% 80%, rgba(255,218,185,0.3), transparent 50%),
-    radial-gradient(circle at 30% 70%, rgba(255,255,255,0.4), transparent 60%),
-    linear-gradient(180deg, #fff1f7, #f8f4ff, #fdfdfd);
-
-    font-family: 'Quicksand', sans-serif;
-
-    text-align: center;
-
-    overflow-x: hidden;
-}
-
-/* ================= AURA DE LUZ ================= */
-
-.aura
-{
-    position: fixed;
-    width: 400px;
-    height: 400px;
-    border-radius: 50%;
-    filter: blur(60px);
-    opacity: 0.5;
-    animation: flotarAura 12s infinite alternate ease-in-out;
-}
-
-.aura.rosa
-{
-    background: radial-gradient(circle, rgba(255,182,193,0.6), transparent);
-    top: 10%;
-    left: 10%;
-}
-
-.aura.morado
-{
-    background: radial-gradient(circle, rgba(216,180,254,0.6), transparent);
-    bottom: 10%;
-    right: 10%;
-    animation-delay: 6s;
-}
-
-@keyframes flotarAura
-{
-    from { transform: translateY(-20px); }
-    to { transform: translateY(20px); }
-}
-
-/* ================= PARTICULAS ================= */
-
-.particula
-{
-    position: fixed;
-    width: 6px;
-    height: 6px;
-    border-radius: 50%;
-    background: linear-gradient(45deg, #ffb6c1, #d8b4fe);
-    animation: flotar linear infinite;
-}
-
-@keyframes flotar
-{
-    from
-    {
-        transform: translateY(100vh);
-        opacity: 0;
-    }
-
-    10%
-    {
-        opacity: 1;
-    }
-
-    to
-    {
-        transform: translateY(-10vh);
-        opacity: 0;
-    }
-}
-
-/* ================= SOBRE ================= */
-
-#sobre
-{
-    margin-top: 200px;
-    width: 240px;
-    height: 150px;
-
-    background: linear-gradient(45deg, #ffb6c1, #d8b4fe, #ffd7ba);
-
-    border-radius: 16px;
-
-    cursor: pointer;
-
-    margin-left: auto;
-    margin-right: auto;
-
-    animation: latido 2s infinite;
-
-    box-shadow:
-    0 0 20px #ffb6c1,
-    0 0 40px #d8b4fe,
-    0 0 60px #ffffff;
-}
-
-@keyframes latido
-{
-    0% { transform: scale(1); }
-    50% { transform: scale(1.08); }
-    100% { transform: scale(1); }
-}
-
-/* ================= DESTELLO ================= */
-
-#destello
-{
-    position: fixed;
-    width: 100%;
-    height: 100%;
-
-    background: radial-gradient(circle, #ffffff, #ffd7f0, #d8b4fe);
-
-    opacity: 0;
-
-    pointer-events: none;
-
-    transition: opacity 1s;
-}
-
-/* ================= CARTA ================= */
-
-.carta
-{
-    display: none;
-
-    margin: auto;
-    margin-top: 40px;
-
-    max-width: 720px;
-
-    padding: 40px;
-
-    background: rgba(255,255,255,0.65);
-
-    backdrop-filter: blur(20px);
-
-    border-radius: 24px;
-
-    box-shadow:
-    0 0 30px rgba(255,182,193,0.5),
-    0 0 60px rgba(216,180,254,0.4);
-}
-
-h1
-{
-    font-family: 'Great Vibes', cursive;
-    font-size: 48px;
-
-    color: #c084fc;
-
-    text-shadow:
-    0 0 10px #ffb6c1,
-    0 0 20px #d8b4fe;
-}
-
-/* ================= TEXTO ================= */
-
-#textoCarta
-{
-    font-size: 20px;
-
-    color: #5b4b66;
-
-    border-right: 2px solid #c084fc;
-
-    white-space: pre-line;
-}
-
-/* ================= FOTOS ================= */
-
-.foto
-{
-    position: absolute;
-
-    width: 180px;
-
-    border-radius: 16px;
-
-    box-shadow:
-    0 0 20px rgba(255,182,193,0.6);
-
-    opacity: 0;
-
-    transition: opacity 2s, transform 6s ease-in-out;
-}
-
-.foto.visible
-{
-    opacity: 1;
-}
-
-.foto.izq
-{
-    left: 5%;
-    transform: rotate(-6deg);
-}
-
-.foto.der
-{
-    right: 5%;
-    transform: rotate(6deg);
-}
-
-/* ================= VIDEO ================= */
-
-.video
-{
-    margin-top: 30px;
-
-    width: 340px;
-
-    border-radius: 16px;
-
-    box-shadow:
-    0 0 30px rgba(216,180,254,0.6);
-
-    opacity: 0;
-
-    transition: opacity 2s;
-}
-
-.video.visible
-{
-    opacity: 1;
-}
-
-/* ================= BOTONES AUDIO ================= */
-
-.audios button
-{
-    display: block;
-
-    margin: 14px auto;
-
-    padding: 14px 22px;
-
-    border: none;
-
-    border-radius: 16px;
-
-    background: linear-gradient(45deg, #ffb6c1, #d8b4fe);
-
-    color: white;
-
-    cursor: pointer;
-
-    width: 320px;
-
-    font-size: 16px;
-
-    box-shadow:
-    0 0 20px rgba(216,180,254,0.6);
-}
-
-.audios button:hover
-{
-    transform: scale(1.05);
-}
-
-</style>
-
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Para ti, Mamá</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;500;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Dancing+Script:wght@400;500;600;700&family=Kalam:wght@300;400;700&display=swap" rel="stylesheet">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            background: 
+                radial-gradient(circle at 20% 30%, rgba(228, 183, 183, 0.15) 0%, transparent 50%),
+                radial-gradient(circle at 80% 70%, rgba(212, 165, 116, 0.1) 0%, transparent 50%),
+                linear-gradient(135deg, #2a1f1a 0%, #3a2820 50%, #2a1f1a 100%);
+            font-family: 'Cormorant Garamond', serif;
+            color: #f4ebd0;
+            min-height: 100vh;
+            overflow-x: hidden;
+            position: relative;
+        }
+        
+        /* === MARIPOSAS FLOTANDO === */
+        .butterfly {
+            position: fixed;
+            font-size: 28px;
+            pointer-events: none;
+            z-index: 3;
+            animation: butterfly-fly 20s ease-in-out infinite;
+            filter: drop-shadow(0 0 8px rgba(228, 183, 183, 0.5));
+        }
+        
+        @keyframes butterfly-fly {
+            0% { 
+                transform: translateX(-100px) translateY(50vh) rotate(0deg); 
+                opacity: 0; 
+            }
+            10% { 
+                opacity: 1; 
+                transform: translateX(20vw) translateY(40vh) rotate(20deg);
+            }
+            25% { 
+                transform: translateX(40vw) translateY(60vh) rotate(-10deg);
+            }
+            50% { 
+                transform: translateX(60vw) translateY(30vh) rotate(15deg);
+            }
+            75% { 
+                transform: translateX(80vw) translateY(50vh) rotate(-15deg);
+            }
+            90% { 
+                opacity: 1; 
+            }
+            100% { 
+                transform: translateX(110vw) translateY(40vh) rotate(10deg); 
+                opacity: 0;
+            }
+        }
+        
+        /* === PÉTALOS CAYENDO === */
+        .petal {
+            position: fixed;
+            font-size: 18px;
+            pointer-events: none;
+            z-index: 2;
+            animation: petal-fall 15s linear infinite;
+        }
+        
+        @keyframes petal-fall {
+            from {
+                transform: translateY(-100px) rotate(0deg) translateX(0);
+                opacity: 0;
+            }
+            10% { opacity: 0.8; }
+            90% { opacity: 0.8; }
+            to {
+                transform: translateY(100vh) rotate(720deg) translateX(100px);
+                opacity: 0;
+            }
+        }
+        
+        /* === CORAZONES SUTILES === */
+        .heart-bg {
+            position: fixed;
+            font-size: 14px;
+            pointer-events: none;
+            z-index: 1;
+            opacity: 0.3;
+            animation: heart-pulse 4s ease-in-out infinite;
+        }
+        
+        @keyframes heart-pulse {
+            0%, 100% { transform: scale(1); opacity: 0.2; }
+            50% { transform: scale(1.2); opacity: 0.4; }
+        }
+        
+        /* ===== PANTALLA INICIAL - DIARIO CERRADO ===== */
+        #diario-inicial {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 100;
+            background: linear-gradient(135deg, #2a1f1a 0%, #3a2820 100%);
+            animation: fade-out 0.8s ease forwards 8s;
+        }
+        
+        @keyframes fade-out {
+            to { opacity: 0; pointer-events: none; }
+        }
+        
+        .diario-wrapper {
+            position: relative;
+            width: 380px;
+            text-align: center;
+            cursor: pointer;
+        }
+        
+        /* DIARIO CERRADO */
+        .diario-cerrado {
+            width: 340px;
+            height: 420px;
+            background: 
+                linear-gradient(135deg, #6B4423 0%, #8B5A2B 50%, #6B4423 100%);
+            border-radius: 5px 25px 25px 5px;
+            margin: 0 auto;
+            position: relative;
+            box-shadow: 
+                0 25px 70px rgba(0, 0, 0, 0.8),
+                0 0 40px rgba(228, 183, 183, 0.3),
+                inset 0 0 30px rgba(0, 0, 0, 0.4);
+            cursor: pointer;
+            animation: diario-pulse 3s ease-in-out infinite;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 50px 30px;
+        }
+        
+        /* Lomo del diario */
+        .diario-cerrado::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 30px;
+            height: 100%;
+            background: 
+                linear-gradient(90deg, rgba(0,0,0,0.4) 0%, transparent 100%);
+            border-right: 2px solid rgba(0, 0, 0, 0.2);
+        }
+        
+        /* Borde decorativo */
+        .diario-cerrado::after {
+            content: '';
+            position: absolute;
+            top: 15px;
+            left: 50px;
+            right: 15px;
+            bottom: 15px;
+            border: 2px solid rgba(228, 183, 183, 0.4);
+            border-radius: 5px;
+        }
+        
+        @keyframes diario-pulse {
+            0%, 100% { transform: scale(1) rotate(-1deg); }
+            50% { transform: scale(1.02) rotate(0deg); }
+        }
+        
+        /* Corazón grande en el centro */
+        .diario-corazon {
+            font-size: 90px;
+            margin-bottom: 20px;
+            animation: heart-beat 1.5s ease-in-out infinite;
+            filter: drop-shadow(0 0 20px rgba(228, 183, 183, 0.8));
+            z-index: 5;
+            position: relative;
+        }
+        
+        @keyframes heart-beat {
+            0%, 100% { transform: scale(1); }
+            25% { transform: scale(1.1); }
+            50% { transform: scale(1); }
+            75% { transform: scale(1.15); }
+        }
+        
+        .diario-titulo {
+            font-family: 'Dancing Script', cursive;
+            font-size: 48px;
+            color: #f4ebd0;
+            line-height: 1.1;
+            text-shadow: 
+                2px 2px 5px rgba(0, 0, 0, 0.5),
+                0 0 15px rgba(228, 183, 183, 0.3);
+            margin-bottom: 10px;
+            position: relative;
+            z-index: 5;
+        }
+        
+        .diario-subtitulo {
+            font-family: 'Caveat', cursive;
+            font-size: 20px;
+            color: #E4B7B7;
+            opacity: 0.9;
+            position: relative;
+            z-index: 5;
+        }
+        
+        /* Cinta de seda como marcador */
+        .cinta-marcador {
+            position: absolute;
+            top: -20px;
+            right: 60px;
+            width: 35px;
+            height: 120px;
+            background: linear-gradient(180deg, #c0392b 0%, #e74c3c 100%);
+            box-shadow: 
+                0 5px 15px rgba(0, 0, 0, 0.4),
+                inset 0 0 10px rgba(0, 0, 0, 0.2);
+            z-index: 10;
+        }
+        
+        .cinta-marcador::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 0;
+            border-left: 17.5px solid transparent;
+            border-right: 17.5px solid transparent;
+            border-top: 20px solid #c0392b;
+        }
+        
+        .instruccion-diario {
+            margin-top: 30px;
+            font-family: 'Kalam', cursive;
+            font-size: 16px;
+            color: #E4B7B7;
+            letter-spacing: 1px;
+            animation: blink-instruction 1.5s ease-in-out infinite;
+        }
+        
+        @keyframes blink-instruction {
+            0%, 100% { opacity: 0.6; }
+            50% { opacity: 1; }
+        }
+        
+        /* Mariposas decorativas en pantalla inicial */
+        .butterfly-init {
+            position: absolute;
+            font-size: 30px;
+            animation: butterfly-flutter 3s ease-in-out infinite;
+            filter: drop-shadow(0 0 10px rgba(228, 183, 183, 0.5));
+        }
+        
+        .butterfly-init.top-left { top: 10%; left: 15%; }
+        .butterfly-init.top-right { top: 15%; right: 20%; animation-delay: 1s; }
+        .butterfly-init.bottom-left { bottom: 15%; left: 20%; animation-delay: 2s; }
+        
+        @keyframes butterfly-flutter {
+            0%, 100% { transform: translateY(0) rotate(-10deg); }
+            50% { transform: translateY(-15px) rotate(10deg); }
+        }
+        
+        /* ===== CONTENIDO PRINCIPAL ===== */
+        .contenedor {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 60px 30px;
+            display: none;
+            animation: fade-in 1s ease;
+            position: relative;
+            z-index: 10;
+        }
+        
+        .contenedor.visible {
+            display: block;
+        }
+        
+        @keyframes fade-in {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        /* === HEADER DEL DIARIO ABIERTO === */
+        .diario-header {
+            text-align: center;
+            margin-bottom: 60px;
+            padding: 30px;
+            position: relative;
+        }
+        
+        .header-decoracion {
+            font-family: 'Caveat', cursive;
+            font-size: 18px;
+            color: #E4B7B7;
+            letter-spacing: 6px;
+            text-transform: uppercase;
+            opacity: 0.7;
+            margin-bottom: 20px;
+        }
+        
+        .header-decoracion::before,
+        .header-decoracion::after {
+            content: ' ❀ ';
+            color: #E4B7B7;
+        }
+        
+        h1 {
+            font-family: 'Dancing Script', cursive;
+            font-size: 96px;
+            color: #f4ebd0;
+            line-height: 1.1;
+            text-shadow: 
+                3px 3px 10px rgba(0, 0, 0, 0.5),
+                0 0 30px rgba(228, 183, 183, 0.3);
+            margin-bottom: 20px;
+            position: relative;
+        }
+        
+        .h1-corazones {
+            position: absolute;
+            top: -20px;
+            right: -30px;
+            font-size: 28px;
+            animation: heart-float 2s ease-in-out infinite;
+        }
+        
+        @keyframes heart-float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+        
+        .header-fecha {
+            font-family: 'Caveat', cursive;
+            font-size: 24px;
+            color: #E4B7B7;
+            border-top: 1px dashed #E4B7B7;
+            border-bottom: 1px dashed #E4B7B7;
+            display: inline-block;
+            padding: 10px 30px;
+            margin-top: 20px;
+            opacity: 0.9;
+        }
+        
+        /* === PÁGINA DEL DIARIO - MENSAJE === */
+        .pagina-diario {
+            background: 
+                linear-gradient(135deg, #fdf5e0 0%, #f5ecd2 100%);
+            color: #2a1810;
+            padding: 60px 50px;
+            margin: 40px 0 80px;
+            position: relative;
+            box-shadow: 
+                0 25px 60px rgba(0, 0, 0, 0.6),
+                inset 0 0 20px rgba(139, 69, 19, 0.05);
+            background-image: 
+                repeating-linear-gradient(180deg, transparent, transparent 32px, rgba(228, 183, 183, 0.2) 32px, rgba(228, 183, 183, 0.2) 33px);
+        }
+        
+        /* Mancha de café decorativa */
+        .pagina-diario::before {
+            content: '☕';
+            position: absolute;
+            top: 30px;
+            right: 40px;
+            font-size: 30px;
+            opacity: 0.3;
+            transform: rotate(15deg);
+        }
+        
+        /* Línea de margen rojo (como cuaderno) */
+        .pagina-diario::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 60px;
+            bottom: 0;
+            width: 2px;
+            background: #c0392b;
+            opacity: 0.4;
+        }
+        
+        .pagina-fecha {
+            font-family: 'Caveat', cursive;
+            font-size: 22px;
+            color: #c0392b;
+            margin-bottom: 20px;
+            opacity: 1;
+            padding-left: 30px;
+            font-weight: 700;
+        }
+        
+        .pagina-titulo {
+            font-family: 'Dancing Script', cursive;
+            font-size: 56px;
+            color: #1a0e05;
+            margin-bottom: 30px;
+            padding-left: 30px;
+            line-height: 1.1;
+            font-weight: 700;
+        }
+        
+        .pagina-titulo .heart-icon {
+            font-size: 36px;
+            color: #c0392b;
+            display: inline-block;
+            animation: heart-beat 1.5s ease-in-out infinite;
+        }
+        
+        .mensaje-diario {
+            font-family: 'Kalam', cursive;
+            font-size: 18px;
+            color: #000000;
+            line-height: 2.2;
+            padding-left: 30px;
+            padding-right: 30px;
+            font-weight: 500;
+        }
+        
+        /* === NOTAS ADHESIVAS DECORATIVAS === */
+        .nota-adhesiva {
+            position: absolute;
+            width: 120px;
+            height: 120px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Caveat', cursive;
+            font-size: 18px;
+            text-align: center;
+            padding: 15px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+            z-index: 5;
+        }
+        
+        .nota-adhesiva.amarilla {
+            background: #fff59d;
+            color: #5C3317;
+            top: -25px;
+            right: -10px;
+            transform: rotate(8deg);
+        }
+        
+        .nota-adhesiva.rosa {
+            background: #f8bbd0;
+            color: #5C3317;
+            bottom: -25px;
+            left: -15px;
+            transform: rotate(-6deg);
+        }
+        
+        /* === SECCIÓN DE VOCES (audios) === */
+        .voces-section {
+            margin: 100px 0;
+            text-align: center;
+        }
+        
+        .voces-titulo {
+            font-family: 'Dancing Script', cursive;
+            font-size: 56px;
+            color: #f4ebd0;
+            margin-bottom: 20px;
+            text-shadow: 
+                2px 2px 10px rgba(0, 0, 0, 0.5),
+                0 0 20px rgba(228, 183, 183, 0.3);
+        }
+        
+        .voces-subtitulo {
+            font-family: 'Caveat', cursive;
+            font-size: 22px;
+            color: #E4B7B7;
+            margin-bottom: 50px;
+            opacity: 0.8;
+        }
+        
+        .voces-subtitulo::before,
+        .voces-subtitulo::after {
+            content: ' ♡ ';
+        }
+        
+        .voces-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        
+        /* TARJETAS DE VOCES estilo casete */
+        .voz-card {
+            background: linear-gradient(135deg, #f9f1de 0%, #f0e6cf 100%);
+            color: #5C3317;
+            padding: 30px 25px;
+            border-radius: 15px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            box-shadow: 
+                0 15px 40px rgba(0, 0, 0, 0.5),
+                inset 0 0 15px rgba(139, 69, 19, 0.05);
+            text-align: center;
+            transform: rotate(-2deg);
+            overflow: hidden;
+        }
+        
+        .voz-card:nth-child(2) { transform: rotate(1deg); }
+        .voz-card:nth-child(3) { transform: rotate(-1deg); }
+        
+        .voz-card:hover {
+            transform: rotate(0deg) scale(1.05) translateY(-5px);
+            box-shadow: 
+                0 25px 60px rgba(0, 0, 0, 0.7),
+                0 0 30px rgba(228, 183, 183, 0.4);
+        }
+        
+        /* Cinta washi tape arriba */
+        .voz-card::before {
+            content: '';
+            position: absolute;
+            top: -8px;
+            left: 50%;
+            transform: translateX(-50%) rotate(-2deg);
+            width: 100px;
+            height: 25px;
+            background: linear-gradient(90deg, 
+                #E4B7B7 0%, 
+                #f8bbd0 25%, 
+                #E4B7B7 50%, 
+                #f8bbd0 75%, 
+                #E4B7B7 100%);
+            opacity: 0.8;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+        }
+        
+        .voz-icon {
+            font-size: 50px;
+            margin-bottom: 15px;
+            display: block;
+            animation: voz-pulse 2s ease-in-out infinite;
+        }
+        
+        @keyframes voz-pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+        
+        .voz-numero {
+            font-family: 'Caveat', cursive;
+            font-size: 18px;
+            color: #c0392b;
+            margin-bottom: 10px;
+            opacity: 0.8;
+        }
+        
+        .voz-titulo {
+            font-family: 'Dancing Script', cursive;
+            font-size: 28px;
+            color: #5C3317;
+            margin-bottom: 15px;
+        }
+        
+        .voz-descripcion {
+            font-family: 'Kalam', cursive;
+            font-size: 14px;
+            color: #5C3317;
+            opacity: 0.7;
+            margin-bottom: 20px;
+        }
+        
+        .voz-play-btn {
+            display: inline-block;
+            padding: 10px 25px;
+            background: linear-gradient(135deg, #c0392b 0%, #e74c3c 100%);
+            color: #f4ebd0;
+            font-family: 'Caveat', cursive;
+            font-size: 18px;
+            border-radius: 30px;
+            box-shadow: 0 5px 15px rgba(192, 57, 43, 0.4);
+            transition: all 0.3s ease;
+        }
+        
+        .voz-card:hover .voz-play-btn {
+            background: linear-gradient(135deg, #e74c3c 0%, #c0392b 100%);
+            box-shadow: 0 10px 25px rgba(192, 57, 43, 0.6);
+        }
+        
+        /* === SECCIÓN ÁLBUM === */
+        .album-section {
+            margin: 100px 0;
+            text-align: center;
+        }
+        
+        .album-titulo {
+            font-family: 'Dancing Script', cursive;
+            font-size: 56px;
+            color: #f4ebd0;
+            margin-bottom: 20px;
+            text-shadow: 
+                2px 2px 10px rgba(0, 0, 0, 0.5),
+                0 0 20px rgba(228, 183, 183, 0.3);
+        }
+        
+        .album-subtitulo {
+            font-family: 'Caveat', cursive;
+            font-size: 22px;
+            color: #E4B7B7;
+            margin-bottom: 60px;
+            opacity: 0.8;
+        }
+        
+        /* === ÁLBUM ESTILO PEGAMENTO === */
+        .album-fondo {
+            background: 
+                linear-gradient(135deg, #6B4423 0%, #8B5A2B 50%, #6B4423 100%);
+            padding: 60px 40px;
+            border-radius: 8px;
+            box-shadow: 
+                0 30px 70px rgba(0, 0, 0, 0.7),
+                inset 0 0 40px rgba(0, 0, 0, 0.3);
+            position: relative;
+        }
+        
+        /* Esquinas decorativas */
+        .album-fondo::before,
+        .album-fondo::after {
+            content: '';
+            position: absolute;
+            width: 60px;
+            height: 60px;
+            background: rgba(228, 183, 183, 0.3);
+            border-radius: 50%;
+        }
+        
+        .album-fondo::before {
+            top: 20px;
+            left: 20px;
+        }
+        
+        .album-fondo::after {
+            bottom: 20px;
+            right: 20px;
+        }
+        
+        .polaroids-album {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 40px;
+            position: relative;
+        }
+        
+        .polaroid-foto {
+            background: #f9f1de;
+            padding: 12px 12px 40px;
+            position: relative;
+            transition: all 0.4s ease;
+            cursor: pointer;
+            box-shadow: 
+                0 15px 35px rgba(0, 0, 0, 0.6);
+        }
+        
+        .polaroid-foto:nth-child(1) { transform: rotate(-4deg); }
+        .polaroid-foto:nth-child(2) { transform: rotate(3deg); }
+        .polaroid-foto:nth-child(3) { transform: rotate(-2deg); }
+        .polaroid-foto:nth-child(4) { transform: rotate(4deg); }
+        .polaroid-foto:nth-child(5) { transform: rotate(-3deg); }
+        .polaroid-foto:nth-child(6) { transform: rotate(2deg); }
+        
+        /* Washi tape decorativo */
+        .polaroid-foto::before {
+            content: '';
+            position: absolute;
+            top: -12px;
+            left: 50%;
+            transform: translateX(-50%) rotate(-3deg);
+            width: 80px;
+            height: 25px;
+            background: linear-gradient(90deg, 
+                #f8bbd0 0%, 
+                #E4B7B7 50%, 
+                #f8bbd0 100%);
+            opacity: 0.8;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+        }
+        
+        .polaroid-foto:hover {
+            transform: rotate(0deg) scale(1.1);
+            z-index: 10;
+            box-shadow: 0 25px 60px rgba(0, 0, 0, 0.8);
+        }
+        
+        .polaroid-imagen {
+            width: 100%;
+            aspect-ratio: 1;
+            background: linear-gradient(135deg, rgba(228, 183, 183, 0.3), rgba(244, 235, 208, 0.3));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 70px;
+            border: 1px solid rgba(228, 183, 183, 0.4);
+            filter: sepia(0.3);
+            transition: filter 0.3s ease;
+        }
+        
+        .polaroid-foto:hover .polaroid-imagen {
+            filter: sepia(0);
+        }
+        
+        .polaroid-foto img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: sepia(0.3);
+            transition: filter 0.3s ease;
+        }
+        
+        .polaroid-foto:hover img {
+            filter: sepia(0);
+        }
+        
+        .polaroid-caption {
+            text-align: center;
+            font-family: 'Caveat', cursive;
+            color: #5C3317;
+            font-size: 18px;
+            margin-top: 15px;
+        }
+        
+        .polaroid-caption::before {
+            content: '~ ';
+        }
+        
+        .polaroid-caption::after {
+            content: ' ~';
+        }
+        
+        /* === DESPEDIDA - CARTA FINAL === */
+        .despedida {
+            max-width: 800px;
+            margin: 120px auto 50px;
+            padding: 50px 40px;
+            background: 
+                linear-gradient(135deg, #f9f1de 0%, #f0e6cf 100%);
+            color: #5C3317;
+            text-align: center;
+            position: relative;
+            box-shadow: 
+                0 25px 60px rgba(0, 0, 0, 0.6),
+                0 0 30px rgba(228, 183, 183, 0.2);
+            transform: rotate(-1deg);
+        }
+        
+        /* Washi tape arriba */
+        .despedida::before {
+            content: '';
+            position: absolute;
+            top: -10px;
+            left: 50%;
+            transform: translateX(-50%) rotate(2deg);
+            width: 150px;
+            height: 30px;
+            background: linear-gradient(90deg, 
+                #E4B7B7 0%, 
+                #f8bbd0 50%, 
+                #E4B7B7 100%);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+        }
+        
+        .despedida-titulo {
+            font-family: 'Dancing Script', cursive;
+            font-size: 48px;
+            color: #c0392b;
+            margin-bottom: 20px;
+        }
+        
+        .despedida-corazones {
+            font-size: 40px;
+            margin: 20px 0;
+            animation: heart-beat 1.5s ease-in-out infinite;
+        }
+        
+        .despedida-text {
+            font-family: 'Kalam', cursive;
+            font-size: 18px;
+            line-height: 1.9;
+            color: #5C3317;
+            border-top: 2px dashed #c0392b;
+            border-bottom: 2px dashed #c0392b;
+            padding: 20px 0;
+            margin: 25px 0;
+            opacity: 0.9;
+        }
+        
+        .firma {
+            font-family: 'Dancing Script', cursive;
+            font-size: 32px;
+            color: #c0392b;
+            margin-top: 30px;
+            font-style: italic;
+        }
+        
+        /* === BOTÓN VOLVER === */
+        .volver {
+            display: inline-block;
+            margin-top: 50px;
+            padding: 15px 45px;
+            background: transparent;
+            border: 2px solid #E4B7B7;
+            border-radius: 30px;
+            color: #E4B7B7;
+            font-family: 'Caveat', cursive;
+            font-size: 22px;
+            text-decoration: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            letter-spacing: 1px;
+        }
+        
+        .volver:hover {
+            background: #E4B7B7;
+            color: #2a1810;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(228, 183, 183, 0.4);
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            h1 { font-size: 64px; }
+            
+            .pagina-titulo {
+                font-size: 40px;
+            }
+            
+            .voces-titulo, .album-titulo {
+                font-size: 40px;
+            }
+            
+            .voces-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .polaroids-album {
+                grid-template-columns: 1fr;
+                gap: 25px;
+            }
+            
+            .pagina-diario {
+                padding: 40px 30px;
+            }
+            
+            .contenedor {
+                padding: 40px 20px;
+            }
+            
+            .diario-cerrado {
+                width: 300px;
+                height: 380px;
+            }
+            
+            .diario-titulo {
+                font-size: 40px;
+            }
+            
+            .butterfly-init { display: none; }
+            
+            .pagina-diario::after {
+                left: 40px;
+            }
+            
+            .pagina-titulo, .mensaje-diario, .pagina-fecha {
+                padding-left: 15px;
+            }
+        }
+    </style>
 </head>
-
 <body>
-
-<div class="aura rosa"></div>
-<div class="aura morado"></div>
-
-<div id="destello"></div>
-
-<audio id="musica" loop>
-<source src="../media/mama/musica.mp3">
-</audio>
-
-<div id="sobre" onclick="abrirCarta()"></div>
-
-<div class="carta" id="carta">
-
-<h1>Para ti, mamá</h1>
-
-<p id="textoCarta"></p>
-
-<img src="../media/mama/foto1.jpg" class="foto izq" id="foto1">
-<img src="../media/mama/foto2.jpg" class="foto der" id="foto2">
-
-<br>
-
-<video class="video" id="video1" autoplay muted loop>
-<source src="../media/mama/video1.mp4">
-</video>
-
-<h2>Escucha esto</h2>
-
-<div class="audios">
-
-<button onclick="reproducirAudio('audio1')">▶ Algo que quiero que sepas</button>
-
-<button onclick="reproducirAudio('audio2')">▶ Gracias por todo</button>
-
-<button onclick="reproducirAudio('audio3')">▶ Siempre has estado ahí</button>
-
-</div>
-
-<audio id="audio1"><source src="../media/mama/audio1.mp3"></audio>
-<audio id="audio2"><source src="../media/mama/audio2.mp3"></audio>
-<audio id="audio3"><source src="../media/mama/audio3.mp3"></audio>
-
-</div>
-
-<script>
-
-/* PARTICULAS */
-
-for(let i=0;i<60;i++)
-{
-    let p=document.createElement("div");
-
-    p.className="particula";
-
-    p.style.left=Math.random()*100+"vw";
-
-    p.style.animationDuration=(6+Math.random()*10)+"s";
-
-    document.body.appendChild(p);
-}
-
-/* AUDIO */
-
-let audioActual=null;
-
-function reproducirAudio(id)
-{
-    if(audioActual)
-    {
-        audioActual.pause();
-        audioActual.currentTime=0;
-    }
-
-    audioActual=document.getElementById(id);
-
-    audioActual.volume=1;
-
-    audioActual.play();
-}
-
-/* ABRIR CARTA */
-
-function abrirCarta()
-{
-    let destello=document.getElementById("destello");
-
-    destello.style.opacity=1;
-
-    setTimeout(()=>destello.style.opacity=0,800);
-
-    document.getElementById("sobre").style.display="none";
-
-    document.getElementById("carta").style.display="block";
-
-    let musica=document.getElementById("musica");
-
-    musica.volume=0;
-
-    musica.play();
-
-    let fade=setInterval(()=>{
-
-        if(musica.volume<0.25)
-            musica.volume+=0.01;
-
-        else
-            clearInterval(fade);
-
-    },120);
-
-    escribirTexto();
-}
-
-/* TEXTO */
-
-const texto=`Gracias por tu amor.
-Gracias por tu fuerza.
-Gracias por tu guía.
-
-Eres luz.
-
-Te amo.`;
-
-let i=0;
-
-function escribirTexto()
-{
-    if(i<texto.length)
-    {
-        textoCarta.innerHTML+=texto.charAt(i);
-
-        i++;
-
-        if(i==40)
-            foto1.classList.add("visible");
-
-        if(i==80)
-            foto2.classList.add("visible");
-
-        if(i==120)
-            video1.classList.add("visible");
-
-        setTimeout(escribirTexto,35);
-    }
-}
-
-</script>
-
+ 
+    <!-- DIARIO INICIAL -->
+    <div id="diario-inicial">
+        <div class="butterfly-init top-left">🦋</div>
+        <div class="butterfly-init top-right">🦋</div>
+        <div class="butterfly-init bottom-left">🦋</div>
+        
+        <div class="diario-wrapper" onclick="abrirDiario()">
+            <div class="diario-cerrado">
+                <div class="cinta-marcador"></div>
+                
+                <div class="diario-corazon">💖</div>
+                <div class="diario-titulo">Para mi<br>Mamá</div>
+                <div class="diario-subtitulo">con todo mi amor</div>
+            </div>
+            
+            <div class="instruccion-diario">~ Toca para abrir el diario ~</div>
+        </div>
+    </div>
+ 
+    <!-- MARIPOSAS Y PÉTALOS -->
+    <div id="butterflies"></div>
+    <div id="petals"></div>
+    <div id="hearts-bg"></div>
+ 
+    <!-- MÚSICA DE FONDO -->
+    <audio id="musica" loop volume="0.15">
+        <source src="../media/mama/musica.mp3" type="audio/mpeg">
+    </audio>
+ 
+    <!-- CONTENIDO PRINCIPAL -->
+    <div class="contenedor" id="contenedor">
+        
+        <!-- HEADER -->
+        <div class="diario-header">
+            <div class="header-decoracion">Querido Diario</div>
+            
+            <h1>
+                Para mi Mamá
+                <span class="h1-corazones">💖</span>
+            </h1>
+            
+            <div class="header-fecha">Con todo mi amor · Siempre</div>
+        </div>
+ 
+        <!-- PÁGINA DEL DIARIO - MENSAJE -->
+        <div class="pagina-diario">
+            <div class="nota-adhesiva amarilla">¡Te<br>amo!</div>
+            <div class="nota-adhesiva rosa">Para<br>siempre 💖</div>
+            
+            <div class="pagina-fecha">Hoy, una página para ti...</div>
+            
+            <div class="pagina-titulo">
+                Mi querida mamá
+                <span class="heart-icon">♥</span>
+            </div>
+            
+            <div class="mensaje-diario" id="mensaje-personalizado">
+                Mami, no sé por dónde empezar.<br><br>
+                
+                Aquí va tu mensaje personalizado para tu mamá. Cuéntale todo lo que sientes, lo que ella significa para ti, los recuerdos más bonitos, los momentos que atesoras, lo agradecido que estás por todo lo que ha hecho.
+                <br><br>
+                Recuerda: las palabras del corazón son las que más permanecen.
+                <br><br>
+                Te amo, mami. Hoy, mañana y siempre. ♥
+            </div>
+        </div>
+ 
+        <!-- SECCIÓN DE VOCES -->
+        <div class="voces-section">
+            <div class="voces-titulo">Voces para Ti</div>
+            <div class="voces-subtitulo">Mensajes desde el corazón</div>
+            
+            <div class="voces-grid">
+                <div class="voz-card" onclick="reproducirAudio('audio1')">
+                    <div class="voz-icon">🎵</div>
+                    <div class="voz-numero">Mensaje N° 1</div>
+                    <div class="voz-titulo">Desde el alma</div>
+                    <div class="voz-descripcion">Un mensaje especial</div>
+                    <div class="voz-play-btn">► Escuchar</div>
+                </div>
+                
+                <div class="voz-card" onclick="reproducirAudio('audio2')">
+                    <div class="voz-icon">💕</div>
+                    <div class="voz-numero">Mensaje N° 2</div>
+                    <div class="voz-titulo">Con amor</div>
+                    <div class="voz-descripcion">Para ti, mami</div>
+                    <div class="voz-play-btn">► Escuchar</div>
+                </div>
+                
+                <div class="voz-card" onclick="reproducirAudio('audio3')">
+                    <div class="voz-icon">🌹</div>
+                    <div class="voz-numero">Mensaje N° 3</div>
+                    <div class="voz-titulo">Para siempre</div>
+                    <div class="voz-descripcion">Lo que siento</div>
+                    <div class="voz-play-btn">► Escuchar</div>
+                </div>
+            </div>
+        </div>
+ 
+        <!-- SECCIÓN ÁLBUM -->
+        <div class="album-section">
+            <div class="album-titulo">Nuestros Recuerdos</div>
+            <div class="album-subtitulo">~ Los momentos que atesoro ~</div>
+            
+            <div class="album-fondo">
+                <div class="polaroids-album">
+                    <div class="polaroid-foto">
+                        <div class="polaroid-imagen">💝</div>
+                        <div class="polaroid-caption">Mi amor</div>
+                    </div>
+                    
+                    <div class="polaroid-foto">
+                        <div class="polaroid-imagen">🌸</div>
+                        <div class="polaroid-caption">Junto a ti</div>
+                    </div>
+                    
+                    <div class="polaroid-foto">
+                        <div class="polaroid-imagen">🦋</div>
+                        <div class="polaroid-caption">Momentos</div>
+                    </div>
+                    
+                    <div class="polaroid-foto">
+                        <div class="polaroid-imagen">💖</div>
+                        <div class="polaroid-caption">Para siempre</div>
+                    </div>
+                    
+                    <div class="polaroid-foto">
+                        <div class="polaroid-imagen">🌹</div>
+                        <div class="polaroid-caption">Mi todo</div>
+                    </div>
+                    
+                    <div class="polaroid-foto">
+                        <div class="polaroid-imagen">✨</div>
+                        <div class="polaroid-caption">Recuerdos</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- DESPEDIDA - CARTA FINAL -->
+        <div class="despedida">
+            <div class="despedida-titulo">Mi Eterna Gratitud</div>
+            <div class="despedida-corazones">💖 💖 💖</div>
+            
+            <div class="despedida-text">
+                "Por darme la vida.<br>
+                Por estar siempre ahí.<br>
+                Por enseñarme todo lo que sé.<br>
+                Por ser mi refugio, mi guía, mi todo."
+            </div>
+            
+            <div class="firma">Con todo mi amor, siempre ♥</div>
+            <br><br>
+            <a href="../index.html" class="volver">~ Cerrar el Diario ~</a>
+        </div>
+ 
+    </div>
+ 
+    <!-- AUDIOS -->
+    <audio id="audio1"><source src="../media/mama/audio1.mp3" type="audio/mpeg"></audio>
+    <audio id="audio2"><source src="../media/mama/audio2.mp3" type="audio/mpeg"></audio>
+    <audio id="audio3"><source src="../media/mama/audio3.mp3" type="audio/mpeg"></audio>
+ 
+    <script>
+        // Generar mariposas
+        function generarMariposas() {
+            const container = document.getElementById('butterflies');
+            for (let i = 0; i < 4; i++) {
+                const butterfly = document.createElement('div');
+                butterfly.className = 'butterfly';
+                butterfly.textContent = '🦋';
+                butterfly.style.animationDelay = (i * 5) + 's';
+                butterfly.style.animationDuration = (18 + Math.random() * 8) + 's';
+                container.appendChild(butterfly);
+            }
+        }
+        generarMariposas();
+        
+        // Generar pétalos
+        function generarPetalos() {
+            const container = document.getElementById('petals');
+            const petalos = ['🌸', '🌺', '🌷', '🌹'];
+            for (let i = 0; i < 15; i++) {
+                const petal = document.createElement('div');
+                petal.className = 'petal';
+                petal.textContent = petalos[Math.floor(Math.random() * petalos.length)];
+                petal.style.left = Math.random() * 100 + 'vw';
+                petal.style.animationDuration = (12 + Math.random() * 8) + 's';
+                petal.style.animationDelay = (Math.random() * 10) + 's';
+                container.appendChild(petal);
+            }
+        }
+        generarPetalos();
+        
+        // Generar corazones de fondo
+        function generarCorazones() {
+            const container = document.getElementById('hearts-bg');
+            for (let i = 0; i < 10; i++) {
+                const heart = document.createElement('div');
+                heart.className = 'heart-bg';
+                heart.textContent = '♡';
+                heart.style.left = Math.random() * 100 + 'vw';
+                heart.style.top = Math.random() * 100 + 'vh';
+                heart.style.animationDelay = Math.random() * 5 + 's';
+                container.appendChild(heart);
+            }
+        }
+        generarCorazones();
+ 
+        // Control de audio
+        let audioActual = null;
+ 
+        function reproducirAudio(id) {
+            if (audioActual && !audioActual.paused) {
+                audioActual.pause();
+                audioActual.currentTime = 0;
+            }
+ 
+            audioActual = document.getElementById(id);
+            audioActual.play();
+            
+            event.target.closest('.voz-card').style.transform = 'rotate(0deg) scale(1.05)';
+            
+            audioActual.addEventListener('ended', () => {
+                event.target.closest('.voz-card').style.transform = '';
+            });
+        }
+ 
+        // Abrir diario
+        function abrirDiario() {
+            document.getElementById('diario-inicial').style.display = 'none';
+            document.getElementById('contenedor').classList.add('visible');
+ 
+            // Iniciar música
+            const musica = document.getElementById('musica');
+            musica.play();
+            
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+    </script>
+ 
 </body>
 </html>
