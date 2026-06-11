@@ -1,458 +1,1548 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<meta charset="UTF-8">
-<title>Para ti, papá</title>
-
-<!-- FUENTE ROCK OCHENTERA -->
-<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
-
-<style>
-
-/* ================= FONDO ROCK OCHENTERO ================= */
-
-body
-{
-    margin: 0;
-
-    background:
-    radial-gradient(circle at 50% 20%, rgba(255,0,0,0.25), transparent 50%),
-    radial-gradient(circle at 20% 80%, rgba(255,215,0,0.2), transparent 50%),
-    radial-gradient(circle at 80% 60%, rgba(168,85,247,0.2), transparent 50%),
-    linear-gradient(180deg, #000000, #0a0a0a);
-
-    font-family: 'Orbitron', sans-serif;
-
-    color: white;
-
-    text-align: center;
-
-    overflow-x: hidden;
-}
-
-/* ================= LUCES ESCENARIO ================= */
-
-.luz
-{
-    position: fixed;
-
-    width: 300px;
-    height: 300px;
-
-    background: radial-gradient(circle, rgba(255,0,0,0.4), transparent 70%);
-
-    filter: blur(40px);
-
-    animation: moverLuz 6s infinite alternate ease-in-out;
-}
-
-.luz:nth-child(1)
-{
-    left: 10%;
-    top: 20%;
-}
-
-.luz:nth-child(2)
-{
-    right: 10%;
-    bottom: 20%;
-
-    background: radial-gradient(circle, rgba(255,215,0,0.4), transparent 70%);
-
-    animation-delay: 3s;
-}
-
-@keyframes moverLuz
-{
-    from { transform: translateY(-20px); }
-    to { transform: translateY(20px); }
-}
-
-/* ================= PARTICULAS ================= */
-
-.particula
-{
-    position: fixed;
-
-    width: 6px;
-    height: 6px;
-
-    border-radius: 50%;
-
-    animation: flotar linear infinite;
-}
-
-@keyframes flotar
-{
-    from
-    {
-        transform: translateY(100vh);
-        opacity: 0;
-    }
-
-    10%
-    {
-        opacity: 1;
-    }
-
-    to
-    {
-        transform: translateY(-10vh);
-        opacity: 0;
-    }
-}
-
-/* ================= SOBRE ================= */
-
-#sobre
-{
-    margin-top: 200px;
-
-    width: 260px;
-    height: 150px;
-
-    background: linear-gradient(45deg, #ff0000, #ffd700);
-
-    border-radius: 12px;
-
-    cursor: pointer;
-
-    margin-left: auto;
-    margin-right: auto;
-
-    animation: latido 1.2s infinite;
-
-    box-shadow:
-    0 0 20px #ff0000,
-    0 0 40px #ffd700,
-    0 0 80px #ff0000;
-}
-
-@keyframes latido
-{
-    0% { transform: scale(1); }
-    50% { transform: scale(1.15); }
-    100% { transform: scale(1); }
-}
-
-/* ================= DESTELLO ================= */
-
-#destello
-{
-    position: fixed;
-    width: 100%;
-    height: 100%;
-
-    background: radial-gradient(circle, red, gold);
-
-    opacity: 0;
-
-    pointer-events: none;
-
-    transition: opacity 0.5s;
-}
-
-/* ================= CARTA ================= */
-
-.carta
-{
-    display: none;
-
-    margin: auto;
-
-    margin-top: 40px;
-
-    max-width: 750px;
-
-    padding: 40px;
-
-    background: rgba(0,0,0,0.7);
-
-    border-radius: 20px;
-
-    box-shadow:
-    0 0 30px red,
-    0 0 60px gold;
-}
-
-h1
-{
-    font-family: 'Bebas Neue', sans-serif;
-
-    font-size: 48px;
-
-    color: #ffd700;
-
-    text-shadow:
-    0 0 10px red,
-    0 0 20px gold,
-    0 0 40px red;
-}
-
-/* ================= TEXTO ================= */
-
-#textoCarta
-{
-    font-size: 20px;
-
-    color: white;
-
-    border-right: 2px solid gold;
-
-    white-space: pre-line;
-
-    text-shadow: 0 0 5px red;
-}
-
-/* ================= FOTOS ================= */
-
-.foto
-{
-    position: absolute;
-
-    width: 180px;
-
-    border: 6px solid white;
-
-    box-shadow: 0 0 25px gold;
-
-    opacity: 0;
-
-    transition: opacity 1s;
-}
-
-.foto.visible
-{
-    opacity: 1;
-}
-
-.foto.izq
-{
-    left: 5%;
-    transform: rotate(-8deg);
-}
-
-.foto.der
-{
-    right: 5%;
-    transform: rotate(10deg);
-}
-
-/* ================= VIDEO ================= */
-
-.video
-{
-    margin-top: 30px;
-
-    width: 360px;
-
-    border-radius: 12px;
-
-    box-shadow: 0 0 30px red;
-
-    opacity: 0;
-
-    transition: opacity 2s;
-}
-
-.video.visible
-{
-    opacity: 1;
-}
-
-/* ================= BOTONES AUDIO ================= */
-
-.audios button
-{
-    display: block;
-
-    margin: 15px auto;
-
-    padding: 14px 22px;
-
-    border: none;
-
-    border-radius: 12px;
-
-    background: linear-gradient(45deg, red, gold);
-
-    color: black;
-
-    cursor: pointer;
-
-    width: 320px;
-
-    font-family: 'Orbitron';
-
-    font-size: 16px;
-
-    box-shadow:
-    0 0 20px red,
-    0 0 40px gold;
-}
-
-.audios button:hover
-{
-    transform: scale(1.1);
-}
-
-</style>
-
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PAPÁ · ROCK & DISCO 80'S</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Audiowide&family=Bungee&family=Bebas+Neue&family=Permanent+Marker&family=Press+Start+2P&family=Roboto+Mono:wght@400;700&display=swap" rel="stylesheet">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            background: #0a0014;
+            font-family: 'Roboto Mono', monospace;
+            color: #fff;
+            overflow-x: hidden;
+            position: relative;
+        }
+        
+        /* === GRID SYNTHWAVE DE FONDO === */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                linear-gradient(0deg, transparent 49%, rgba(255, 27, 107, 0.05) 50%, transparent 51%),
+                linear-gradient(90deg, transparent 49%, rgba(0, 240, 255, 0.05) 50%, transparent 51%);
+            background-size: 50px 50px;
+            pointer-events: none;
+            z-index: 1;
+        }
+        
+        /* === GRADIENTE NEON === */
+        body::after {
+            content: '';
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 50%;
+            background: 
+                radial-gradient(ellipse at 50% 100%, rgba(139, 92, 246, 0.15) 0%, transparent 50%),
+                radial-gradient(ellipse at 20% 100%, rgba(255, 27, 107, 0.1) 0%, transparent 50%),
+                radial-gradient(ellipse at 80% 100%, rgba(0, 240, 255, 0.1) 0%, transparent 50%);
+            pointer-events: none;
+            z-index: 1;
+        }
+        
+        /* === PARTÍCULAS NEON === */
+        .particle {
+            position: fixed;
+            width: 3px;
+            height: 3px;
+            border-radius: 50%;
+            opacity: 0.7;
+            pointer-events: none;
+            animation: float-particle 15s linear infinite;
+            z-index: 2;
+        }
+        
+        .particle { background: #FF1B6B; box-shadow: 0 0 8px #FF1B6B; }
+        .particle:nth-child(odd) { background: #00F0FF; box-shadow: 0 0 8px #00F0FF; }
+        .particle:nth-child(3n) { background: #8B5CF6; box-shadow: 0 0 8px #8B5CF6; }
+        .particle:nth-child(5n) { background: #FFD700; box-shadow: 0 0 8px #FFD700; }
+        
+        @keyframes float-particle {
+            from { transform: translateY(100vh); opacity: 0; }
+            10% { opacity: 0.8; }
+            90% { opacity: 0.8; }
+            to { transform: translateY(-100vh) translateX(80px); opacity: 0; }
+        }
+        
+        /* === DISCO BALL FLOTANTE === */
+        .disco-ball {
+            position: fixed;
+            top: 50px;
+            right: 50px;
+            font-size: 50px;
+            z-index: 5;
+            animation: disco-spin 4s linear infinite;
+            filter: drop-shadow(0 0 20px rgba(0, 240, 255, 0.8));
+        }
+        
+        @keyframes disco-spin {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+        
+        /* === LIGHTNING BOLTS === */
+        .lightning {
+            position: fixed;
+            font-size: 32px;
+            opacity: 0;
+            pointer-events: none;
+            z-index: 2;
+            animation: lightning-flash 6s ease-in-out infinite;
+            filter: drop-shadow(0 0 10px #FFD700);
+        }
+        
+        @keyframes lightning-flash {
+            0%, 100% { opacity: 0; transform: scale(0.5); }
+            10%, 20% { opacity: 1; transform: scale(1); }
+            15% { opacity: 0.5; }
+        }
+        
+        /* ============================================== */
+        /* PANTALLA INICIAL - BOOMBOX */
+        /* ============================================== */
+        #boombox-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 100;
+            background: radial-gradient(circle, #1a0033 0%, #0a0014 100%);
+            animation: fade-out 0.8s ease forwards 9s;
+            overflow: hidden;
+        }
+        
+        @keyframes fade-out {
+            to { opacity: 0; pointer-events: none; }
+        }
+        
+        .boombox-container {
+            position: relative;
+            cursor: pointer;
+        }
+        
+        /* BOOMBOX 80S */
+        .boombox {
+            width: 500px;
+            height: 280px;
+            background: linear-gradient(180deg, #2a2a2a 0%, #1a1a1a 50%, #2a2a2a 100%);
+            border: 3px solid #FF1B6B;
+            border-radius: 15px;
+            position: relative;
+            box-shadow: 
+                0 30px 80px rgba(0, 0, 0, 0.8),
+                0 0 40px rgba(255, 27, 107, 0.5),
+                inset 0 0 20px rgba(0, 0, 0, 0.7);
+            padding: 25px;
+            display: flex;
+            flex-direction: column;
+            animation: boombox-pulse 2s ease-in-out infinite;
+        }
+        
+        @keyframes boombox-pulse {
+            0%, 100% { box-shadow: 0 30px 80px rgba(0, 0, 0, 0.8), 0 0 40px rgba(255, 27, 107, 0.5), inset 0 0 20px rgba(0, 0, 0, 0.7); }
+            50% { box-shadow: 0 30px 80px rgba(0, 0, 0, 0.8), 0 0 70px rgba(255, 27, 107, 0.8), inset 0 0 20px rgba(0, 0, 0, 0.7); }
+        }
+        
+        /* Handle del boombox */
+        .boombox::before {
+            content: '';
+            position: absolute;
+            top: -25px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 200px;
+            height: 25px;
+            border: 4px solid #555;
+            border-bottom: none;
+            border-radius: 60px 60px 0 0;
+            background: transparent;
+        }
+        
+        /* Speaker izquierdo y derecho */
+        .speaker {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            background: radial-gradient(circle at 30% 30%, #FF1B6B, #1a1a1a 70%);
+            border: 4px solid #444;
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.7);
+        }
+        
+        .speaker::before {
+            content: '';
+            width: 30px;
+            height: 30px;
+            background: radial-gradient(circle, #00F0FF, #1a1a1a);
+            border-radius: 50%;
+            border: 2px solid #555;
+        }
+        
+        .speaker.left { left: 25px; animation: speaker-pulse 0.5s ease-in-out infinite; }
+        .speaker.right { right: 25px; animation: speaker-pulse 0.5s ease-in-out infinite 0.25s; }
+        
+        @keyframes speaker-pulse {
+            0%, 100% { transform: translateY(-50%) scale(1); }
+            50% { transform: translateY(-50%) scale(1.05); }
+        }
+        
+        /* Display central */
+        .boombox-display {
+            background: #000;
+            border: 2px solid #00F0FF;
+            border-radius: 5px;
+            padding: 15px;
+            margin: 0 auto;
+            width: 220px;
+            box-shadow: 
+                inset 0 0 10px rgba(0, 0, 0, 0.8),
+                0 0 15px rgba(0, 240, 255, 0.3);
+            position: relative;
+            z-index: 5;
+        }
+        
+        .display-text {
+            font-family: 'Audiowide', cursive;
+            color: #00F0FF;
+            font-size: 14px;
+            text-align: center;
+            text-shadow: 0 0 8px #00F0FF;
+            letter-spacing: 2px;
+            margin-bottom: 8px;
+        }
+        
+        .display-title {
+            font-family: 'Bungee', cursive;
+            color: #FF1B6B;
+            font-size: 22px;
+            text-align: center;
+            text-shadow: 0 0 10px #FF1B6B;
+            margin: 5px 0;
+            letter-spacing: 1px;
+        }
+        
+        .display-status {
+            font-family: 'Press Start 2P', monospace;
+            color: #FFD700;
+            font-size: 8px;
+            text-align: center;
+            text-shadow: 0 0 5px #FFD700;
+            letter-spacing: 1px;
+            animation: blink-status 1s ease-in-out infinite;
+        }
+        
+        @keyframes blink-status {
+            0%, 100% { opacity: 0.6; }
+            50% { opacity: 1; }
+        }
+        
+        /* Equalizer mini */
+        .mini-equalizer {
+            display: flex;
+            justify-content: center;
+            align-items: flex-end;
+            gap: 3px;
+            margin-top: 10px;
+            height: 20px;
+        }
+        
+        .eq-bar {
+            width: 4px;
+            background: linear-gradient(180deg, #FF1B6B 0%, #00F0FF 100%);
+            border-radius: 2px;
+            animation: eq-dance 1s ease-in-out infinite;
+        }
+        
+        .eq-bar:nth-child(1) { animation-delay: 0s; height: 8px; }
+        .eq-bar:nth-child(2) { animation-delay: 0.1s; height: 14px; }
+        .eq-bar:nth-child(3) { animation-delay: 0.2s; height: 20px; }
+        .eq-bar:nth-child(4) { animation-delay: 0.3s; height: 16px; }
+        .eq-bar:nth-child(5) { animation-delay: 0.4s; height: 12px; }
+        .eq-bar:nth-child(6) { animation-delay: 0.5s; height: 18px; }
+        .eq-bar:nth-child(7) { animation-delay: 0.6s; height: 14px; }
+        .eq-bar:nth-child(8) { animation-delay: 0.7s; height: 10px; }
+        
+        @keyframes eq-dance {
+            0%, 100% { transform: scaleY(0.3); }
+            50% { transform: scaleY(1); }
+        }
+        
+        /* Botones del boombox */
+        .boombox-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 15px;
+            position: relative;
+            z-index: 5;
+        }
+        
+        .bb-btn {
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #444, #222);
+            border: 2px solid #FFD700;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+            color: #FFD700;
+            box-shadow: 0 0 10px rgba(255, 215, 0, 0.3);
+        }
+        
+        .play-instruction {
+            text-align: center;
+            margin-top: 30px;
+            font-family: 'Audiowide', cursive;
+            font-size: 16px;
+            color: #FF1B6B;
+            letter-spacing: 3px;
+            text-shadow: 0 0 10px #FF1B6B;
+            animation: blink-instruction 1.5s ease-in-out infinite;
+        }
+        
+        @keyframes blink-instruction {
+            0%, 100% { opacity: 0.6; }
+            50% { opacity: 1; }
+        }
+        
+        /* Lights alrededor */
+        .stage-light {
+            position: absolute;
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            opacity: 0.4;
+            filter: blur(40px);
+            animation: stage-glow 3s ease-in-out infinite;
+        }
+        
+        .stage-light.left { top: -30px; left: -50px; background: #FF1B6B; }
+        .stage-light.right { top: -30px; right: -50px; background: #00F0FF; animation-delay: 1.5s; }
+        .stage-light.bottom-left { bottom: -30px; left: -50px; background: #8B5CF6; animation-delay: 0.7s; }
+        .stage-light.bottom-right { bottom: -30px; right: -50px; background: #FFD700; animation-delay: 2.2s; }
+        
+        @keyframes stage-glow {
+            0%, 100% { opacity: 0.2; transform: scale(1); }
+            50% { opacity: 0.6; transform: scale(1.2); }
+        }
+        
+        /* ============================================== */
+        /* CONTENIDO PRINCIPAL */
+        /* ============================================== */
+        .contenedor {
+            display: none;
+            animation: fade-in 1s ease;
+            position: relative;
+            z-index: 10;
+        }
+        
+        .contenedor.visible {
+            display: block;
+        }
+        
+        @keyframes fade-in {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        /* ============================================== */
+        /* HEADER ESTILO MESA DE MEZCLAS DJ */
+        /* ============================================== */
+        .dj-header {
+            background: linear-gradient(180deg, rgba(10, 0, 20, 0.97) 0%, rgba(26, 0, 51, 0.9) 100%);
+            backdrop-filter: blur(15px);
+            border-bottom: 3px solid #FF1B6B;
+            padding: 20px 30px;
+            position: sticky;
+            top: 0;
+            z-index: 50;
+            display: grid;
+            grid-template-columns: 1fr 2fr 1fr;
+            align-items: center;
+            gap: 20px;
+            box-shadow: 
+                0 5px 30px rgba(255, 27, 107, 0.3),
+                0 0 50px rgba(0, 240, 255, 0.1);
+        }
+        
+        .dj-info {
+            font-family: 'Audiowide', cursive;
+            font-size: 14px;
+            color: #00F0FF;
+            text-shadow: 0 0 5px #00F0FF;
+            letter-spacing: 2px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .status-led {
+            display: inline-block;
+            width: 10px;
+            height: 10px;
+            background: #FF1B6B;
+            border-radius: 50%;
+            animation: led-pulse 1s ease-in-out infinite;
+            box-shadow: 0 0 10px #FF1B6B;
+        }
+        
+        @keyframes led-pulse {
+            0%, 100% { opacity: 0.6; }
+            50% { opacity: 1; }
+        }
+        
+        .dj-title {
+            font-family: 'Bungee', cursive;
+            font-size: 28px;
+            color: #FF1B6B;
+            text-shadow: 
+                0 0 15px #FF1B6B,
+                2px 2px 0 #00F0FF;
+            text-align: center;
+            letter-spacing: 4px;
+        }
+        
+        /* Equalizer en el header */
+        .header-eq {
+            display: flex;
+            justify-content: flex-end;
+            align-items: flex-end;
+            gap: 3px;
+            height: 30px;
+        }
+        
+        .header-eq .eq-bar {
+            width: 4px;
+            background: linear-gradient(180deg, #FF1B6B 0%, #00F0FF 100%);
+            animation-duration: 0.8s;
+        }
+        
+        .header-eq .eq-bar:nth-child(1) { height: 20px; }
+        .header-eq .eq-bar:nth-child(2) { height: 30px; animation-delay: 0.1s; }
+        .header-eq .eq-bar:nth-child(3) { height: 15px; animation-delay: 0.2s; }
+        .header-eq .eq-bar:nth-child(4) { height: 25px; animation-delay: 0.3s; }
+        .header-eq .eq-bar:nth-child(5) { height: 18px; animation-delay: 0.4s; }
+        .header-eq .eq-bar:nth-child(6) { height: 28px; animation-delay: 0.5s; }
+        
+        /* ============================================== */
+        /* CARTEL PRINCIPAL ROCK */
+        /* ============================================== */
+        .rock-banner {
+            max-width: 1100px;
+            margin: 60px auto 40px;
+            padding: 60px 40px;
+            text-align: center;
+            position: relative;
+            background: 
+                linear-gradient(135deg, rgba(255, 27, 107, 0.1) 0%, rgba(0, 240, 255, 0.05) 100%);
+            border: 3px solid #FF1B6B;
+            border-radius: 15px;
+            box-shadow: 
+                0 20px 50px rgba(0, 0, 0, 0.7),
+                0 0 40px rgba(255, 27, 107, 0.3);
+        }
+        
+        .rock-banner::before {
+            content: '';
+            position: absolute;
+            top: -3px;
+            left: -3px;
+            right: -3px;
+            bottom: -3px;
+            background: linear-gradient(45deg, #FF1B6B, #00F0FF, #8B5CF6, #FFD700, #FF1B6B);
+            background-size: 400% 400%;
+            border-radius: 18px;
+            z-index: -1;
+            animation: gradient-border 3s linear infinite;
+        }
+        
+        @keyframes gradient-border {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        
+        .show-type {
+            font-family: 'Press Start 2P', monospace;
+            font-size: 11px;
+            color: #FFD700;
+            letter-spacing: 4px;
+            margin-bottom: 20px;
+            text-shadow: 0 0 8px #FFD700;
+        }
+        
+        h1 {
+            font-family: 'Bungee', cursive;
+            font-size: 110px;
+            color: #fff;
+            text-align: center;
+            line-height: 0.9;
+            letter-spacing: 3px;
+            margin: 20px 0;
+            position: relative;
+            text-shadow: 
+                3px 3px 0 #FF1B6B,
+                6px 6px 0 #00F0FF,
+                9px 9px 20px rgba(0, 0, 0, 0.7);
+            animation: title-vibrate 0.5s ease-in-out infinite;
+        }
+        
+        @keyframes title-vibrate {
+            0%, 100% { transform: translate(0); }
+            25% { transform: translate(-1px, 1px); }
+            50% { transform: translate(1px, -1px); }
+            75% { transform: translate(-1px, -1px); }
+        }
+        
+        .tour-subtitle {
+            font-family: 'Audiowide', cursive;
+            font-size: 20px;
+            color: #00F0FF;
+            letter-spacing: 6px;
+            margin-top: 25px;
+            text-shadow: 0 0 10px #00F0FF;
+        }
+        
+        .tour-subtitle::before,
+        .tour-subtitle::after {
+            content: ' ★ ';
+            color: #FFD700;
+        }
+        
+        .tour-info {
+            font-family: 'Roboto Mono', monospace;
+            font-size: 14px;
+            color: #fff;
+            margin-top: 20px;
+            opacity: 0.9;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+        
+        .tour-info .highlight {
+            color: #FF1B6B;
+            text-shadow: 0 0 5px #FF1B6B;
+        }
+        
+        /* ============================================== */
+        /* SECCIÓN VINILO - MENSAJE */
+        /* ============================================== */
+        .vinilo-section {
+            max-width: 1100px;
+            margin: 80px auto;
+            padding: 0 30px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            align-items: center;
+        }
+        
+        .vinilo-display {
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .vinilo-circle {
+            width: 350px;
+            height: 350px;
+            border-radius: 50%;
+            background: 
+                radial-gradient(circle at center, #000 0%, #1a1a1a 25%, #000 27%, #1a1a1a 50%, #000 52%, #1a1a1a 75%, #000 100%);
+            border: 4px solid #FF1B6B;
+            position: relative;
+            animation: vinyl-spin 8s linear infinite;
+            box-shadow: 
+                0 25px 60px rgba(0, 0, 0, 0.8),
+                0 0 40px rgba(255, 27, 107, 0.5);
+        }
+        
+        @keyframes vinyl-spin {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+        
+        .vinilo-label {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 130px;
+            height: 130px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #FF1B6B 0%, #8B5CF6 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            text-align: center;
+            padding: 15px;
+            box-shadow: 
+                0 0 20px rgba(255, 27, 107, 0.6),
+                inset 0 0 10px rgba(0, 0, 0, 0.5);
+        }
+        
+        .vinilo-label-side {
+            font-family: 'Bungee', cursive;
+            color: #fff;
+            font-size: 14px;
+            letter-spacing: 2px;
+            text-shadow: 0 0 5px #000;
+        }
+        
+        .vinilo-label-title {
+            font-family: 'Bebas Neue', cursive;
+            color: #FFD700;
+            font-size: 18px;
+            letter-spacing: 1px;
+            margin-top: 5px;
+            text-shadow: 0 0 5px #000;
+        }
+        
+        .vinilo-center {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 25px;
+            height: 25px;
+            background: radial-gradient(circle, #FFD700, #FF1B6B);
+            border-radius: 50%;
+            box-shadow: 0 0 15px #FFD700;
+            z-index: 5;
+        }
+        
+        /* MENSAJE LADO B */
+        .mensaje-vinilo {
+            background: linear-gradient(135deg, rgba(0, 0, 0, 0.7) 0%, rgba(26, 0, 51, 0.7) 100%);
+            border: 2px solid #FF1B6B;
+            padding: 35px;
+            border-radius: 12px;
+            position: relative;
+            box-shadow: 
+                0 20px 50px rgba(0, 0, 0, 0.6),
+                inset 0 0 20px rgba(255, 27, 107, 0.05);
+        }
+        
+        .mensaje-vinilo::before {
+            content: '◀ SIDE B ▶';
+            position: absolute;
+            top: -15px;
+            left: 30px;
+            background: #0a0014;
+            padding: 5px 15px;
+            font-family: 'Audiowide', cursive;
+            color: #00F0FF;
+            font-size: 12px;
+            letter-spacing: 3px;
+            text-shadow: 0 0 8px #00F0FF;
+            border: 1px solid #00F0FF;
+            border-radius: 3px;
+        }
+        
+        .mensaje-titulo {
+            font-family: 'Bungee', cursive;
+            font-size: 36px;
+            color: #FF1B6B;
+            margin-bottom: 20px;
+            margin-top: 10px;
+            text-shadow: 0 0 10px #FF1B6B;
+            letter-spacing: 2px;
+        }
+        
+        .mensaje-vinilo-text {
+            font-family: 'Roboto Mono', monospace;
+            font-size: 15px;
+            color: #fff;
+            line-height: 1.9;
+            margin-top: 20px;
+        }
+        
+        /* ============================================== */
+        /* SECCIÓN DE PISTAS - AUDIOS */
+        /* ============================================== */
+        .pistas-section {
+            max-width: 1100px;
+            margin: 100px auto;
+            padding: 0 30px;
+        }
+        
+        .section-title {
+            font-family: 'Bungee', cursive;
+            font-size: 56px;
+            color: #fff;
+            text-align: center;
+            letter-spacing: 5px;
+            margin-bottom: 50px;
+            text-shadow: 
+                3px 3px 0 #FF1B6B,
+                6px 6px 20px rgba(0, 0, 0, 0.7);
+        }
+        
+        .section-subtitle {
+            text-align: center;
+            font-family: 'Audiowide', cursive;
+            font-size: 16px;
+            color: #00F0FF;
+            letter-spacing: 4px;
+            margin-bottom: 60px;
+            text-shadow: 0 0 10px #00F0FF;
+            opacity: 0.9;
+        }
+        
+        .pistas-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 25px;
+        }
+        
+        /* PISTA - Como un track de álbum */
+        .pista {
+            background: linear-gradient(135deg, rgba(255, 27, 107, 0.1) 0%, rgba(0, 240, 255, 0.05) 100%);
+            border: 2px solid #FF1B6B;
+            border-radius: 12px;
+            padding: 25px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .pista::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 27, 107, 0.2), transparent);
+            transition: left 0.5s ease;
+            z-index: 1;
+        }
+        
+        .pista:hover::before {
+            left: 100%;
+        }
+        
+        .pista:hover {
+            transform: translateY(-8px);
+            border-color: #00F0FF;
+            box-shadow: 
+                0 20px 40px rgba(0, 0, 0, 0.6),
+                0 0 30px rgba(0, 240, 255, 0.4);
+        }
+        
+        .pista-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .pista-num {
+            font-family: 'Audiowide', cursive;
+            color: #FFD700;
+            font-size: 32px;
+            text-shadow: 0 0 10px #FFD700;
+        }
+        
+        .pista-duration {
+            font-family: 'Press Start 2P', monospace;
+            color: #00F0FF;
+            font-size: 8px;
+            letter-spacing: 1px;
+            text-shadow: 0 0 5px #00F0FF;
+        }
+        
+        .pista-titulo {
+            font-family: 'Bungee', cursive;
+            font-size: 22px;
+            color: #fff;
+            letter-spacing: 1px;
+            margin-bottom: 10px;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .pista-descripcion {
+            font-family: 'Roboto Mono', monospace;
+            font-size: 13px;
+            color: #00F0FF;
+            opacity: 0.8;
+            margin-bottom: 20px;
+            letter-spacing: 1px;
+            position: relative;
+            z-index: 2;
+        }
+        
+        /* Equalizer en cada pista */
+        .pista-equalizer {
+            display: flex;
+            justify-content: center;
+            align-items: flex-end;
+            gap: 4px;
+            margin-top: 20px;
+            height: 30px;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .pista-equalizer .eq-bar {
+            width: 5px;
+            background: linear-gradient(180deg, #FF1B6B 0%, #00F0FF 100%);
+            border-radius: 2px;
+            transition: all 0.3s ease;
+        }
+        
+        .pista.playing .pista-equalizer .eq-bar {
+            animation: eq-dance 0.8s ease-in-out infinite;
+        }
+        
+        .pista-equalizer .eq-bar:nth-child(1) { height: 12px; }
+        .pista-equalizer .eq-bar:nth-child(2) { height: 22px; }
+        .pista-equalizer .eq-bar:nth-child(3) { height: 30px; }
+        .pista-equalizer .eq-bar:nth-child(4) { height: 18px; }
+        .pista-equalizer .eq-bar:nth-child(5) { height: 25px; }
+        .pista-equalizer .eq-bar:nth-child(6) { height: 14px; }
+        .pista-equalizer .eq-bar:nth-child(7) { height: 28px; }
+        .pista-equalizer .eq-bar:nth-child(8) { height: 16px; }
+        .pista-equalizer .eq-bar:nth-child(9) { height: 22px; }
+        .pista-equalizer .eq-bar:nth-child(10) { height: 12px; }
+        
+        .pista-equalizer .eq-bar:nth-child(1) { animation-delay: 0s; }
+        .pista-equalizer .eq-bar:nth-child(2) { animation-delay: 0.1s; }
+        .pista-equalizer .eq-bar:nth-child(3) { animation-delay: 0.2s; }
+        .pista-equalizer .eq-bar:nth-child(4) { animation-delay: 0.3s; }
+        .pista-equalizer .eq-bar:nth-child(5) { animation-delay: 0.4s; }
+        .pista-equalizer .eq-bar:nth-child(6) { animation-delay: 0.5s; }
+        .pista-equalizer .eq-bar:nth-child(7) { animation-delay: 0.6s; }
+        .pista-equalizer .eq-bar:nth-child(8) { animation-delay: 0.7s; }
+        .pista-equalizer .eq-bar:nth-child(9) { animation-delay: 0.8s; }
+        .pista-equalizer .eq-bar:nth-child(10) { animation-delay: 0.9s; }
+        
+        .pista-play-btn {
+            display: inline-block;
+            margin-top: 15px;
+            padding: 10px 25px;
+            background: linear-gradient(135deg, #FF1B6B, #8B5CF6);
+            color: #fff;
+            font-family: 'Audiowide', cursive;
+            font-size: 14px;
+            border-radius: 30px;
+            letter-spacing: 2px;
+            box-shadow: 0 5px 15px rgba(255, 27, 107, 0.5);
+            position: relative;
+            z-index: 2;
+        }
+        
+        /* ============================================== */
+        /* SECCIÓN TICKETS - FOTOS */
+        /* ============================================== */
+        .tickets-section {
+            max-width: 1100px;
+            margin: 100px auto;
+            padding: 0 30px;
+        }
+        
+        .tickets-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 30px;
+        }
+        
+        /* TICKET DE CONCIERTO */
+        .ticket {
+            background: linear-gradient(135deg, #fff 0%, #f4ebd0 100%);
+            color: #1a0014;
+            border-radius: 8px;
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 
+                0 20px 50px rgba(0, 0, 0, 0.7),
+                0 0 30px rgba(255, 27, 107, 0.3);
+            transform: rotate(-2deg);
+        }
+        
+        .ticket:nth-child(2) { transform: rotate(1deg); }
+        .ticket:nth-child(3) { transform: rotate(-1deg); }
+        .ticket:nth-child(4) { transform: rotate(2deg); }
+        
+        .ticket:hover {
+            transform: rotate(0deg) scale(1.05) translateY(-10px);
+            box-shadow: 
+                0 30px 70px rgba(0, 0, 0, 0.9),
+                0 0 40px rgba(0, 240, 255, 0.5);
+        }
+        
+        /* Borde dentado (como ticket real) */
+        .ticket::before,
+        .ticket::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            right: 0;
+            height: 10px;
+            background-image: radial-gradient(circle, #0a0014 4px, transparent 4px);
+            background-size: 15px 15px;
+            background-position: center;
+        }
+        
+        .ticket::before { top: 65%; }
+        .ticket::after { display: none; }
+        
+        .ticket-stub {
+            background: linear-gradient(135deg, #FF1B6B 0%, #8B5CF6 100%);
+            padding: 20px 25px;
+            color: #fff;
+            position: relative;
+        }
+        
+        .ticket-stub-label {
+            font-family: 'Audiowide', cursive;
+            font-size: 11px;
+            letter-spacing: 4px;
+            opacity: 0.9;
+            margin-bottom: 5px;
+        }
+        
+        .ticket-stub-title {
+            font-family: 'Bungee', cursive;
+            font-size: 24px;
+            letter-spacing: 1px;
+            text-shadow: 2px 2px 0 rgba(0, 0, 0, 0.3);
+        }
+        
+        .ticket-image {
+            width: 100%;
+            aspect-ratio: 16/9;
+            background: linear-gradient(135deg, #1a0014 0%, #0a0014 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 80px;
+            color: #FFD700;
+            text-shadow: 0 0 20px #FFD700;
+        }
+        
+        .ticket-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .ticket-info {
+            padding: 25px;
+            background: #fff;
+            position: relative;
+        }
+        
+        .ticket-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 12px;
+            padding-bottom: 8px;
+            border-bottom: 1px dashed rgba(0, 0, 0, 0.2);
+        }
+        
+        .ticket-row:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+        }
+        
+        .ticket-label {
+            font-family: 'Roboto Mono', monospace;
+            font-size: 10px;
+            color: #8B5CF6;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+        
+        .ticket-value {
+            font-family: 'Bebas Neue', cursive;
+            font-size: 14px;
+            color: #1a0014;
+            letter-spacing: 1px;
+        }
+        
+        .ticket-value.highlight {
+            color: #FF1B6B;
+            font-weight: 700;
+        }
+        
+        /* Código de barras */
+        .barcode {
+            background: repeating-linear-gradient(
+                90deg,
+                #1a0014 0px,
+                #1a0014 2px,
+                transparent 2px,
+                transparent 5px,
+                #1a0014 5px,
+                #1a0014 6px,
+                transparent 6px,
+                transparent 8px
+            );
+            height: 35px;
+            margin-top: 15px;
+        }
+        
+        .barcode-text {
+            text-align: center;
+            font-family: 'Press Start 2P', monospace;
+            font-size: 8px;
+            color: #1a0014;
+            margin-top: 5px;
+            letter-spacing: 1px;
+        }
+        
+        /* ============================================== */
+        /* DESPEDIDA EPICA */
+        /* ============================================== */
+        .despedida-rock {
+            max-width: 900px;
+            margin: 120px auto 60px;
+            padding: 70px 40px;
+            text-align: center;
+            position: relative;
+            background: linear-gradient(135deg, rgba(255, 27, 107, 0.15) 0%, rgba(139, 92, 246, 0.1) 100%);
+            border: 3px solid #FFD700;
+            border-radius: 15px;
+            box-shadow: 
+                0 30px 80px rgba(0, 0, 0, 0.8),
+                0 0 50px rgba(255, 27, 107, 0.4),
+                0 0 70px rgba(255, 215, 0, 0.2);
+        }
+        
+        .despedida-icons {
+            font-size: 50px;
+            margin-bottom: 20px;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+        
+        .despedida-icons span {
+            animation: icon-rock 1.5s ease-in-out infinite;
+            filter: drop-shadow(0 0 15px #FFD700);
+        }
+        
+        .despedida-icons span:nth-child(2) { animation-delay: 0.5s; }
+        .despedida-icons span:nth-child(3) { animation-delay: 1s; }
+        
+        @keyframes icon-rock {
+            0%, 100% { transform: translateY(0) rotate(-10deg); }
+            50% { transform: translateY(-15px) rotate(10deg); }
+        }
+        
+        .despedida-tipo {
+            font-family: 'Press Start 2P', monospace;
+            font-size: 11px;
+            color: #FFD700;
+            letter-spacing: 4px;
+            margin-bottom: 15px;
+            text-shadow: 0 0 8px #FFD700;
+        }
+        
+        .despedida-titulo {
+            font-family: 'Bungee', cursive;
+            font-size: 64px;
+            color: #fff;
+            text-shadow: 
+                3px 3px 0 #FF1B6B,
+                6px 6px 0 #00F0FF,
+                9px 9px 20px rgba(0, 0, 0, 0.5);
+            letter-spacing: 3px;
+            margin-bottom: 20px;
+        }
+        
+        .despedida-text {
+            font-family: 'Audiowide', cursive;
+            font-size: 18px;
+            color: #00F0FF;
+            line-height: 2;
+            text-shadow: 0 0 10px #00F0FF;
+            margin: 30px 0;
+            padding: 25px 0;
+            border-top: 2px solid #FFD700;
+            border-bottom: 2px solid #FFD700;
+        }
+        
+        .despedida-firma {
+            font-family: 'Permanent Marker', cursive;
+            font-size: 32px;
+            color: #FF1B6B;
+            margin-top: 30px;
+            text-shadow: 0 0 15px #FF1B6B;
+        }
+        
+        .volver {
+            display: inline-block;
+            margin-top: 40px;
+            padding: 16px 50px;
+            background: transparent;
+            border: 3px solid #FFD700;
+            border-radius: 50px;
+            color: #FFD700;
+            font-family: 'Audiowide', cursive;
+            font-size: 18px;
+            text-decoration: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            text-shadow: 0 0 10px #FFD700;
+        }
+        
+        .volver:hover {
+            background: linear-gradient(135deg, #FFD700, #FF1B6B);
+            color: #fff;
+            transform: translateY(-3px);
+            box-shadow: 
+                0 15px 30px rgba(255, 27, 107, 0.5),
+                0 0 30px rgba(255, 215, 0, 0.5);
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            h1 { font-size: 64px; }
+            
+            .vinilo-section {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+            
+            .vinilo-circle {
+                width: 280px;
+                height: 280px;
+            }
+            
+            .section-title {
+                font-size: 36px;
+            }
+            
+            .dj-header {
+                grid-template-columns: 1fr;
+                gap: 10px;
+                text-align: center;
+            }
+            
+            .dj-info, .header-eq {
+                justify-content: center;
+            }
+            
+            .header-eq {
+                display: none;
+            }
+            
+            .pistas-grid, .tickets-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .boombox {
+                width: 90vw;
+                max-width: 400px;
+                padding: 15px;
+            }
+            
+            .speaker {
+                width: 70px;
+                height: 70px;
+            }
+            
+            .speaker.left { left: 10px; }
+            .speaker.right { right: 10px; }
+            
+            .boombox-display {
+                width: 160px;
+                padding: 10px;
+            }
+            
+            .display-title { font-size: 18px; }
+            
+            .despedida-titulo { font-size: 42px; }
+            
+            .contenedor {
+                padding-bottom: 40px;
+            }
+        }
+    </style>
 </head>
-
 <body>
-
-<div class="luz"></div>
-<div class="luz"></div>
-
-<div id="destello"></div>
-
-<audio id="musica" loop>
-<source src="../media/papa/musica.mp3">
-</audio>
-
-<div id="sobre" onclick="abrirCarta()"></div>
-
-<div class="carta" id="carta">
-
-<h1>Para ti, papá</h1>
-
-<p id="textoCarta"></p>
-
-<img src="../media/papa/foto1.jpg" class="foto izq" id="foto1">
-<img src="../media/papa/foto2.jpg" class="foto der" id="foto2">
-
-<br>
-
-<video class="video" id="video1" autoplay muted loop>
-<source src="../media/papa/video1.mp4">
-</video>
-
-<h2>Escucha esto</h2>
-
-<div class="audios">
-
-<button onclick="reproducirAudio('audio1')">▶ Gracias por enseñarme tanto</button>
-
-<button onclick="reproducirAudio('audio2')">▶ Momentos que nunca olvidaré</button>
-
-<button onclick="reproducirAudio('audio3')">▶ Lo importante que eres para mí</button>
-
-</div>
-
-<audio id="audio1"><source src="../media/papa/audio1.mp3"></audio>
-<audio id="audio2"><source src="../media/papa/audio2.mp3"></audio>
-<audio id="audio3"><source src="../media/papa/audio3.mp3"></audio>
-
-</div>
-
-<script>
-
-/* PARTICULAS ROCK */
-
-let colores=["red","gold","purple"];
-
-for(let i=0;i<70;i++)
-{
-    let p=document.createElement("div");
-
-    p.className="particula";
-
-    p.style.left=Math.random()*100+"vw";
-
-    p.style.background=colores[Math.floor(Math.random()*colores.length)];
-
-    p.style.animationDuration=(3+Math.random()*5)+"s";
-
-    document.body.appendChild(p);
-}
-
-/* AUDIO */
-
-let audioActual=null;
-
-function reproducirAudio(id)
-{
-    if(audioActual)
-    {
-        audioActual.pause();
-        audioActual.currentTime=0;
-    }
-
-    audioActual=document.getElementById(id);
-
-    audioActual.volume=1;
-
-    audioActual.play();
-}
-
-/* ABRIR CARTA */
-
-function abrirCarta()
-{
-    let destello=document.getElementById("destello");
-
-    destello.style.opacity=1;
-
-    setTimeout(()=>destello.style.opacity=0,500);
-
-    document.getElementById("sobre").style.display="none";
-
-    document.getElementById("carta").style.display="block";
-
-    let musica=document.getElementById("musica");
-
-    musica.volume=0;
-
-    musica.play();
-
-    let fade=setInterval(()=>{
-
-        if(musica.volume<0.35)
-            musica.volume+=0.01;
-
-        else
-            clearInterval(fade);
-
-    },100);
-
-    escribirTexto();
-}
-
-/* TEXTO */
-
-const texto=`Gracias por tantas risas.
-Gracias por tu energía.
-Gracias por cada momento.
-
-Eres rock puro.
-
-Te quiero mucho.`;
-
-let i=0;
-
-function escribirTexto()
-{
-    if(i<texto.length)
-    {
-        textoCarta.innerHTML+=texto.charAt(i);
-
-        i++;
-
-        if(i==40)
-            foto1.classList.add("visible");
-
-        if(i==80)
-            foto2.classList.add("visible");
-
-        if(i==120)
-            video1.classList.add("visible");
-
-        setTimeout(escribirTexto,25);
-    }
-}
-
-</script>
-
+ 
+    <!-- DISCO BALL -->
+    <div class="disco-ball">🪩</div>
+    
+    <!-- LIGHTNING -->
+    <div class="lightning" style="top: 20%; left: 5%; animation-delay: 0s;">⚡</div>
+    <div class="lightning" style="top: 40%; right: 8%; animation-delay: 2s;">⚡</div>
+    <div class="lightning" style="top: 70%; left: 10%; animation-delay: 4s;">⚡</div>
+    
+    <!-- PARTÍCULAS -->
+    <div id="particulas"></div>
+ 
+    <!-- BOOMBOX SCREEN INICIAL -->
+    <div id="boombox-screen">
+        <div class="stage-light left"></div>
+        <div class="stage-light right"></div>
+        <div class="stage-light bottom-left"></div>
+        <div class="stage-light bottom-right"></div>
+        
+        <div class="boombox-container" onclick="encenderRadio()">
+            <div class="boombox">
+                <div class="speaker left"></div>
+                <div class="speaker right"></div>
+                
+                <div class="boombox-display">
+                    <div class="display-text">★ ROCK FM ★</div>
+                    <div class="display-title">PAPÁ</div>
+                    <div class="display-status">▶ READY TO PLAY</div>
+                    
+                    <div class="mini-equalizer">
+                        <div class="eq-bar"></div>
+                        <div class="eq-bar"></div>
+                        <div class="eq-bar"></div>
+                        <div class="eq-bar"></div>
+                        <div class="eq-bar"></div>
+                        <div class="eq-bar"></div>
+                        <div class="eq-bar"></div>
+                        <div class="eq-bar"></div>
+                    </div>
+                </div>
+                
+                <div class="boombox-buttons">
+                    <div class="bb-btn">◀◀</div>
+                    <div class="bb-btn">▶</div>
+                    <div class="bb-btn">⏸</div>
+                    <div class="bb-btn">▶▶</div>
+                </div>
+            </div>
+            
+            <div class="play-instruction">▶ PRESS PLAY TO START ◀</div>
+        </div>
+    </div>
+ 
+    <!-- MÚSICA DE FONDO -->
+    <audio id="musica" loop volume="0.15">
+        <source src="../media/papa/musica.mp3" type="audio/mpeg">
+    </audio>
+ 
+    <!-- CONTENIDO PRINCIPAL -->
+    <div class="contenedor" id="contenedor">
+        
+        <!-- HEADER MESA DE DJ -->
+        <div class="dj-header">
+            <div class="dj-info">
+                <span class="status-led"></span>ON AIR · LIVE
+            </div>
+            <div class="dj-title">★ PAPÁ FM ★</div>
+            <div class="header-eq">
+                <div class="eq-bar"></div>
+                <div class="eq-bar"></div>
+                <div class="eq-bar"></div>
+                <div class="eq-bar"></div>
+                <div class="eq-bar"></div>
+                <div class="eq-bar"></div>
+            </div>
+        </div>
+ 
+        <!-- CARTEL ROCK PRINCIPAL -->
+        <div class="rock-banner">
+            <div class="show-type">★ LIVE IN CONCERT · TONIGHT ★</div>
+            <h1>PAPÁ</h1>
+            <div class="tour-subtitle">ROCK · DISCO · LEGEND</div>
+            <div class="tour-info">
+                🎸 GREATEST HITS TOUR <span class="highlight">2025</span> 🕺<br>
+                <span style="font-size: 12px; opacity: 0.7;">VENUE: NUESTRO CORAZÓN · DATE: PARA SIEMPRE</span>
+            </div>
+        </div>
+ 
+        <!-- SECCIÓN VINILO -->
+        <div class="vinilo-section">
+            <div class="vinilo-display">
+                <div class="vinilo-circle">
+                    <div class="vinilo-label">
+                        <div class="vinilo-label-side">★ SIDE A ★</div>
+                        <div class="vinilo-label-title">PAPÁ</div>
+                    </div>
+                    <div class="vinilo-center"></div>
+                </div>
+            </div>
+            
+            <div class="mensaje-vinilo">
+                <h2 class="mensaje-titulo">PARA TI, PAPÁ</h2>
+                <div class="mensaje-vinilo-text" id="mensaje-personalizado">
+                    Algunas personas son leyenda.<br>
+                    Otras son rock and roll.<br>
+                    Pero hay quienes son ambos.
+                    <br><br>
+                    Aquí va tu mensaje personalizado para tu papá. Cuéntale lo que admiras de él, sus historias, las canciones que les marcaron, los momentos que más valoras, todo lo que has aprendido a su lado.
+                    <br><br>
+                    Te amo, papá. Eres mi leyenda. 🎸
+                </div>
+            </div>
+        </div>
+ 
+        <!-- SECCIÓN PISTAS (AUDIOS) -->
+        <div class="pistas-section">
+            <div class="section-title">★ THE TRACKS ★</div>
+            <div class="section-subtitle">▼ MENSAJES EN VIVO ▼</div>
+            
+            <div class="pistas-grid">
+                <div class="pista" onclick="reproducirAudio('audio1', this)">
+                    <div class="pista-header">
+                        <div class="pista-num">01</div>
+                        <div class="pista-duration">► PLAY</div>
+                    </div>
+                    <div class="pista-titulo">SIDE A · TRACK 1</div>
+                    <div class="pista-descripcion">// Mensaje desde el corazón</div>
+                    <div class="pista-equalizer">
+                        <div class="eq-bar"></div>
+                        <div class="eq-bar"></div>
+                        <div class="eq-bar"></div>
+                        <div class="eq-bar"></div>
+                        <div class="eq-bar"></div>
+                        <div class="eq-bar"></div>
+                        <div class="eq-bar"></div>
+                        <div class="eq-bar"></div>
+                        <div class="eq-bar"></div>
+                        <div class="eq-bar"></div>
+                    </div>
+                    <div class="pista-play-btn">▶ PLAY</div>
+                </div>
+                
+                <div class="pista" onclick="reproducirAudio('audio2', this)">
+                    <div class="pista-header">
+                        <div class="pista-num">02</div>
+                        <div class="pista-duration">► PLAY</div>
+                    </div>
+                    <div class="pista-titulo">SIDE A · TRACK 2</div>
+                    <div class="pista-descripcion">// Una historia para ti</div>
+                    <div class="pista-equalizer">
+                        <div class="eq-bar"></div>
+                        <div class="eq-bar"></div>
+                        <div class="eq-bar"></div>
+                        <div class="eq-bar"></div>
+                        <div class="eq-bar"></div>
+                        <div class="eq-bar"></div>
+                        <div class="eq-bar"></div>
+                        <div class="eq-bar"></div>
+                        <div class="eq-bar"></div>
+                        <div class="eq-bar"></div>
+                    </div>
+                    <div class="pista-play-btn">▶ PLAY</div>
+                </div>
+                
+                <div class="pista" onclick="reproducirAudio('audio3', this)">
+                    <div class="pista-header">
+                        <div class="pista-num">03</div>
+                        <div class="pista-duration">► PLAY</div>
+                    </div>
+                    <div class="pista-titulo">SIDE B · TRACK 1</div>
+                    <div class="pista-descripcion">// El cierre épico</div>
+                    <div class="pista-equalizer">
+                        <div class="eq-bar"></div>
+                        <div class="eq-bar"></div>
+                        <div class="eq-bar"></div>
+                        <div class="eq-bar"></div>
+                        <div class="eq-bar"></div>
+                        <div class="eq-bar"></div>
+                        <div class="eq-bar"></div>
+                        <div class="eq-bar"></div>
+                        <div class="eq-bar"></div>
+                        <div class="eq-bar"></div>
+                    </div>
+                    <div class="pista-play-btn">▶ PLAY</div>
+                </div>
+            </div>
+        </div>
+ 
+        <!-- SECCIÓN TICKETS (FOTOS) -->
+        <div class="tickets-section">
+            <div class="section-title">★ BACKSTAGE ★</div>
+            <div class="section-subtitle">▼ MOMENTOS DEL TOUR ▼</div>
+            
+            <div class="tickets-grid">
+                <div class="ticket">
+                    <div class="ticket-stub">
+                        <div class="ticket-stub-label">★ CONCERT TICKET ★</div>
+                        <div class="ticket-stub-title">PAPÁ TOUR</div>
+                    </div>
+                    <div class="ticket-image">🎸</div>
+                    <div class="ticket-info">
+                        <div class="ticket-row">
+                            <span class="ticket-label">Event</span>
+                            <span class="ticket-value">EN VIVO</span>
+                        </div>
+                        <div class="ticket-row">
+                            <span class="ticket-label">Year</span>
+                            <span class="ticket-value highlight">2025</span>
+                        </div>
+                        <div class="ticket-row">
+                            <span class="ticket-label">Seat</span>
+                            <span class="ticket-value">A-01</span>
+                        </div>
+                        <div class="barcode"></div>
+                        <div class="barcode-text">★ ROCK ★ DISCO ★ LEGEND ★</div>
+                    </div>
+                </div>
+                
+                <div class="ticket">
+                    <div class="ticket-stub">
+                        <div class="ticket-stub-label">★ BACKSTAGE PASS ★</div>
+                        <div class="ticket-stub-title">VIP ACCESS</div>
+                    </div>
+                    <div class="ticket-image">🕺</div>
+                    <div class="ticket-info">
+                        <div class="ticket-row">
+                            <span class="ticket-label">Type</span>
+                            <span class="ticket-value">DISCO NIGHT</span>
+                        </div>
+                        <div class="ticket-row">
+                            <span class="ticket-label">Year</span>
+                            <span class="ticket-value highlight">2025</span>
+                        </div>
+                        <div class="ticket-row">
+                            <span class="ticket-label">Pass</span>
+                            <span class="ticket-value">VIP</span>
+                        </div>
+                        <div class="barcode"></div>
+                        <div class="barcode-text">★ ALL ACCESS ★</div>
+                    </div>
+                </div>
+                
+                <div class="ticket">
+                    <div class="ticket-stub">
+                        <div class="ticket-stub-label">★ LIVE SHOW ★</div>
+                        <div class="ticket-stub-title">GREATEST HITS</div>
+                    </div>
+                    <div class="ticket-image">🎤</div>
+                    <div class="ticket-info">
+                        <div class="ticket-row">
+                            <span class="ticket-label">Show</span>
+                            <span class="ticket-value">FOR EVER</span>
+                        </div>
+                        <div class="ticket-row">
+                            <span class="ticket-label">Year</span>
+                            <span class="ticket-value highlight">2025</span>
+                        </div>
+                        <div class="ticket-row">
+                            <span class="ticket-label">Row</span>
+                            <span class="ticket-value">FRONT</span>
+                        </div>
+                        <div class="barcode"></div>
+                        <div class="barcode-text">★ LEGENDARY ★</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+ 
+        <!-- DESPEDIDA ÉPICA -->
+        <div class="despedida-rock">
+            <div class="despedida-icons">
+                <span>🎸</span>
+                <span>🤘</span>
+                <span>🕺</span>
+            </div>
+            
+            <div class="despedida-tipo">★ END OF SHOW · ENCORE ★</div>
+            <div class="despedida-titulo">¡VIVA LA LEYENDA!</div>
+            
+            <div class="despedida-text">
+                "Eres rock, eres disco,<br>
+                eres leyenda."
+            </div>
+            
+            <div class="despedida-firma">- Con todo mi respeto, Papá 🤘</div>
+            
+            <a href="../index.html" class="volver">◀ FIN DEL CONCIERTO</a>
+        </div>
+ 
+    </div>
+ 
+    <!-- AUDIOS -->
+    <audio id="audio1"><source src="../media/papa/audio1.mp3" type="audio/mpeg"></audio>
+    <audio id="audio2"><source src="../media/papa/audio2.mp3" type="audio/mpeg"></audio>
+    <audio id="audio3"><source src="../media/papa/audio3.mp3" type="audio/mpeg"></audio>
+ 
+    <script>
+        // Generar partículas
+        function generarParticulas() {
+            const contenedor = document.getElementById('particulas');
+            for (let i = 0; i < 60; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                particle.style.left = Math.random() * 100 + 'vw';
+                particle.style.animationDuration = (10 + Math.random() * 10) + 's';
+                particle.style.animationDelay = Math.random() * 5 + 's';
+                contenedor.appendChild(particle);
+            }
+        }
+        generarParticulas();
+ 
+        // Control de audio
+        let audioActual = null;
+        let pistaActual = null;
+ 
+        function reproducirAudio(id, pistaEl) {
+            if (audioActual && !audioActual.paused) {
+                audioActual.pause();
+                audioActual.currentTime = 0;
+                if (pistaActual) pistaActual.classList.remove('playing');
+            }
+ 
+            audioActual = document.getElementById(id);
+            pistaActual = pistaEl;
+            audioActual.play();
+            pistaEl.classList.add('playing');
+            
+            audioActual.addEventListener('ended', () => {
+                pistaEl.classList.remove('playing');
+            });
+        }
+ 
+        // Encender radio
+        function encenderRadio() {
+            document.getElementById('boombox-screen').style.display = 'none';
+            document.getElementById('contenedor').classList.add('visible');
+ 
+            // Iniciar música
+            const musica = document.getElementById('musica');
+            musica.play();
+            
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+    </script>
+ 
 </body>
 </html>
