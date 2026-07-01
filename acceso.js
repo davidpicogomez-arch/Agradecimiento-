@@ -2,34 +2,34 @@ function verificar()
 {
     const clave = document.getElementById("clave").value;
 
-    if(clave === "mama2026")
+    if(clave === "Amparito2026")
         window.location.href = "personas/mama.html";
 
-    else if(clave === "papa2026")
+    else if(clave === "Te_quiero_poquito")
         window.location.href = "personas/papa.html";
 
-    else if(clave === "ana2026")
+    else if(clave === "Papa_de_Bocacho")
         window.location.href = "personas/Ana.html";
 
-    else if(clave === "daniela2026")
+    else if(clave === "Helados_del_Simoncho")
         window.location.href = "personas/Daniela.html";
 
-    else if(clave === "guevara2026")
+    else if(clave === "Claramardete")
         window.location.href = "personas/Guevara.html";
 
-    else if(clave === "bocacho2026")
+    else if(clave === "Silla_del_jardin")
         window.location.href = "personas/Bocacho.html"
 
-    else if(clave === "camilo2026")
+    else if(clave === "Su_Papa")
         window.location.href = "personas/Camilo.html"
 
-    else if(clave === "juanita2026")
+    else if(clave === "Parchaito")
         window.location.href = "personas/Juanita.html"
 
-   else if(clave === "davzay2026")
+   else if(clave === "Si_a_Todo")
         window.location.href = "personas/Davzay.html"
 
-   else if(clave === "dafne2026")
+   else if(clave === "Dafne2026")
         window.location.href = "personas/Dafne.html"
 
     else
