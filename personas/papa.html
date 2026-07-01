@@ -876,7 +876,6 @@
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
             gap: 30px;
-            align-items: start;
         }
         
         /* TICKET DE CONCIERTO */
@@ -897,12 +896,6 @@
         .ticket:nth-child(2) { transform: rotate(1deg); }
         .ticket:nth-child(3) { transform: rotate(-1deg); }
         .ticket:nth-child(4) { transform: rotate(2deg); }
-        .ticket:nth-child(5) { transform: rotate(-1.5deg); }
-        .ticket:nth-child(6) { transform: rotate(1.5deg); }
-        .ticket:nth-child(7) { transform: rotate(-2deg); }
-        .ticket:nth-child(8) { transform: rotate(1deg); }
-        .ticket:nth-child(9) { transform: rotate(-1deg); }
-        .ticket:nth-child(10) { transform: rotate(2deg); }
         
         .ticket:hover {
             transform: rotate(0deg) scale(1.05) translateY(-10px);
@@ -1264,7 +1257,6 @@
             transform: rotate(90deg);
         }
         
-        /* Cursor zoom en imágenes de galería */
         .foto-item img,
         .polaroid-foto img,
         .postal img,
@@ -1522,7 +1514,9 @@ Muchas gracias por todo.
                         <div class="ticket-stub-label">★ BACKSTAGE PASS ★</div>
                         <div class="ticket-stub-title">VIP ACCESS</div>
                     </div>
-                    <div class="ticket-image"><img src="../media/Pa/Foto 2.jpg" alt="Foto 2"></div>
+                    <div class="ticket-image">
+                        <img src="../media/Pa/Foto 2.jpg" alt="Foto 2">
+                    </div>
                     <div class="ticket-info">
                         <div class="ticket-row">
                             <span class="ticket-label">Type</span>
@@ -1546,7 +1540,9 @@ Muchas gracias por todo.
                         <div class="ticket-stub-label">★ LIVE SHOW ★</div>
                         <div class="ticket-stub-title">GREATEST HITS</div>
                     </div>
-                    <div class="ticket-image"><img src="../media/Pa/Foto 3.JPG" alt="Foto 3"></div>
+                    <div class="ticket-image">
+                        <img src="../media/Pa/Foto 3.JPG" alt="Foto 3">
+                    </div>
                     <div class="ticket-info">
                         <div class="ticket-row">
                             <span class="ticket-label">Show</span>
@@ -1562,372 +1558,8 @@ Muchas gracias por todo.
                         </div>
                         <div class="barcode"></div>
                         <div class="barcode-text">★ LEGENDARY ★</div>
-                        
-                <div class="ticket">
-                    <div class="ticket-stub">
-                        <div class="ticket-stub-label">★ STAGE TICKET ★</div>
-                        <div class="ticket-stub-title">ROCK NIGHT</div>
-                    </div>
-                    <div class="ticket-image">
-                        <img src="../media/Pa/Foto 4.jpg" alt="Foto 4">
-                    </div>
-                    <div class="ticket-info">
-                        <div class="ticket-row">
-                            <span class="ticket-label">Genre</span>
-                            <span class="ticket-value">CLASSIC ROCK</span>
-                        </div>
-                        <div class="ticket-row">
-                            <span class="ticket-label">Year</span>
-                            <span class="ticket-value highlight">2025</span>
-                        </div>
-                        <div class="ticket-row">
-                            <span class="ticket-label">Seat</span>
-                            <span class="ticket-value">B-02</span>
-                        </div>
-                        <div class="barcode"></div>
-                        <div class="barcode-text">★ ROCK ON ★</div>
                     </div>
                 </div>
-                
-                <div class="ticket">
-                    <div class="ticket-stub">
-                        <div class="ticket-stub-label">★ FAMILY PASS ★</div>
-                        <div class="ticket-stub-title">PAPÁ LIVE</div>
-                    </div>
-                    <div class="ticket-image">
-                        <img src="../media/Pa/Foto 5.JPG" alt="Foto 5">
-                    </div>
-                    <div class="ticket-info">
-                        <div class="ticket-row">
-                            <span class="ticket-label">Type</span>
-                            <span class="ticket-value">FAMILY</span>
-                        </div>
-                        <div class="ticket-row">
-                            <span class="ticket-label">Year</span>
-                            <span class="ticket-value highlight">2025</span>
-                        </div>
-                        <div class="ticket-row">
-                            <span class="ticket-label">Pass</span>
-                            <span class="ticket-value">GOLD</span>
-                        </div>
-                        <div class="barcode"></div>
-                        <div class="barcode-text">★ FOREVER ★</div>
-                    </div>
-                </div>
-                
-                <div class="ticket">
-                    <div class="ticket-stub">
-                        <div class="ticket-stub-label">★ DISCO NIGHT ★</div>
-                        <div class="ticket-stub-title">70'S TOUR</div>
-                    </div>
-                    <div class="ticket-image">
-                        <img src="../media/Pa/Foto 6.JPG" alt="Foto 6">
-                    </div>
-                    <div class="ticket-info">
-                        <div class="ticket-row">
-                            <span class="ticket-label">Vibe</span>
-                            <span class="ticket-value">DISCO</span>
-                        </div>
-                        <div class="ticket-row">
-                            <span class="ticket-label">Year</span>
-                            <span class="ticket-value highlight">2025</span>
-                        </div>
-                        <div class="ticket-row">
-                            <span class="ticket-label">Mood</span>
-                            <span class="ticket-value">EPIC</span>
-                        </div>
-                        <div class="barcode"></div>
-                        <div class="barcode-text">★ NIGHT FEVER ★</div>
-                    </div>
-                </div>
-                
-                <div class="ticket">
-                    <div class="ticket-stub">
-                        <div class="ticket-stub-label">★ VINTAGE PASS ★</div>
-                        <div class="ticket-stub-title">CLASSIC HITS</div>
-                    </div>
-                    <div class="ticket-image">
-                        <img src="../media/Pa/Foto 7.JPG" alt="Foto 7">
-                    </div>
-                    <div class="ticket-info">
-                        <div class="ticket-row">
-                            <span class="ticket-label">Era</span>
-                            <span class="ticket-value">80's</span>
-                        </div>
-                        <div class="ticket-row">
-                            <span class="ticket-label">Year</span>
-                            <span class="ticket-value highlight">2025</span>
-                        </div>
-                        <div class="ticket-row">
-                            <span class="ticket-label">Status</span>
-                            <span class="ticket-value">CLASSIC</span>
-                        </div>
-                        <div class="barcode"></div>
-                        <div class="barcode-text">★ TIMELESS ★</div>
-                    </div>
-                </div>
-                
-                <div class="ticket">
-                    <div class="ticket-stub">
-                        <div class="ticket-stub-label">★ FRONT ROW ★</div>
-                        <div class="ticket-stub-title">PREMIUM</div>
-                    </div>
-                    <div class="ticket-image">
-                        <img src="../media/Pa/Foto 8.jpeg" alt="Foto 8">
-                    </div>
-                    <div class="ticket-info">
-                        <div class="ticket-row">
-                            <span class="ticket-label">Type</span>
-                            <span class="ticket-value">PREMIUM</span>
-                        </div>
-                        <div class="ticket-row">
-                            <span class="ticket-label">Year</span>
-                            <span class="ticket-value highlight">2025</span>
-                        </div>
-                        <div class="ticket-row">
-                            <span class="ticket-label">Row</span>
-                            <span class="ticket-value">A</span>
-                        </div>
-                        <div class="barcode"></div>
-                        <div class="barcode-text">★ UNFORGETTABLE ★</div>
-                    </div>
-                </div>
-                
-                <div class="ticket">
-                    <div class="ticket-stub">
-                        <div class="ticket-stub-label">★ ENCORE PASS ★</div>
-                        <div class="ticket-stub-title">FINAL TOUR</div>
-                    </div>
-                    <div class="ticket-image">
-                        <img src="../media/Pa/Foto 9.jpg" alt="Foto 9">
-                    </div>
-                    <div class="ticket-info">
-                        <div class="ticket-row">
-                            <span class="ticket-label">Type</span>
-                            <span class="ticket-value">ENCORE</span>
-                        </div>
-                        <div class="ticket-row">
-                            <span class="ticket-label">Year</span>
-                            <span class="ticket-value highlight">2025</span>
-                        </div>
-                        <div class="ticket-row">
-                            <span class="ticket-label">Pass</span>
-                            <span class="ticket-value">PLATINUM</span>
-                        </div>
-                        <div class="barcode"></div>
-                        <div class="barcode-text">★ LEGENDARY ★</div>
-                    </div>
-                </div>
-                
-                <div class="ticket">
-                    <div class="ticket-stub">
-                        <div class="ticket-stub-label">★ ALL ACCESS ★</div>
-                        <div class="ticket-stub-title">LEGEND PASS</div>
-                    </div>
-                    <div class="ticket-image">
-                        <img src="../media/Pa/Foto 10.jpeg" alt="Foto 10">
-                    </div>
-                    <div class="ticket-info">
-                        <div class="ticket-row">
-                            <span class="ticket-label">Type</span>
-                            <span class="ticket-value">LEGEND</span>
-                        </div>
-                        <div class="ticket-row">
-                            <span class="ticket-label">Year</span>
-                            <span class="ticket-value highlight">2025</span>
-                        </div>
-                        <div class="ticket-row">
-                            <span class="ticket-label">Status</span>
-                            <span class="ticket-value">VIP</span>
-                        </div>
-                        <div class="barcode"></div>
-                        <div class="barcode-text">★ PAPÁ LEGEND ★</div>
-                    </div>
-                </div>
-            </div>
-                    
-                <div class="ticket">
-                    <div class="ticket-stub">
-                        <div class="ticket-stub-label">★ STAGE TICKET ★</div>
-                        <div class="ticket-stub-title">ROCK NIGHT</div>
-                    </div>
-                    <div class="ticket-image">
-                        <img src="../media/Pa/Foto 4.jpg" alt="Foto 4">
-                    </div>
-                    <div class="ticket-info">
-                        <div class="ticket-row">
-                            <span class="ticket-label">Genre</span>
-                            <span class="ticket-value">CLASSIC ROCK</span>
-                        </div>
-                        <div class="ticket-row">
-                            <span class="ticket-label">Year</span>
-                            <span class="ticket-value highlight">2025</span>
-                        </div>
-                        <div class="ticket-row">
-                            <span class="ticket-label">Seat</span>
-                            <span class="ticket-value">B-02</span>
-                        </div>
-                        <div class="barcode"></div>
-                        <div class="barcode-text">★ ROCK ON ★</div>
-                    </div>
-                </div>
-                
-                <div class="ticket">
-                    <div class="ticket-stub">
-                        <div class="ticket-stub-label">★ FAMILY PASS ★</div>
-                        <div class="ticket-stub-title">PAPÁ LIVE</div>
-                    </div>
-                    <div class="ticket-image">
-                        <img src="../media/Pa/Foto 5.JPG" alt="Foto 5">
-                    </div>
-                    <div class="ticket-info">
-                        <div class="ticket-row">
-                            <span class="ticket-label">Type</span>
-                            <span class="ticket-value">FAMILY</span>
-                        </div>
-                        <div class="ticket-row">
-                            <span class="ticket-label">Year</span>
-                            <span class="ticket-value highlight">2025</span>
-                        </div>
-                        <div class="ticket-row">
-                            <span class="ticket-label">Pass</span>
-                            <span class="ticket-value">GOLD</span>
-                        </div>
-                        <div class="barcode"></div>
-                        <div class="barcode-text">★ FOREVER ★</div>
-                    </div>
-                </div>
-                
-                <div class="ticket">
-                    <div class="ticket-stub">
-                        <div class="ticket-stub-label">★ DISCO NIGHT ★</div>
-                        <div class="ticket-stub-title">70'S TOUR</div>
-                    </div>
-                    <div class="ticket-image">
-                        <img src="../media/Pa/Foto 6.JPG" alt="Foto 6">
-                    </div>
-                    <div class="ticket-info">
-                        <div class="ticket-row">
-                            <span class="ticket-label">Vibe</span>
-                            <span class="ticket-value">DISCO</span>
-                        </div>
-                        <div class="ticket-row">
-                            <span class="ticket-label">Year</span>
-                            <span class="ticket-value highlight">2025</span>
-                        </div>
-                        <div class="ticket-row">
-                            <span class="ticket-label">Mood</span>
-                            <span class="ticket-value">EPIC</span>
-                        </div>
-                        <div class="barcode"></div>
-                        <div class="barcode-text">★ NIGHT FEVER ★</div>
-                    </div>
-                </div>
-                
-                <div class="ticket">
-                    <div class="ticket-stub">
-                        <div class="ticket-stub-label">★ VINTAGE PASS ★</div>
-                        <div class="ticket-stub-title">CLASSIC HITS</div>
-                    </div>
-                    <div class="ticket-image">
-                        <img src="../media/Pa/Foto 7.JPG" alt="Foto 7">
-                    </div>
-                    <div class="ticket-info">
-                        <div class="ticket-row">
-                            <span class="ticket-label">Era</span>
-                            <span class="ticket-value">80's</span>
-                        </div>
-                        <div class="ticket-row">
-                            <span class="ticket-label">Year</span>
-                            <span class="ticket-value highlight">2025</span>
-                        </div>
-                        <div class="ticket-row">
-                            <span class="ticket-label">Status</span>
-                            <span class="ticket-value">CLASSIC</span>
-                        </div>
-                        <div class="barcode"></div>
-                        <div class="barcode-text">★ TIMELESS ★</div>
-                    </div>
-                </div>
-                
-                <div class="ticket">
-                    <div class="ticket-stub">
-                        <div class="ticket-stub-label">★ FRONT ROW ★</div>
-                        <div class="ticket-stub-title">PREMIUM</div>
-                    </div>
-                    <div class="ticket-image">
-                        <img src="../media/Pa/Foto 8.jpeg" alt="Foto 8">
-                    </div>
-                    <div class="ticket-info">
-                        <div class="ticket-row">
-                            <span class="ticket-label">Type</span>
-                            <span class="ticket-value">PREMIUM</span>
-                        </div>
-                        <div class="ticket-row">
-                            <span class="ticket-label">Year</span>
-                            <span class="ticket-value highlight">2025</span>
-                        </div>
-                        <div class="ticket-row">
-                            <span class="ticket-label">Row</span>
-                            <span class="ticket-value">A</span>
-                        </div>
-                        <div class="barcode"></div>
-                        <div class="barcode-text">★ UNFORGETTABLE ★</div>
-                    </div>
-                </div>
-                
-                <div class="ticket">
-                    <div class="ticket-stub">
-                        <div class="ticket-stub-label">★ ENCORE PASS ★</div>
-                        <div class="ticket-stub-title">FINAL TOUR</div>
-                    </div>
-                    <div class="ticket-image">
-                        <img src="../media/Pa/Foto 9.jpg" alt="Foto 9">
-                    </div>
-                    <div class="ticket-info">
-                        <div class="ticket-row">
-                            <span class="ticket-label">Type</span>
-                            <span class="ticket-value">ENCORE</span>
-                        </div>
-                        <div class="ticket-row">
-                            <span class="ticket-label">Year</span>
-                            <span class="ticket-value highlight">2025</span>
-                        </div>
-                        <div class="ticket-row">
-                            <span class="ticket-label">Pass</span>
-                            <span class="ticket-value">PLATINUM</span>
-                        </div>
-                        <div class="barcode"></div>
-                        <div class="barcode-text">★ LEGENDARY ★</div>
-                    </div>
-                </div>
-                
-                <div class="ticket">
-                    <div class="ticket-stub">
-                        <div class="ticket-stub-label">★ ALL ACCESS ★</div>
-                        <div class="ticket-stub-title">LEGEND PASS</div>
-                    </div>
-                    <div class="ticket-image">
-                        <img src="../media/Pa/Foto 10.jpeg" alt="Foto 10">
-                    </div>
-                    <div class="ticket-info">
-                        <div class="ticket-row">
-                            <span class="ticket-label">Type</span>
-                            <span class="ticket-value">LEGEND</span>
-                        </div>
-                        <div class="ticket-row">
-                            <span class="ticket-label">Year</span>
-                            <span class="ticket-value highlight">2025</span>
-                        </div>
-                        <div class="ticket-row">
-                            <span class="ticket-label">Status</span>
-                            <span class="ticket-value">VIP</span>
-                        </div>
-                        <div class="barcode"></div>
-                        <div class="barcode-text">★ PAPÁ LEGEND ★</div>
-                    </div>
-                </div>
-            </div>
                 
                 <div class="ticket">
                     <div class="ticket-stub">
@@ -2191,7 +1823,6 @@ Muchas gracias por todo.
     
         // === LIGHTBOX UNIVERSAL ===
         document.addEventListener('DOMContentLoaded', function() {
-            // Buscar todas las imágenes en galerías (excepto lightbox)
             const selectores = [
                 '.foto-item img',
                 '.polaroid-foto img',
@@ -2232,26 +1863,6 @@ Muchas gracias por todo.
             };
             
             document.body.appendChild(overlay);
-            
-            // Prevenir scroll
-            document.body.style.overflow = 'hidden';
-            
-            overlay.addEventListener('remove', () => {
-                document.body.style.overflow = '';
-            });
-            
-            // Restaurar scroll cuando se remueva
-            const observer = new MutationObserver((mutations) => {
-                mutations.forEach((mutation) => {
-                    mutation.removedNodes.forEach((node) => {
-                        if (node === overlay) {
-                            document.body.style.overflow = '';
-                            observer.disconnect();
-                        }
-                    });
-                });
-            });
-            observer.observe(document.body, { childList: true });
         }
 
     </script>
