@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BOCAHO - CREATIVE CANVAS</title>
+    <title>BOCACHO - ALBUM EXPERIENCE</title>
     
-    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700;800&family=Courier+Prime:wght@400;700&display=swap" rel="stylesheet">
     
     <style>
         * {
@@ -15,58 +15,44 @@
         }
         
         body {
-            background: #0a0a0a;
-            background-image: 
-                repeating-linear-gradient(45deg, transparent, transparent 35px, rgba(0, 255, 0, 0.03) 35px, rgba(0, 255, 0, 0.03) 70px);
-            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #0d0d0d 0%, #1a0a2e 50%, #0d0d0d 100%);
+            font-family: 'Montserrat', sans-serif;
             color: #fff;
             overflow-x: hidden;
         }
         
-        /* Partículas de tinta/spray */
-        .particle {
+        /* Partículas flotantes */
+        .particle-bg {
             position: fixed;
-            width: 2px;
-            height: 2px;
-            border-radius: 50%;
-            pointer-events: none;
-            animation: float-spray 20s linear infinite;
-        }
-        
-        .particle {
+            width: 1px;
+            height: 1px;
             background: #00ff00;
-            box-shadow: 0 0 5px #00ff00;
+            border-radius: 50%;
+            opacity: 0.3;
+            pointer-events: none;
+            animation: float-bg 25s linear infinite;
+            z-index: 0;
         }
         
-        .particle:nth-child(odd) {
-            background: #00dd00;
-            box-shadow: 0 0 5px #00dd00;
-        }
-        
-        .particle:nth-child(3n) {
-            background: #00cc00;
-            box-shadow: 0 0 5px #00cc00;
-        }
-        
-        @keyframes float-spray {
+        @keyframes float-bg {
             from {
                 transform: translateY(100vh) translateX(0);
                 opacity: 0;
             }
             10% {
-                opacity: 0.8;
+                opacity: 0.4;
             }
             90% {
-                opacity: 0.8;
+                opacity: 0.4;
             }
             to {
-                transform: translateY(-100vh) translateX(100px);
+                transform: translateY(-100vh) translateX(150px);
                 opacity: 0;
             }
         }
         
-        /* ===== CANVAS INICIAL ===== */
-        #canvas-inicial {
+        /* ===== PANTALLA INICIAL ÁLBUM ===== */
+        #album-screen {
             position: fixed;
             top: 0;
             left: 0;
@@ -76,102 +62,98 @@
             align-items: center;
             justify-content: center;
             z-index: 100;
-            background: #0a0a0a;
-            animation: fade-out-canvas 0.8s ease forwards 8s;
+            background: linear-gradient(135deg, #0d0d0d 0%, #1a0a2e 100%);
+            animation: fade-out 0.8s ease forwards 7s;
         }
         
-        @keyframes fade-out-canvas {
+        @keyframes fade-out {
             to {
                 opacity: 0;
                 pointer-events: none;
             }
         }
         
-        .canvas-wrapper {
+        .album-container {
             position: relative;
-            width: 350px;
-            height: 350px;
+            width: 320px;
+            height: 320px;
+        }
+        
+        /* Vinilo girando */
+        .vinyl-record {
+            width: 300px;
+            height: 300px;
+            border-radius: 50%;
+            background: radial-gradient(circle at 30% 30%, rgba(0, 255, 0, 0.2), #000);
+            border: 8px solid #00ff00;
             display: flex;
             align-items: center;
             justify-content: center;
+            animation: spin-vinyl 8s linear infinite;
+            box-shadow: 0 0 50px #00ff00, inset 0 0 40px rgba(0, 255, 0, 0.1);
+            position: relative;
+            cursor: pointer;
         }
         
-        /* Jordans decorativas */
-        .jordan-deco {
+        @keyframes spin-vinyl {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+        
+        .vinyl-center {
+            width: 60px;
+            height: 60px;
+            background: radial-gradient(circle at 35% 35%, #00ff00, #000);
+            border-radius: 50%;
+            box-shadow: 0 0 30px #00ff00;
+        }
+        
+        .vinyl-label {
             position: absolute;
-            font-size: 80px;
-            opacity: 0.1;
-            animation: float-jordan 6s ease-in-out infinite;
-        }
-        
-        .jordan-deco:nth-child(1) {
-            top: 20px;
-            left: 20px;
-            animation-delay: 0s;
-        }
-        
-        .jordan-deco:nth-child(2) {
-            bottom: 30px;
-            right: 20px;
-            animation-delay: 2s;
-        }
-        
-        @keyframes float-jordan {
-            0%, 100% { transform: translateY(0px) rotate(0deg); }
-            50% { transform: translateY(-20px) rotate(10deg); }
-        }
-        
-        .canvas-box {
-            width: 320px;
-            height: 320px;
-            border: 4px solid #00ff00;
-            background: rgba(0, 255, 0, 0.05);
+            width: 200px;
+            height: 200px;
+            background: rgba(0, 0, 0, 0.9);
+            border-radius: 50%;
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            position: relative;
-            z-index: 10;
-            box-shadow: 0 0 30px #00ff00, inset 0 0 30px rgba(0, 255, 0, 0.1);
-            cursor: pointer;
-            animation: pulse-canvas 2s ease-in-out infinite;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            border: 2px solid #00ff00;
+            text-align: center;
+            pointer-events: none;
         }
         
-        @keyframes pulse-canvas {
-            0%, 100% { box-shadow: 0 0 30px #00ff00, inset 0 0 30px rgba(0, 255, 0, 0.1); }
-            50% { box-shadow: 0 0 50px #00ff00, inset 0 0 50px rgba(0, 255, 0, 0.2); }
-        }
-        
-        .canvas-titulo {
-            font-family: 'Bebas Neue', sans-serif;
-            font-size: 42px;
+        .vinyl-title {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 28px;
+            font-weight: 800;
             color: #00ff00;
             text-transform: uppercase;
             letter-spacing: 3px;
             text-shadow: 0 0 15px #00ff00;
-            margin-bottom: 10px;
         }
         
-        .canvas-subtitulo {
-            font-size: 13px;
+        .vinyl-artist {
+            font-size: 11px;
             color: #00ff00;
+            margin-top: 5px;
             text-transform: uppercase;
             letter-spacing: 2px;
-            animation: pulse-text 1.5s ease-in-out infinite;
-        }
-        
-        @keyframes pulse-text {
-            0%, 100% { opacity: 0.7; }
-            50% { opacity: 1; }
+            opacity: 0.8;
         }
         
         /* ===== CONTENIDO PRINCIPAL ===== */
         .contenedor {
-            max-width: 1000px;
+            max-width: 1200px;
             margin: 0 auto;
-            padding: 100px 40px;
+            padding: 80px 40px;
             display: none;
             animation: fade-in 1s ease;
+            position: relative;
+            z-index: 10;
         }
         
         .contenedor.visible {
@@ -181,7 +163,7 @@
         @keyframes fade-in {
             from {
                 opacity: 0;
-                transform: translateY(20px);
+                transform: translateY(30px);
             }
             to {
                 opacity: 1;
@@ -189,269 +171,274 @@
             }
         }
         
-        /* Título principal */
-        h1 {
-            font-family: 'Bebas Neue', sans-serif;
-            font-size: 72px;
-            text-align: center;
-            color: #00ff00;
-            margin-bottom: 10px;
-            text-transform: uppercase;
-            letter-spacing: 5px;
-            text-shadow: 0 0 20px #00ff00;
-            font-weight: 700;
+        /* Header asimétrico */
+        .header-album {
+            display: grid;
+            grid-template-columns: 1fr 1.2fr;
+            gap: 60px;
+            align-items: center;
+            margin-bottom: 100px;
         }
         
-        .subtitle {
-            text-align: center;
-            font-size: 16px;
+        .album-cover {
+            width: 100%;
+            aspect-ratio: 1;
+            background: linear-gradient(135deg, rgba(0, 255, 0, 0.1), rgba(0, 200, 0, 0.05));
+            border: 3px solid #00ff00;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 10px 50px rgba(0, 255, 0, 0.2);
+            animation: float-cover 6s ease-in-out infinite;
+        }
+        
+        @keyframes float-cover {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-15px); }
+        }
+        
+        .cover-placeholder {
+            font-size: 120px;
+            opacity: 0.5;
+            animation: rotate-placeholder 20s linear infinite;
+        }
+        
+        @keyframes rotate-placeholder {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+        
+        .album-info h1 {
+            font-size: 56px;
+            font-weight: 800;
+            color: #00ff00;
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            margin-bottom: 20px;
+            text-shadow: 0 0 20px #00ff00;
+            line-height: 1.2;
+        }
+        
+        .album-info .subtitle {
+            font-size: 18px;
             color: #00dd00;
-            margin-bottom: 50px;
             text-transform: uppercase;
             letter-spacing: 3px;
+            margin-bottom: 30px;
+            font-weight: 600;
         }
         
-        /* ===== SECCIÓN CREATIVA ===== */
-        .creative-section {
-            background: rgba(0, 255, 0, 0.05);
-            border: 2px solid #00ff00;
-            padding: 40px;
-            margin-bottom: 60px;
-            position: relative;
+        .album-credits {
+            font-family: 'Courier Prime', monospace;
+            font-size: 13px;
+            color: #00aa00;
+            line-height: 2;
+            margin-top: 40px;
+            border-top: 2px solid #00ff00;
+            padding-top: 20px;
         }
         
-        .creative-section::before {
-            content: '✎ CANVAS CREATIVO';
-            position: absolute;
-            top: -12px;
-            left: 20px;
-            background: #0a0a0a;
-            padding: 0 10px;
-            font-family: 'Bebas Neue', sans-serif;
+        .credit-line {
+            display: grid;
+            grid-template-columns: 150px 1fr;
+            gap: 20px;
+        }
+        
+        /* ===== SECCIÓN TRACKS ===== */
+        .tracks-section {
+            margin: 120px 0;
+        }
+        
+        .section-title {
+            font-size: 32px;
+            font-weight: 800;
             color: #00ff00;
-            font-size: 12px;
             text-transform: uppercase;
-            letter-spacing: 2px;
+            letter-spacing: 3px;
+            margin-bottom: 50px;
+            text-shadow: 0 0 15px #00ff00;
+            border-bottom: 3px solid #00ff00;
+            padding-bottom: 20px;
+            display: inline-block;
+        }
+        
+        .tracks-list {
+            display: flex;
+            flex-direction: column;
+            gap: 0;
+        }
+        
+        .track-item {
+            display: grid;
+            grid-template-columns: 50px 1fr 100px;
+            align-items: center;
+            gap: 30px;
+            padding: 25px 30px;
+            border-bottom: 1px solid rgba(0, 255, 0, 0.2);
+            background: rgba(0, 255, 0, 0.02);
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        
+        .track-item:hover {
+            background: rgba(0, 255, 0, 0.08);
+            border-bottom-color: #00ff00;
+            padding-left: 40px;
+        }
+        
+        .track-num {
+            font-family: 'Courier Prime', monospace;
+            font-size: 24px;
+            font-weight: 700;
+            color: #00ff00;
             text-shadow: 0 0 10px #00ff00;
         }
         
-        .creative-section p {
-            font-size: 13px;
-            color: #00ff00;
-            margin-bottom: 15px;
+        .track-title {
+            font-size: 16px;
             font-weight: 600;
+            color: #fff;
             text-transform: uppercase;
-            letter-spacing: 2px;
+            letter-spacing: 1px;
         }
         
-        .creative-text {
-            background: rgba(10, 10, 10, 0.8);
-            border: 1px solid #00ff00;
-            padding: 20px;
+        .track-play {
+            font-size: 20px;
             color: #00ff00;
-            font-size: 16px;
-            line-height: 1.8;
-            min-height: 120px;
-            font-family: 'Poppins', sans-serif;
-        }
-        
-        /* ===== SECCIÓN DE TRACKS ===== */
-        .tracks-section {
-            margin: 80px 0;
-            text-align: center;
-        }
-        
-        .tracks-section h2 {
-            font-family: 'Bebas Neue', sans-serif;
-            font-size: 44px;
-            color: #00ff00;
-            margin-bottom: 50px;
-            text-transform: uppercase;
-            letter-spacing: 4px;
-            text-shadow: 0 0 20px #00ff00;
-        }
-        
-        .tracks-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 20px;
-            margin-bottom: 40px;
-        }
-        
-        .track-btn {
-            padding: 20px;
-            background: rgba(0, 255, 0, 0.08);
-            border: 2px solid #00ff00;
-            color: #00ff00;
-            font-family: 'Bebas Neue', sans-serif;
-            font-size: 14px;
-            font-weight: 700;
-            cursor: pointer;
             transition: all 0.3s ease;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            position: relative;
-            overflow: hidden;
         }
         
-        .track-btn::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(0, 255, 0, 0.3), transparent);
-            transition: left 0.5s ease;
+        .track-item:hover .track-play {
+            transform: scale(1.3);
+            text-shadow: 0 0 15px #00ff00;
         }
         
-        .track-btn:hover::before {
-            left: 100%;
-        }
-        
-        .track-btn:hover {
-            background: rgba(0, 255, 0, 0.15);
-            box-shadow: 0 0 20px #00ff00;
-            transform: translateY(-5px);
-            border-color: #00ff00;
-        }
-        
-        /* ===== BOTÓN GALERÍA ===== */
-        .btn-galeria {
-            display: block;
-            margin: 60px auto;
-            padding: 20px 50px;
-            background: #00ff00;
-            border: 2px solid #00ff00;
-            color: #0a0a0a;
-            font-family: 'Bebas Neue', sans-serif;
-            font-size: 16px;
-            font-weight: 700;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            text-transform: uppercase;
-            letter-spacing: 3px;
-            box-shadow: 0 0 30px #00ff00;
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .btn-galeria::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: rgba(255, 255, 255, 0.2);
-            transition: left 0.5s ease;
-        }
-        
-        .btn-galeria:hover::before {
-            left: 100%;
-        }
-        
-        .btn-galeria:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 0 50px #00ff00;
-            background: #00dd00;
-        }
-        
-        /* ===== GALERÍA ARTÍSTICA ===== */
-        .galeria {
+        /* ===== GALERÍA PORTFOLIO ===== */
+        .portfolio-section {
             display: none;
-            margin-top: 80px;
+            margin-top: 120px;
         }
         
-        .galeria.activa {
+        .portfolio-section.active {
             display: block;
             animation: fade-in 0.8s ease;
         }
         
-        .galeria h2 {
-            font-family: 'Bebas Neue', sans-serif;
-            font-size: 36px;
-            color: #00ff00;
-            text-align: center;
-            margin-bottom: 50px;
-            text-transform: uppercase;
-            letter-spacing: 3px;
-            text-shadow: 0 0 20px #00ff00;
-        }
-        
-        .grid-fotos {
+        .portfolio-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-            margin-bottom: 60px;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 40px;
+            margin-bottom: 80px;
         }
         
-        .foto-item {
+        .portfolio-item {
             position: relative;
             aspect-ratio: 1;
-            border: 3px solid #00ff00;
+            background: linear-gradient(135deg, rgba(0, 255, 0, 0.1), rgba(0, 200, 0, 0.05));
+            border: 2px solid #00ff00;
             overflow: hidden;
             cursor: pointer;
             opacity: 0;
             animation: fade-in 0.8s ease forwards;
-            transition: all 0.3s ease;
-            box-shadow: 0 0 20px rgba(0, 255, 0, 0.3);
-            background: #0a0a0a;
+            transition: all 0.4s ease;
         }
         
-        .foto-item:nth-child(1) { animation-delay: 0.1s; }
-        .foto-item:nth-child(2) { animation-delay: 0.2s; }
-        .foto-item:nth-child(3) { animation-delay: 0.3s; }
+        .portfolio-item:nth-child(1) { animation-delay: 0.1s; }
+        .portfolio-item:nth-child(2) { animation-delay: 0.2s; }
+        .portfolio-item:nth-child(3) { animation-delay: 0.3s; }
         
-        .foto-item img {
+        .portfolio-item img {
             width: 100%;
             height: 100%;
             object-fit: cover;
             transition: all 0.5s ease;
-            filter: contrast(1.1) brightness(0.95);
+            filter: brightness(0.9);
         }
         
-        .foto-item:hover {
+        .portfolio-item:hover {
             border-color: #00ff00;
             box-shadow: 0 0 40px #00ff00;
             transform: scale(1.05);
         }
         
-        .foto-item:hover img {
-            filter: contrast(1.3) brightness(1);
+        .portfolio-item:hover img {
+            filter: brightness(1.1) contrast(1.2);
         }
         
-        .foto-placeholder {
+        .portfolio-placeholder {
             width: 100%;
             height: 100%;
-            background: linear-gradient(135deg, rgba(0, 255, 0, 0.1), rgba(0, 200, 0, 0.1));
             display: flex;
             align-items: center;
             justify-content: center;
-            border: 2px dashed #00ff00;
-            font-size: 60px;
+            font-size: 80px;
+            background: linear-gradient(135deg, rgba(0, 255, 0, 0.15), rgba(0, 200, 0, 0.08));
+        }
+        
+        /* ===== BOTÓN PORTFOLIO ===== */
+        .btn-portfolio {
+            margin: 80px auto;
+            display: block;
+            padding: 22px 70px;
+            background: transparent;
+            border: 3px solid #00ff00;
             color: #00ff00;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 15px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            position: relative;
+            overflow: hidden;
         }
         
-        /* ===== LÍNEA DIVISORA ===== */
-        .divider {
+        .btn-portfolio::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
             width: 100%;
-            height: 2px;
-            background: linear-gradient(90deg, transparent, #00ff00, transparent);
-            margin: 80px 0;
-            box-shadow: 0 0 20px #00ff00;
+            height: 100%;
+            background: #00ff00;
+            transition: left 0.4s ease;
+            z-index: -1;
         }
         
-        /* ===== BOTÓN VOLVER ===== */
+        .btn-portfolio:hover::before {
+            left: 0;
+        }
+        
+        .btn-portfolio:hover {
+            color: #0a0a0a;
+            box-shadow: 0 0 30px #00ff00;
+            transform: translateY(-3px);
+        }
+        
+        /* ===== FOOTER ===== */
+        .footer-credits {
+            margin-top: 120px;
+            padding: 60px 40px;
+            border-top: 2px solid #00ff00;
+            text-align: center;
+            font-family: 'Courier Prime', monospace;
+            font-size: 12px;
+            color: #00aa00;
+            line-height: 2;
+        }
+        
         .volver {
             display: inline-block;
-            margin-top: 60px;
+            margin-top: 30px;
             padding: 12px 40px;
             background: transparent;
             border: 2px solid #00ff00;
             color: #00ff00;
-            font-family: 'Bebas Neue', sans-serif;
-            font-size: 14px;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 13px;
             text-decoration: none;
             cursor: pointer;
             transition: all 0.3s ease;
@@ -464,18 +451,24 @@
             background: #00ff00;
             color: #0a0a0a;
             box-shadow: 0 0 30px #00ff00;
-            transform: translateY(-3px);
         }
         
         /* Responsive */
         @media (max-width: 768px) {
-            h1 { font-size: 48px; }
-            
-            .tracks-grid {
+            .header-album {
                 grid-template-columns: 1fr;
             }
             
-            .grid-fotos {
+            .album-info h1 {
+                font-size: 36px;
+            }
+            
+            .track-item {
+                grid-template-columns: 1fr;
+                gap: 10px;
+            }
+            
+            .portfolio-grid {
                 grid-template-columns: 1fr;
             }
             
@@ -483,109 +476,248 @@
                 padding: 60px 20px;
             }
         }
+    
+        /* === LIGHTBOX PARA AMPLIAR IMÁGENES === */
+        .lightbox-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.95);
+            z-index: 99999;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: zoom-out;
+            animation: lightbox-fade-in 0.3s ease;
+            padding: 20px;
+        }
+        
+        @keyframes lightbox-fade-in {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        .lightbox-overlay img,
+        .lightbox-overlay video {
+            max-width: 95%;
+            max-height: 95%;
+            object-fit: contain;
+            box-shadow: 0 0 60px rgba(255, 255, 255, 0.2);
+            border-radius: 8px;
+            animation: lightbox-zoom-in 0.3s ease;
+        }
+        
+        @keyframes lightbox-zoom-in {
+            from { transform: scale(0.8); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
+        }
+        
+        .lightbox-close {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            color: white;
+            font-size: 40px;
+            cursor: pointer;
+            background: rgba(255, 255, 255, 0.1);
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            z-index: 100000;
+        }
+        
+        .lightbox-close:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: rotate(90deg);
+        }
+        
+        /* Cursor zoom en imágenes de galería */
+        .foto-item img,
+        .polaroid-foto img,
+        .postal img,
+        .ticket img,
+        .gallery-item img,
+        .project-card img,
+        .portfolio-item img {
+            cursor: zoom-in;
+        }
+
     </style>
 </head>
 <body>
 
-    <!-- CANVAS INICIAL -->
-    <div id="canvas-inicial">
-        <div class="canvas-wrapper" onclick="activarCanvas()">
-            <div class="jordan-deco">👟</div>
-            <div class="jordan-deco">👟</div>
-            
-            <div class="canvas-box">
-                <div class="canvas-titulo">BOCAHO</div>
-                <div class="canvas-subtitulo">● CREATIVE MODE ●</div>
+    <!-- PARTÍCULAS DE FONDO -->
+    <div id="particulas"></div>
+
+    <!-- PANTALLA INICIAL ÁLBUM -->
+    <div id="album-screen">
+        <div class="album-container" onclick="activarAlbum()">
+            <div class="vinyl-record">
+                <div class="vinyl-center"></div>
+                <div class="vinyl-label">
+                    <div class="vinyl-title">BOCACHO</div>
+                    <div class="vinyl-artist">Creative Edition</div>
+                </div>
             </div>
         </div>
     </div>
 
-    <!-- PARTÍCULAS SPRAY -->
-    <div id="particulas"></div>
-
     <!-- MÚSICA DE FONDO -->
     <audio id="musica" loop volume="0.15">
-        <source src="../media/Bocaho/musica.mp3" type="audio/mpeg">
+        <source src="../media/Bocacho/musica.mp3" type="audio/mpeg">
     </audio>
 
     <!-- CONTENIDO PRINCIPAL -->
     <div class="contenedor" id="contenedor">
         
-        <h1>BOCAHO</h1>
-        <p class="subtitle">🎨 Creative Canvas Unlocked 🎨</p>
-
-        <!-- CANVAS CREATIVO -->
-        <div class="creative-section">
-            <p>tu espacio creativo</p>
-            <div class="creative-text" id="mensaje-personalizado">
-                La creatividad no tiene límites,
-                como la música que te mueve.
-                <br><br>
-                Bienvenido a tu galería personal.
+        <!-- HEADER ÁLBUM -->
+        <div class="header-album">
+            <div class="album-cover">
+                <div class="cover-placeholder">🎨</div>
+            </div>
+            
+            <div class="album-info">
+                <h1>BOCACHO<br>CREATIVE<br>VISION</h1>
+                <div class="subtitle">Album de Diseño & Creatividad</div>
+                
+                <div class="album-credits">
+                    <div class="credit-line">
+                        <strong>Artista</strong>
+                        <span>Bocacho</span>
+                    </div>
+                    <div class="credit-line">
+                        <strong>Género</strong>
+                        <span>Diseño Gráfico / Reggaeton</span>
+                    </div>
+                    <div class="credit-line">
+                        <strong>Año</strong>
+                        <span>2025</span>
+                    </div>
+                    <div class="credit-line">
+                        <strong>Productor</strong>
+                        <span>Creatividad Pura</span>
+                    </div>
+                </div>
             </div>
         </div>
 
-        <div class="divider"></div>
+        <!-- MENSAJE PERSONALIZADO -->
+        <div style="background: rgba(0, 255, 0, 0.08); border: 2px solid #00ff00; padding: 40px; margin: 80px 0; border-radius: 3px; box-shadow: 0 0 30px rgba(0, 255, 0, 0.1);">
+            <div style="font-family: 'Courier Prime', monospace; font-size: 12px; color: #00ff00; margin-bottom: 15px; text-transform: uppercase; letter-spacing: 2px;">/// MENSAJE PERSONAL ///</div>
+            <div id="mensaje-personalizado" style="font-size: 16px; color: #fff; line-height: 1.8; min-height: 100px; font-family: 'Montserrat', sans-serif;">
+                La creatividad es donde los sueños se hacen diseño,
+                y el diseño es donde el arte encuentra su propósito.
+                <br><br>
+                Bueno rey, estoy haciendo una dinámica para agradecerles a todas las personas que me importan por todo lo que han aportado a mi vida, y pues ajá, usted claramente hace parte de ellas.
+
+Quiero hacer esto como una forma de agradecimiento en mi cumpleaños. Quién sabe si se lo termine enviando exactamente ese día, pero bueno, eso es lo de menos. El caso es que quiero darle las gracias por todo lo que ha aportado a mi vida y a mi desarrollo personal.
+
+Gracias por ayudarme a disfrutar tanto la vida con todos esos planes que se inventa. Ya sea salir por un granizado, quedarnos hablando en alguna parte, estar en su casa o cualquier cosa que vaya surgiendo, créame que siempre que se arma uno de esos planes siento que estoy viviendo momentos muy especiales que nunca voy a olvidar.
+
+Pienso en los asados en su casa o en el jardín con Andy, Aleja, David, Guevara, Maya y usted; en las reuniones tomando algo con Davzay y los demás; o incluso en esas conversaciones filosóficas y reflexivas con Guevara, Saray o Sara hasta las tres de la mañana. Y uff, de verdad siento que todo eso me ha aportado muchísimo. Me ha enseñado a disfrutar más la vida, a reír, a valorar los momentos y, sobre todo, a conocer a las personas.
+
+Sabiendo cómo era yo antes, tan tímido y tan encerrado en mí mismo, darme la oportunidad de vivir todo eso me abrió mucho los ojos. Y una parte muy importante de eso se la debo a usted. Estoy muy agradecido por eso, pero también por muchas otras cosas, como tenerme en cuenta para contarme cualquier cosa o para desahogarse cuando lo necesita. Para mí, eso representa una de las cosas más bonitas de una amistad: la confianza de abrirse con el otro. (Sí, ya sé que sonó re homosexual, pero ni modo, se aguanta jajajaj).
+
+Pero bueno, en resumen —porque en los audios seguramente diré más cosas dependiendo de con qué mood me levante ese día—, gracias por fortalecer esta amistad durante todos estos años. Ojalá siga creciendo, siga siendo igual de parchada y siga acompañándonos por mucho tiempo más.
+
+Y una última cosa, socio: no se subestime tanto. Usted vale muchísimo más de lo que cree, y a veces siento que se le olvida. Créame que hay un potencial muy grande dentro de usted, muchas capacidades, muchas cosas buenas que todavía pueden explotar. Solo tiene que creer un poco más en ellas y darse la oportunidad de descubrirlas.
+
+Muchas gracias por todo, rey. Siempre voy a estar agradecido con usted.
+
+            </div>
+        </div>
 
         <!-- TRACKS -->
         <div class="tracks-section">
-            <h2>🎵 PLAYLIST EXCLUSIVA</h2>
-            <div class="tracks-grid">
-                <button class="track-btn" onclick="reproducirAudio('audio1')">
-                    ▶ Mensaje 1
-                </button>
-                <button class="track-btn" onclick="reproducirAudio('audio2')">
-                    ▶ Mensaje 2
-                </button>
-                <button class="track-btn" onclick="reproducirAudio('audio3')">
-                    ▶ Mensaje 3
-                </button>
-            </div>
-
-            <button class="btn-galeria" onclick="abrirGaleria()">
-                🎨 VER GALERÍA CREATIVA 🎨
-            </button>
-        </div>
-
-        <!-- GALERÍA -->
-        <div class="galeria" id="galeria">
-            <h2>GALERÍA PERSONAL</h2>
-            <div class="grid-fotos">
-                <div class="foto-item">
-                    <div class="foto-placeholder">🎨</div>
+            <div class="section-title">TRACKS</div>
+            
+            <div class="tracks-list">
+                <div class="track-item" onclick="reproducirAudio('audio1')">
+                    <div class="track-num">01</div>
+                    <div class="track-title">Mensaje Inspiración</div>
+                    <div class="track-play">▶</div>
                 </div>
-
-                <div class="foto-item">
-                    <div class="foto-placeholder">🎨</div>
+                
+                <div class="track-item" onclick="reproducirAudio('audio2')">
+                    <div class="track-num">02</div>
+                    <div class="track-title">Mensaje Creatividad</div>
+                    <div class="track-play">▶</div>
                 </div>
-
-                <div class="foto-item">
-                    <div class="foto-placeholder">🎨</div>
+                
+                <div class="track-item" onclick="reproducirAudio('audio3')">
+                    <div class="track-num">03</div>
+                    <div class="track-title">Mensaje Especial</div>
+                    <div class="track-play">▶</div>
                 </div>
             </div>
         </div>
 
-        <div style="text-align: center;">
-            <a href="../index.html" class="volver">SALIR</a>
+        <!-- BOTÓN PORTFOLIO -->
+        <button class="btn-portfolio" onclick="abrirPortfolio()">
+            📸 Ver Portfolio Creativo 📸
+        </button>
+
+        <!-- PORTFOLIO -->
+        <div class="portfolio-section" id="portfolio">
+            <div class="section-title">GALERÍA</div>
+            
+            <div class="portfolio-grid">
+                <div class="portfolio-item">
+                    <img src="../media/Bocacho/Foto 1.jpeg" alt="Foto 1" style="width: 100%; height: 100%; object-fit: cover;">
+                </div>
+                <div class="portfolio-item">
+                    <img src="../media/Bocacho/Foto 2.jpeg" alt="Foto 2" style="width: 100%; height: 100%; object-fit: cover;">
+                </div>
+                <div class="portfolio-item">
+                    <img src="../media/Bocacho/Foto 3.jpeg" alt="Foto 3" style="width: 100%; height: 100%; object-fit: cover;">
+                </div>
+                <div class="portfolio-item">
+                    <img src="../media/Bocacho/Foto 4.jpeg" alt="Foto 4" style="width: 100%; height: 100%; object-fit: cover;">
+                </div>
+                <div class="portfolio-item">
+                    <img src="../media/Bocacho/Foto 5.jpeg" alt="Foto 5" style="width: 100%; height: 100%; object-fit: cover;">
+                </div>
+                <div class="portfolio-item">
+                    <video controls style="width: 100%; height: 100%; object-fit: cover;">
+                        <source src="../media/Bocacho/Video 1.mp4" type="video/mp4">
+                    </video>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- FOOTER -->
+        <div class="footer-credits">
+            <p>© 2025 BOCACHO CREATIVE STUDIO<br>
+            ALL RIGHTS RESERVED<br>
+            <span style="margin-top: 20px; display: block;">✦ DISEÑO PARA LA VIDA ✦</span></p>
+            
+            <a href="../index.html" class="volver">Salir</a>
         </div>
 
     </div>
 
     <!-- AUDIOS -->
-    <audio id="audio1"><source src="../media/Bocaho/audio1.mp3" type="audio/mpeg"></audio>
-    <audio id="audio2"><source src="../media/Bocaho/audio2.mp3" type="audio/mpeg"></audio>
-    <audio id="audio3"><source src="../media/Bocaho/audio3.mp3" type="audio/mpeg"></audio>
+    <audio id="audio1"><source src="../media/Bocacho/audio1.mp3" type="audio/mpeg"></audio>
+    <audio id="audio2"><source src="../media/Bocacho/audio2.mp3" type="audio/mpeg"></audio>
+    <audio id="audio3"><source src="../media/Bocacho/audio3.mp3" type="audio/mpeg"></audio>
 
     <script>
-        // Generar partículas spray
+        // Generar partículas
         function generarParticulas() {
             const contenedor = document.getElementById('particulas');
-            for (let i = 0; i < 50; i++) {
+            for (let i = 0; i < 40; i++) {
                 const particle = document.createElement('div');
-                particle.className = 'particle';
+                particle.className = 'particle-bg';
                 particle.style.left = Math.random() * 100 + 'vw';
-                particle.style.animationDuration = (15 + Math.random() * 15) + 's';
-                particle.style.animationDelay = Math.random() * 5 + 's';
+                particle.style.animationDuration = (20 + Math.random() * 20) + 's';
+                particle.style.animationDelay = Math.random() * 10 + 's';
                 contenedor.appendChild(particle);
             }
         }
@@ -598,39 +730,102 @@
             if (audioActual && !audioActual.paused) {
                 audioActual.pause();
                 audioActual.currentTime = 0;
-                document.querySelectorAll('.track-btn').forEach(btn => {
-                    btn.style.opacity = '1';
-                });
             }
 
             audioActual = document.getElementById(id);
             audioActual.play();
-            event.target.style.opacity = '0.7';
+            
+            event.target.closest('.track-item').style.background = 'rgba(0, 255, 0, 0.15)';
             
             audioActual.addEventListener('ended', () => {
-                event.target.style.opacity = '1';
+                event.target.closest('.track-item').style.background = 'rgba(0, 255, 0, 0.02)';
             });
         }
 
-        // Activar canvas
-        function activarCanvas() {
-            document.getElementById('canvas-inicial').style.display = 'none';
+        // Activar álbum
+        function activarAlbum() {
+            document.getElementById('album-screen').style.display = 'none';
             document.getElementById('contenedor').classList.add('visible');
 
-            // Iniciar música
             const musica = document.getElementById('musica');
             musica.play();
         }
 
-        // Abrir galería
-        function abrirGaleria() {
-            const galeria = document.getElementById('galeria');
-            galeria.classList.toggle('activa');
+        // Abrir portfolio
+        function abrirPortfolio() {
+            const portfolio = document.getElementById('portfolio');
+            portfolio.classList.toggle('active');
             
             setTimeout(() => {
-                galeria.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                portfolio.scrollIntoView({ behavior: 'smooth', block: 'start' });
             }, 100);
         }
+    
+        // === LIGHTBOX UNIVERSAL ===
+        document.addEventListener('DOMContentLoaded', function() {
+            // Buscar todas las imágenes en galerías (excepto lightbox)
+            const selectores = [
+                '.foto-item img',
+                '.polaroid-foto img',
+                '.postal img',
+                '.ticket img',
+                '.gallery-item img',
+                '.project-card img',
+                '.portfolio-item img'
+            ];
+            
+            selectores.forEach(selector => {
+                document.querySelectorAll(selector).forEach(img => {
+                    img.addEventListener('click', function(e) {
+                        e.stopPropagation();
+                        abrirLightbox(this.src);
+                    });
+                });
+            });
+        });
+        
+        function abrirLightbox(src) {
+            const overlay = document.createElement('div');
+            overlay.className = 'lightbox-overlay';
+            
+            const closeBtn = document.createElement('div');
+            closeBtn.className = 'lightbox-close';
+            closeBtn.innerHTML = '×';
+            
+            const img = document.createElement('img');
+            img.src = src;
+            
+            overlay.appendChild(closeBtn);
+            overlay.appendChild(img);
+            
+            overlay.onclick = function() {
+                overlay.style.animation = 'lightbox-fade-in 0.3s ease reverse';
+                setTimeout(() => overlay.remove(), 280);
+            };
+            
+            document.body.appendChild(overlay);
+            
+            // Prevenir scroll
+            document.body.style.overflow = 'hidden';
+            
+            overlay.addEventListener('remove', () => {
+                document.body.style.overflow = '';
+            });
+            
+            // Restaurar scroll cuando se remueva
+            const observer = new MutationObserver((mutations) => {
+                mutations.forEach((mutation) => {
+                    mutation.removedNodes.forEach((node) => {
+                        if (node === overlay) {
+                            document.body.style.overflow = '';
+                            observer.disconnect();
+                        }
+                    });
+                });
+            });
+            observer.observe(document.body, { childList: true });
+        }
+
     </script>
 
 </body>
