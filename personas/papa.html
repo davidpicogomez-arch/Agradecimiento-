@@ -1405,61 +1405,17 @@ Muchas gracias por todo.
  
         <!-- SECCIÓN PISTAS (AUDIOS) -->
         <div class="pistas-section">
-            <div class="section-title">★ THE TRACKS ★</div>
-            <div class="section-subtitle">▼ MENSAJES EN VIVO ▼</div>
+            <div class="section-title">★ THE TRACK ★</div>
+            <div class="section-subtitle">▼ MENSAJE EN VIVO ▼</div>
             
-            <div class="pistas-grid">
+            <div class="pistas-grid" style="grid-template-columns: 1fr; max-width: 500px; margin: 0 auto;">
                 <div class="pista" onclick="reproducirAudio('audio1', this)">
                     <div class="pista-header">
                         <div class="pista-num">01</div>
                         <div class="pista-duration">► PLAY</div>
                     </div>
-                    <div class="pista-titulo">SIDE A · TRACK 1</div>
+                    <div class="pista-titulo">SIDE A · TRACK ÚNICO</div>
                     <div class="pista-descripcion">// Mensaje desde el corazón</div>
-                    <div class="pista-equalizer">
-                        <div class="eq-bar"></div>
-                        <div class="eq-bar"></div>
-                        <div class="eq-bar"></div>
-                        <div class="eq-bar"></div>
-                        <div class="eq-bar"></div>
-                        <div class="eq-bar"></div>
-                        <div class="eq-bar"></div>
-                        <div class="eq-bar"></div>
-                        <div class="eq-bar"></div>
-                        <div class="eq-bar"></div>
-                    </div>
-                    <div class="pista-play-btn">▶ PLAY</div>
-                </div>
-                
-                <div class="pista" onclick="reproducirAudio('audio2', this)">
-                    <div class="pista-header">
-                        <div class="pista-num">02</div>
-                        <div class="pista-duration">► PLAY</div>
-                    </div>
-                    <div class="pista-titulo">SIDE A · TRACK 2</div>
-                    <div class="pista-descripcion">// Una historia para ti</div>
-                    <div class="pista-equalizer">
-                        <div class="eq-bar"></div>
-                        <div class="eq-bar"></div>
-                        <div class="eq-bar"></div>
-                        <div class="eq-bar"></div>
-                        <div class="eq-bar"></div>
-                        <div class="eq-bar"></div>
-                        <div class="eq-bar"></div>
-                        <div class="eq-bar"></div>
-                        <div class="eq-bar"></div>
-                        <div class="eq-bar"></div>
-                    </div>
-                    <div class="pista-play-btn">▶ PLAY</div>
-                </div>
-                
-                <div class="pista" onclick="reproducirAudio('audio3', this)">
-                    <div class="pista-header">
-                        <div class="pista-num">03</div>
-                        <div class="pista-duration">► PLAY</div>
-                    </div>
-                    <div class="pista-titulo">SIDE B · TRACK 1</div>
-                    <div class="pista-descripcion">// El cierre épico</div>
                     <div class="pista-equalizer">
                         <div class="eq-bar"></div>
                         <div class="eq-bar"></div>
@@ -1770,8 +1726,6 @@ Muchas gracias por todo.
  
     <!-- AUDIOS -->
     <audio id="audio1"><source src="../media/Pa/audio1.mp3" type="audio/mpeg"></audio>
-    <audio id="audio2"><source src="../media/Pa/audio2.mp3" type="audio/mpeg"></audio>
-    <audio id="audio3"><source src="../media/Pa/audio3.mp3" type="audio/mpeg"></audio>
  
     <script>
         // Generar partículas
