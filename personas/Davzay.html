@@ -1180,10 +1180,7 @@
     <!-- PARTÍCULAS -->
     <div id="particulas"></div>
  
-    <!-- MÚSICA DE FONDO -->
-    <audio id="musica" loop volume="0.15">
-        <source src="../media/Davzay/musica.mp3" type="audio/mpeg">
-    </audio>
+    
  
     <!-- CONTENIDO PRINCIPAL -->
     <div class="contenedor" id="contenedor">
@@ -1378,8 +1375,8 @@ Muchas gracias por todo, Davzay, de verdad. Suena a despedida, pero no lo es jaj
     </div>
  
     <!-- AUDIOS -->
-    <audio id="audio1"><source src="../media/Davzay/audio1.mp3" type="audio/mpeg"></audio>
-    <audio id="audio2"><source src="../media/Davzay/audio2.mp3" type="audio/mpeg"></audio>
+    <audio id="audio1"><source src="../media/Davzay/Davzay_1.mp3" type="audio/mpeg"></audio>
+    <audio id="audio2"><source src="../media/Davzay/Davzay_2.mp3" type="audio/mpeg"></audio>
  
     <script>
         // Generar partículas
@@ -1431,10 +1428,6 @@ Muchas gracias por todo, Davzay, de verdad. Suena a despedida, pero no lo es jaj
         function encenderMoto() {
             document.getElementById('ignition-screen').style.display = 'none';
             document.getElementById('contenedor').classList.add('visible');
- 
-            // Iniciar música
-            const musica = document.getElementById('musica');
-            musica.play();
             
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
