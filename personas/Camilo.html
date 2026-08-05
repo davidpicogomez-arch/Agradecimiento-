@@ -571,9 +571,7 @@
     <div id="arch-lines"></div>
 
     <!-- MÚSICA -->
-    <audio id="musica" loop volume="0.15">
-        <source src="../media/Camilo/musica.mp3" type="audio/mpeg">
-    </audio>
+    
 
     <!-- CONTENIDO PRINCIPAL -->
     <div class="contenedor" id="contenedor">
@@ -703,9 +701,9 @@ Lo quiero mucho, rey, y muchas gracias por todo. ❤️
     </div>
 
     <!-- AUDIOS -->
-    <audio id="audio1"><source src="../media/Camilo/audio1.mp3" type="audio/mpeg"></audio>
-    <audio id="audio2"><source src="../media/Camilo/audio2.mp3" type="audio/mpeg"></audio>
-    <audio id="audio3"><source src="../media/Camilo/audio3.mp3" type="audio/mpeg"></audio>
+    <audio id="audio1"><source src="../media/Camilo/Camilo_1.mp3" type="audio/mpeg"></audio>
+    <audio id="audio2"><source src="../media/Camilo/Camilo_2.mp3" type="audio/mpeg"></audio>
+    <audio id="audio3"><source src="../media/Camilo/Camilo_3.mp3" type="audio/mpeg"></audio>
 
     <script>
         // Generar líneas arquitectónicas
@@ -747,9 +745,6 @@ Lo quiero mucho, rey, y muchas gracias por todo. ❤️
         function cargarProyecto() {
             document.getElementById('blueprint-loading').style.display = 'none';
             document.getElementById('contenedor').classList.add('visible');
-
-            const musica = document.getElementById('musica');
-            musica.play();
         }
 
         // Abrir galería
