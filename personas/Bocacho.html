@@ -568,10 +568,7 @@
         </div>
     </div>
 
-    <!-- MÚSICA DE FONDO -->
-    <audio id="musica" loop volume="0.15">
-        <source src="../media/Bocacho/musica.mp3" type="audio/mpeg">
-    </audio>
+    
 
     <!-- CONTENIDO PRINCIPAL -->
     <div class="contenedor" id="contenedor">
@@ -704,9 +701,9 @@ Muchas gracias por todo, rey. Siempre voy a estar agradecido con usted.
     </div>
 
     <!-- AUDIOS -->
-    <audio id="audio1"><source src="../media/Bocacho/audio1.mp3" type="audio/mpeg"></audio>
-    <audio id="audio2"><source src="../media/Bocacho/audio2.mp3" type="audio/mpeg"></audio>
-    <audio id="audio3"><source src="../media/Bocacho/audio3.mp3" type="audio/mpeg"></audio>
+    <audio id="audio1"><source src="../media/Bocacho/Bocacho_1.mp3" type="audio/mpeg"></audio>
+    <audio id="audio2"><source src="../media/Bocacho/Bocacho_2.mp3" type="audio/mpeg"></audio>
+    <audio id="audio3"><source src="../media/Bocacho/Bocacho_3.mp3" type="audio/mpeg"></audio>
 
     <script>
         // Generar partículas
@@ -746,9 +743,6 @@ Muchas gracias por todo, rey. Siempre voy a estar agradecido con usted.
         function activarAlbum() {
             document.getElementById('album-screen').style.display = 'none';
             document.getElementById('contenedor').classList.add('visible');
-
-            const musica = document.getElementById('musica');
-            musica.play();
         }
 
         // Abrir portfolio
