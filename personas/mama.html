@@ -984,10 +984,7 @@
     <div id="petals"></div>
     <div id="hearts-bg"></div>
  
-    <!-- MÚSICA DE FONDO -->
-    <audio id="musica" loop volume="0.15">
-        <source src="../media/Ma/musica.mp3" type="audio/mpeg">
-    </audio>
+    
  
     <!-- CONTENIDO PRINCIPAL -->
     <div class="contenedor" id="contenedor">
@@ -1175,7 +1172,7 @@ No me salen las palabras para decir “te amo”, pero seguramente es porque par
     </div>
  
     <!-- AUDIOS -->
-    <audio id="audio1"><source src="../media/Ma/audio1.mp3" type="audio/mpeg"></audio>
+    <audio id="audio1"><source src="../media/Ma/Ma_1.mp3" type="audio/mpeg"></audio>
  
     <script>
         // Generar mariposas
@@ -1246,10 +1243,6 @@ No me salen las palabras para decir “te amo”, pero seguramente es porque par
         function abrirDiario() {
             document.getElementById('diario-inicial').style.display = 'none';
             document.getElementById('contenedor').classList.add('visible');
- 
-            // Iniciar música
-            const musica = document.getElementById('musica');
-            musica.play();
             
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
