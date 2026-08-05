@@ -1087,10 +1087,7 @@
     <!-- PARTÍCULAS FLOTANTES -->
     <div id="particulas"></div>
  
-    <!-- MÚSICA DE FONDO -->
-    <audio id="musica" loop volume="0.15">
-        <source src="../media/Ana Lucia/musica.mp3" type="audio/mpeg">
-    </audio>
+    
  
     <!-- CONTENIDO PRINCIPAL -->
     <div class="contenedor" id="contenedor">
@@ -1190,9 +1187,9 @@ Te quiero mucho y gracias por todos estos años.
     </div>
  
     <!-- AUDIOS -->
-    <audio id="audio1"><source src="../media/Ana Lucia/audio1.mp3" type="audio/mpeg"></audio>
-    <audio id="audio2"><source src="../media/Ana Lucia/audio2.mp3" type="audio/mpeg"></audio>
-    <audio id="audio3"><source src="../media/Ana Lucia/audio3.mp3" type="audio/mpeg"></audio>
+    <audio id="audio1"><source src="../media/Ana Lucia/Ana_Lucia_1.mp3" type="audio/mpeg"></audio>
+    <audio id="audio2"><source src="../media/Ana Lucia/Ana_Lucia_2.mp3" type="audio/mpeg"></audio>
+    <audio id="audio3"><source src="../media/Ana Lucia/Ana_Lucia_3.mp3" type="audio/mpeg"></audio>
  
     <script>
         // Generar Christmas Lights
@@ -1246,10 +1243,6 @@ Te quiero mucho y gracias por todos estos años.
         function abrirSobre() {
             document.getElementById('sobre-inicial').style.display = 'none';
             document.getElementById('contenedor').classList.add('visible');
- 
-            // Iniciar música
-            const musica = document.getElementById('musica');
-            musica.play();
         }
  
         // Álbum de fotos
