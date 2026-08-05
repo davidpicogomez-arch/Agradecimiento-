@@ -1323,10 +1323,7 @@
         </div>
     </div>
  
-    <!-- MÚSICA DE FONDO -->
-    <audio id="musica" loop volume="0.15">
-        <source src="../media/Pa/musica.mp3" type="audio/mpeg">
-    </audio>
+    
  
     <!-- CONTENIDO PRINCIPAL -->
     <div class="contenedor" id="contenedor">
@@ -1725,7 +1722,7 @@ Muchas gracias por todo.
     </div>
  
     <!-- AUDIOS -->
-    <audio id="audio1"><source src="../media/Pa/audio1.mp3" type="audio/mpeg"></audio>
+    <audio id="audio1"><source src="../media/Pa/Pa_1.mp3" type="audio/mpeg"></audio>
  
     <script>
         // Generar partículas
@@ -1767,10 +1764,6 @@ Muchas gracias por todo.
         function encenderRadio() {
             document.getElementById('boombox-screen').style.display = 'none';
             document.getElementById('contenedor').classList.add('visible');
- 
-            // Iniciar música
-            const musica = document.getElementById('musica');
-            musica.play();
             
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
