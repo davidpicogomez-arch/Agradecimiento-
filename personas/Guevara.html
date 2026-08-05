@@ -840,9 +840,7 @@
     <div id="field-lines"></div>
 
     <!-- MÚSICA -->
-    <audio id="musica" loop volume="0.15">
-        <source src="../media/Guevara/musica.mp3" type="audio/mpeg">
-    </audio>
+    
 
     <!-- CONTENIDO PRINCIPAL -->
     <div class="contenedor" id="contenedor">
@@ -1018,9 +1016,9 @@ Lo quiero mucho rey, y gracias por todos estos años.
     </div>
 
     <!-- AUDIOS -->
-    <audio id="audio1"><source src="../media/Guevara/audio1.mp3" type="audio/mpeg"></audio>
-    <audio id="audio2"><source src="../media/Guevara/audio2.mp3" type="audio/mpeg"></audio>
-    <audio id="audio3"><source src="../media/Guevara/audio3.mp3" type="audio/mpeg"></audio>
+    <audio id="audio1"><source src="../media/Guevara/Guevara_1.mp3" type="audio/mpeg"></audio>
+    <audio id="audio2"><source src="../media/Guevara/Guevara_2.mp3" type="audio/mpeg"></audio>
+    <audio id="audio3"><source src="../media/Guevara/Guevara_3.mp3" type="audio/mpeg"></audio>
 
     <script>
         // Generar líneas de cancha
@@ -1064,9 +1062,6 @@ Lo quiero mucho rey, y gracias por todos estos años.
         function iniciarPartido() {
             document.getElementById('stadium-loading').style.display = 'none';
             document.getElementById('contenedor').classList.add('visible');
-
-            const musica = document.getElementById('musica');
-            musica.play();
         }
 
         // Abrir galería
