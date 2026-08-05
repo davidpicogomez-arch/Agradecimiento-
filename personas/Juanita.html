@@ -1075,10 +1075,7 @@
     <div id="satellites"></div>
     <div id="code-rain-container"></div>
  
-    <!-- MÚSICA DE FONDO -->
-    <audio id="musica" loop volume="0.15">
-        <source src="../media/Juanita/musica.mp3" type="audio/mpeg">
-    </audio>
+    
  
     <!-- CONTENIDO PRINCIPAL -->
     <div class="contenedor" id="contenedor">
@@ -1238,9 +1235,9 @@ Muchas gracias, Juanita.
     </div>
  
     <!-- AUDIOS -->
-    <audio id="audio1"><source src="../media/Juanita/audio1.mp3" type="audio/mpeg"></audio>
-    <audio id="audio2"><source src="../media/Juanita/audio2.mp3" type="audio/mpeg"></audio>
-    <audio id="audio3"><source src="../media/Juanita/audio3.mp3" type="audio/mpeg"></audio>
+    <audio id="audio1"><source src="../media/Juanita/Juanita_1.mp3" type="audio/mpeg"></audio>
+    <audio id="audio2"><source src="../media/Juanita/Juanita_2.mp3" type="audio/mpeg"></audio>
+    <audio id="audio3"><source src="../media/Juanita/Juanita_3.mp3" type="audio/mpeg"></audio>
  
     <script>
         // Generar partículas
@@ -1327,10 +1324,6 @@ Muchas gracias, Juanita.
         function iniciarMision() {
             document.getElementById('mission-control').style.display = 'none';
             document.getElementById('contenedor').classList.add('visible');
- 
-            // Iniciar música
-            const musica = document.getElementById('musica');
-            musica.play();
         }
  
         // Álbum de fotos
