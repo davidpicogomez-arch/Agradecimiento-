@@ -1048,10 +1048,7 @@
     <!-- PARTÍCULAS FLOTANTES MÁGICAS -->
     <div id="particulas"></div>
  
-    <!-- MÚSICA DE FONDO -->
-    <audio id="musica" loop volume="0.15">
-        <source src="../media/Daniela/musica.mp3" type="audio/mpeg">
-    </audio>
+    
  
     <!-- CONTENIDO PRINCIPAL -->
     <div class="contenedor" id="contenedor">
@@ -1154,9 +1151,9 @@ Pero bueno, en resumen: gracias por todos estos años. Estoy demasiado agradecid
     </div>
  
     <!-- AUDIOS -->
-    <audio id="audio1"><source src="../media/Daniela/audio1.mp3" type="audio/mpeg"></audio>
-    <audio id="audio2"><source src="../media/Daniela/audio2.mp3" type="audio/mpeg"></audio>
-    <audio id="audio3"><source src="../media/Daniela/audio3.mp3" type="audio/mpeg"></audio>
+    <audio id="audio1"><source src="../media/Daniela/Daniela_1.mp3" type="audio/mpeg"></audio>
+    <audio id="audio2"><source src="../media/Daniela/Daniela_2.mp3" type="audio/mpeg"></audio>
+    <audio id="audio3"><source src="../media/Daniela/Daniela_3.mp3" type="audio/mpeg"></audio>
  
     <script>
         // Generar partículas flotantes mágicas
@@ -1203,10 +1200,6 @@ Pero bueno, en resumen: gracias por todos estos años. Estoy demasiado agradecid
         function abrirSobre() {
             document.getElementById('sobre-inicial').style.display = 'none';
             document.getElementById('contenedor').classList.add('visible');
- 
-            // Iniciar música
-            const musica = document.getElementById('musica');
-            musica.play();
         }
  
         // Álbum de fotos
