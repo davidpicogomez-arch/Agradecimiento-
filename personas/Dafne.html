@@ -981,10 +981,7 @@
     <div id="particulas"></div>
     <div id="papers"></div>
  
-    <!-- MÚSICA DE FONDO -->
-    <audio id="musica" loop volume="0.15">
-        <source src="../media/Dafne/musica.mp3" type="audio/mpeg">
-    </audio>
+    
  
     <!-- CONTENIDO PRINCIPAL -->
     <div class="contenedor" id="contenedor">
@@ -1069,7 +1066,7 @@ Te quiero.
     </div>
  
     <!-- AUDIOS -->
-    <audio id="audio1"><source src="../media/Dafne/audio1.mp3" type="audio/mpeg"></audio>
+    <audio id="audio1"><source src="../media/Dafne/Dafne_1.mp3" type="audio/mpeg"></audio>
  
     <script>
         // Generar partículas
@@ -1119,10 +1116,6 @@ Te quiero.
         function abrirLibro() {
             document.getElementById('libro-inicial').style.display = 'none';
             document.getElementById('contenedor').classList.add('visible');
- 
-            // Iniciar música
-            const musica = document.getElementById('musica');
-            musica.play();
         }
     </script>
  
